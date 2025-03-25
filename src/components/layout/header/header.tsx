@@ -42,7 +42,7 @@ export default function Header() {
                 onClick={() => setIsSettingsOpen(true)}
                 className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
               >
-                <Cog6ToothIcon className="size-5 primary-text" />
+                <Cog6ToothIcon className="size-5 primary-text cursor-pointer" />
               </button>
             </div>
 

@@ -38,6 +38,7 @@ function TabNavigation({
                     src={selectedIndicator}
                     alt="selected"
                     className="size-6 mr-2"
+                    unoptimized
                   />
                 )}
 

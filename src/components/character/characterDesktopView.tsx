@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -11,6 +12,7 @@ import DesktopConstellationView from "./characterConstellations/desktopConstella
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
 import TalentsDesktop from "./characterTalents/talentsDesktop";
+import Image from "next/image";
 
 type Props = {
   characterData: ICharacter;
@@ -68,10 +70,12 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
       >
         <div className="w-2/3 flex flex-col items-start mr-4 absolute z-10">
           <div className="flex items-center justify-start space-x-1 mb-5">
-            <img
+            <Image
               className="size-12 mr-2"
               src={sideIcon}
               alt={name}
+              height={100}
+              width={100}
               style={{
                 zoom: "1.5",
                 transform: "translateY(-8px)",
