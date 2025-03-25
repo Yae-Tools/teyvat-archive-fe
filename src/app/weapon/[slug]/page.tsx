@@ -1,22 +1,8 @@
 "use server";
 
 import WeaponClient from "~/components/weapon/weaponClient";
-import {
-  getWeaponById,
-  getWeapons,
-} from "~/services/teyvatServer/teyvatArchive.service";
+import { getWeaponById } from "~/services/teyvatServer/teyvatArchive.service";
 import { decryptWeaponUniqueRoute } from "~/utils/decryptUniqueId";
-
-export async function generateStaticParms() {
-  const weapons: IBaseWeapon[] = await getWeapons();
-  return {
-    paths: weapons.map((weapon) => ({
-      params: {
-        slug: weapon.id,
-      },
-    })),
-  };
-}
 
 export default async function Weapon({
   params,

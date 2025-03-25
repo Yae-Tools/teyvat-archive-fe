@@ -5,7 +5,7 @@ import Paragraph from "~/components/common/typography/paragraph";
 import PageTitle from "~/components/common/typography/pageTitle";
 import TitleHeading from "~/components/common/typography/titleHeading";
 
-export async function generateMetaData(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive - Cookie Policy",
     description: "Welcome to Teyvat Archive!",

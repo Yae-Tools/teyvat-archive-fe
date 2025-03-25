@@ -5,7 +5,7 @@ import PageTitle from "~/components/common/typography/pageTitle";
 import HomeClient from "~/components/home/homeClient";
 import { getAllEvents } from "~/services/teyvatServer/teyvatArchive.service";
 
-export async function generateMetaData(): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive",
     description: "Welcome to Teyvat Archive!",

@@ -1,21 +1,7 @@
 "use server";
 
 import ArtifactClient from "~/components/artifact/artifactClient";
-import {
-  getArtifactSetById,
-  getArtifactSets,
-} from "~/services/teyvatServer/teyvatArchive.service";
-
-export async function generateStaticParms() {
-  const artifacts: IBaseArtifactSet[] = await getArtifactSets();
-  return {
-    paths: artifacts.map((artifact) => ({
-      params: {
-        slug: artifact.id,
-      },
-    })),
-  };
-}
+import { getArtifactSetById } from "~/services/teyvatServer/teyvatArchive.service";
 
 export default async function Artifact({
   params,

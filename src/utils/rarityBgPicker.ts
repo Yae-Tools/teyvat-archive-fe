@@ -8,17 +8,17 @@ import fiveStarBg from "~/assets/images/bgs/UI_MallSlotA_Bg5.png";
 function rarityBgPicker(stars: number): string {
   switch (stars) {
     case 1:
-      return oneStarBg;
+      return oneStarBg.src;
     case 2:
-      return twoStarBg;
+      return twoStarBg.src;
     case 3:
-      return threeStarBg;
+      return threeStarBg.src;
     case 4:
-      return fourStarBg;
+      return fourStarBg.src;
     case 5:
-      return fiveStarBg;
+      return fiveStarBg.src;
     default:
-      return defaultBg;
+      return defaultBg.src;
   }
 }
 

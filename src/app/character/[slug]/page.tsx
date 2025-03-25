@@ -2,22 +2,8 @@
 
 import CharacterClient from "~/components/character/characterClient";
 import { transforCharacterData } from "~/features/imageFetchOptimizer";
-import {
-  getCharacterBySkillDepotId,
-  getCharacters,
-} from "~/services/teyvatServer/teyvatArchive.service";
+import { getCharacterBySkillDepotId } from "~/services/teyvatServer/teyvatArchive.service";
 import { decryptCharacterUniqueRoute } from "~/utils/decryptUniqueId";
-
-export async function generateStaticParms() {
-  const characters: IBaseCharacter[] = await getCharacters();
-  return {
-    paths: characters.map((character) => ({
-      params: {
-        slug: character.id,
-      },
-    })),
-  };
-}
 
 export default async function Character({
   params,
