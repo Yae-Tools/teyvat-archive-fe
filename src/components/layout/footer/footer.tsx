@@ -26,7 +26,16 @@ export default function Footer() {
         </div>
       </div>
       {/* Copyright section */}
-      <div className="text-slate-400 text-sm font-algoindeEnka text-center py-1">{`© ${new Date().getFullYear()} Teyvat Archive • Yae Publishing House `}</div>
+      <div className="text-slate-400 text-sm font-algoindeEnka text-center py-1">
+        {`© ${new Date().getFullYear()} Teyvat Archive • `}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://yaepublishinghouse.online/"
+        >
+          Yae Publishing House
+        </a>
+      </div>
     </footer>
   );
 }
