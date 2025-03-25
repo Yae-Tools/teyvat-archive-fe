@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
 import ConstellationDetails from "./constellationDetails";
 import ConstellationIcon from "./constellationIcon";
+import Image from "next/image";
 
 type Props = {
   consName: string;
@@ -39,7 +40,7 @@ export default function DesktopConstellationView({
           >
             {constellations.map((con, i) => (
               <ConstellationIcon
-                key={con.name}
+                key={con.id}
                 {...{
                   index: i,
                   constellation: con,
@@ -49,7 +50,7 @@ export default function DesktopConstellationView({
                 }}
               />
             ))}
-            <img
+            <Image
               src={constellationIcon}
               alt="CONSTELLATION ICON"
               className="size-60"
@@ -58,6 +59,8 @@ export default function DesktopConstellationView({
                 zoom: "1.2",
                 filter: "brightness(1000%)",
               }}
+              width={100}
+              height={100}
             />
           </div>
         </div>
