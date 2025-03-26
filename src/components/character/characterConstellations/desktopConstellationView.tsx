@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import Image from "next/image";
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
 import ConstellationDetails from "./constellationDetails";
 import ConstellationIcon from "./constellationIcon";
-import Image from "next/image";
 
 type Props = {
   consName: string;
@@ -57,9 +57,10 @@ export default function DesktopConstellationView({
               style={{
                 transform: "rotate(180deg)",
                 zoom: "1.2",
-                filter: "brightness(1000%)",
+                //convert to monochrome
+                filter: `grayscale(100%) brightness(0) invert(1)`,
               }}
-              width={100}
+              width={400}
               height={100}
             />
           </div>

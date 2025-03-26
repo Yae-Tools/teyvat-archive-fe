@@ -7,26 +7,21 @@ const transformCharacterData = (character: ICharacter) => {
   if (!character.isTraveler && !character?.nameCard) return character;
 
   let nameCard;
-  let constellationIcon;
   let splashUrl: string;
 
   if (character.isTraveler) {
     const isAether = character.nameId === "PlayerBoy";
 
     nameCard = `${IMAGE_BASE_URL}/nameCardPicAlpha/UI_NameCardPic_${character.name}.png`;
-    constellationIcon = `${IMAGE_BASE_URL}/chapterIcons/UI_ChapterIcon_${character.name}.png`;
     splashUrl = isAether ? aetherSplashImage.src : lumineSplashImage.src;
   } else {
     const currentName = character.nameCard?.split("/").pop();
     nameCard = `${IMAGE_BASE_URL}/nameCardPicAlpha/${currentName}`;
-    const currentConstellationIcon = character?.constellationIcon
-      .split("/")
-      .pop();
 
-    constellationIcon = `${IMAGE_BASE_URL}/constellations/${currentConstellationIcon}`;
     splashUrl = character.splashUrl;
   }
 
+  const constellationIcon = `${IMAGE_BASE_URL}/chapterIcons/UI_ChapterIcon_${character.name}.png`;
   const currentSideIcon = character?.sideIcon.split("/").pop();
   const sideIcon = `https://enka.network/ui/${currentSideIcon}`;
 
