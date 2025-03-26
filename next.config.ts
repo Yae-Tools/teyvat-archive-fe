@@ -16,6 +16,18 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "azula9713.github.io",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "enka.network",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
