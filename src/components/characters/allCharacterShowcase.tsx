@@ -47,7 +47,10 @@ export default function AllCharacterShowcase({ characters }: Readonly<Props>) {
   ]);
 
   return (
-    <div className="overflow-hidden w-full items-center justify-center flex px-4 md:px-12">
+    <div
+      className="overflow-hidden w-full items-center justify-center flex px-4 md:px-12"
+      style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
+    >
       <motion.div
         layout
         animate={{ opacity: 1 }}

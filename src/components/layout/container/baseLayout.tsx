@@ -1,10 +1,10 @@
-"use server"
+"use server";
 
 import CustomCursor from "~/assets/cursor/cursor.png";
+import { getGameVersion } from "~/services/system/system.service";
+import AnnouncementBanner from "../banner/announcementBanner";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import AnnouncementBanner from "../banner/announcementBanner";
-import { getGameVersion } from "~/services/system/system.service";
 
 type Props = {
   children: React.ReactNode;
@@ -13,27 +13,38 @@ type Props = {
 const BANNER_VISIBLE = process.env.NEXT_PUBLIC_BANNER_VISIBLE === "true";
 
 export default async function BaseLayout({ children }: Readonly<Props>) {
-
-  const gameVersion:{
+  const gameVersion: {
     version: string;
     build: string;
-  } =  await getGameVersion();
+  } = await getGameVersion();
+
+  const bg =
+    "https://fastcdn.hoyoverse.com/static-resource-v2/2025/03/14/b4706346aee7857c99a74e3b73d6a865_6111596366082103572.webp";
 
   return (
     <div
-      className="bg-slate-200 dark:bg-gray-900 w-full flex flex-col items-center justify-start min-h-svh"
+      className="min-h-svh max-h-[100vh] overflow-y-auto overflow-x-hidden"
       style={{
         cursor: "url(" + CustomCursor.src + "), auto",
+        backgroundImage: `url(${bg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "overlay",
+        backgroundColor: "rgba(16, 24, 40, 0.8)",
       }}
     >
-      <Header />
-      {BANNER_VISIBLE && (
-        <AnnouncementBanner message={`${gameVersion.version} Update is still in progress. Please be patient.`} />
-      )}
-      <main className="bg-slate-200 dark:bg-gray-900 primary-text flex-1 w-full flex flex-col items-center justify-start mt-4 md:mt-8 lg:mt-12 xl:mt-16 max-w-[1500px]">
-        {children}
-      </main>
-      <Footer />
+      <div className="w-full h-full flex flex-col items-center justify-between mx-auto">
+        <Header />
+        {BANNER_VISIBLE && (
+          <AnnouncementBanner
+            message={`${gameVersion.version} Update is still in progress. Please be patient.`}
+          />
+        )}
+        <main className="primary-text flex-1 w-full flex flex-col items-center justify-start">
+          {children}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }

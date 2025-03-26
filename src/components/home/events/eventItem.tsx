@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState } from "react";
 import ReadButton from "./readButton";
 
@@ -13,10 +14,17 @@ export default function EventItem({ event }: Readonly<Props>) {
       className={`overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25 max-w-[calc(100vw/12*10)] ${
         isExpanded ? "row-span-4" : ""
       } border border-gray-700`}
+      style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
     >
-      <img alt={event.title} src={event.imageUrl} className="w-full" />
+      <Image
+        alt={event.title}
+        src={event.imageUrl}
+        className="w-full"
+        width={500}
+        height={100}
+      />
 
-      <div className="bg-white p-4 sm:p-6 dark:bg-gray-900">
+      <div className="p-4 sm:p-6">
         <time className="block text-xs text-gray-500 dark:text-gray-400">
           Until {new Date(event.end).toLocaleDateString()}
         </time>

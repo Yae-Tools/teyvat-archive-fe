@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 
+import Image from "next/image";
 import { getMarginRightValue, getZoomValue } from "~/utils/splashArtZoom";
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
@@ -12,7 +13,6 @@ import DesktopConstellationView from "./characterConstellations/desktopConstella
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
 import TalentsDesktop from "./characterTalents/talentsDesktop";
-import Image from "next/image";
 
 type Props = {
   characterData: ICharacter;
@@ -62,7 +62,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
   const [selectedTab, setSelectedTab] = useState(TAB_NAV[0].id);
 
   return (
-    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-x-hidden">
+    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-x-hidden max-w-[1650px]">
       <LazyBackgroundImage
         img={nameCard}
         isDarkened
@@ -117,7 +117,10 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
           </div>
         </div>
       </LazyBackgroundImage>
-      <div className="w-full flex items-start justify-between space-x-4 border-2 rounded-lg border-slate-700 mt-20">
+      <div
+        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-20"
+        style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
+      >
         <TabNavigation
           tabs={TAB_NAV}
           selectedTab={selectedTab}

@@ -1,16 +1,16 @@
 "use client";
 
 import { useAtom } from "jotai";
-import PageTitle from "../common/typography/pageTitle";
-import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";
-import AllCharacterShowcase from "./allCharacterShowcase";
-import CharacterFilterSection from "./filtering/characterFilterSection";
+import { useEffect, useState } from "react";
 import {
   useFilterTravelersAtom,
   useSelectedTravelerAtom,
 } from "~/atoms/feature.atoms";
-import { useEffect, useState } from "react";
 import filterCharacters from "~/features/characterDisplayOptimizer";
+import PageTitle from "../common/typography/pageTitle";
+import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";
+import AllCharacterShowcase from "./allCharacterShowcase";
+import CharacterFilterSection from "./filtering/characterFilterSection";
 
 type Props = {
   characters: IBaseCharacter[];
