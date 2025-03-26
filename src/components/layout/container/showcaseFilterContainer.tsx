@@ -44,7 +44,7 @@ export default function ShowcaseFilterContainer({
 
       {/* Filter Container */}
       <div
-        className={`bg-gray-900 w-full ${
+        className={`bg-gray-900 w-full pb-2 ${
           isSticky ? "sticky top-0 z-10" : ""
         } transition-all duration-300`}
         style={{
