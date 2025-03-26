@@ -27,6 +27,14 @@ export default function ThumbnaiContainer({
         animate={{
           opacity: 1,
         }}
+        whileHover={{
+          scale: 1.05,
+          transition: {
+            duration: 0.2,
+            ease: "easeInOut",
+          },
+        }}
+        
         style={{
           backgroundImage: `linear-gradient(to top, ${bgFrom}, ${bgVia}, ${bgTo}`,
         }}
@@ -34,7 +42,8 @@ export default function ThumbnaiContainer({
       >
         {children}
       </motion.div>
-      <p className="text-sm text-center font-semibold my-1">{name}</p>
+      
+      <p className="w-[100px] text-sm text-center font-semibold my-1">{name}</p>
     </div>
   );
 }
