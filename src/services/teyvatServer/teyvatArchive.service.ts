@@ -93,7 +93,6 @@ export const getArtifactSetById = async (artifactSetId: string) => {
 };
 
 export const getMaterialById = async (materialId: string) => {
-  console.log("materialId", materialId);
   try {
     const response = await serverInstance.get(`/materials/id/${materialId}`);
     return response.data;

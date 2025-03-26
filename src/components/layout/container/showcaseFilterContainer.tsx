@@ -33,9 +33,6 @@ export default function ShowcaseFilterContainer({
     };
   }, []);
 
-  useEffect(() => {
-    console.log("isStuck", isStuck);
-  }, [isStuck]);
 
   return (
     <>
