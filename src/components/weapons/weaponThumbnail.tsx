@@ -41,7 +41,8 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
         <Image
           src={weaponTypeIconFilter[weapon.weaponType]}
           alt={weapon.weaponType}
-          className="size-4 lg:size-5"
+          className="size-5 lg:size-7"
+          style={{ filter: "brightness(0) invert(1)" }}
         />
       </div>
     </ThumbnaiContainer>

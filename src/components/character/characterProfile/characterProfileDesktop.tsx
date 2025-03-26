@@ -21,7 +21,7 @@ export default function CharacterProfileDesktop({
       >
         {name}
       </h2>
-      <h4 className="uppercase font-semibold text-3xl italic tracking-widest mt-6 font-algoindeEnka drop-shadow-xl">
+      <h4 className="uppercase font-sans! font-semibold text-2xl tracking-widest mt-6 font-algoindeEnka drop-shadow-xl">
         {title}
       </h4>
       <div className="w-2/3">

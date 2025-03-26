@@ -2,8 +2,9 @@
 
 import { Bars3Icon, Cog6ToothIcon } from "@heroicons/react/16/solid";
 import Modal from "react-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import SettingsModal from "~/components/modals/settings/settingsModal";
 import DesktopNavRoutes from "./desktopNavRoutes";
@@ -14,7 +15,13 @@ export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+  const path = usePathname();
+
   Modal.setAppElement("#app");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [path]);
 
   return (
     <header className="bg-white dark:bg-gray-900 w-full shadow-slate-300 dark:shadow-slate-950 shadow-md overflow-x-hidden">
