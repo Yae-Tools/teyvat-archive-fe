@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import ClientThemeSync from "~/components/common/theme/clientThemeSync";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { getThemeFromCookie } from "~/utils/theme";
 
-import "./globals.css";
+import ClientThemeSync from "~/components/common/theme/clientThemeSync";
 import BaseLayout from "~/components/layout/container/baseLayout";
+import "./globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -28,6 +30,8 @@ export default function RootLayout({
       <body className={`${openSans.variable} antialiased`} id="app">
         <BaseLayout>{children}</BaseLayout>
         <ClientThemeSync />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
