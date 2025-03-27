@@ -20,6 +20,8 @@ export default function ThumbnaiContainer({
     viaColor: bgVia,
   } = rarityColoFilter[rarity];
 
+  console.log("rarity", rarity);
+
   return (
     <div className="flex flex-col items-center mb-3">
       <motion.div
@@ -34,7 +36,6 @@ export default function ThumbnaiContainer({
             ease: "easeInOut",
           },
         }}
-        
         style={{
           backgroundImage: `linear-gradient(to top, ${bgFrom}, ${bgVia}, ${bgTo}`,
         }}
@@ -42,7 +43,7 @@ export default function ThumbnaiContainer({
       >
         {children}
       </motion.div>
-      
+
       <p className="w-[100px] text-sm text-center font-semibold my-1">{name}</p>
     </div>
   );

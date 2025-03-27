@@ -33,3 +33,13 @@ export const getGameVersion = async () => {
     return null;
   }
 };
+
+export const getRedeemCodes = async () => {
+  try {
+    const response = await serverInstance.get("/codes/all");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

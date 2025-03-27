@@ -111,3 +111,13 @@ export const getAllEvents = async () => {
     return [];
   }
 };
+
+export const getAllCalendarEvents = async () => {
+  try {
+    const response = await serverInstance.get("/calendar/all");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

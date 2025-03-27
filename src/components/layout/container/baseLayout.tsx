@@ -12,7 +12,7 @@ type Props = {
 const BANNER_VISIBLE = process.env.NEXT_PUBLIC_BANNER_VISIBLE === "true";
 
 export default async function BaseLayout({ children }: Readonly<Props>) {
-  const gameVersion:IGameVersion = await getGameVersion();
+  const gameVersion: IGameVersion = await getGameVersion();
 
   return (
     <div
@@ -30,7 +30,7 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
         <Header />
         {BANNER_VISIBLE && (
           <AnnouncementBanner
-            message={`${gameVersion.version} Update is still in progress. Please be patient.`}
+            message={`${gameVersion.version} Update is still in progress. Some features may not work as expected.`}
           />
         )}
         <main className="primary-text flex-1 w-full flex flex-col items-center justify-start">
