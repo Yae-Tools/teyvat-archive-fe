@@ -5,7 +5,6 @@ import { getGameVersion } from "~/services/system/system.service";
 import AnnouncementBanner from "../banner/announcementBanner";
 import Footer from "../footer/footer";
 import Header from "../header/header";
-
 type Props = {
   children: React.ReactNode;
 };
@@ -13,20 +12,14 @@ type Props = {
 const BANNER_VISIBLE = process.env.NEXT_PUBLIC_BANNER_VISIBLE === "true";
 
 export default async function BaseLayout({ children }: Readonly<Props>) {
-  const gameVersion: {
-    version: string;
-    build: string;
-  } = await getGameVersion();
-
-  const bg =
-    "https://fastcdn.hoyoverse.com/static-resource-v2/2025/03/14/b4706346aee7857c99a74e3b73d6a865_6111596366082103572.webp";
+  const gameVersion:IGameVersion = await getGameVersion();
 
   return (
     <div
       className="min-h-svh max-h-[100vh] overflow-y-auto overflow-x-hidden"
       style={{
         cursor: "url(" + CustomCursor.src + "), auto",
-        backgroundImage: `url(${bg})`,
+        backgroundImage: `url(${gameVersion.background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundBlendMode: "overlay",

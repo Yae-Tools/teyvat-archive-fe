@@ -16,7 +16,7 @@ export const healthCheck = async () => {
 
 export const getSystemVersion = async () => {
   try {
-    const response = await serverInstance.get("/system/version");
+    const response = await serverInstance.get("/system/server/version");
     return response.data;
   } catch (error) {
     console.error(error);
@@ -26,7 +26,7 @@ export const getSystemVersion = async () => {
 
 export const getGameVersion = async () => {
   try {
-    const response = await serverInstance.get("/game/version");
+    const response = await serverInstance.get("/system/game/version");
     return response.data;
   } catch (error) {
     console.error(error);
