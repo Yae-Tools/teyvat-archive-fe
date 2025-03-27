@@ -93,7 +93,6 @@ export const getArtifactSetById = async (artifactSetId: string) => {
 };
 
 export const getMaterialById = async (materialId: string) => {
-  console.log("materialId", materialId);
   try {
     const response = await serverInstance.get(`/materials/id/${materialId}`);
     return response.data;
@@ -106,6 +105,16 @@ export const getMaterialById = async (materialId: string) => {
 export const getAllEvents = async () => {
   try {
     const response = await serverInstance.get("/events/all");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const getAllCalendarEvents = async () => {
+  try {
+    const response = await serverInstance.get("/calendar/all");
     return response.data;
   } catch (error) {
     console.error(error);

@@ -20,7 +20,6 @@
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 }
-
 html,
 body {
   @apply font-sans;

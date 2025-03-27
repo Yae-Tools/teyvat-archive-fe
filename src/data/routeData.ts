@@ -11,6 +11,10 @@ const HEADER_ROUTES = [
     path: "/artifacts",
     name: "Artifacts",
   },
+  {
+    path: "/events",
+    name: "Events",
+  },
 ];
 
 export default HEADER_ROUTES;

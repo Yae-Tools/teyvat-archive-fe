@@ -30,7 +30,7 @@ function WeaponDesktopView({ weapon }: Readonly<Props>) {
   const [selectedTab, setSelectedTab] = useState(TAB_NAV[stars > 2 ? 0 : 1].id);
 
   return (
-    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-hidden">
+    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-hidden max-w-[1650px]">
       <LazyBackgroundImage
         img={rarityBgPicker(stars)}
         isDarkened
@@ -39,7 +39,10 @@ function WeaponDesktopView({ weapon }: Readonly<Props>) {
         <WeaponProfileDesktop {...{ weapon }} />
       </LazyBackgroundImage>
 
-      <div className="w-full flex items-start justify-between space-x-4 border-2 rounded-lg border-slate-700 mt-20">
+      <div
+        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-20"
+        style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
+      >
         <TabNavigation
           tabs={TAB_NAV}
           selectedTab={selectedTab}

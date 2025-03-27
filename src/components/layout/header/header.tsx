@@ -1,24 +1,34 @@
 "use client";
 
 import { Bars3Icon, Cog6ToothIcon } from "@heroicons/react/16/solid";
-import Modal from "react-modal";
-import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Modal from "react-modal";
 
+import LogoHolder from "~/components/common/logoHolder";
 import SettingsModal from "~/components/modals/settings/settingsModal";
 import DesktopNavRoutes from "./desktopNavRoutes";
 import HeaderSidebar from "./headerSideBar";
-import LogoHolder from "~/components/common/logoHolder";
 
 export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
+  const path = usePathname();
+
   Modal.setAppElement("#app");
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [path]);
+
   return (
-    <header className="bg-white dark:bg-gray-900 w-full shadow-slate-300 dark:shadow-slate-950 shadow-md overflow-x-hidden">
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+    <header
+      className="bg-white dark:bg-gray-900 w-full shadow-slate-300 dark:shadow-slate-950 shadow-md overflow-x-hidden"
+      style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
+    >
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
         <div className="flex items-center justify-between mx-2 w-full">
           <Link
             href="/"

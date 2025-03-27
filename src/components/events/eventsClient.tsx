@@ -8,7 +8,7 @@ type Props = {
   events: IEvent[];
 };
 
-export default function HomeClient({ events }: Readonly<Props>) {
+export default function EventsClient({ events }: Readonly<Props>) {
   const [wishEventItems, setWishEventItems] = useState<IEvent[]>([]);
   const [otherEventItems, setOtherEventItems] = useState<IEvent[]>([]);
 

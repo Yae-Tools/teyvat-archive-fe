@@ -28,6 +28,24 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "sdk.hoyoverse.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "fastcdn.hoyoverse.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "act-webstatic.hoyoverse.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

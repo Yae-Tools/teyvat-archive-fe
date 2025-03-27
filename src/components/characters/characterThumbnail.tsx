@@ -13,9 +13,13 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
       <Link
         href={`/character/${character.nameId}-${character.enkaId}-${character.skillDepotId}`}
       >
-        <div className="w-full flex flex-col items-center mt-1">
-          <div className="h-3/4 flex items-end justify-center">
-            <img src={character.iconUrl} alt={character.id} />
+        <div className="w-full flex flex-col items-center mt-1"
+       
+        >
+          <div className="h-3/4 flex items-end justify-center"
+        
+          >
+            <Image src={character.iconUrl} alt={character.id} width={300} height={50} />
           </div>
         </div>
       </Link>
@@ -23,7 +27,7 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
         <Image
           src={getElementTypeImage(character.element)}
           alt={character.element}
-          className="w-4 h-4 lg:w-5 lg:h-5"
+          className="size-4 lg:size-5"
         />
       </div>
     </ThumbnaiContainer>
