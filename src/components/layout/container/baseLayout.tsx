@@ -22,8 +22,8 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
         backgroundImage: `url(${gameVersion.background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundBlendMode: "overlay",
-        backgroundColor: "rgba(16, 24, 40, 0.8)",
+        backgroundBlendMode: "darken",
+        backgroundColor: "rgba(16, 24, 40, 0.9)",
       }}
     >
       <div className="w-full h-full flex flex-col items-center justify-between mx-auto">

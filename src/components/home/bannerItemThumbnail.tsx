@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function BannerItemThumbnail({ item }: Readonly<Props>) {
-  console.log("item", item);
   return (
     <ThumbnaiContainer
       name={item.name}

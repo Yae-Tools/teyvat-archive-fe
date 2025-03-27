@@ -20,8 +20,6 @@ export default function ThumbnaiContainer({
     viaColor: bgVia,
   } = rarityColoFilter[rarity];
 
-  console.log("rarity", rarity);
-
   return (
     <div className="flex flex-col items-center mb-3">
       <motion.div
