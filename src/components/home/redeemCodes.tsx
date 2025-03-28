@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ClipboardList } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 
 import { getRedeemCodes } from "~/services/system/system.service";
-import yaeWispherIcon from "~/assets/icons/system/yae_wispher.png";
+import yaeWhisperIcon from "~/assets/icons/system/yae_wispher.png";
 
 export default function RedeemCodes() {
   const [redeemCodes, setRedeemCodes] = useState<IRedeemCodeResponse>({
@@ -27,7 +28,7 @@ export default function RedeemCodes() {
       pauseOnHover: false,
       draggable: false,
       theme: "dark",
-      icon: <img src={yaeWispherIcon.src} alt="Yae Miko" className="w-8" />,
+      icon: <Image src={yaeWhisperIcon.src} alt="Yae Miko" className="w-8" width={100} height={100} />,
     });
   };
 
