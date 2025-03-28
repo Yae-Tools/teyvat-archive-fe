@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { ToastContainer, toast } from "react-toastify";
 
 import LogoHolder from "~/components/common/logoHolder";
 import SettingsModal from "~/components/modals/settings/settingsModal";
@@ -18,6 +19,18 @@ export default function Header() {
   const path = usePathname();
 
   Modal.setAppElement("#app");
+
+  const notify = (message: string) => {
+    toast.info(message, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      theme: "dark",
+    });
+  };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -48,7 +61,7 @@ export default function Header() {
           <div className="flex items-center gap-4 w-full justify-end">
             <div className="hidden lg:flex lg:gap-4">
               <button
-                onClick={() => setIsSettingsOpen(true)}
+                onClick={() => notify("Updates section coming soon!")}
                 className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
               >
                 <NotebookPen className="size-5" />
@@ -86,6 +99,7 @@ export default function Header() {
           />
         </div>
       </div>
+      <ToastContainer/>
     </header>
   );
 }
