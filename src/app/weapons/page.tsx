@@ -1,5 +1,6 @@
 "use server";
 
+import { Metadata } from "next";
 import PageTitle from "~/components/common/typography/pageTitle";
 import ShowcaseFilterContainer from "~/components/layout/container/showcaseFilterContainer";
 import AllWeaponShowcase from "~/components/weapons/allWeaponShowcase";
@@ -8,6 +9,15 @@ import {
   getWeapons,
   getWeaponSeries,
 } from "~/services/teyvatServer/teyvatArchive.service";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: "Teyvat Archive - Weapons",
+    description: "Teyvat Archive - Weapons",
+    keywords:
+      "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Weapons",
+  };
+}
 
 export default async function Weapons() {
   const [weapons, weaponSeries] = await Promise.all([

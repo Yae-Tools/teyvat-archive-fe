@@ -12,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive",
     description: "Welcome to Teyvat Archive!",
+    keywords: "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact",
   };
 }
 

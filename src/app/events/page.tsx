@@ -7,8 +7,9 @@ import { getAllEvents } from "~/services/teyvatServer/teyvatArchive.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Teyvat Archive",
-    description: "Welcome to Teyvat Archive!",
+    title: "Teyvat Archive - Events",
+    description: "Teyvat Archive - Events",
+    keywords: "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Events",
   };
 }
 
