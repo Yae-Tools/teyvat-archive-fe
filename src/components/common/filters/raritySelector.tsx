@@ -33,7 +33,7 @@ export default function RaritySelector({
             strokeWidth={0}
           />
         ) : (
-          <StarOutlineIcon className="size-3 lg:size-4 xl:size-5 text-[gold]" />
+          <StarIcon className="size-3 lg:size-4 xl:size-5 text-[gold]" />
         )}
       </button>
     </div>
