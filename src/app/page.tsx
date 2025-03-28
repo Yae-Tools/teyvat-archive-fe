@@ -4,11 +4,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import PageTitle from "~/components/common/typography/pageTitle";
+import RedeemCodes from "~/components/home/redeemCodes";
 import TimeUntilReset from "~/components/home/timeUntilReset";
-import {
-  getGameVersion,
-  getRedeemCodes,
-} from "~/services/system/system.service";
+import { getGameVersion } from "~/services/system/system.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -19,7 +17,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const gameData: IGameVersion = await getGameVersion();
-  const redeemCodes: IRedeemCodeResponse = await getRedeemCodes();
 
   return (
     <div className="w-full flex flex-col items-center justify-center xl:mb-4 my-3">
@@ -45,21 +42,7 @@ export default async function Home() {
             tab to see what's new!
           </p>
           <TimeUntilReset />
-          <div className="w-full flex flex-col items-center justify-center space-y-4">
-            <h2 className="text-2xl text-white text-center">Redeem Codes</h2>
-            <div className="w-full flex flex-col items-center justify-center space-y-2">
-              {redeemCodes["active"].map((code) => (
-                <div
-                  key={code.code}
-                  className="w-full flex items-center justify-between px-4 py-2 bg-slate-800 rounded-lg"
-                >
-                  <p className="text-white font-semibold font-enka text-center w-full">
-                    {code.code}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <RedeemCodes />
         </div>
       </div>
     </div>
