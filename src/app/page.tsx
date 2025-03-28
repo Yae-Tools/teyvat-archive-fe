@@ -11,8 +11,40 @@ import { getGameVersion } from "~/services/system/system.service";
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive",
-    description: "Welcome to Teyvat Archive!",
-    keywords: "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact",
+    description:
+      "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+    keywords:
+      "Teyvat Archive, Genshin Impact, Teyvat lore, Genshin guides, RPG adventure, open-world gaming",
+    openGraph: {
+      title: "Teyvat Archive",
+      description:
+        "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+      url: "https://teyvatarchive.online",
+      images: [
+        {
+          url: "/logo.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      siteName: "Teyvat Archive",
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Teyvat Archive",
+      description:
+        "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+      images: ["/logo.jpg"],
+      creator: "@azula9713",
+      site: "@archive_teyvat",
+    },
+    icons: {
+      icon: "/logo.jpg",
+      shortcut: "/logo.jpg",
+      apple: "/logo.jpg",
+    },
   };
 }
 
