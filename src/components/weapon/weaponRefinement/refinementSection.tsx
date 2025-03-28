@@ -13,7 +13,7 @@ export default function RefinementSection({
   refinementLevel,
   setRefinementLevel,
   align = "start",
-}: Props) {
+}: Readonly<Props>) {
   return (
     <div
       className={`py-6 space-y-2 text-white w-full flex flex-col items-${align} justify-center`}

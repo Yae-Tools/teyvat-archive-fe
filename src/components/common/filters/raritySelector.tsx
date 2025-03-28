@@ -1,6 +1,4 @@
-import { StarIcon } from "@heroicons/react/16/solid";
-import { StarIcon as OutlineStar } from "@heroicons/react/24/outline";
-
+import { StarIcon } from "lucide-react";
 import { RARITIES } from "~/data/teyvatData";
 
 type Props = {
@@ -29,9 +27,13 @@ export default function RaritySelector({
         {rarityIndex + 1 > 5 ? "5SP" : rarityIndex + 1}
         {selectedRarity === RARITIES[rarityIndex] ||
         selectedRarity === "all" ? (
-          <StarIcon className={`size-3 lg:size-4 xl:size-5 text-[gold]`} />
+          <StarIcon
+            className={`size-3 lg:size-4 xl:size-5 text-[gold]`}
+            fill="gold"
+            strokeWidth={0}
+          />
         ) : (
-          <OutlineStar className="size-3 lg:size-4 xl:size-5 text-[gold]" />
+          <StarIcon className="size-3 lg:size-4 xl:size-5 text-[gold]" />
         )}
       </button>
     </div>

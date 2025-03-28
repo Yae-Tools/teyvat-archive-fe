@@ -1,7 +1,6 @@
 "use client";
 
-import { BackspaceIcon } from "@heroicons/react/16/solid";
-
+import { DeleteIcon } from "lucide-react";
 import SearchFilter from "~/components/common/filters/searchFilter";
 import RarityFilter from "../../common/filters/rarityFilter";
 import WeaponFilter from "../../common/filters/weaponFilter";
@@ -54,7 +53,7 @@ export default function CharacterFilterStack({
         }}
       >
         Clear
-        <BackspaceIcon className="size-4 ml-2" />
+        <DeleteIcon className="size-4 ml-2" />
       </button>
     </>
   );

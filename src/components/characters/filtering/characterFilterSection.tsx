@@ -1,13 +1,14 @@
 "use client";
 
-import {
-  AdjustmentsHorizontalIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  StarIcon,
-} from "@heroicons/react/16/solid";
 import { useAtom } from "jotai";
 import { useState } from "react";
+import Image from "next/image";
+import {
+  ChevronDown,
+  ChevronUp,
+  SlidersHorizontal,
+  StarIcon,
+} from "lucide-react";
 
 import {
   characterSearchAtom,
@@ -19,7 +20,6 @@ import { RARITIES } from "~/data/teyvatData";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
 import CharacterFilterStack from "./characterFilterStack";
-import Image from "next/image";
 
 export default function CharacterFilterSection() {
   const [selectedCharacterElement, setSelectedCharacterElement] = useAtom(
@@ -42,7 +42,7 @@ export default function CharacterFilterSection() {
           <div className="border-e w-full px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-e-gray-800 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200 flex items-center justify-start">
             <div className="flex items-center">
               <p>Filters</p>
-              <AdjustmentsHorizontalIcon className="size-4 ml-2" />
+              <SlidersHorizontal className="size-4 ml-2" />
             </div>
 
             <div className="flex items-center w-full space-x-1 justify-end">
@@ -83,9 +83,9 @@ export default function CharacterFilterSection() {
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
             {isFilterOpen ? (
-              <ChevronUpIcon className="size-4" />
+              <ChevronUp className="size-4" />
             ) : (
-              <ChevronDownIcon className="size-4" />
+              <ChevronDown className="size-4" />
             )}
           </button>
         </div>

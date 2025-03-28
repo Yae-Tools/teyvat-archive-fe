@@ -30,7 +30,6 @@ export default function SettingItemContainer({
           </p>
         )}
       </div>
-
       <div className="relative">{children}</div>
     </div>
   );

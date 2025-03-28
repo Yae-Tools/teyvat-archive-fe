@@ -1,7 +1,7 @@
 "use client";
 
-import { ChevronRightIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 import { memo, useState } from "react";
 
 import MobileItemHeading from "~/components/common/typography/mobileItemHeading";
@@ -23,7 +23,7 @@ function AttributeMobileContainer({ children, title }: Readonly<Props>) {
       <div className="w-full flex items-center justify-between">
         <MobileItemHeading value={title} />
         <button onClick={handleExpansion}>
-          <ChevronRightIcon
+          <ChevronRight
             className={`size-5 transform transition ease-in-out duration-300 ${
               isExpanded ? "-rotate-90" : "rotate-0"
             }`}

@@ -1,11 +1,5 @@
 "use client";
 
-import {
-  AdjustmentsHorizontalIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  StarIcon,
-} from "@heroicons/react/24/solid";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import {
@@ -14,6 +8,12 @@ import {
 } from "~/atoms/teyvat/artifact.atom";
 import { RARITIES } from "~/data/teyvatData";
 import ArtifactFilterStack from "./artifactFilterStack";
+import {
+  ChevronDown,
+  ChevronUp,
+  SlidersHorizontal,
+  StarIcon,
+} from "lucide-react";
 
 export default function ArtifactFilterSection() {
   const [artifactSearch, setArtifactSearch] = useAtom(artifactSearchAtom);
@@ -29,17 +29,21 @@ export default function ArtifactFilterSection() {
           <div className="border-e w-full px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-e-gray-800 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200 flex items-center justify-start">
             <div className="flex items-center">
               <p>Filters</p>
-              <AdjustmentsHorizontalIcon className="size-4 ml-2" />
+              <SlidersHorizontal className="size-4 ml-2" />
             </div>
 
             <div className="flex items-center w-full space-x-1 justify-end">
               {selectedArtifactRarity !== "all" && (
                 <div className="flex items-center">
-                  {selectedArtifactRarity === RARITIES[2]
-                    ? "3"
-                    : RARITIES[3]
-                    ? "4"
-                    : "5"}
+                  {(() => {
+                    if (selectedArtifactRarity === RARITIES[2]) {
+                      return "3";
+                    } else if (selectedArtifactRarity === RARITIES[3]) {
+                      return "4";
+                    } else {
+                      return "5";
+                    }
+                  })()}
                   <StarIcon className="size-4 text-[gold]" />
                 </div>
               )}
@@ -51,9 +55,9 @@ export default function ArtifactFilterSection() {
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
             {isFilterOpen ? (
-              <ChevronUpIcon className="size-4" />
+              <ChevronUp className="size-4" />
             ) : (
-              <ChevronDownIcon className="size-4" />
+              <ChevronDown className="size-4" />
             )}
           </button>
         </div>

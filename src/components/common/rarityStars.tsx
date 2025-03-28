@@ -1,4 +1,4 @@
-import { StarIcon } from "@heroicons/react/16/solid";
+import { StarIcon } from "lucide-react";
 import { memo } from "react";
 
 type Props = {

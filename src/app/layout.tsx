@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { getThemeFromCookie } from "~/utils/theme";
 
 import ClientThemeSync from "~/components/common/theme/clientThemeSync";
+import ErrorPage from "./error";
 import BaseLayout from "~/components/layout/container/baseLayout";
 import "./globals.css";
 
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Teyvat Archive",
     description:
-      "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+      "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Explore lore, guides, and secrets at Teyvat Archive.",
     url: "https://teyvatarchive.online",
     images: [
       {
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Teyvat Archive",
+    title: "Teyvat Archive - Your Ultimate Genshin Impact Companion",
     description:
       "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
     images: ["/logo.jpg"],
@@ -63,8 +65,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={theme}>
       <body className={`${openSans.variable} antialiased`} id="app">
-        <BaseLayout>{children}</BaseLayout>
-        <ClientThemeSync />
+        <ErrorBoundary errorComponent={ErrorPage}>
+          <BaseLayout>{children}</BaseLayout>
+          <ClientThemeSync />
+        </ErrorBoundary>
         <Analytics />
         <SpeedInsights />
       </body>

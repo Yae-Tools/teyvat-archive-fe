@@ -49,7 +49,7 @@ export default function CharacterMobileView({
           chapterIcon: constellationIcon,
         }}
       />
-      {/* <AscensionMatsMobile ascensionData={ascensionData} /> */}
+      <AscensionMatsMobile ascensionData={ascensionData} />
     </div>
   );
 }

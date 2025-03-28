@@ -1,6 +1,6 @@
 "use client";
 
-import { Bars3Icon, Cog6ToothIcon } from "@heroicons/react/16/solid";
+import { CogIcon, MenuIcon, NotebookPen } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -47,12 +47,17 @@ export default function Header() {
 
           <div className="flex items-center gap-4 w-full justify-end">
             <div className="hidden lg:flex lg:gap-4">
-              {/* add a settings toggle */}
               <button
                 onClick={() => setIsSettingsOpen(true)}
                 className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
               >
-                <Cog6ToothIcon className="size-5 primary-text cursor-pointer" />
+                <NotebookPen className="size-5" />
+              </button>
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
+              >
+                <CogIcon className="size-5" />
               </button>
             </div>
 
@@ -61,7 +66,7 @@ export default function Header() {
                 onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
               >
-                <Bars3Icon className="size-5" />
+                <MenuIcon className="size-5" />
               </button>
             </div>
           </div>
