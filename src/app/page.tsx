@@ -4,22 +4,52 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import PageTitle from "~/components/common/typography/pageTitle";
+import RedeemCodes from "~/components/home/redeemCodes";
 import TimeUntilReset from "~/components/home/timeUntilReset";
-import {
-  getGameVersion,
-  getRedeemCodes,
-} from "~/services/system/system.service";
+import { getGameVersion } from "~/services/system/system.service";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive",
-    description: "Welcome to Teyvat Archive!",
+    description:
+      "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+    keywords:
+      "Teyvat Archive, Genshin Impact, Teyvat lore, Genshin guides, RPG adventure, open-world gaming",
+    openGraph: {
+      title: "Teyvat Archive",
+      description:
+        "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+      url: "https://teyvatarchive.online",
+      images: [
+        {
+          url: "/logo.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+      siteName: "Teyvat Archive",
+      type: "website",
+      locale: "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Teyvat Archive",
+      description:
+        "Welcome to Teyvat Archive! Your ultimate Genshin Impact companion. Dive into Teyvat Archive, the premier destination for Genshin Impact fans! Explore lore, character guides, and secrets of Teyvat in one epic hub.",
+      images: ["/logo.jpg"],
+      creator: "@azula9713",
+      site: "@archive_teyvat",
+    },
+    icons: {
+      icon: "/logo.jpg",
+      shortcut: "/logo.jpg",
+      apple: "/logo.jpg",
+    },
   };
 }
 
 export default async function Home() {
   const gameData: IGameVersion = await getGameVersion();
-  const redeemCodes: IRedeemCodeResponse = await getRedeemCodes();
 
   return (
     <div className="w-full flex flex-col items-center justify-center xl:mb-4 my-3">
@@ -45,21 +75,7 @@ export default async function Home() {
             tab to see what's new!
           </p>
           <TimeUntilReset />
-          <div className="w-full flex flex-col items-center justify-center space-y-4">
-            <h2 className="text-2xl text-white text-center">Redeem Codes</h2>
-            <div className="w-full flex flex-col items-center justify-center space-y-2">
-              {redeemCodes["active"].map((code) => (
-                <div
-                  key={code.code}
-                  className="w-full flex items-center justify-between px-4 py-2 bg-slate-800 rounded-lg"
-                >
-                  <p className="text-white font-semibold font-enka text-center w-full">
-                    {code.code}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <RedeemCodes />
         </div>
       </div>
     </div>

@@ -13,13 +13,14 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
       <Link
         href={`/character/${character.nameId}-${character.enkaId}-${character.skillDepotId}`}
       >
-        <div className="w-full flex flex-col items-center mt-1"
-       
-        >
-          <div className="h-3/4 flex items-end justify-center"
-        
-          >
-            <Image src={character.iconUrl} alt={character.id} width={300} height={50} />
+        <div className="w-full flex flex-col items-center mt-1">
+          <div className="h-3/4 flex items-end justify-center">
+            <Image
+              src={character.iconUrl}
+              alt={character.id}
+              width={300}
+              height={50}
+            />
           </div>
         </div>
       </Link>
