@@ -35,11 +35,15 @@ export default function ArtifactFilterSection() {
             <div className="flex items-center w-full space-x-1 justify-end">
               {selectedArtifactRarity !== "all" && (
                 <div className="flex items-center">
-                  {selectedArtifactRarity === RARITIES[2]
-                    ? "3"
-                    : RARITIES[3]
-                    ? "4"
-                    : "5"}
+                  {(() => {
+                    if (selectedArtifactRarity === RARITIES[2]) {
+                      return "3";
+                    } else if (selectedArtifactRarity === RARITIES[3]) {
+                      return "4";
+                    } else {
+                      return "5";
+                    }
+                  })()}
                   <StarIcon className="size-4 text-[gold]" />
                 </div>
               )}
