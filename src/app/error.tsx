@@ -1,10 +1,7 @@
 "use client";
 
+import TeyvatHeading from "~/components/common/teyvatHeading";
 import bg from "~/assets/images/bgs/teyvat-wallpaper.jpg";
-
-import bdLeft from "~/assets/icons/system/bd-left.png";
-import bdRight from "~/assets/icons/system/bd-right.png";
-import Image from "next/image";
 
 export default function ErrorPage() {
   return (
@@ -27,11 +24,7 @@ export default function ErrorPage() {
         }}
       >
         <div className="flex items-center justify-center space-x-2">
-          <Image src={bdLeft} alt="bd-left" />
-          <h3 className="text-2xl text-center text-[#EBE4D8]">
-            System Notification
-          </h3>
-          <Image src={bdRight} alt="bd-right" />
+          <TeyvatHeading headerLevel={3} title="System Notification" />
         </div>
         <div className="flex flex-col items-center justify-center space-y-2 mt-4">
           <h4 className="text-lg text-[#EBE4D8]">An error occurred</h4>

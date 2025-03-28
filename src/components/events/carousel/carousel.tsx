@@ -1,10 +1,10 @@
 "use client";
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import CarouselItem from "./carouselItem";
 import CarouselNavButton from "./carouselNavButton";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type Props = {
   items: IEvent[];
@@ -100,12 +100,12 @@ export default function Carousel({
       </div>
       <nav className="absolute bottom-5 right-5 z-[5] select-none">
         <CarouselNavButton
-          icon={<ChevronLeftIcon className="size-6" />}
+          icon={<ChevronLeft className="size-6" />}
           onClick={handlePrev}
         />
 
         <CarouselNavButton
-          icon={<ChevronRightIcon className="size-6" />}
+          icon={<ChevronRight className="size-6" />}
           onClick={handleNext}
         />
       </nav>

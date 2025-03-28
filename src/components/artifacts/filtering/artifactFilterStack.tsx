@@ -1,4 +1,4 @@
-import { BackspaceIcon } from "@heroicons/react/16/solid";
+import { DeleteIcon } from "lucide-react";
 import RarityFilter from "~/components/common/filters/rarityFilter";
 import SearchFilter from "~/components/common/filters/searchFilter";
 
@@ -41,7 +41,7 @@ export default function ArtifactFilterStack({
         }}
       >
         Clear
-        <BackspaceIcon className="size-4 ml-2" />
+        <DeleteIcon className="size-4 ml-2" />
       </button>
     </>
   );

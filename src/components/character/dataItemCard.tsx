@@ -1,6 +1,6 @@
-import { ChevronRightIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ChevronRight } from "lucide-react";
 
 import parseText from "~/utils/parsers/parseEnkaText";
 import TextLabel from "../common/typography/textLabel";
@@ -40,7 +40,7 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
           className="w-1/5 mx-2 flex items-center justify-end"
           onClick={handleExpansion}
         >
-          <ChevronRightIcon
+          <ChevronRight
             className={`size-5 transform transition ease-in-out duration-300 ${
               isExpanded ? "-rotate-90" : "rotate-0"
             }`}

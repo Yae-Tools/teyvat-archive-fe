@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ClipboardDocumentListIcon } from "@heroicons/react/16/solid";
+import { ClipboardList } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 
 import { getRedeemCodes } from "~/services/system/system.service";
@@ -53,7 +53,7 @@ export default function RedeemCodes() {
             <p className="text-white font-semibold font-enka text-left w-full xl:text-sm 2xl:text-md">
               {code.code}
             </p>
-            <ClipboardDocumentListIcon
+            <ClipboardList
               className="w-6 h-6 text-white mx-auto cursor-pointer"
               onClick={() => {
                 navigator.clipboard.writeText(code.code);

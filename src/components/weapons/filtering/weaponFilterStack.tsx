@@ -1,9 +1,8 @@
-import { BackspaceIcon } from "@heroicons/react/16/solid";
-
 import RarityFilter from "~/components/common/filters/rarityFilter";
 import SearchFilter from "~/components/common/filters/searchFilter";
 import WeaponFilter from "~/components/common/filters/weaponFilter";
 import WeaponSeriesFilter from "./weaponSeriesFilter";
+import { DeleteIcon } from "lucide-react";
 
 type Props = {
   setIsFilterOpen: (value: boolean) => void;
@@ -65,7 +64,7 @@ export default function WeaponFilterStack({
         }}
       >
         Clear
-        <BackspaceIcon className="size-4 ml-2" />
+        <DeleteIcon className="size-4 ml-2" />
       </button>
     </>
   );

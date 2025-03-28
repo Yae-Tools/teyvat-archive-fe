@@ -1,7 +1,7 @@
 "use client";
 
-import { Cog6ToothIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { motion } from "framer-motion";
+import { CogIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -52,7 +52,7 @@ export default function HeaderSidebar({
         onClick={() => setIsSidebarOpen(false)}
         className="absolute top-5 right-5 primary-text"
       >
-        <XMarkIcon className="size-5" />
+        <XIcon className="size-5" />
       </button>
       <nav className="flex flex-col items-end justify-start h-full space-y-6 w-full top-20 absolute">
         {HEADER_ROUTES.map((route) => (
@@ -75,7 +75,7 @@ export default function HeaderSidebar({
         }}
         className="absolute bottom-5 right-5 primary-text"
       >
-        <Cog6ToothIcon className="size-5" />
+        <CogIcon className="size-5" />
       </button>
     </motion.div>
   );
