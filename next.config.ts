@@ -1,52 +1,19 @@
 import type { NextConfig } from "next";
 
+const imageDomains = [
+  "homdgcat.wiki",
+  "gi.yatta.moe",
+  "cdn.teyvatarchive.online",
+  "enka.network",
+  "sdk.hoyoverse.com",
+  "fastcdn.hoyoverse.com",
+  "act-webstatic.hoyoverse.com",
+];
 const nextConfig: NextConfig = {
   /* config options here */
+
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "homdgcat.wiki",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "gi.yatta.moe",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "azula9713.github.io",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "enka.network",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "sdk.hoyoverse.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "fastcdn.hoyoverse.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "act-webstatic.hoyoverse.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    domains: imageDomains,
   },
 };
 
