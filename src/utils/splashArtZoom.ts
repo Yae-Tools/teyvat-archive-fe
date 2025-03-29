@@ -13,8 +13,8 @@ const getZoomValue = (
     //   Scenarios, if bodyType = BODY_GIRL, add 0.1 to zoomValue
     //   Scenarios, if bodyType = BODY_LADY, add 0.1 to zoomValue
     //   Scenarios if rarity = QAULITY_PURPLE, add 0.2 to zoomValue
-    //   Scenarios if isArchon add 0.3 to zoomValue
-    //  Scenarioos if also an archon and a LOLI remove LOLI value
+    //   Scenarios if isArchon add 0.1 to zoomValue
+    //   Scenarioos if also an archon and a LOLI remove LOLI value
 
     if (bodyType === "BODY_LOLI") {
       zoomValue += 0.4;
@@ -27,7 +27,7 @@ const getZoomValue = (
     }
 
     if (isArchon) {
-      zoomValue += 0.3;
+      zoomValue += 0.1;
     }
 
     if (isArchon && bodyType === "BODY_LOLI") {

@@ -66,7 +66,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
       <LazyBackgroundImage
         img={nameCard}
         isDarkened
-        className="hidden xl:flex w-[calc(100%-3rem)] flex-col relative items-start justify-between p-10 xl:h-[650px] rounded-4xl"
+        className="hidden bg-slate-900 xl:flex w-full flex-col relative items-start justify-between p-10 xl:h-[650px] rounded-4xl"
       >
         <div className="w-2/3 flex flex-col items-start mr-4 absolute z-10">
           <div className="flex items-center justify-start space-x-1 mb-5">
