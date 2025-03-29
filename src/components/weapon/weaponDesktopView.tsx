@@ -34,13 +34,13 @@ function WeaponDesktopView({ weapon }: Readonly<Props>) {
       <LazyBackgroundImage
         img={rarityBgPicker(stars)}
         isDarkened
-        className="hidden xl:flex w-[calc(100%-3rem)] flex-col items-start justify-start p-10 xl:h-[650px] rounded-4xl"
+        className="hidden xl:flex w-full flex-col items-start justify-start p-10 xl:h-[650px] rounded-4xl"
       >
         <WeaponProfileDesktop {...{ weapon }} />
       </LazyBackgroundImage>
 
       <div
-        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-20"
+        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-8"
         style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
       >
         <TabNavigation

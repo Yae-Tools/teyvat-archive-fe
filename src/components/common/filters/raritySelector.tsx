@@ -29,8 +29,8 @@ export default function RaritySelector({
         selectedRarity === "all" ? (
           <StarIcon
             className={`size-3 lg:size-4 xl:size-5 text-[gold]`}
-            fill="gold"
-            strokeWidth={0}
+            fill="currentColor"
+            strokeWidth={1}
           />
         ) : (
           <StarIcon className="size-3 lg:size-4 xl:size-5 text-[gold]" />
