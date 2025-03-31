@@ -1,4 +1,4 @@
-import { BODY_TYPES, RARITY_TYPES } from "~/data/teyvatData";
+import { BODY_TYPE_KEYS, RARITY_TYPES } from "~/data/teyvatData";
 import { IBodyType, IRarityType } from "~/types/enka/enka.types";
 
 const getZoomValue = (
@@ -19,9 +19,9 @@ const getZoomValue = (
     //   Scenarios if isArchon add 0.1 to zoomValue
     //   Scenarioos if also an archon and a LOLI remove LOLI value
 
-    if (bodyType === BODY_TYPES.BODY_LOLI) {
+    if (bodyType === BODY_TYPE_KEYS.BODY_LOLI) {
       zoomValue += 0.4;
-    } else if (bodyType !== BODY_TYPES.BODY_MALE) {
+    } else if (bodyType !== BODY_TYPE_KEYS.BODY_MALE) {
       zoomValue += 0.1;
     }
 
@@ -33,7 +33,7 @@ const getZoomValue = (
       zoomValue += 0.1;
     }
 
-    if (isArchon && bodyType === BODY_TYPES.BODY_LOLI) {
+    if (isArchon && bodyType === BODY_TYPE_KEYS.BODY_LOLI) {
       zoomValue -= 0.4;
     }
 
@@ -48,7 +48,7 @@ const getMarginRightValue = (bodyType: IBodyType, isTraveler: boolean) => {
     return marginRightValue;
   }
 
-  if (bodyType === BODY_TYPES.BODY_MALE) {
+  if (bodyType === BODY_TYPE_KEYS.BODY_MALE) {
     marginRightValue = -10;
   } else {
     marginRightValue = -5;

@@ -1,7 +1,8 @@
 import RarityStars from "~/components/common/rarityStars";
 import TitleHeading from "~/components/common/typography/titleHeading";
-import { getEquipTitle } from "~/utils/arttifactEquipMapper";
 import ArtifactOverviewDesktop from "../artifactOverview/artifactOverviewDesktop";
+import { IEquipCollection, ISetBonus } from "~/types/enka/artifacts.types";
+import { EQUIP_TYPES } from "~/data/teyvatData";
 
 type Props = {
   highestRarity: number;
@@ -31,7 +32,7 @@ export default function ArtifactProfileDesktop({
           </div>
           <div className="flex w-full items-center justify-end space-x-1 mb-2 text-right">
             <h6 className="text-white text-right text-xl">
-              {setName} | {getEquipTitle(selectedEquipItem.equipType)}
+              {setName} | {EQUIP_TYPES[selectedEquipItem.equipType]}
             </h6>
           </div>
         </div>

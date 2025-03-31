@@ -3,6 +3,7 @@
 import { Metadata } from "next";
 import ArtifactClient from "~/components/artifact/artifactClient";
 import { getArtifactSetById } from "~/services/teyvatServer/teyvatArchive.service";
+import { IArtifactSet } from "~/types/enka/artifacts.types";
 
 async function fetchArtifactSet(slug: string) {
   const artifactSet: IArtifactSet = await getArtifactSetById(slug);

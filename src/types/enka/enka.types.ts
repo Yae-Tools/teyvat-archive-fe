@@ -1,5 +1,5 @@
 import {
-  BODY_TYPES,
+  BODY_TYPE_KEYS,
   ELEMENT_TYPES,
   EQUIP_TYPES,
   RARITY_TYPES,
@@ -82,4 +82,4 @@ export type IWeaponType = keyof typeof WEAPON_TYPES;
 
 export type IEquipType = keyof typeof EQUIP_TYPES;
 
-export type IBodyType = keyof typeof BODY_TYPES;
+export type IBodyType = keyof typeof BODY_TYPE_KEYS;

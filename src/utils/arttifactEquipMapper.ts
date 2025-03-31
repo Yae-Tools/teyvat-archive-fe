@@ -1,5 +1,5 @@
 import { StaticImageData } from "next/image";
-import { EQUIP_TYPES } from "~/data/teyvatData";
+import { EQUIP_TYPE_KEYS } from "~/data/teyvatData";
 
 import BracerIcon from "~/assets/icons/equip/UI_Icon_Equip_Bracer.png";
 import DressIcon from "~/assets/icons/equip/UI_Icon_Equip_Dress.png";
@@ -9,11 +9,11 @@ import ShoeIcon from "~/assets/icons/equip/UI_Icon_Equip_Shoes.png";
 import { IEquipType } from "~/types/enka/enka.types";
 
 const equipIconMap = new Map<string, StaticImageData>();
-equipIconMap.set(EQUIP_TYPES.EQUIP_BRACER, BracerIcon);
-equipIconMap.set(EQUIP_TYPES.EQUIP_NECKLACE, NecklaceIcon);
-equipIconMap.set(EQUIP_TYPES.EQUIP_RING, RingIcon);
-equipIconMap.set(EQUIP_TYPES.EQUIP_SHOES, ShoeIcon);
-equipIconMap.set(EQUIP_TYPES.EQUIP_DRESS, DressIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_BRACER, BracerIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_NECKLACE, NecklaceIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_RING, RingIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_SHOES, ShoeIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_DRESS, DressIcon);
 
 function getEquipIcon(equipType: IEquipType): StaticImageData {
   return equipIconMap.get(equipType) as StaticImageData;

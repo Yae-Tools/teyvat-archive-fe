@@ -8,6 +8,7 @@ import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 import Link from "next/link";
 import Image from "next/image";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
+import { IBasicWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapon: IBasicWeapon;

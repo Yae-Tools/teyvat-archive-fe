@@ -1,6 +1,7 @@
 import LazyBackgroundImage from "~/components/common/lazyBackgroundImage";
 import RarityStars from "~/components/common/rarityStars";
-import { getEquipTitle } from "~/utils/arttifactEquipMapper";
+import { EQUIP_TYPES } from "~/data/teyvatData";
+import { IEquipCollection } from "~/types/enka/artifacts.types";
 import rarityBgPicker from "~/utils/rarityBgPicker";
 
 type Props = {
@@ -47,7 +48,7 @@ export default function ArtifactProfileMobile({
               textShadow: "1px 1px black",
             }}
           >
-            {getEquipTitle(selectedEquipItem.equipType)}
+            {EQUIP_TYPES[selectedEquipItem.equipType]}
           </h6>
         </div>
       </LazyBackgroundImage>

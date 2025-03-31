@@ -9,6 +9,7 @@ import {
   selectedRarityFullSetAtom,
 } from "~/atoms/teyvat/artifact.atom";
 import { useAtom } from "jotai";
+import { IArtifactSet, IEquipCollection } from "~/types/enka/artifacts.types";
 
 type Props = {
   artifactSet: IArtifactSet;
