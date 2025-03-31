@@ -27,7 +27,7 @@ export default function AllArtifactsShowcase({
     const filtered = artifactSets.filter(
       (set) =>
         set.name.toLowerCase().includes(artifactSearch.toLowerCase()) &&
-        (selectedArtifactRarity === "all" ||
+        (!selectedArtifactRarity ||
           rarityParser(set.highestRarity) === selectedArtifactRarity)
     );
     setFilteredArtifactSets(filtered);

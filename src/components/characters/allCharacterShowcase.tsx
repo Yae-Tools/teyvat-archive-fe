@@ -29,11 +29,11 @@ export default function AllCharacterShowcase({ characters }: Readonly<Props>) {
     const tempFilteredCharacters = characters.filter(
       (character) =>
         character.name.toLowerCase().includes(characterSearch.toLowerCase()) &&
-        (selectedCharacterElement === "all" ||
+        (!selectedCharacterElement ||
           character.element === selectedCharacterElement) &&
-        (selectedCharacterWeapon === "all" ||
+        (!selectedCharacterWeapon ||
           character.weaponType === selectedCharacterWeapon) &&
-        (selectedCharacterRarity === "all" ||
+        (!selectedCharacterRarity ||
           character.rarity === selectedCharacterRarity)
     );
 

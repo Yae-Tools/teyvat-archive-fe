@@ -29,12 +29,10 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
     const tempFilteredWeapons = weapons.filter(
       (weapon) =>
         weapon.name.toLowerCase().includes(weaponSearch.toLowerCase()) &&
-        (selectedWeaponType === "all" ||
-          weapon.weaponType === selectedWeaponType) &&
-        (selectedWeaponRarity === "all" ||
+        (!selectedWeaponType || weapon.weaponType === selectedWeaponType) &&
+        (!selectedWeaponRarity ||
           rarityParser(weapon.stars) === selectedWeaponRarity) &&
-        (selectedWeaponSeries === "all" ||
-          weapon.series === selectedWeaponSeries)
+        (!selectedWeaponSeries || weapon.series === selectedWeaponSeries)
     );
 
     setFilteredWeapons(

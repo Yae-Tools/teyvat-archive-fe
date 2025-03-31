@@ -7,9 +7,9 @@ import {
   artifactRarityAtom,
   artifactSearchAtom,
 } from "~/atoms/teyvat/artifact.atom";
-import { RARITIES } from "~/data/teyvatData";
 import ArtifactFilterStack from "./artifactFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
+import { RARITY_TYPES } from "~/data/teyvatData";
 
 export default function ArtifactFilterSection() {
   const [artifactSearch, setArtifactSearch] = useAtom(artifactSearchAtom);
@@ -27,16 +27,10 @@ export default function ArtifactFilterSection() {
             setIsFilterOpen,
           }}
         >
-          {selectedArtifactRarity !== "all" && (
+          {selectedArtifactRarity && (
             <div className="flex items-center">
               {(() => {
-                if (selectedArtifactRarity === RARITIES[2]) {
-                  return "3";
-                } else if (selectedArtifactRarity === RARITIES[3]) {
-                  return "4";
-                } else {
-                  return "5";
-                }
+                return RARITY_TYPES[selectedArtifactRarity];
               })()}
               <StarIcon className="size-4 text-[gold]" />
             </div>

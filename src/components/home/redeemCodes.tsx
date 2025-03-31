@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import { getRedeemCodes } from "~/services/system/system.service";
 import yaeWhisperIcon from "~/assets/icons/system/yae_wispher.png";
+import { IRedeemCodeResponse } from "~/types/enka/enka.types";
 
 export default function RedeemCodes() {
   const [redeemCodes, setRedeemCodes] = useState<IRedeemCodeResponse>({
@@ -28,7 +29,15 @@ export default function RedeemCodes() {
       pauseOnHover: false,
       draggable: false,
       theme: "dark",
-      icon: <Image src={yaeWhisperIcon.src} alt="Yae Miko" className="w-8" width={100} height={100} />,
+      icon: (
+        <Image
+          src={yaeWhisperIcon.src}
+          alt="Yae Miko"
+          className="w-8"
+          width={100}
+          height={100}
+        />
+      ),
     });
   };
 

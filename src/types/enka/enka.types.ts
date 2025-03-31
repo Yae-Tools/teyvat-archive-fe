@@ -1,4 +1,11 @@
-interface IEnkaStat {
+import {
+  ELEMENT_TYPES,
+  EQUIP_TYPES,
+  RARITY_TYPES,
+  WEAPON_TYPES,
+} from "~/data/teyvatData";
+
+export interface IEnkaStat {
   fightProp: string;
   fightPropName: string;
   isPercent: boolean;
@@ -7,7 +14,7 @@ interface IEnkaStat {
   multiplier: number;
 }
 
-interface IReward {
+export interface IReward {
   id: number;
   name: string;
   icon: string;
@@ -15,18 +22,18 @@ interface IReward {
   amount: number;
 }
 
-interface ICalendarBannerWeapon {
+export interface ICalendarBannerWeapon {
   id: string;
   name: string;
   rarity: number;
   icon: string;
 }
 
-interface ICalendarBannerCharacter extends ICalendarBannerWeapon {
+export interface ICalendarBannerCharacter extends ICalendarBannerWeapon {
   element: string;
 }
 
-interface ICalendarBaseEvent {
+export interface ICalendarBaseEvent {
   id: number;
   name: string;
   type_name: string;
@@ -34,12 +41,12 @@ interface ICalendarBaseEvent {
   end_time: string;
   rewards: IReward[];
 }
-interface ICalendarEvent extends ICalendarBaseEvent {
+export interface ICalendarEvent extends ICalendarBaseEvent {
   description: string;
   image_url: string;
 }
 
-interface ICalendarBanner {
+export interface ICalendarBanner {
   id: string;
   name: string;
   version: string;
@@ -51,17 +58,52 @@ interface ICalendarChallenge extends ICalendarBaseEvent {
   special_reward: null;
 }
 
-interface ICalendar {
+export interface ICalendar {
   events: ICalendarEvent[];
   banners: ICalendarBanner[];
   challenges: ICalendarChallenge[];
 }
 
-interface IRedeemCode {
+export interface IRedeemCode {
   code: string;
   rewards: string[];
 }
 
-interface IRedeemCodeResponse {
+export interface IRedeemCodeResponse {
   [key: string]: IRedeemCode[];
 }
+
+export type IRarityType = keyof typeof RARITY_TYPES;
+
+export type IElementType = keyof typeof ELEMENT_TYPES;
+
+export type IWeaponType = keyof typeof WEAPON_TYPES;
+
+export type IEquipType = keyof typeof EQUIP_TYPES;
+
+type IBodyType =
+  | "BODY_MALE"
+  | "BODY_BOY"
+  | "BODY_LADY"
+  | "BODY_GIRL"
+  | "BODY_LOLI";
+
+type IWeaponCurve =
+  | "GROW_CURVE_ATTACK_101"
+  | "GROW_CURVE_ATTACK_102"
+  | "GROW_CURVE_ATTACK_103"
+  | "GROW_CURVE_ATTACK_104"
+  | "GROW_CURVE_ATTACK_105"
+  | "GROW_CURVE_CRITICAL_101"
+  | "GROW_CURVE_ATTACK_201"
+  | "GROW_CURVE_ATTACK_202"
+  | "GROW_CURVE_ATTACK_203"
+  | "GROW_CURVE_ATTACK_204"
+  | "GROW_CURVE_ATTACK_205"
+  | "GROW_CURVE_CRITICAL_201"
+  | "GROW_CURVE_ATTACK_301"
+  | "GROW_CURVE_ATTACK_302"
+  | "GROW_CURVE_ATTACK_303"
+  | "GROW_CURVE_ATTACK_304"
+  | "GROW_CURVE_ATTACK_305"
+  | "GROW_CURVE_CRITICAL_301";
