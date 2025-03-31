@@ -4,18 +4,19 @@ import twoStarBg from "~/assets/images/bgs/UI_MallSlotA_Bg2.png";
 import threeStarBg from "~/assets/images/bgs/UI_MallSlotA_Bg3.png";
 import fourStarBg from "~/assets/images/bgs/UI_MallSlotA_Bg4.png";
 import fiveStarBg from "~/assets/images/bgs/UI_MallSlotA_Bg5.png";
+import { RARITY_TYPES } from "~/data/teyvatData";
 
 function rarityBgPicker(stars: number): string {
-  switch (stars) {
-    case 1:
+  switch (stars.toString()) {
+    case RARITY_TYPES.QUALITY_GRAY:
       return oneStarBg.src;
-    case 2:
+    case RARITY_TYPES.QUALITY_GREEN:
       return twoStarBg.src;
-    case 3:
+    case RARITY_TYPES.QUALITY_BLUE:
       return threeStarBg.src;
-    case 4:
+    case RARITY_TYPES.QUALITY_PURPLE:
       return fourStarBg.src;
-    case 5:
+    case RARITY_TYPES.QUALITY_ORANGE:
       return fiveStarBg.src;
     default:
       return defaultBg.src;

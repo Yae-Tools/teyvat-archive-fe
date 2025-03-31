@@ -7,8 +7,9 @@ import {
   artifactRarityAtom,
   artifactSearchAtom,
 } from "~/atoms/teyvat/artifact.atom";
-import rarityParser from "~/utils/parsers/rarityParser";
 import ArtifactThumbnail from "./artifactThumbnail";
+import { IBaseArtifactSet } from "~/types/enka/artifacts.types";
+import rarityParser from "~/utils/parsers/rarityParser";
 
 type Props = {
   artifactSets: IBaseArtifactSet[];

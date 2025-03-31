@@ -1,13 +1,14 @@
 import { useState } from "react";
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
-import { weaponTypeParser } from "~/utils/parsers/weaponDataParser";
 import {
   getWeaponStatIcon,
   weaponTypeIconFilter,
 } from "~/utils/weaponIconFilter";
 import OverviewLevelPicker from "./overviewLevelPicker";
 import Image from "next/image";
+import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
+import { WEAPON_TYPES } from "~/data/teyvatData";
 
 type Props = {
   stars: number;
@@ -39,7 +40,7 @@ export default function WeaponMobileOverview({
       <div className="flex w-full justify-between items-start">
         <OverviewItemHolder
           label="Weapon Type"
-          value={weaponTypeParser(weaponType) as string}
+          value={WEAPON_TYPES[weaponType]}
         >
           <Image
             className="size-6 mr-2"

@@ -5,12 +5,13 @@ import Image from "next/image";
 import DescriptionDesktop from "~/components/common/descriptionDesktop";
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
-import { weaponTypeParser } from "~/utils/parsers/weaponDataParser";
 import {
   getWeaponStatIcon,
   weaponTypeIconFilter,
 } from "~/utils/weaponIconFilter";
 import OverviewLevelPicker from "./overviewLevelPicker";
+import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
+import { WEAPON_TYPES } from "~/data/teyvatData";
 
 type Props = {
   description: string;
@@ -45,12 +46,12 @@ export default function WeaponOverviewDesktop({
           />
           <OverviewItemHolder
             label="Weapon Type"
-            value={weaponTypeParser(weaponType) as string}
+            value={WEAPON_TYPES[weaponType]}
             align="end"
           >
             <Image
               src={weaponTypeIconFilter[weaponType]}
-              alt={weaponTypeParser(weaponType) as string}
+              alt={WEAPON_TYPES[weaponType]}
               className="size-10"
               style={{
                 filter: "brightness(0) invert(1)",

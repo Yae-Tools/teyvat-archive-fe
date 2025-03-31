@@ -16,6 +16,7 @@ import ElectroBg from "~/assets/images/bgs/constellation_template__electro.jpg";
 import GeoBg from "~/assets/images/bgs/constellation_template__geo.jpg";
 import HydroBg from "~/assets/images/bgs/constellation_template__hydro.png";
 import PyroBg from "~/assets/images/bgs/constellation_template__pyro.jpg";
+import { IElementType } from "~/types/enka/enka.types";
 
 const elementalImageMap = new Map<string, StaticImageData>();
 elementalImageMap.set(ELEMENT_TYPES.Anemo, AnemoSVG);

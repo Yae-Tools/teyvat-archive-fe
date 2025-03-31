@@ -1,3 +1,5 @@
+import { ICharacterLocation } from "~/types/enka/character.types";
+
 function characterLocationParser(
   location: ICharacterLocation,
   isTraveler: boolean

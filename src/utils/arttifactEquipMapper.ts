@@ -1,12 +1,12 @@
 import { StaticImageData } from "next/image";
 import { EQUIP_TYPES } from "~/data/teyvatData";
-import { IEquipType } from "~/types/enka/enka.enums";
 
 import BracerIcon from "~/assets/icons/equip/UI_Icon_Equip_Bracer.png";
 import DressIcon from "~/assets/icons/equip/UI_Icon_Equip_Dress.png";
 import NecklaceIcon from "~/assets/icons/equip/UI_Icon_Equip_Necklace.png";
 import RingIcon from "~/assets/icons/equip/UI_Icon_Equip_Ring.png";
 import ShoeIcon from "~/assets/icons/equip/UI_Icon_Equip_Shoes.png";
+import { IEquipType } from "~/types/enka/enka.types";
 
 const equipIconMap = new Map<string, StaticImageData>();
 equipIconMap.set(EQUIP_TYPES.EQUIP_BRACER, BracerIcon);
