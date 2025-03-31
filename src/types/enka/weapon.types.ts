@@ -1,28 +1,28 @@
-interface IBaseWeapon {
+import { IEnkaStat, IWeaponType } from "./enka.types";
+
+export interface IBaseWeapon {
   id: string;
   name: string;
   enkaId: number;
 }
 
-interface IWeaponData {
+export interface IWeaponData {
   rankLevel: number;
   weaponBaseExp: number;
   skillAffix: number[];
   weaponProp: {
     propType: string;
     initValue: number;
-    type: IWeaponCurve;
   }[];
 }
-
-interface IRefinement {
+export interface IRefinement {
   name: string;
   description: string;
   level: number;
   id: number;
 }
 
-interface IBasicWeapon extends IBaseWeapon {
+export interface IBasicWeapon extends IBaseWeapon {
   icon: string;
   awakenIcon: string;
   stars: number;
@@ -30,7 +30,7 @@ interface IBasicWeapon extends IBaseWeapon {
   series: string;
 }
 
-interface IWeapon extends IBasicWeapon {
+export interface IWeapon extends IBasicWeapon {
   description: string;
   splashImage: string;
   refinements: IRefinement[];
@@ -40,6 +40,6 @@ interface IWeapon extends IBasicWeapon {
   data: IWeaponData;
 }
 
-interface IBaseWeaponSeries {
+export interface IBaseWeaponSeries {
   [key: string]: IBaseWeapon[];
 }

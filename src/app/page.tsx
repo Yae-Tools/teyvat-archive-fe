@@ -7,6 +7,7 @@ import PageTitle from "~/components/common/typography/pageTitle";
 import RedeemCodes from "~/components/home/redeemCodes";
 import TimeUntilReset from "~/components/home/timeUntilReset";
 import { getGameVersion } from "~/services/system/system.service";
+import { IGameVersion } from "~/types/system.types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

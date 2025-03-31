@@ -1,4 +1,4 @@
-interface IGameVersion {
+export interface IGameVersion {
   version: string;
   build: string;
   background: string;

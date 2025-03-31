@@ -1,4 +1,4 @@
-interface IEvent {
+export interface IEvent {
   id: number;
   description: string;
   imageUrl: string;

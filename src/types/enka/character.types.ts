@@ -1,11 +1,18 @@
-interface IConstellation {
+import {
+  IBodyType,
+  IElementType,
+  IRarityType,
+  IWeaponType,
+} from "./enka.types";
+
+export interface IConstellation {
   id: string;
   name: string;
   description: string;
   icon: string;
 }
 
-interface IAscensionData {
+export interface IAscensionData {
   scoinCost: number;
   costItems: [
     {
@@ -16,28 +23,28 @@ interface IAscensionData {
   addProps: [propType: string];
 }
 
-interface IBirthday {
+export interface IBirthday {
   month: number;
   day: number;
 }
 
-interface ICharacterLocation {
+export interface ICharacterLocation {
   faction: string;
   region: string;
 }
 
-interface ITalent {
+export interface ITalent {
   id: number;
   name: string;
   icon: string;
   description: string;
 }
 
-interface IAllTalent extends ITalent {
+export interface IAllTalent extends ITalent {
   isPassive: boolean;
 }
 
-interface IBaseCharacter {
+export interface IBaseCharacter {
   element: IElementType;
   nameId: string;
   iconUrl: string;
@@ -51,7 +58,7 @@ interface IBaseCharacter {
   weaponType: IWeaponType;
 }
 
-interface ICharacter extends IBaseCharacter {
+export interface ICharacter extends IBaseCharacter {
   enkaId: number;
   splashUrl: string;
   constellations: IConstellation[];

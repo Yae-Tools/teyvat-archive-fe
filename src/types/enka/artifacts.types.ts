@@ -1,4 +1,6 @@
-interface IBaseArtifact {
+import { IEnkaStat, IEquipType } from "./enka.types";
+
+export interface IBaseArtifact {
   id: number;
   name: string;
   eqipType: string;
@@ -7,23 +9,23 @@ interface IBaseArtifact {
   set: IBaseArtifactSet;
 }
 
-interface IBaseArtifactSet {
+export interface IBaseArtifactSet {
   id: number;
   name: string;
   icon: string;
   highestRarity: number;
 }
 
-interface ISetBonus {
+export interface ISetBonus {
   id: number;
   needCount: number;
   description: string;
   addProps: IEnkaStat[];
 }
 
-interface IEquipCollection {
+export interface IEquipCollection {
   id: number;
-  equipType: EquipType;
+  equipType: IEquipType;
   equipTypeName: string;
   name: string;
   icon: string;
@@ -31,7 +33,7 @@ interface IEquipCollection {
   description: string;
 }
 
-interface IArtifactSet extends IBaseArtifactSet {
+export interface IArtifactSet extends IBaseArtifactSet {
   rarities: number[];
   setBonus: ISetBonus[];
   collection: IEquipCollection[];

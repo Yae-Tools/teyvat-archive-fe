@@ -1,4 +1,5 @@
 import {
+  IBodyType,
   IElementType,
   IEquipType,
   IRarityType,
@@ -44,3 +45,12 @@ export const EQUIP_TYPES = {
 };
 
 export const EQUIP_ARRAY = Object.keys(EQUIP_TYPES) as IEquipType[];
+
+export const BODY_TYPES = {
+  BODY_MALE: "BODY_MALE",
+  BODY_BODY: "BODY_BOY",
+  BODY_LADY: "BODY_LADY",
+  BODY_GIRL: "BODY_GIRL",
+  BODY_LOLI: "BODY_LOLI",
+};
+export const BODY_ARRAY = Object.keys(BODY_TYPES) as IBodyType[];

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import PageTitle from "~/components/common/typography/pageTitle";
 import EventsClient from "~/components/events/eventsClient";
 import { getAllEvents } from "~/services/teyvatServer/teyvatArchive.service";
+import { IEvent } from "~/types/ambr.types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
