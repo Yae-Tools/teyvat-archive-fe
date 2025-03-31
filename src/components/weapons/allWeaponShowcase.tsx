@@ -11,6 +11,7 @@ import {
 } from "~/atoms/teyvat/weapon.atom";
 import rarityParser from "~/utils/parsers/rarityParser";
 import WeaponThumbnail from "./weaponThumbnail";
+import { IBasicWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapons: IBasicWeapon[];

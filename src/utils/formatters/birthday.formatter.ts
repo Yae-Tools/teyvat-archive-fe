@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { IBirthday } from "~/types/enka/character.types";
 
 const birthdayFormatter = (birthday: IBirthday) => {
   const { month, day } = birthday;

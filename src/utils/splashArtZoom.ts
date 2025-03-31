@@ -1,4 +1,4 @@
-import { BODY_TYPE_KEYS, RARITY_TYPES } from "~/data/teyvatData";
+import { BODY_TYPE_KEYS, RARITY_TYPE_KEYS } from "~/data/teyvatData";
 import { IBodyType, IRarityType } from "~/types/enka/enka.types";
 
 const getZoomValue = (
@@ -25,7 +25,7 @@ const getZoomValue = (
       zoomValue += 0.1;
     }
 
-    if (rarity === RARITY_TYPES.QUALITY_PURPLE) {
+    if (rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE) {
       zoomValue += 0.2;
     }
 

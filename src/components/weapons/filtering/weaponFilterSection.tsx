@@ -15,6 +15,7 @@ import WeaponFilterStack from "./weaponFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
 import { RARITY_TYPES } from "~/data/teyvatData";
 import { IRarityType } from "~/types/enka/enka.types";
+import { IBaseWeaponSeries } from "~/types/enka/weapon.types";
 
 type Props = {
   weaponSeries: IBaseWeaponSeries;

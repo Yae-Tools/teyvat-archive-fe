@@ -4,6 +4,7 @@ import WeaponFilter from "~/components/common/filters/weaponFilter";
 import WeaponSeriesFilter from "./weaponSeriesFilter";
 import { DeleteIcon } from "lucide-react";
 import { IRarityType, IWeaponType } from "~/types/enka/enka.types";
+import { IBaseWeaponSeries } from "~/types/enka/weapon.types";
 
 type Props = {
   setIsFilterOpen: (value: boolean) => void;
