@@ -3,12 +3,14 @@ import { Open_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { getThemeFromCookie } from "~/utils/theme";
 
 import ClientThemeSync from "~/components/common/theme/clientThemeSync";
 import ErrorPage from "./error";
 import BaseLayout from "~/components/layout/container/baseLayout";
 import "./globals.css";
+import QueryProvider from "~/components/common/providers/queryProvider";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -66,8 +68,11 @@ export default function RootLayout({
     <html lang="en" className={theme}>
       <body className={`${openSans.variable} antialiased`} id="app">
         <ErrorBoundary errorComponent={ErrorPage}>
-          <BaseLayout>{children}</BaseLayout>
-          <ClientThemeSync />
+          <QueryProvider>
+            <BaseLayout>{children}</BaseLayout>
+            <ClientThemeSync />
+            <ReactQueryDevtools/>
+          </QueryProvider>
         </ErrorBoundary>
         <Analytics />
         <SpeedInsights />

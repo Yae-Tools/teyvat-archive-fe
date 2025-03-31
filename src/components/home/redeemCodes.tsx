@@ -1,23 +1,33 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ClipboardList } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 import { getRedeemCodes } from "~/services/system/system.service";
 import yaeWhisperIcon from "~/assets/icons/system/yae_wispher.png";
 import { IRedeemCodeResponse } from "~/types/enka/enka.types";
+import RedeemCodeLoader from "../common/loaderHandlers/redeemCodeLoader";
 
 export default function RedeemCodes() {
-  const [redeemCodes, setRedeemCodes] = useState<IRedeemCodeResponse>({
-    active: [],
-    inactive: [],
+  const {
+    data: redeemCodes,
+    isError,
+    isLoading,
+  } = useQuery<IRedeemCodeResponse>({
+    queryKey: ["redeemCodes"],
+    queryFn: async () => {
+      const data: IRedeemCodeResponse = await getRedeemCodes();
+      return data;
+    },
+    refetchInterval: 1000 * 60 * 10, // 10 minutes
   });
 
   const fetchRedeemCodes = async () => {
     const data: IRedeemCodeResponse = await getRedeemCodes();
-    setRedeemCodes(data);
+    return data;
   };
 
   const notify = (message: string) => {
@@ -45,11 +55,40 @@ export default function RedeemCodes() {
     fetchRedeemCodes();
   }, []);
 
+  if (isLoading) {
+    return (
+      <RedeemCodeLayout>
+        <RedeemCodeLoader/> 
+      </RedeemCodeLayout>
+    );
+  }
+  if (isError) {
+    return (
+      <RedeemCodeLayout>
+        <div className="w-full flex items-center justify-center">
+          <p className="text-white">Error fetching redeem codes.</p>
+        </div>
+        <div className="w-full flex items-center justify-center">
+          <p className="text-white">Please try again later.</p>
+        </div>
+      </RedeemCodeLayout>
+    );
+  }
+  if (!redeemCodes || redeemCodes["active"].length === 0) {
+    return (
+      <RedeemCodeLayout>
+        <div className="w-full flex items-center justify-center">
+          <p className="text-white">No active redeem codes available.</p>
+        </div>
+        <div className="w-full flex items-center justify-center">
+          <p className="text-white">Check back later for new codes!</p>
+        </div>
+      </RedeemCodeLayout>
+    );
+  }
+
   return (
-    <div className="w-full flex flex-col items-center justify-center space-y-4">
-      <h2 className="text-2xl text-white text-center xl:text-left w-full">
-        Redeem Codes
-      </h2>
+    <RedeemCodeLayout>
       <div className="w-full items-center justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 md:gap-2">
         {redeemCodes["active"].map((code) => (
           <div
@@ -73,7 +112,22 @@ export default function RedeemCodes() {
           </div>
         ))}
       </div>
+    </RedeemCodeLayout>
+  );
+}
+
+type RedeemCodeLayoutProps = {
+  children: React.ReactNode;
+};
+
+const RedeemCodeLayout = ({ children }: Readonly<RedeemCodeLayoutProps>) => {
+  return (
+    <div className="w-full flex flex-col items-center justify-center space-y-4">
+      <h2 className="text-2xl text-white text-center xl:text-left w-full">
+        Redeem Codes
+      </h2>
+      {children}
       <ToastContainer />
     </div>
   );
-}
+};
