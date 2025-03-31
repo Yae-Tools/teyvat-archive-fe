@@ -1,3 +1,4 @@
+import { IAllTalent } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
 type Props = {

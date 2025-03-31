@@ -3,6 +3,7 @@
 import { Metadata } from "next";
 import WeaponClient from "~/components/weapon/weaponClient";
 import { getWeaponById } from "~/services/teyvatServer/teyvatArchive.service";
+import { IWeapon } from "~/types/enka/weapon.types";
 import { decryptWeaponUniqueRoute } from "~/utils/decryptUniqueId";
 
 async function fetchWeapon(slug: string) {

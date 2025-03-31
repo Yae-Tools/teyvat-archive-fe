@@ -11,6 +11,7 @@ import PageTitle from "../common/typography/pageTitle";
 import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";
 import AllCharacterShowcase from "./allCharacterShowcase";
 import CharacterFilterSection from "./filtering/characterFilterSection";
+import { IBaseCharacter } from "~/types/enka/character.types";
 
 type Props = {
   characters: IBaseCharacter[];

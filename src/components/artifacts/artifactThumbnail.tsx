@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 import Link from "next/link";
 import rarityParser from "~/utils/parsers/rarityParser";
+import { IBaseArtifactSet } from "~/types/enka/artifacts.types";
 
 type Props = {
   artifactSet: IBaseArtifactSet;

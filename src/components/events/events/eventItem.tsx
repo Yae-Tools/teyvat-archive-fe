@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ReadButton from "./readButton";
+import { IEvent } from "~/types/ambr.types";
 
 type Props = {
   event: IEvent;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
+import { IBaseCharacter } from "~/types/enka/character.types";
 
 type Props = {
   character: IBaseCharacter;

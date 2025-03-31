@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
 import CharacterTalentDetails from "./characterTalentDetails";
 import TalentIcon from "./talentIcon";
+import { IElementType } from "~/types/enka/enka.types";
+import { IAllTalent, ITalent } from "~/types/enka/character.types";
 
 type Props = {
   element: IElementType;

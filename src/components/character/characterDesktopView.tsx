@@ -2,8 +2,8 @@
 "use client";
 
 import { useState } from "react";
-
 import Image from "next/image";
+
 import { getMarginRightValue, getZoomValue } from "~/utils/splashArtZoom";
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
@@ -13,6 +13,7 @@ import DesktopConstellationView from "./characterConstellations/desktopConstella
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
 import TalentsDesktop from "./characterTalents/talentsDesktop";
+import { ICharacter } from "~/types/enka/character.types";
 
 type Props = {
   characterData: ICharacter;

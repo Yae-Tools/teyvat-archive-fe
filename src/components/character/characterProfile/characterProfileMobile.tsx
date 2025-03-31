@@ -1,6 +1,7 @@
 import LazyBackgroundImage from "~/components/common/lazyBackgroundImage";
 import { elementalBackgroundPicker } from "~/utils/elementalImagePicker";
 import RarityStars from "../../common/rarityStars";
+import { IElementType } from "~/types/enka/enka.types";
 
 type Props = {
   name: string;

@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import CharacterClient from "~/components/character/characterClient";
 import { transforCharacterData } from "~/features/imageFetchOptimizer";
 import { getCharacterBySkillDepotId } from "~/services/teyvatServer/teyvatArchive.service";
+import { ICharacter } from "~/types/enka/character.types";
 import { decryptCharacterUniqueRoute } from "~/utils/decryptUniqueId";
 
 async function fetchCharacter(slug: string) {

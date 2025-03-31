@@ -11,6 +11,7 @@ import {
   selectedCharacterWeaponAtom,
 } from "~/atoms/teyvat/character.atom";
 import CharacterThumbnail from "./characterThumbnail";
+import { IBaseCharacter } from "~/types/enka/character.types";
 
 type Props = {
   characters: IBaseCharacter[];

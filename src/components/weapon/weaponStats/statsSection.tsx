@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { IEnkaStat } from "~/types/enka/enka.types";
 import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
 import squashWeaponLevels from "~/utils/squashWeaponLevels";
 
@@ -7,13 +8,9 @@ type Props = {
   stats: {
     [key: string]: IEnkaStat[];
   };
-
 };
 
-export default function StatsSection({
-  stars,
-  stats,
-}: Readonly<Props>) {
+export default function StatsSection({ stars, stats }: Readonly<Props>) {
   const [squashedView, setSquashedView] = useState(false);
   const [mutatedStats, setMutatedStats] = useState(stats);
 

@@ -5,6 +5,7 @@ import LazyBackgroundImage from "../common/lazyBackgroundImage";
 import WeaponProfileDesktop from "./weaponProfile/weaponProfileDesktop";
 import WeaponRefinementDesktop from "./weaponRefinement/weaponRefinementDesktop";
 import WeaponStatsDesktop from "./weaponStats/weaponStatsDesktop";
+import { IWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapon: IWeapon;

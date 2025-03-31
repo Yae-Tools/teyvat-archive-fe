@@ -1,3 +1,5 @@
+import { IBaseCharacter } from "~/types/enka/character.types";
+
 const filterCharacters = (
   characters: IBaseCharacter[],
   selectedTraveler: string

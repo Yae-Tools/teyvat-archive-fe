@@ -1,4 +1,5 @@
 import { Tooltip } from "react-tooltip";
+import { ITalent } from "~/types/enka/character.types";
 
 import elementalColorPicker from "~/utils/elementalColorPicker";
 
