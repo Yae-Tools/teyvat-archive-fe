@@ -9,11 +9,16 @@ const imageDomains = [
   "fastcdn.hoyoverse.com",
   "act-webstatic.hoyoverse.com",
 ];
+
 const nextConfig: NextConfig = {
   /* config options here */
-
   images: {
-    domains: imageDomains,
+    remotePatterns: imageDomains.map((domain) => ({
+      protocol: "https",
+      hostname: domain,
+      port: "",
+      pathname: "/**",
+    })),
   },
 };
 
