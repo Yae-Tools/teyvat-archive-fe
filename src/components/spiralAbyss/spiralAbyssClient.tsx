@@ -49,15 +49,15 @@ export default function SpiralAbyssClient() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="w-full flex items-center justify-between mb-2">
-        <div className="w-1/5"></div>
+      <div className="w-full flex flex-col md:flex-row items-center justify-between mb-2">
+        <div className="w-full md:w-1/5"></div>
         <TitleHeading
           text="Top 10 Used Characters"
-          customClass="text-xl text-center w-3/5"
+          customClass="text-xl text-center w-full md:w-3/5"
         />
-        <div className="w-1/5">
+        <div className="w-full md:w-1/5">
           <div className="w-full flex items-center justify-end">
-            <label htmlFor="usedByOwn" className="text-white mr-2">
+            <label htmlFor="usedByOwn" className="text-white mr-2 text-sm">
               Used By Own
             </label>
             <ToggleItem
@@ -68,10 +68,6 @@ export default function SpiralAbyssClient() {
           </div>
         </div>
       </div>
-      {/* <TitleHeading
-        text="Top 10 Used Characters"
-        customClass="text-xl text-center "
-      /> */}
       <div
         className="flex flex-wrap justify-center items-center w-full overflow-auto"
         style={{ maxHeight: "300px" }}
