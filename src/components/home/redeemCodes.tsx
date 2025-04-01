@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
 import { ClipboardList } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
@@ -19,16 +18,11 @@ export default function RedeemCodes() {
   } = useQuery<IRedeemCodeResponse>({
     queryKey: ["redeemCodes"],
     queryFn: async () => {
-      const data: IRedeemCodeResponse = await getRedeemCodes();
+      const data = await getRedeemCodes();
       return data;
     },
-    refetchInterval: 1000 * 60 * 10, // 10 minutes
+    refetchInterval: 1000 * 60 * 60, // 1 hour
   });
-
-  const fetchRedeemCodes = async () => {
-    const data: IRedeemCodeResponse = await getRedeemCodes();
-    return data;
-  };
 
   const notify = (message: string) => {
     toast.success(message, {
@@ -51,14 +45,10 @@ export default function RedeemCodes() {
     });
   };
 
-  useEffect(() => {
-    fetchRedeemCodes();
-  }, []);
-
   if (isLoading) {
     return (
       <RedeemCodeLayout>
-        <RedeemCodeLoader/> 
+        <RedeemCodeLoader />
       </RedeemCodeLayout>
     );
   }

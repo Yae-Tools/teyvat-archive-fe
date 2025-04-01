@@ -12,12 +12,20 @@ import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer
 import AllCharacterShowcase from "./allCharacterShowcase";
 import CharacterFilterSection from "./filtering/characterFilterSection";
 import { IBaseCharacter } from "~/types/enka/character.types";
+import { useQuery } from "@tanstack/react-query";
+import { getCharacters } from "~/services/teyvatServer/teyvatArchive.service";
 
-type Props = {
-  characters: IBaseCharacter[];
-};
+function CharactersClient() {
+  const { data: characters } = useQuery<IBaseCharacter[]>({
+    queryKey: ["characters"],
+    queryFn: async () => {
+      const data: IBaseCharacter[] = await getCharacters();
+      return data;
+    },
+    initialData: [],
+    refetchInterval: 1000 * 60 * 60, // 1 hour
+  });
 
-function CharactersClient({ characters }: Readonly<Props>) {
   const [useFilterTravelers] = useAtom(useFilterTravelersAtom);
   const [useSelectedTraveler] = useAtom(useSelectedTravelerAtom);
 

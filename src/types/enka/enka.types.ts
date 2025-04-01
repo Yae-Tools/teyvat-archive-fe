@@ -73,6 +73,73 @@ export interface IRedeemCode {
 export interface IRedeemCodeResponse {
   [key: string]: IRedeemCode[];
 }
+interface IAbyssMeta {
+  author: string;
+  version: string;
+}
+
+interface IAbyssSchedule {
+  id: number;
+  start_time: number;
+  end_time: number;
+}
+
+interface IAbyssSampleCountries {
+  id: string;
+  value: string;
+  color: string;
+}
+
+interface IAbyssCharacterArtifacts {
+  set: {
+    [key: string]: number;
+  };
+  value: number;
+}
+
+interface IAbyssGeneric {
+  id: string;
+  value: number;
+}
+
+export interface IAbyssCharacterResponse {
+  id: string;
+  use_rate: number;
+  own_rate: number;
+  use_by_own_rate: number;
+  weapons: IAbyssGeneric[];
+  artifacts: IAbyssCharacterArtifacts[];
+  constellations: IAbyssGeneric[];
+}
+
+interface IAbyssPartyData {
+  id: string;
+  value: number;
+  own_rate: number;
+  use_by_own_rate: number;
+}
+
+interface IAbyssParty {
+  [key: string]: {
+    [key: string]: IAbyssPartyData[];
+  };
+}
+
+export interface IAbyssDataResponse {
+  meta: IAbyssMeta;
+  data: {
+    schedule: IAbyssSchedule;
+    sample_collection_progress: number;
+    sample_size: number;
+    sample_size_x_a: number;
+    sample_size_x_b: number;
+    sample_countries: IAbyssSampleCountries[];
+    threshold: {
+      use_rate: number;
+    };
+  };
+  characters: IAbyssCharacterResponse[];
+}
 
 export type IRarityType = keyof typeof RARITY_TYPES;
 
