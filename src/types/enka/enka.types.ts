@@ -3,7 +3,7 @@ import {
   ELEMENT_TYPES,
   EQUIP_TYPES,
   RARITY_TYPES,
-  WEAPON_TYPES,
+  WEAPON_TYPES
 } from "~/data/teyvatData";
 
 export interface IEnkaStat {

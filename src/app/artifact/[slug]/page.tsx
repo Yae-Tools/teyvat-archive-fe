@@ -1,6 +1,7 @@
 "use server";
 
 import { Metadata } from "next";
+
 import ArtifactClient from "~/components/artifact/artifactClient";
 import { getArtifactSetById } from "~/services/teyvatServer/teyvatArchive.service";
 import { IArtifactSet } from "~/types/enka/artifacts.types";
@@ -14,7 +15,7 @@ async function fetchArtifactSet(slug: string) {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
@@ -25,12 +26,12 @@ export async function generateMetadata({
   return {
     title: `Teyvat Archive - ${artifactSet.name}`,
     description: `Artifact Set: ${artifactSet.name}`,
-    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Artifacts, ${artifactSet.name}`,
+    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Artifacts, ${artifactSet.name}`
   };
 }
 
 export default async function Artifact({
-  params,
+  params
 }: Readonly<{
   params: Promise<{ slug: string }>;
 }>) {

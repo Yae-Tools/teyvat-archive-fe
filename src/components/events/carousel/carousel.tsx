@@ -1,11 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+
+import { IEvent } from "~/types/ambr.types";
+
 import CarouselItem from "./carouselItem";
 import CarouselNavButton from "./carouselNavButton";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { IEvent } from "~/types/ambr.types";
 
 type Props = {
   items: IEvent[];
@@ -16,21 +18,21 @@ type Props = {
 export default function Carousel({
   items,
   autoPlay = true,
-  interval = 5000,
+  interval = 5000
 }: Readonly<Props>) {
   const variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: 0
     }),
     center: {
       x: 0,
-      opacity: 1,
+      opacity: 1
     },
     exit: (direction: number) => ({
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    }),
+      opacity: 0
+    })
   };
 
   const [carouselItems, setCarouselItems] = useState<IEvent[]>(items);
@@ -80,8 +82,8 @@ export default function Carousel({
   }, [autoPlay, interval, carouselItems.length]);
 
   return (
-    <div className="relative w-[calc(100vw/12*10)] h-[calc(100vw/12*5)] my-6 max-w-[1000px] max-h-[500px] shadow-[0_3px_10px_rgba(0,0,0,0.3)] overflow-hidden grid place-items-center rounded-xl">
-      <div className="relative w-full h-full">
+    <div className="relative my-6 grid h-[calc(100vw/12*5)] max-h-[500px] w-[calc(100vw/12*10)] max-w-[1000px] place-items-center overflow-hidden rounded-xl shadow-[0_3px_10px_rgba(0,0,0,0.3)]">
+      <div className="relative h-full w-full">
         <AnimatePresence initial={false} custom={direction}>
           {carouselItems[currentIndex] && (
             <motion.div
@@ -92,14 +94,14 @@ export default function Carousel({
               animate="center"
               exit="exit"
               transition={{ duration: 0.5 }}
-              className="absolute w-full h-full"
+              className="absolute h-full w-full"
             >
               <CarouselItem imageUrl={carouselItems[currentIndex].imageUrl} />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
-      <nav className="absolute bottom-5 right-5 z-[5] select-none">
+      <nav className="absolute right-5 bottom-5 z-[5] select-none">
         <CarouselNavButton
           icon={<ChevronLeft className="size-6" />}
           onClick={handlePrev}

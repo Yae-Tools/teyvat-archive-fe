@@ -15,30 +15,30 @@ export default function ConstellationIcon({
   constellation,
   element,
   selectedConstellation,
-  setSelectedConstellation,
+  setSelectedConstellation
 }: Readonly<Props>) {
   return (
     <button
-      className="absolute size-20 rounded-full cursor-pointer p-1 hover:bg-slate-700 transition-all duration-200"
+      className="absolute size-20 cursor-pointer rounded-full p-1 transition-all duration-200 hover:bg-slate-700"
       style={{
         transform: `rotate(${index * 60}deg) translate(0, 240px)`,
         background:
           selectedConstellation.id === constellation.id
             ? elementalColorPicker(element)
-            : "var(--color-slate-800)",
+            : "var(--color-slate-800)"
       }}
       onClick={() => setSelectedConstellation(constellation)}
     >
       {/* add a bublle saying which constellation is is. Eg: C0 C1 C2 etc */}
       <div
-        className="absolute size-6 rounded-full flex items-center justify-center bg-slate-400 text-white text-xs font-bold"
+        className="absolute flex size-6 items-center justify-center rounded-full bg-slate-400 text-xs font-bold text-white"
         style={{
-          transform: `rotate(${-index * 60}deg)`,
+          transform: `rotate(${-index * 60}deg)`
         }}
       >
         <p
           style={{
-            transform: `rotate(180deg)`,
+            transform: `rotate(180deg)`
           }}
         >
           C{index + 1}
@@ -46,15 +46,15 @@ export default function ConstellationIcon({
       </div>
 
       <div
-        className="w-full h-full flex items-center justify-center"
+        className="flex h-full w-full items-center justify-center"
         style={{
-          transform: `rotate(${-index * 60}deg)`,
+          transform: `rotate(${-index * 60}deg)`
         }}
       >
         <div
           className="flex items-center justify-center"
           style={{
-            transform: "rotate(180deg)",
+            transform: "rotate(180deg)"
           }}
         >
           <img
@@ -62,7 +62,7 @@ export default function ConstellationIcon({
             alt={constellation.name}
             style={{
               //overlay white color to make the icon more visible
-              filter: "brightness(0) invert(1)",
+              filter: "brightness(0) invert(1)"
             }}
           />
         </div>

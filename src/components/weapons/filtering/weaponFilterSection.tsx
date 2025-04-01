@@ -1,21 +1,23 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useState } from "react";
-import Image from "next/image";
 import { StarIcon } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
+
 import {
   selectedWeaponRarityAtom,
   selectedWeaponSeriesAtom,
   selectedWeaponTypeAtom,
-  weaponSearchAtom,
+  weaponSearchAtom
 } from "~/atoms/teyvat/weapon.atom";
-import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
-import WeaponFilterStack from "./weaponFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
 import { RARITY_TYPES } from "~/data/teyvatData";
 import { IRarityType } from "~/types/enka/enka.types";
 import { IBaseWeaponSeries } from "~/types/enka/weapon.types";
+import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
+
+import WeaponFilterStack from "./weaponFilterStack";
 
 type Props = {
   weaponSeries: IBaseWeaponSeries;
@@ -38,12 +40,12 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
   };
 
   return (
-    <div className="w-full pt-3 mx-2 px-2 flex flex-col items-center">
-      <div className="relative lg:hidden w-full max-w-[320px]">
+    <div className="mx-2 flex w-full flex-col items-center px-2 pt-3">
+      <div className="relative w-full max-w-[320px] lg:hidden">
         <FilterDropDown
           {...{
             isFilterOpen,
-            setIsFilterOpen,
+            setIsFilterOpen
           }}
         >
           {selectedWeaponType && (
@@ -55,7 +57,7 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
             />
           )}
           {selectedWeaponRarity && (
-            <div className="flex items-center space-x-2 justify-end">
+            <div className="flex items-center justify-end space-x-2">
               {getRarityLabel(selectedWeaponRarity)}
               <StarIcon className="size-4 text-[gold]" />
             </div>
@@ -63,7 +65,7 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
         </FilterDropDown>
 
         {isFilterOpen && (
-          <div className="absolute flex flex-col items-center justify-evenly pt-4 end-0 z-10 w-full rounded-md border border-gray-100 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
+          <div className="absolute end-0 z-10 flex w-full flex-col items-center justify-evenly rounded-md border border-gray-100 bg-white pt-4 shadow-lg dark:border-slate-700 dark:bg-slate-900">
             <WeaponFilterStack
               {...{
                 setIsFilterOpen,
@@ -75,13 +77,13 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
                 setSelectedSeries,
                 weaponSeries,
                 setWeaponSearch,
-                weaponSearch,
+                weaponSearch
               }}
             />
           </div>
         )}
       </div>
-      <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center lg:space-x-4">
+      <div className="hidden flex-col items-center lg:flex lg:flex-row lg:justify-center lg:space-x-4">
         <WeaponFilterStack
           {...{
             setIsFilterOpen,
@@ -93,7 +95,7 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
             setSelectedSeries,
             weaponSeries,
             setWeaponSearch,
-            weaponSearch,
+            weaponSearch
           }}
         />
       </div>

@@ -1,23 +1,23 @@
 import Image from "next/image";
 
-import SocialIcon from "~/components/common/socialIcon";
-import socials from "~/data/socialData";
-import SiteMapSection from "./siteMapSection";
-import ThankingSection from "./thankingSection";
-
 import ElysiaIcon from "~/assets/icons/elysia.svg";
 import NextIcon from "~/assets/icons/icons8-nextjs.svg";
 import TailwindIcon from "~/assets/icons/tailwind-css.svg";
+import SocialIcon from "~/components/common/socialIcon";
+import socials from "~/data/socialData";
+
+import SiteMapSection from "./siteMapSection";
+import ThankingSection from "./thankingSection";
 
 export default function Footer() {
   return (
     <footer
-      className="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-gray-900 dark:text-white w-full shadow-lg border-t-2 border-gray-800"
+      className="text-surface flex w-full flex-col items-center border-t-2 border-gray-800 bg-zinc-50 text-center shadow-lg dark:bg-gray-900 dark:text-white"
       style={{ backgroundColor: "rgba(16, 24, 40, 0.5)" }}
     >
       <div className="container px-6 pt-6">
         {/* Social media icons container */}
-        <div className="mb-6 flex justify-center items-center space-x-2 w-full">
+        <div className="mb-6 flex w-full items-center justify-center space-x-2">
           {socials.map((social) => (
             <SocialIcon
               key={social.name}
@@ -43,7 +43,7 @@ export default function Footer() {
         <Image src={ElysiaIcon} alt="Elysia" className="size-6" />
       </div>
       {/* Copyright section */}
-      <div className="text-slate-400 text-sm font-algoindeEnka text-center py-1">
+      <div className="font-algoindeEnka py-1 text-center text-sm text-slate-400">
         {`© ${new Date().getFullYear()} Teyvat Archive • `}
         <a
           target="_blank"

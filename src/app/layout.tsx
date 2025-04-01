@@ -1,20 +1,21 @@
-import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { getThemeFromCookie } from "~/utils/theme";
+import { Open_Sans } from "next/font/google";
 
-import ClientThemeSync from "~/components/common/theme/clientThemeSync";
-import ErrorPage from "./error";
-import BaseLayout from "~/components/layout/container/baseLayout";
 import "./globals.css";
 import QueryProvider from "~/components/common/providers/queryProvider";
+import ClientThemeSync from "~/components/common/theme/clientThemeSync";
+import BaseLayout from "~/components/layout/container/baseLayout";
+import { getThemeFromCookie } from "~/utils/theme";
+
+import ErrorPage from "./error";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
-  subsets: ["latin"],
+  subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
@@ -32,12 +33,12 @@ export const metadata: Metadata = {
       {
         url: "/logo.jpg",
         width: 1200,
-        height: 630,
-      },
+        height: 630
+      }
     ],
     siteName: "Teyvat Archive",
     type: "website",
-    locale: "en_US",
+    locale: "en_US"
   },
   twitter: {
     card: "summary_large_image",
@@ -48,17 +49,17 @@ export const metadata: Metadata = {
     creatorId: "@azula9713",
     creator: "@azula9713",
     site: "@archive_teyvat",
-    siteId: "@archive_teyvat",
+    siteId: "@archive_teyvat"
   },
   icons: {
     icon: "/logo.jpg",
     shortcut: "/logo.jpg",
-    apple: "/logo.jpg",
-  },
+    apple: "/logo.jpg"
+  }
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -71,7 +72,7 @@ export default function RootLayout({
           <QueryProvider>
             <BaseLayout>{children}</BaseLayout>
             <ClientThemeSync />
-            <ReactQueryDevtools/>
+            <ReactQueryDevtools />
           </QueryProvider>
         </ErrorBoundary>
         <Analytics />

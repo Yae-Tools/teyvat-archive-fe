@@ -19,12 +19,12 @@ function AttributeMobileContainer({ children, title }: Readonly<Props>) {
   }
 
   return (
-    <div className="mt-2 bg-slate-200 dark:bg-slate-800 bg-opacity-50 flex flex-col items-center justify-center p-4 rounded-lg shadow-md w-full xl:hidden">
-      <div className="w-full flex items-center justify-between">
+    <div className="bg-opacity-50 mt-2 flex w-full flex-col items-center justify-center rounded-lg bg-slate-200 p-4 shadow-md xl:hidden dark:bg-slate-800">
+      <div className="flex w-full items-center justify-between">
         <MobileItemHeading value={title} />
         <button onClick={handleExpansion}>
           <ChevronRight
-            className={`size-5 transform transition ease-in-out duration-300 ${
+            className={`size-5 transform transition duration-300 ease-in-out ${
               isExpanded ? "-rotate-90" : "rotate-0"
             }`}
           />
@@ -34,15 +34,15 @@ function AttributeMobileContainer({ children, title }: Readonly<Props>) {
         initial={{
           opacity: 0,
           height: 0,
-          display: "none",
+          display: "none"
         }}
         animate={{
           height: isExpanded ? "auto" : 0,
           opacity: isExpanded ? 1 : 0,
-          display: isExpanded ? "block" : "none",
+          display: isExpanded ? "block" : "none"
         }}
         transition={{ duration: 0.6 }}
-        className="w-full md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-2 h-auto"
+        className="h-auto w-full md:grid md:grid-cols-2 md:gap-2 lg:grid-cols-3"
       >
         {children}
       </motion.div>

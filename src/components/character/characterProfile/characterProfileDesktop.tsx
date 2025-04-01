@@ -9,19 +9,19 @@ type Props = {
 export default function CharacterProfileDesktop({
   title,
   name,
-  description,
+  description
 }: Readonly<Props>) {
   return (
-    <div className="w-full flex flex-col items-start justify-center">
+    <div className="flex w-full flex-col items-start justify-center">
       <h2
         className="font-algoindeEnka xl:text-6xl"
         style={{
-          textShadow: "4px 4px 4px rgba(0, 0, 0, 0.9)",
+          textShadow: "4px 4px 4px rgba(0, 0, 0, 0.9)"
         }}
       >
         {name}
       </h2>
-      <h4 className="uppercase font-sans! font-semibold text-2xl tracking-widest mt-6 font-algoindeEnka drop-shadow-xl">
+      <h4 className="font-algoindeEnka mt-6 font-sans! text-2xl font-semibold tracking-widest uppercase drop-shadow-xl">
         {title}
       </h4>
       <div className="w-2/3">

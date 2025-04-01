@@ -2,8 +2,9 @@ import { useAtom } from "jotai";
 
 import {
   useFilterTravelersAtom,
-  useSelectedTravelerAtom,
+  useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
+
 import SettingsDropdownItem from "../../common/settings/settingsDropDownItem";
 import SettingsToggleItem from "../../common/settings/settingsToggleItem";
 
@@ -31,7 +32,7 @@ export default function GeneralSettings() {
         label="Traveler"
         options={[
           { value: "PlayerBoy", label: "Aether" },
-          { value: "PlayerGirl", label: "Lumine" },
+          { value: "PlayerGirl", label: "Lumine" }
         ]}
         description={
           !useFilterTravelers

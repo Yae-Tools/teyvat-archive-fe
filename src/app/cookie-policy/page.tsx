@@ -1,37 +1,38 @@
 "use server";
 
 import { Metadata } from "next";
-import Paragraph from "~/components/common/typography/paragraph";
+
 import PageTitle from "~/components/common/typography/pageTitle";
+import Paragraph from "~/components/common/typography/paragraph";
 import TitleHeading from "~/components/common/typography/titleHeading";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Teyvat Archive - Cookie Policy",
-    description: "Welcome to Teyvat Archive!",
+    description: "Welcome to Teyvat Archive!"
   };
 }
 
 export default async function CookiePolicy() {
   return (
-    <div className="w-full pt-3 mt-3 mx-2 px-2 flex flex-col items-center">
+    <div className="mx-2 mt-3 flex w-full flex-col items-center px-2 pt-3">
       <PageTitle title="Cookie policy" />
-      <div className="flex flex-col items-center justify-center space-y-2 w-full">
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+      <div className="flex w-full flex-col items-center justify-center space-y-2">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="Last Updated: March 25, 2025"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
           />
           <Paragraph text="Welcome to Teyvat Archive! This Cookie Policy explains how we use cookies and similar technologies, like local storage, to make your experience on our site smooth and personalized. We’re not about tracking you—just keeping things functional." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="What Are Cookies and Local Storage?"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
           />
           <Paragraph text="Cookies are small text files stored on your device when you visit our site. We use them in the headers to save your preferences, like your chosen theme (e.g., dark mode or light mode). Local storage is a similar tool we use to store settings data directly in your browser. Both help us remember your choices so the site works the way you like it." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="How We Use Them"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
@@ -49,14 +50,14 @@ export default async function CookiePolicy() {
           </ul>
           <Paragraph text="That’s it! We don’t use cookies for tracking or advertising, and we don’t share your data with third parties." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="No Third-Party Sharing"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
           />
           <Paragraph text="We don’t share data from cookies or local storage with anyone. It stays between your browser and our site." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="How Long Do They Last?"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
@@ -70,7 +71,7 @@ export default async function CookiePolicy() {
             </li>
           </ul>
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="Your Control"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
@@ -85,21 +86,21 @@ export default async function CookiePolicy() {
             </li>
           </ul>
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="Do We Need Your Consent?"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
           />
           <Paragraph text="Since we’re only using these technologies for essential purposes (not tracking or profiling), we don’t require a pop-up consent banner under most regulations. Still, we’re letting you know what’s up because transparency is the right thing to do." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="Updates to This Policy"
             customClass="text-xl lg:text-2xl ml-4 font-sans"
           />
           <Paragraph text="We might tweak this policy as our site evolves. Any changes will be posted here with an updated “Last Updated” date, so check back if you’re curious." />
         </div>
-        <div className="mt-4 lg:mt-6 xl:mt-8 flex flex-col items-center justify-center space-y-2 text-left px-4">
+        <div className="mt-4 flex flex-col items-center justify-center space-y-2 px-4 text-left lg:mt-6 xl:mt-8">
           <TitleHeading
             text="Questions?"
             customClass="text-xl lg:text-2xl ml-4 font-sans"

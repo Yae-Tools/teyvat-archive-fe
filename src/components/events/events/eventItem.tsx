@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { useState } from "react";
-import ReadButton from "./readButton";
+
 import { IEvent } from "~/types/ambr.types";
+
+import ReadButton from "./readButton";
 
 type Props = {
   event: IEvent;
@@ -12,7 +14,7 @@ export default function EventItem({ event }: Readonly<Props>) {
 
   return (
     <article
-      className={`overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25 max-w-[calc(100vw/12*10)] ${
+      className={`max-w-[calc(100vw/12*10)] overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25 ${
         isExpanded ? "row-span-4" : ""
       } border border-gray-700`}
       style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}

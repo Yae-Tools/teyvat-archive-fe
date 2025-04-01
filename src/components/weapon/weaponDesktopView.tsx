@@ -1,11 +1,14 @@
 import { useState } from "react";
+
+import { IWeapon } from "~/types/enka/weapon.types";
 import rarityBgPicker from "~/utils/rarityBgPicker";
+
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
+
 import WeaponProfileDesktop from "./weaponProfile/weaponProfileDesktop";
 import WeaponRefinementDesktop from "./weaponRefinement/weaponRefinementDesktop";
 import WeaponStatsDesktop from "./weaponStats/weaponStatsDesktop";
-import { IWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapon: IWeapon;
@@ -18,30 +21,30 @@ function WeaponDesktopView({ weapon }: Readonly<Props>) {
     {
       name: "Refinement",
       id: "refinement",
-      shouldDisplay: stars > 2,
+      shouldDisplay: stars > 2
     },
     {
       name: "Stats",
       id: "stats",
       isActive: true,
-      shouldDisplay: true,
-    },
+      shouldDisplay: true
+    }
   ];
 
   const [selectedTab, setSelectedTab] = useState(TAB_NAV[stars > 2 ? 0 : 1].id);
 
   return (
-    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-hidden max-w-[1650px]">
+    <div className="hidden w-full max-w-[1650px] flex-col items-center justify-start space-y-8 overflow-hidden px-12 py-4 xl:flex">
       <LazyBackgroundImage
         img={rarityBgPicker(stars)}
         isDarkened
-        className="hidden xl:flex w-full flex-col items-start justify-start p-10 xl:h-[650px] rounded-4xl"
+        className="hidden w-full flex-col items-start justify-start rounded-4xl p-10 xl:flex xl:h-[650px]"
       >
         <WeaponProfileDesktop {...{ weapon }} />
       </LazyBackgroundImage>
 
       <div
-        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-8"
+        className="mt-8 flex w-full items-start justify-between space-x-4 rounded-lg"
         style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
       >
         <TabNavigation

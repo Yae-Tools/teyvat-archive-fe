@@ -6,7 +6,7 @@ type Props = {
 export default function CarouselNavButton({ icon, onClick }: Readonly<Props>) {
   return (
     <button
-      className="btn bg-[rgba(255,255,255,0.5)] text-[rgba(0,0,0,0.7)] m-[0_0.25rem] p-1 rounded-full cursor-pointer hover:bg-[rgba(255,255,255,0.3)]"
+      className="btn m-[0_0.25rem] cursor-pointer rounded-full bg-[rgba(255,255,255,0.5)] p-1 text-[rgba(0,0,0,0.7)] hover:bg-[rgba(255,255,255,0.3)]"
       onClick={onClick}
     >
       {icon}

@@ -13,13 +13,13 @@ type Props = {
 function WeaponSeriesFilter({
   series,
   selectedSeries,
-  setSelectedSeries,
+  setSelectedSeries
 }: Readonly<Props>) {
   return (
-    <div className="w-full lg:w-max max-w-[300px] flex items-center justify-between p-2 mb-3 border-2 border-slate-600 rounded-lg h-[40px]">
-      <div className="flex items-center w-full">
+    <div className="mb-3 flex h-[40px] w-full max-w-[300px] items-center justify-between rounded-lg border-2 border-slate-600 p-2 lg:w-max">
+      <div className="flex w-full items-center">
         <select
-          className="text-sm bg-transparent text-white py-1 focus:outline-none w-full mx-2"
+          className="mx-2 w-full bg-transparent py-1 text-sm text-white focus:outline-none"
           onChange={(e) => setSelectedSeries(e.target.value)}
           value={selectedSeries}
         >

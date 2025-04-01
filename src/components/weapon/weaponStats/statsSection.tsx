@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { IEnkaStat } from "~/types/enka/enka.types";
 import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
 import squashWeaponLevels from "~/utils/squashWeaponLevels";
@@ -33,10 +34,10 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
   }, [squashedView]);
 
   return (
-    <div className="py-6 space-y-2 text-white w-full">
+    <div className="w-full space-y-2 py-6 text-white">
       {stars > 2 && (
-        <div className="flex justify-between items-center">
-          <div className="w-full flex items-center justify-start space-x-4 mb-2">
+        <div className="flex items-center justify-between">
+          <div className="mb-2 flex w-full items-center justify-start space-x-4">
             <label className="inline-flex items-center" htmlFor="tealCheckBox">
               <input
                 id="tealCheckBox"
@@ -46,23 +47,23 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
                 onChange={() => setSquashedView(!squashedView)}
                 disabled={stars < 3}
               />
-              <span className="ml-2 font-enka">Squash Stats</span>
+              <span className="font-enka ml-2">Squash Stats</span>
             </label>
           </div>
         </div>
       )}
 
-      <table className="w-full border-collapse rounded-lg overflow-hidden">
+      <table className="w-full border-collapse overflow-hidden rounded-lg">
         <thead>
           <tr className="bg-gray-600">
-            <th className="p-3 text-center text-sm font-semibold border-b border-r border-gray-700">
+            <th className="border-r border-b border-gray-700 p-3 text-center text-sm font-semibold">
               Lv.
             </th>
-            <th className="p-3 text-center text-sm font-semibold border-b border-r border-gray-700">
+            <th className="border-r border-b border-gray-700 p-3 text-center text-sm font-semibold">
               {mutatedStats[1][0].fightPropName}
             </th>
             {stars > 2 && (
-              <th className="p-3 text-center text-sm font-semibold border-b border-r border-gray-700">
+              <th className="border-r border-b border-gray-700 p-3 text-center text-sm font-semibold">
                 {mutatedStats[1][1].fightPropName}
               </th>
             )}
@@ -75,12 +76,12 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
             return (
               <tr
                 key={key}
-                className="even:bg-gray-950 odd:bg-gray-900 hover:bg-gray-800 transition-colors"
+                className="transition-colors odd:bg-gray-900 even:bg-gray-950 hover:bg-gray-800"
               >
-                <td className="p-3 text-right border-r border-gray-700">
+                <td className="border-r border-gray-700 p-3 text-right">
                   {level}
                 </td>
-                <td className="p-3 text-right border-r border-gray-700">
+                <td className="border-r border-gray-700 p-3 text-right">
                   {formatWeaponStatValue(
                     stat[0].multiplier,
                     stat[0].isPercent,
@@ -89,7 +90,7 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
                 </td>
 
                 {stars > 2 && (
-                  <td className="p-3 text-right border-gray-700">
+                  <td className="border-gray-700 p-3 text-right">
                     {formatWeaponStatValue(
                       stat[1].multiplier,
                       stat[1].isPercent,

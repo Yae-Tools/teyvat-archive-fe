@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useAtom } from "jotai";
 import {
   addHours,
   differenceInSeconds,
   intervalToDuration,
-  set,
+  set
 } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
-import TimerItem from "./timer/timerItem";
-import ButtonGroup from "../common/basic/buttonGroup";
+import { useAtom } from "jotai";
+import { useEffect, useState } from "react";
+
 import { defaultServerAtom } from "~/atoms/feature.atoms";
+
+import ButtonGroup from "../common/basic/buttonGroup";
+
+import TimerItem from "./timer/timerItem";
 
 export default function TimeUntilReset() {
   const [defaultServer] = useAtom(defaultServerAtom);
@@ -33,7 +36,7 @@ export default function TimeUntilReset() {
       hours: 1,
       minutes: 30,
       seconds: 0,
-      milliseconds: 0,
+      milliseconds: 0
     });
 
     // Convert to GMT+5:30
@@ -51,26 +54,26 @@ export default function TimeUntilReset() {
     const secondsUntil = differenceInSeconds(nextReset, now);
     const duration = intervalToDuration({
       start: 0,
-      end: secondsUntil * 1000,
+      end: secondsUntil * 1000
     });
 
     //return hours, minutes, seconds separately with two digits
     return {
       hours: duration.hours?.toString().padStart(2, "0"),
       minutes: duration.minutes?.toString().padStart(2, "0"),
-      seconds: duration.seconds?.toString().padStart(2, "0"),
+      seconds: duration.seconds?.toString().padStart(2, "0")
     };
   };
 
   const SERVER_MAP = new Map<string, number>([
     ["ASIA", 0],
     ["EU", 7],
-    ["NA", 13],
+    ["NA", 13]
   ]);
 
   const SERVERS = Array.from(SERVER_MAP, ([name, offset]) => ({
     name,
-    offset,
+    offset
   }));
 
   const getServerOffset = (server: string) => {
@@ -82,8 +85,8 @@ export default function TimeUntilReset() {
   }, [defaultServer]);
 
   return (
-    <div className="w-full flex flex-col items- xl:items-start justify-center xl:mb-4 mt-3 space-y-4">
-      <h2 className="text-2xl text-white text-center xl:text-left">
+    <div className="items- mt-3 flex w-full flex-col justify-center space-y-4 xl:mb-4 xl:items-start">
+      <h2 className="text-center text-2xl text-white xl:text-left">
         Time Until Daily Reset
       </h2>
       <div className="flex justify-center gap-3 sm:gap-8">
@@ -93,12 +96,12 @@ export default function TimeUntilReset() {
             label: server.name,
             value: server.name,
             onClick: (server: string | number) =>
-              setSelectedServer(server as string),
+              setSelectedServer(server as string)
           }))}
           selectedItem={selectedServer}
         />
       </div>
-      <div className="flex justify-center xl:justify-start w-full items-center space-x-2">
+      <div className="flex w-full items-center justify-center space-x-2 xl:justify-start">
         <TimerItem
           time={
             getTimeUntilReset(getServerOffset(selectedServer)).hours ?? "00"

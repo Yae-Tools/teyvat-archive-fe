@@ -5,7 +5,7 @@ const thankingMembers = [
     github: "https://github.com/Algoinde",
     discord: "https://discord.gg/5p73JkGq",
     twitch: "https://www.twitch.tv/algoinde",
-    youtube: "https://www.youtube.com/channel/UCH3YSgIf9kDkhVvzxPVaerw",
+    youtube: "https://www.youtube.com/channel/UCH3YSgIf9kDkhVvzxPVaerw"
   },
   {
     name: "SharkH3art",
@@ -13,8 +13,7 @@ const thankingMembers = [
     github: "",
     discord: "https://discord.com/invite/U56Az2b5n3",
     twitch: "https://www.twitch.tv/sharkh3art",
-    youtube:
-      "https://www.youtube.com/channel/UCPTjzBgnx3hi4tSPlh-cKaQ/featured",
+    youtube: "https://www.youtube.com/channel/UCPTjzBgnx3hi4tSPlh-cKaQ/featured"
   },
   {
     name: "Almighty Shogun",
@@ -22,7 +21,7 @@ const thankingMembers = [
     github: "https://github.com/Almighty-Shogun",
     discord: "",
     twitch: "",
-    youtube: "",
+    youtube: ""
   },
   {
     name: "yuko1101",
@@ -30,8 +29,8 @@ const thankingMembers = [
     github: "https://github.com/yuko1101",
     discord: "",
     twitch: "",
-    youtube: "",
-  },
+    youtube: ""
+  }
 ];
 
 export default thankingMembers;

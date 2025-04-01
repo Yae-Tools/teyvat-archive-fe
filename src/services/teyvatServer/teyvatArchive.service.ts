@@ -20,7 +20,7 @@ export const getCharacterBySkillDepotId = async (
 ) => {
   try {
     const response = await serverInstance.get(`/characters/id/${enkaId}`, {
-      params: { skillDepotId },
+      params: { skillDepotId }
     });
 
     return response.data;

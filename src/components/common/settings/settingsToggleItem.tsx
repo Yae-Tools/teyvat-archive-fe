@@ -1,4 +1,5 @@
 import SettingItemContainer from "~/components/layout/container/settingItemContainer";
+
 import ToggleItem from "../basic/toggleItem";
 
 type Props = {
@@ -16,7 +17,7 @@ export default function SettingsToggleItem({
   id,
   label,
   description,
-  isDisabled,
+  isDisabled
 }: Readonly<Props>) {
   return (
     <SettingItemContainer {...{ id, label, description, isDisabled }}>

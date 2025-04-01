@@ -1,12 +1,16 @@
 type Props = {
-    id: string;
-    value: boolean;
-    setValue: (value: boolean) => void;
-    isDisabled?: boolean;
-
+  id: string;
+  value: boolean;
+  setValue: (value: boolean) => void;
+  isDisabled?: boolean;
 };
 
-export default function ToggleItem({id, value,setValue, isDisabled=false }: Readonly<Props>) {
+export default function ToggleItem({
+  id,
+  value,
+  setValue,
+  isDisabled = false
+}: Readonly<Props>) {
   return (
     <>
       <input
@@ -18,14 +22,13 @@ export default function ToggleItem({id, value,setValue, isDisabled=false }: Read
         disabled={isDisabled}
       />
       <button
-        className={`w-12 h-6 flex items-center justify-between p-1 rounded-full cursor-pointer transition-all duration-300 disabled:opacity-50
-             ${value ? "bg-teal-500" : "bg-gray-300"}`}
+        className={`flex h-6 w-12 cursor-pointer items-center justify-between rounded-full p-1 transition-all duration-300 disabled:opacity-50 ${value ? "bg-teal-500" : "bg-gray-300"}`}
         disabled={isDisabled}
         onClick={() => setValue(!value)}
       >
         <div
-          className={`w-4 h-4 bg-white rounded-full transition-all duration-300 ${
-            value ? "transform translate-x-6" : ""
+          className={`h-4 w-4 rounded-full bg-white transition-all duration-300 ${
+            value ? "translate-x-6 transform" : ""
           }`}
         />
       </button>

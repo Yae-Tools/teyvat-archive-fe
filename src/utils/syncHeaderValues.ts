@@ -2,28 +2,28 @@ const FEATURES = [
   {
     id: "useImageFetchOptimizer",
     headerName: "X-Use-Image-Optimizer",
-    value: true,
+    value: true
   },
   {
     id: "useFilterTravelers",
     headerName: "X-Use-Filter-Travelers",
-    value: true,
+    value: true
   },
   {
     id: "useSelectedTraveler",
     headerName: "X-Use-Selected-Traveler",
-    value: "PlayerBoy",
+    value: "PlayerBoy"
   },
   {
     id: "useCarouselAutoPlay",
     headerName: "X-Use-Carousel-Auto-Play",
-    value: true,
+    value: true
   },
   {
     id: "useCarouselInterval",
     headerName: "X-Use-Carousel-Interval",
-    value: 3000,
-  },
+    value: 3000
+  }
 ];
 
 export function syncInitialValues() {

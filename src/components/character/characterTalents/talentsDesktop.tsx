@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from "react";
 
+import { IAllTalent, ITalent } from "~/types/enka/character.types";
+import { IElementType } from "~/types/enka/enka.types";
+
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
+
 import CharacterTalentDetails from "./characterTalentDetails";
 import TalentIcon from "./talentIcon";
-import { IElementType } from "~/types/enka/enka.types";
-import { IAllTalent, ITalent } from "~/types/enka/character.types";
 
 type Props = {
   element: IElementType;
@@ -17,7 +19,7 @@ type Props = {
 export default function TalentsDesktop({
   element,
   skills,
-  passiveTalents,
+  passiveTalents
 }: Readonly<Props>) {
   const [selectedTalentId, setSelectedTalentId] = useState<number>(0);
   const [allTalents, setAllTalents] = useState<IAllTalent[]>([]);
@@ -28,14 +30,14 @@ export default function TalentsDesktop({
       const newSkills = skills.map((skill) => {
         return {
           ...skill,
-          isPassive: false,
+          isPassive: false
         };
       });
 
       const newPassiveTalents = passiveTalents.map((passiveTalent) => {
         return {
           ...passiveTalent,
-          isPassive: true,
+          isPassive: true
         };
       });
 
@@ -51,7 +53,7 @@ export default function TalentsDesktop({
 
   return (
     <AttributeDesktopContainer title="Talents">
-      <div className="w-full flex items-center justify-start space-x-8 mt-8 mb-6">
+      <div className="mt-8 mb-6 flex w-full items-center justify-start space-x-8">
         {allTalents
           .filter((skill) => skill.name !== "")
           .map((skill) => (

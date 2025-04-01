@@ -31,7 +31,7 @@ export const getTopTenCharacters = (
         constellations: character.constellations,
         rarity: baseChar?.rarity,
         element: baseChar?.element,
-        icon: baseChar?.iconUrl,
+        icon: baseChar?.iconUrl
       };
     });
 

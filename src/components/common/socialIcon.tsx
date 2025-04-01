@@ -12,11 +12,11 @@ export default function SocialIcon({
   name,
   url,
   icon,
-  iconSize = 24,
+  iconSize = 24
 }: Readonly<Props>) {
   return (
     <Link href={url} target="_blank" className="cursor-pointer">
-      <div className="p-1 flex flex-col lg:flex-row items-center lg:justify-start justify-center space-x-2 text-white">
+      <div className="flex flex-col items-center justify-center space-x-2 p-1 text-white lg:flex-row lg:justify-start">
         <Image src={icon} alt={name} width={iconSize} className="text-white" />
       </div>
     </Link>

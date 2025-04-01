@@ -1,15 +1,17 @@
 "use client";
 
+import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
-import ArtifactProfileMobile from "./artifactProfile/artifactProfileMobile";
-import ArtifactEquipPickerMobile from "./artifactEquipPicker/artifactEquipPickerMobile";
-import ArtifactSetBonusMobile from "./artifactSetBonus/artifactSetBonusMobile";
+
 import {
   selectedArtifactEquipTypeAtom,
-  selectedRarityFullSetAtom,
+  selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
-import { useAtom } from "jotai";
 import { IArtifactSet, IEquipCollection } from "~/types/enka/artifacts.types";
+
+import ArtifactEquipPickerMobile from "./artifactEquipPicker/artifactEquipPickerMobile";
+import ArtifactProfileMobile from "./artifactProfile/artifactProfileMobile";
+import ArtifactSetBonusMobile from "./artifactSetBonus/artifactSetBonusMobile";
 
 type Props = {
   artifactSet: IArtifactSet;
@@ -36,17 +38,17 @@ export default function ArtifactMobileView({ artifactSet }: Readonly<Props>) {
   if (!selectedEquipItem) return null;
 
   return (
-    <div className="pt-2 md:p-10 px-2 xl:hidden w-full">
+    <div className="w-full px-2 pt-2 md:p-10 xl:hidden">
       <ArtifactProfileMobile
         {...{
           selectedEquipItem,
           highestRarity,
-          setName: name,
+          setName: name
         }}
       />
       <ArtifactEquipPickerMobile
         {...{
-          description: selectedEquipItem.description,
+          description: selectedEquipItem.description
         }}
       />
       <ArtifactSetBonusMobile {...{ setBonus }} />

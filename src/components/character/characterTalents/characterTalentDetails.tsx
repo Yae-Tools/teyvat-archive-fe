@@ -6,19 +6,19 @@ type Props = {
 };
 
 export default function CharacterTalentDetails({
-  selectedTalent,
+  selectedTalent
 }: Readonly<Props>) {
   if (selectedTalent) {
     return (
-      <div className="w-full flex flex-col items-start justify-start text-white text-xl bg-slate-700 px-8 py-4 rounded-lg">
-        <h2 className="font-algoindeEnka text-3xl mb-4">
+      <div className="flex w-full flex-col items-start justify-start rounded-lg bg-slate-700 px-8 py-4 text-xl text-white">
+        <h2 className="font-algoindeEnka mb-4 text-3xl">
           {selectedTalent.name} {selectedTalent.isPassive ? "(Passive)" : ""}
         </h2>
         <div>
           <div
             className="w-full"
             dangerouslySetInnerHTML={{
-              __html: parseText(selectedTalent.description || ""),
+              __html: parseText(selectedTalent.description || "")
             }}
           />
         </div>
@@ -27,8 +27,8 @@ export default function CharacterTalentDetails({
   }
 
   return (
-    <div className="w-full flex flex-col items-start justify-start text-white text-xl bg-slate-700 px-8 py-4 rounded-lg">
-      <h2 className="font-algoindeEnka text-3xl mb-4">Select a talent</h2>
+    <div className="flex w-full flex-col items-start justify-start rounded-lg bg-slate-700 px-8 py-4 text-xl text-white">
+      <h2 className="font-algoindeEnka mb-4 text-3xl">Select a talent</h2>
     </div>
   );
 }

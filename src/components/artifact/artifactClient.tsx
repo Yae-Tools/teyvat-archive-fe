@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
 import { useAtom } from "jotai";
-import ArtifactMobileView from "./artifactMobileView";
-import ArtifactDesktopView from "./artifactDesktopView";
+import React, { useEffect } from "react";
+
 import {
   selectedArtifactRarityAtom,
-  selectedRarityFullSetAtom,
+  selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
 import { IArtifactSet } from "~/types/enka/artifacts.types";
+
+import ArtifactDesktopView from "./artifactDesktopView";
+import ArtifactMobileView from "./artifactMobileView";
 
 type Props = {
   artifactSet: IArtifactSet;
@@ -40,12 +42,12 @@ export default function ArtifactClient({ artifactSet }: Readonly<Props>) {
     <>
       <ArtifactMobileView
         {...{
-          artifactSet,
+          artifactSet
         }}
       />
       <ArtifactDesktopView
         {...{
-          artifactSet,
+          artifactSet
         }}
       />
     </>

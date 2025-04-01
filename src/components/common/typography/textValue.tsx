@@ -11,7 +11,7 @@ function TextValue({ text, textShadow, customClass = "" }: Readonly<Props>) {
     <p
       className={customClass}
       style={{
-        textShadow: textShadow ? "2px 2px 2px rgba(0, 0, 0, 0.9)" : "",
+        textShadow: textShadow ? "2px 2px 2px rgba(0, 0, 0, 0.9)" : ""
       }}
     >
       {text}

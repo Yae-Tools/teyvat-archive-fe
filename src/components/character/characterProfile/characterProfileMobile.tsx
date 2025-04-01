@@ -1,7 +1,8 @@
 import LazyBackgroundImage from "~/components/common/lazyBackgroundImage";
-import { elementalBackgroundPicker } from "~/utils/elementalImagePicker";
-import RarityStars from "../../common/rarityStars";
 import { IElementType } from "~/types/enka/enka.types";
+import { elementalBackgroundPicker } from "~/utils/elementalImagePicker";
+
+import RarityStars from "../../common/rarityStars";
 
 type Props = {
   name: string;
@@ -14,7 +15,7 @@ export default function CharacterProfileMobile({
   name,
   stars,
   splashUrl,
-  element,
+  element
 }: Readonly<Props>) {
   return (
     <LazyBackgroundImage
@@ -22,18 +23,18 @@ export default function CharacterProfileMobile({
       img={elementalBackgroundPicker(element)}
     >
       <LazyBackgroundImage
-        className="h-[420px] md:h-[520px] w-full flex flex-col items-start justify-end rounded-lg"
+        className="flex h-[420px] w-full flex-col items-start justify-end rounded-lg md:h-[520px]"
         style={{
-          zoom: 0.9,
+          zoom: 0.9
         }}
         img={splashUrl}
       >
-        <div className="flex flex-col items-start w-full pl-4">
+        <div className="flex w-full flex-col items-start pl-4">
           <RarityStars stars={stars} />
           <h2
-            className="font-algoindeEnka pb-2 text-2xl md:text-4xl drop-shadow-2xl text-white"
+            className="font-algoindeEnka pb-2 text-2xl text-white drop-shadow-2xl md:text-4xl"
             style={{
-              textShadow: "2px 2px black",
+              textShadow: "2px 2px black"
             }}
           >
             {name}

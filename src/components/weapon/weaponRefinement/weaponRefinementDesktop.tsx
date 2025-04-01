@@ -1,14 +1,16 @@
 import { useState } from "react";
+
 import AttributeDesktopContainer from "~/components/layout/container/attributeDesktopContainer";
-import RefinementSection from "./refinementSection";
 import { IRefinement } from "~/types/enka/weapon.types";
+
+import RefinementSection from "./refinementSection";
 
 type Props = {
   refinements: IRefinement[];
 };
 
 export default function WeaponRefinementDesktop({
-  refinements,
+  refinements
 }: Readonly<Props>) {
   const [refinementLevel, setRefinementLevel] = useState(1);
 
@@ -19,7 +21,7 @@ export default function WeaponRefinementDesktop({
           refinements,
           setRefinementLevel,
           refinementLevel,
-          align: "start",
+          align: "start"
         }}
       />
     </AttributeDesktopContainer>

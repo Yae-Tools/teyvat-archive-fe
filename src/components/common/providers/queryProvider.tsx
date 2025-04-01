@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  QueryClientProvider,
-  QueryClient,
   isServer,
+  QueryClient,
+  QueryClientProvider
 } from "@tanstack/react-query";
 
 type Props = {
@@ -16,9 +16,9 @@ function makeQueryClient() {
       queries: {
         staleTime: 1000 * 60 * 5, // 5 minute
         refetchOnWindowFocus: false,
-        refetchOnReconnect:true
-      },
-    },
+        refetchOnReconnect: true
+      }
+    }
   });
 }
 

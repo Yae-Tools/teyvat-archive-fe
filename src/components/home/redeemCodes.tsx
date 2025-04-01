@@ -1,27 +1,28 @@
 "use client";
 
-import Image from "next/image";
-import { ClipboardList } from "lucide-react";
-import { ToastContainer, toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
+import { ClipboardList } from "lucide-react";
+import Image from "next/image";
+import { toast, ToastContainer } from "react-toastify";
 
-import { getRedeemCodes } from "~/services/system/system.service";
 import yaeWhisperIcon from "~/assets/icons/system/yae_wispher.png";
+import { getRedeemCodes } from "~/services/system/system.service";
 import { IRedeemCodeResponse } from "~/types/enka/enka.types";
+
 import RedeemCodeLoader from "../common/loaderHandlers/redeemCodeLoader";
 
 export default function RedeemCodes() {
   const {
     data: redeemCodes,
     isError,
-    isLoading,
+    isLoading
   } = useQuery<IRedeemCodeResponse>({
     queryKey: ["redeemCodes"],
     queryFn: async () => {
       const data = await getRedeemCodes();
       return data;
     },
-    refetchInterval: 1000 * 60 * 60, // 1 hour
+    refetchInterval: 1000 * 60 * 60 // 1 hour
   });
 
   const notify = (message: string) => {
@@ -41,7 +42,7 @@ export default function RedeemCodes() {
           width={100}
           height={100}
         />
-      ),
+      )
     });
   };
 
@@ -55,10 +56,10 @@ export default function RedeemCodes() {
   if (isError) {
     return (
       <RedeemCodeLayout>
-        <div className="w-full flex items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <p className="text-white">Error fetching redeem codes.</p>
         </div>
-        <div className="w-full flex items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <p className="text-white">Please try again later.</p>
         </div>
       </RedeemCodeLayout>
@@ -67,10 +68,10 @@ export default function RedeemCodes() {
   if (!redeemCodes || redeemCodes["active"].length === 0) {
     return (
       <RedeemCodeLayout>
-        <div className="w-full flex items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <p className="text-white">No active redeem codes available.</p>
         </div>
-        <div className="w-full flex items-center justify-center">
+        <div className="flex w-full items-center justify-center">
           <p className="text-white">Check back later for new codes!</p>
         </div>
       </RedeemCodeLayout>
@@ -79,21 +80,21 @@ export default function RedeemCodes() {
 
   return (
     <RedeemCodeLayout>
-      <div className="w-full items-center justify-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-2 md:gap-2">
+      <div className="grid w-full grid-cols-1 items-center justify-center sm:grid-cols-2 md:grid-cols-3 md:gap-2 xl:grid-cols-2">
         {redeemCodes["active"].map((code) => (
           <div
             key={code.code}
-            className="w-full px-4 py-2 bg-slate-800 rounded-lg flex items-center justify-between space-x-2"
+            className="flex w-full items-center justify-between space-x-2 rounded-lg bg-slate-800 px-4 py-2"
             style={{
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.6)",
-              backgroundColor: "rgba(16, 24, 40, 0.5)",
+              backgroundColor: "rgba(16, 24, 40, 0.5)"
             }}
           >
-            <p className="text-white font-semibold font-enka text-left w-full xl:text-sm 2xl:text-md">
+            <p className="font-enka 2xl:text-md w-full text-left font-semibold text-white xl:text-sm">
               {code.code}
             </p>
             <ClipboardList
-              className="w-6 h-6 text-white mx-auto cursor-pointer"
+              className="mx-auto h-6 w-6 cursor-pointer text-white"
               onClick={() => {
                 navigator.clipboard.writeText(code.code);
                 notify("Code copied to clipboard!");
@@ -112,8 +113,8 @@ type RedeemCodeLayoutProps = {
 
 const RedeemCodeLayout = ({ children }: Readonly<RedeemCodeLayoutProps>) => {
   return (
-    <div className="w-full flex flex-col items-center justify-center space-y-4">
-      <h2 className="text-2xl text-white text-center xl:text-left w-full">
+    <div className="flex w-full flex-col items-center justify-center space-y-4">
+      <h2 className="w-full text-center text-2xl text-white xl:text-left">
         Redeem Codes
       </h2>
       {children}

@@ -1,8 +1,9 @@
 import { memo } from "react";
 
+import { IRarityType } from "~/types/enka/enka.types";
+
 import ItemSeparator from "./itemSeparator";
 import RaritySelector from "./raritySelector";
-import { IRarityType } from "~/types/enka/enka.types";
 
 type Props = {
   selectedRarity: IRarityType | null;
@@ -13,10 +14,10 @@ type Props = {
 function RarityFilter({
   selectedRarity,
   setSelectedRarity,
-  category = "weapon",
+  category = "weapon"
 }: Readonly<Props>) {
   return (
-    <div className="w-full font-semibold lg:w-max max-w-[300px] flex items-center justify-center p-2 mb-3 border-2 border-slate-600 rounded-lg h-[40px]">
+    <div className="mb-3 flex h-[40px] w-full max-w-[300px] items-center justify-center rounded-lg border-2 border-slate-600 p-2 font-semibold lg:w-max">
       {category === "weapon" && (
         <>
           <RaritySelector

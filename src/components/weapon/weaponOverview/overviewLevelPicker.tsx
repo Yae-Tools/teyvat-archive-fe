@@ -9,7 +9,7 @@ type Props = {
 export default function OverviewLevelPicker({
   selectedLevel,
   setSelectedLevel,
-  stars,
+  stars
 }: Readonly<Props>) {
   const maxLevel = stars > 2 ? 90 : 70;
 
@@ -18,14 +18,14 @@ export default function OverviewLevelPicker({
       id: 1,
       label: "01",
       value: 1,
-      onClick: (level: number | string) => setSelectedLevel(level as number),
+      onClick: (level: number | string) => setSelectedLevel(level as number)
     },
     {
       id: 2,
       label: stars > 2 ? "90" : "70",
       value: maxLevel,
-      onClick: () => setSelectedLevel(maxLevel),
-    },
+      onClick: () => setSelectedLevel(maxLevel)
+    }
   ];
 
   return <ButtonGroup items={items} selectedItem={selectedLevel} />;

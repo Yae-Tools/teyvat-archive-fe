@@ -1,4 +1,5 @@
 import { ICharacter } from "~/types/enka/character.types";
+
 import AscensionMatsMobile from "./characterAscension/ascensionMatsMobile";
 import MobileConstellationView from "./characterConstellations/mobileConstellationView";
 import CharacterMobileOverview from "./characterOverview/characterMobileOverview";
@@ -10,7 +11,7 @@ type Props = {
 };
 
 export default function CharacterMobileView({
-  characterData,
+  characterData
 }: Readonly<Props>) {
   const {
     constellations,
@@ -27,10 +28,10 @@ export default function CharacterMobileView({
     location,
     description,
     birthday,
-    isTraveler,
+    isTraveler
   } = characterData;
   return (
-    <div className="pt-2 md:p-10 px-2 xl:hidden w-full">
+    <div className="w-full px-2 pt-2 md:p-10 xl:hidden">
       <CharacterProfileMobile {...{ name, stars, splashUrl, element }} />
       <CharacterMobileOverview
         {...{
@@ -39,7 +40,7 @@ export default function CharacterMobileView({
           affiliation: location,
           description,
           birthday,
-          isTraveler,
+          isTraveler
         }}
       />
       <TalentsMobile {...{ skills, passiveTalents }} />
@@ -47,7 +48,7 @@ export default function CharacterMobileView({
         {...{
           constellation,
           constellations,
-          chapterIcon: constellationIcon,
+          chapterIcon: constellationIcon
         }}
       />
       <AscensionMatsMobile ascensionData={ascensionData} />

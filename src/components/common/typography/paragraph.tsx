@@ -5,10 +5,10 @@ type Props = {
 
 export default function Paragraph({
   text,
-  textAlignment = "left",
+  textAlignment = "left"
 }: Readonly<Props>) {
   return (
-    <p className={`primary-text text-md lg:text-lg mt-1 text-${textAlignment}`}>
+    <p className={`primary-text text-md mt-1 lg:text-lg text-${textAlignment}`}>
       {text}
     </p>
   );

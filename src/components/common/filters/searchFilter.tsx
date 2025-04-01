@@ -9,15 +9,15 @@ type Props = {
 export default function SearchFilter({
   searchValue,
   setSearchValue,
-  placeholder = "Search",
+  placeholder = "Search"
 }: Readonly<Props>) {
   return (
-    <div className="w-full lg:w-max flex items-center justify-between p-2 mb-3 max-w-[300px] border-2 border-slate-600 rounded-lg h-[40px]">
-      <div className="w-full flex items-center justify-start space-x-2">
-        <Search className="size-4 mr-2" />
+    <div className="mb-3 flex h-[40px] w-full max-w-[300px] items-center justify-between rounded-lg border-2 border-slate-600 p-2 lg:w-max">
+      <div className="flex w-full items-center justify-start space-x-2">
+        <Search className="mr-2 size-4" />
         <input
           type="text"
-          className="h-full outline-none bg-transparent text-white placeholder-gray-400"
+          className="h-full bg-transparent text-white placeholder-gray-400 outline-none"
           placeholder={placeholder}
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}

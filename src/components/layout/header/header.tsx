@@ -5,10 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 import LogoHolder from "~/components/common/logoHolder";
 import SettingsModal from "~/components/modals/settings/settingsModal";
+
 import DesktopNavRoutes from "./desktopNavRoutes";
 import HeaderSidebar from "./headerSideBar";
 
@@ -28,7 +29,7 @@ export default function Header() {
       closeOnClick: true,
       pauseOnHover: false,
       draggable: false,
-      theme: "dark",
+      theme: "dark"
     });
   };
 
@@ -38,37 +39,37 @@ export default function Header() {
 
   return (
     <header
-      className="bg-white dark:bg-gray-900 w-full shadow-slate-300 dark:shadow-slate-950 shadow-md overflow-x-hidden"
+      className="w-full overflow-x-hidden bg-white shadow-md shadow-slate-300 dark:bg-gray-900 dark:shadow-slate-950"
       style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
     >
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
-        <div className="flex items-center justify-between mx-2 w-full">
+      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-2 flex w-full items-center justify-between">
           <Link
             href="/"
-            className="flex items-center justify-start py-2 w-full lg:w-1/5"
+            className="flex w-full items-center justify-start py-2 lg:w-1/5"
           >
             <span className="sr-only">Teyvat Archive</span>
             <LogoHolder />
-            <h1 className="text-white text-lg font-bold ml-2">
+            <h1 className="ml-2 text-lg font-bold text-white">
               Teyvat Archive
             </h1>
           </Link>
 
-          <div className="hidden lg:block w-3/5 items-center justify-center">
+          <div className="hidden w-3/5 items-center justify-center lg:block">
             <DesktopNavRoutes />
           </div>
 
-          <div className="flex items-center gap-4 w-full lg:w-1/5 justify-end">
+          <div className="flex w-full items-center justify-end gap-4 lg:w-1/5">
             <div className="hidden lg:flex lg:gap-4">
               <button
                 onClick={() => notify("Updates section coming soon!")}
-                className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
+                className="cu rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
               >
                 <NotebookPen className="size-5" />
               </button>
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 cu"
+                className="cu rounded-sm bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75"
               >
                 <CogIcon className="size-5" />
               </button>
@@ -88,7 +89,7 @@ export default function Header() {
             {...{
               isSidebarOpen,
               setIsSidebarOpen,
-              setIsSettingsOpen,
+              setIsSettingsOpen
             }}
           />
           <SettingsModal
@@ -98,7 +99,7 @@ export default function Header() {
           />
         </div>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </header>
   );
 }

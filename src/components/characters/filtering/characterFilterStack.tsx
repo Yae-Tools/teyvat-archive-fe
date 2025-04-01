@@ -1,15 +1,18 @@
 "use client";
 
 import { DeleteIcon } from "lucide-react";
+
 import SearchFilter from "~/components/common/filters/searchFilter";
-import RarityFilter from "../../common/filters/rarityFilter";
-import WeaponFilter from "../../common/filters/weaponFilter";
-import ElementFilter from "./elementFilter";
 import {
   IElementType,
   IRarityType,
-  IWeaponType,
+  IWeaponType
 } from "~/types/enka/enka.types";
+
+import RarityFilter from "../../common/filters/rarityFilter";
+import WeaponFilter from "../../common/filters/weaponFilter";
+
+import ElementFilter from "./elementFilter";
 
 type Props = {
   setIsFilterOpen: (value: boolean) => void;
@@ -32,14 +35,14 @@ export default function CharacterFilterStack({
   selectedRarity,
   setSelectedRarity,
   characterSearch,
-  setCharacterSearch,
+  setCharacterSearch
 }: Readonly<Props>) {
   return (
     <>
       <SearchFilter
         {...{
           searchValue: characterSearch,
-          setSearchValue: setCharacterSearch,
+          setSearchValue: setCharacterSearch
         }}
       />
       <ElementFilter {...{ selectedElement, setSelectedElement }} />
@@ -48,7 +51,7 @@ export default function CharacterFilterStack({
         {...{ selectedRarity, setSelectedRarity, category: "character" }}
       />
       <button
-        className="w-full lg:w-auto p-2 mb-3 max-w-[300px] cursor-pointer rounded-lg h-[40px] text-xs hover:bg-slate-700 text-white flex items-center"
+        className="mb-3 flex h-[40px] w-full max-w-[300px] cursor-pointer items-center rounded-lg p-2 text-xs text-white hover:bg-slate-700 lg:w-auto"
         onClick={() => {
           setSelectedElement(null);
           setSelectedWeapon(null);
@@ -58,7 +61,7 @@ export default function CharacterFilterStack({
         }}
       >
         Clear
-        <DeleteIcon className="size-4 ml-2" />
+        <DeleteIcon className="ml-2 size-4" />
       </button>
     </>
   );

@@ -3,7 +3,7 @@ import {
   IBodyType,
   IElementType,
   IRarityType,
-  IWeaponType,
+  IWeaponType
 } from "./enka.types";
 
 export interface IConstellation {

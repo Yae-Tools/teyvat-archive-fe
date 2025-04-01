@@ -1,8 +1,10 @@
-import Link from "next/link";
 import Image from "next/image";
-import ThumbnaiContainer from "../layout/container/thumbnailContainer";
-import { getElementTypeImage } from "~/utils/elementalImagePicker";
+import Link from "next/link";
+
 import { IBaseCharacter } from "~/types/enka/character.types";
+import { getElementTypeImage } from "~/utils/elementalImagePicker";
+
+import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 
 type Props = {
   character: IBaseCharacter;
@@ -14,8 +16,8 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
       <Link
         href={`/character/${character.nameId}-${character.enkaId}-${character.skillDepotId}`}
       >
-        <div className="w-full flex flex-col items-center mt-1">
-          <div className="h-3/4 flex items-end justify-center">
+        <div className="mt-1 flex w-full flex-col items-center">
+          <div className="flex h-3/4 items-end justify-center">
             <Image
               src={character.iconUrl}
               alt={character.id}
@@ -25,7 +27,7 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
           </div>
         </div>
       </Link>
-      <div className="absolute top-0 left-0 flex items-center text-white p-2 ml-[-5px] mt-[-5px]">
+      <div className="absolute top-0 left-0 mt-[-5px] ml-[-5px] flex items-center p-2 text-white">
         <Image
           src={getElementTypeImage(character.element)}
           alt={character.element}

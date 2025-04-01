@@ -1,8 +1,10 @@
 import { useAtom } from "jotai";
+
 import {
   selectedArtifactEquipTypeAtom,
-  selectedRarityFullSetAtom,
+  selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
+
 import ArtifactEquipPicker from "./artifactEquipPicker";
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
 };
 
 export default function ArtifactEquipPickerMobile({
-  description,
+  description
 }: Readonly<Props>) {
   const [selectedArtifactEquipType, setSelectedArtifactEquipType] = useAtom(
     selectedArtifactEquipTypeAtom
@@ -19,18 +21,18 @@ export default function ArtifactEquipPickerMobile({
   const [selectedRarityFullSet] = useAtom(selectedRarityFullSetAtom);
 
   return (
-    <div className="mt-2 bg-slate-200 dark:bg-slate-800 bg-opacity-50 flex flex-col items-center justify-center p-2 rounded-lg shadow-md w-full xl:hidden">
+    <div className="bg-opacity-50 mt-2 flex w-full flex-col items-center justify-center rounded-lg bg-slate-200 p-2 shadow-md xl:hidden dark:bg-slate-800">
       <ArtifactEquipPicker
         {...{
           selectedArtifactEquipType,
           setSelectedArtifactEquipType,
-          selectedRarityFullSet,
+          selectedRarityFullSet
         }}
       />
       <p
-        className="text-sm md:text-base lg:text-lg mt-4 italic w-full text-slate-400 text-center"
+        className="mt-4 w-full text-center text-sm text-slate-400 italic md:text-base lg:text-lg"
         style={{
-          lineHeight: "1rem",
+          lineHeight: "1rem"
         }}
       >
         "{description}"

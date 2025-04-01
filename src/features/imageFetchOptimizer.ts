@@ -31,7 +31,7 @@ const transformCharacterData = (character: ICharacter) => {
     nameCard,
     splashUrl,
     sideIcon,
-    constellationIcon: constellationIcon,
+    constellationIcon: constellationIcon
   };
 
   return updatedCharacter;

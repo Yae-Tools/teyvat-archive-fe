@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { IEquipCollection } from "~/types/enka/artifacts.types";
 import { IEquipType } from "~/types/enka/enka.types";
 import { equipIconArray } from "~/utils/arttifactEquipMapper";
@@ -12,10 +13,10 @@ type Props = {
 export default function ArtifactEquipPicker({
   selectedArtifactEquipType,
   setSelectedArtifactEquipType,
-  selectedRarityFullSet,
+  selectedRarityFullSet
 }: Readonly<Props>) {
   return (
-    <div className="w-full flex items-center justify-between md:justify-evenly lg:justify-end lg:space-x-6">
+    <div className="flex w-full items-center justify-between md:justify-evenly lg:justify-end lg:space-x-6">
       {equipIconArray
         .filter((icon) =>
           selectedRarityFullSet?.find((item) => item.equipType === icon.id)
@@ -28,7 +29,7 @@ export default function ArtifactEquipPicker({
               selectedArtifactEquipType === icon.id
                 ? "bg-teal-600"
                 : "bg-[rgba(0,0,0,0.3)]"
-            } rounded-lg p-1 cursor-pointer`}
+            } cursor-pointer rounded-lg p-1`}
           >
             <Image
               src={icon.url}

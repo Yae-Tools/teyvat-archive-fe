@@ -1,24 +1,24 @@
 const HEADER_ROUTES = [
   {
     path: "/characters",
-    name: "Characters",
+    name: "Characters"
   },
   {
     path: "/weapons",
-    name: "Weapons",
+    name: "Weapons"
   },
   {
     path: "/artifacts",
-    name: "Artifacts",
+    name: "Artifacts"
   },
   {
     path: "/spiral-abyss",
-    name: "Spiral Abyss",
+    name: "Spiral Abyss"
   },
   {
     path: "/events",
-    name: "Events",
-  },
+    name: "Events"
+  }
 ];
 
 export default HEADER_ROUTES;

@@ -1,4 +1,5 @@
 import { DeleteIcon } from "lucide-react";
+
 import RarityFilter from "~/components/common/filters/rarityFilter";
 import SearchFilter from "~/components/common/filters/searchFilter";
 import { IRarityType } from "~/types/enka/enka.types";
@@ -16,25 +17,25 @@ export default function ArtifactFilterStack({
   artifactSearch,
   setArtifactSearch,
   selectedArtifactRarity,
-  setSelectedArtifactRarity,
+  setSelectedArtifactRarity
 }: Readonly<Props>) {
   return (
     <>
       <SearchFilter
         {...{
           searchValue: artifactSearch,
-          setSearchValue: setArtifactSearch,
+          setSearchValue: setArtifactSearch
         }}
       />
       <RarityFilter
         {...{
           selectedRarity: selectedArtifactRarity,
           setSelectedRarity: setSelectedArtifactRarity,
-          category: "artifact",
+          category: "artifact"
         }}
       />
       <button
-        className="w-full lg:w-auto p-2 mb-3 max-w-[300px] cursor-pointer rounded-lg h-[40px] text-xs hover:bg-slate-700 text-white flex items-center"
+        className="mb-3 flex h-[40px] w-full max-w-[300px] cursor-pointer items-center rounded-lg p-2 text-xs text-white hover:bg-slate-700 lg:w-auto"
         onClick={() => {
           setArtifactSearch("");
           setSelectedArtifactRarity(null);
@@ -42,7 +43,7 @@ export default function ArtifactFilterStack({
         }}
       >
         Clear
-        <DeleteIcon className="size-4 ml-2" />
+        <DeleteIcon className="ml-2 size-4" />
       </button>
     </>
   );
