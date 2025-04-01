@@ -45,8 +45,19 @@ export const getFinalizedAbyssBlessings = (blessings: IAbyssBlessing[]) => {
   const filteredBlessings = blessings
     .filter((blessing) => blessing.name !== "" && blessing.name !== undefined)
     .sort((a, b) => {
-      return Number(a.id) - Number(b.id);
+      return Number(b.id) - Number(a.id);
     });
 
   return filteredBlessings;
+};
+
+export const isCurrentBlessing = (startDate: string, endDate: string) => {
+  const currentDate = new Date();
+
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const isCurrent = currentDate >= start && currentDate <= end;
+
+  return isCurrent;
 };

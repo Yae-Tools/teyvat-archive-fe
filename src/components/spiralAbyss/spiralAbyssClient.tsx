@@ -1,6 +1,8 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
+import { CalendarIcon, SwordsIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import {
@@ -12,13 +14,15 @@ import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
 import { IAbyssBlessing, IAbyssDataResponse } from "~/types/enka/enka.types";
 import {
   getFinalizedAbyssBlessings,
-  getTopTenCharacters
+  getTopTenCharacters,
+  isCurrentBlessing
 } from "~/utils/parsers/abyssDataParser";
+import parseText from "~/utils/parsers/parseEnkaText";
 
-import ToggleItem from "../common/basic/toggleItem";
 import TitleHeading from "../common/typography/titleHeading";
 
 import MostPickedCharacters from "./mostPickedCharacters";
+import USedByOwnToggle from "./usedByOwnToggle";
 
 export default function SpiralAbyssClient() {
   const { data: characterData } = useQuery<IBaseCharacter[]>({
@@ -73,39 +77,69 @@ export default function SpiralAbyssClient() {
 
   return (
     <div className="flex w-full flex-col items-center justify-center space-y-4">
-      <div className="mb-2 flex w-full flex-col items-center justify-between md:flex-row">
-        <div className="w-full md:w-1/5"></div>
-        <TitleHeading
-          text="Top 10 Used Characters"
-          customClass="text-xl text-center w-full md:w-3/5"
-        />
-        <div className="w-full md:w-1/5">
-          <div className="flex w-full items-center justify-end">
-            <label htmlFor="usedByOwn" className="mr-2 text-sm text-white">
-              Used By Own
-            </label>
-            <ToggleItem
-              id="usedByOwn"
-              value={isUsedByOwn}
-              setValue={setIsUsedByOwn}
-            />
-          </div>
+      <div className="flex w-full flex-col items-center justify-center">
+        <div className="mb-2 flex w-full flex-col items-center justify-between md:flex-row">
+          <div className="w-full md:w-1/5"></div>
+          <TitleHeading
+            text="Top 10 Used Characters"
+            customClass="text-xl text-center w-full md:w-3/5"
+          />
+          <USedByOwnToggle {...{ isUsedByOwn, setIsUsedByOwn }} />
         </div>
+        <MostPickedCharacters {...{ top10Chars, isAbyssLoading }} />
       </div>
-      <MostPickedCharacters {...{ top10Chars, isAbyssLoading }} />
-      <div className="w-full">
+
+      <div className="flex w-full flex-col items-center justify-center">
         <TitleHeading
           text="Blessings of the Abyss"
           customClass="text-xl text-center w-full"
         />
-        <div className="flex w-full flex-wrap items-center justify-center">
+        <div className="mt-4 grid w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4">
           {sortedAbyssBlessings.map((blessing) => (
-            <div
+            <article
+              className="max-w-[300px] rounded-lg bg-slate-700"
               key={blessing.id}
-              className="m-2 w-max items-center justify-center"
             >
-              <p className="text-sm text-white">{blessing.name}</p>
-            </div>
+              <div className="flex items-start p-4">
+                <div>
+                  <h3 className="mb-2 font-medium sm:text-lg">
+                    {blessing.name}
+                  </h3>
+                  <div
+                    className="text-sm text-white"
+                    dangerouslySetInnerHTML={{
+                      __html: parseText(blessing.description)
+                    }}
+                  />
+                  <div className="mt-2 sm:flex sm:items-center sm:gap-2">
+                    <div className="flex items-center gap-1 text-gray-500">
+                      <CalendarIcon className="size-4 text-slate-200" />
+                      <p className="text-xs text-slate-200">
+                        {format(blessing.begin, "do 'of' MMM yyyy")}
+                      </p>
+                    </div>
+                    <span className="hidden sm:block" aria-hidden="true">
+                      ·
+                    </span>
+                    <div className="flex items-center gap-1 text-gray-500">
+                      <p className="text-xs text-slate-200">
+                        {format(blessing.end, "do 'of' MMM yyyy")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {isCurrentBlessing(blessing.begin, blessing.end) && (
+                <div className="flex justify-end">
+                  <strong className="-me-[2px] -mb-[2px] inline-flex items-center gap-1 rounded-ss-xl rounded-ee-xl bg-teal-600 px-3 py-1.5 text-white">
+                    <SwordsIcon className="size-4" />
+                    <span className="text-sm font-medium">
+                      Current Blessing
+                    </span>
+                  </strong>
+                </div>
+              )}
+            </article>
           ))}
         </div>
       </div>
