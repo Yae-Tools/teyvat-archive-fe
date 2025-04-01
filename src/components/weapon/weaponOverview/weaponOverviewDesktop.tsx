@@ -7,7 +7,7 @@ import DescriptionDesktop from "~/components/common/descriptionDesktop";
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { WEAPON_TYPES } from "~/data/teyvatData";
 import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
-import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
+import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 import {
   getWeaponStatIcon,
   weaponTypeIconFilter
@@ -66,7 +66,7 @@ export default function WeaponOverviewDesktop({
         <div className="flex h-full w-full items-start justify-end">
           <OverviewItemHolder
             label={stats[1][0].fightPropName}
-            value={formatWeaponStatValue(
+            value={formatStatValue(
               stats[selectedLevel][0].multiplier,
               stats[selectedLevel][0].isPercent,
               0
@@ -85,7 +85,7 @@ export default function WeaponOverviewDesktop({
           {stars > 2 && (
             <OverviewItemHolder
               label={stats[1][1].fightPropName}
-              value={formatWeaponStatValue(
+              value={formatStatValue(
                 stats[selectedLevel][1].multiplier,
                 stats[selectedLevel][1].isPercent,
                 0

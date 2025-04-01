@@ -4,7 +4,7 @@ import { useState } from "react";
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { WEAPON_TYPES } from "~/data/teyvatData";
 import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
-import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
+import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 import {
   getWeaponStatIcon,
   weaponTypeIconFilter
@@ -56,11 +56,7 @@ export default function WeaponMobileOverview({
         <OverviewItemHolder
           label={stats[1][0].fightPropName}
           align="end"
-          value={formatWeaponStatValue(
-            stats[selectedLevel][0].multiplier,
-            false,
-            0
-          )}
+          value={formatStatValue(stats[selectedLevel][0].multiplier, false, 0)}
         >
           <Image
             className="mr-2 size-4.5"
@@ -76,7 +72,7 @@ export default function WeaponMobileOverview({
         {stars > 2 && (
           <OverviewItemHolder
             label={stats[1][1].fightPropName}
-            value={formatWeaponStatValue(
+            value={formatStatValue(
               stats[selectedLevel][1].multiplier,
               stats[selectedLevel][1].isPercent,
               1

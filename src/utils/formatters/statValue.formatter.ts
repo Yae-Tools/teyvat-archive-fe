@@ -1,4 +1,4 @@
-function formatWeaponStatValue(
+export function formatStatValue(
   value: number,
   isPercentage: boolean,
   roundoffDigits: number
@@ -14,10 +14,9 @@ function formatWeaponStatValue(
     formattedValue = Math.round(parseFloat(formattedValue)).toString();
   }
   if (isPercentage) {
+    //multiply by 100 and add percentage sign
     formattedValue += "%";
   }
 
   return formattedValue;
 }
-
-export { formatWeaponStatValue };

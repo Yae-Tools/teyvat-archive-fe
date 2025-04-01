@@ -131,3 +131,13 @@ export const getAbyssData = async () => {
     return null;
   }
 };
+
+export const getAbyssBlessings = async () => {
+  try {
+    const response = await serverInstance.get("/abyss/blessings");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

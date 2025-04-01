@@ -1,20 +1,24 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import {
+  getAbyssBlessings,
   getAbyssData,
   getCharacters
 } from "~/services/teyvatServer/teyvatArchive.service";
 import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
-import { IAbyssDataResponse, IRarityType } from "~/types/enka/enka.types";
-import { getTopTenCharacters } from "~/utils/parsers/abyssDataParser";
+import { IAbyssBlessing, IAbyssDataResponse } from "~/types/enka/enka.types";
+import {
+  getFinalizedAbyssBlessings,
+  getTopTenCharacters
+} from "~/utils/parsers/abyssDataParser";
 
 import ToggleItem from "../common/basic/toggleItem";
 import TitleHeading from "../common/typography/titleHeading";
-import AbyssIconContainer from "../layout/container/abyssIconContainer";
+
+import MostPickedCharacters from "./mostPickedCharacters";
 
 export default function SpiralAbyssClient() {
   const { data: characterData } = useQuery<IBaseCharacter[]>({
@@ -25,17 +29,30 @@ export default function SpiralAbyssClient() {
     }
   });
 
-  const { data: abyssData } = useQuery<IAbyssDataResponse>({
-    queryKey: ["abyssData"],
+  const { data: abyssData, isLoading: isAbyssLoading } =
+    useQuery<IAbyssDataResponse>({
+      queryKey: ["abyssData"],
+      queryFn: async () => {
+        const data: IAbyssDataResponse = await getAbyssData();
+        return data;
+      },
+      refetchInterval: 1000 * 60 * 60 // 1 hour
+    });
+
+  const { data: blessingData } = useQuery<IAbyssBlessing[]>({
+    queryKey: ["blessings"],
     queryFn: async () => {
-      const data: IAbyssDataResponse = await getAbyssData();
+      const data: IAbyssBlessing[] = await getAbyssBlessings();
       return data;
     },
-    refetchInterval: 1000 * 60 * 60 // 1 hour
+    enabled: !!abyssData
   });
 
   const [isUsedByOwn, setIsUsedByOwn] = useState(false);
   const [top10Chars, setTop10Chars] = useState<ITopCharacter[]>([]);
+  const [sortedAbyssBlessings, setSortedAbyssBlessings] = useState<
+    IAbyssBlessing[]
+  >([]);
 
   useEffect(() => {
     if (abyssData && characterData) {
@@ -48,8 +65,14 @@ export default function SpiralAbyssClient() {
     }
   }, [abyssData, isUsedByOwn, characterData]);
 
+  useEffect(() => {
+    if (blessingData) {
+      setSortedAbyssBlessings(getFinalizedAbyssBlessings(blessingData));
+    }
+  }, [blessingData]);
+
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <div className="flex w-full flex-col items-center justify-center space-y-4">
       <div className="mb-2 flex w-full flex-col items-center justify-between md:flex-row">
         <div className="w-full md:w-1/5"></div>
         <TitleHeading
@@ -69,29 +92,22 @@ export default function SpiralAbyssClient() {
           </div>
         </div>
       </div>
-      <div
-        className="flex w-full flex-wrap items-center justify-center overflow-auto"
-        style={{ maxHeight: "300px" }}
-      >
-        {top10Chars.length === 10 &&
-          top10Chars.map((char) => {
-            return (
-              <AbyssIconContainer
-                key={char.id}
-                rarity={char.rarity as IRarityType}
-              >
-                <div className="flex h-full w-full flex-col items-center justify-end">
-                  <Image
-                    src={char.icon as string}
-                    alt={char.id}
-                    width={300}
-                    height={40}
-                    className="size-18"
-                  />
-                </div>
-              </AbyssIconContainer>
-            );
-          })}
+      <MostPickedCharacters {...{ top10Chars, isAbyssLoading }} />
+      <div className="w-full">
+        <TitleHeading
+          text="Blessings of the Abyss"
+          customClass="text-xl text-center w-full"
+        />
+        <div className="flex w-full flex-wrap items-center justify-center">
+          {sortedAbyssBlessings.map((blessing) => (
+            <div
+              key={blessing.id}
+              className="m-2 w-max items-center justify-center"
+            >
+              <p className="text-sm text-white">{blessing.name}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

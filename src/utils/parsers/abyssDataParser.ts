@@ -1,5 +1,8 @@
 import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
-import { IAbyssCharacterResponse } from "~/types/enka/enka.types";
+import {
+  IAbyssBlessing,
+  IAbyssCharacterResponse
+} from "~/types/enka/enka.types";
 
 // Define the return type for better type safety
 
@@ -36,4 +39,14 @@ export const getTopTenCharacters = (
     });
 
   return topTenCharacters;
+};
+
+export const getFinalizedAbyssBlessings = (blessings: IAbyssBlessing[]) => {
+  const filteredBlessings = blessings
+    .filter((blessing) => blessing.name !== "" && blessing.name !== undefined)
+    .sort((a, b) => {
+      return Number(a.id) - Number(b.id);
+    });
+
+  return filteredBlessings;
 };

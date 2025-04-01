@@ -141,6 +141,15 @@ export interface IAbyssDataResponse {
   characters: IAbyssCharacterResponse[];
 }
 
+export interface IAbyssBlessing {
+  id: string;
+  begin: string;
+  end: string;
+  icon: string;
+  name: string;
+  description: string;
+}
+
 export type IRarityType = keyof typeof RARITY_TYPES;
 
 export type IElementType = keyof typeof ELEMENT_TYPES;

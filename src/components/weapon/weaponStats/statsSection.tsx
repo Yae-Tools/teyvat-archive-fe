@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { IEnkaStat } from "~/types/enka/enka.types";
-import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
+import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 import squashWeaponLevels from "~/utils/squashWeaponLevels";
 
 type Props = {
@@ -82,20 +82,12 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
                   {level}
                 </td>
                 <td className="border-r border-gray-700 p-3 text-right">
-                  {formatWeaponStatValue(
-                    stat[0].multiplier,
-                    stat[0].isPercent,
-                    0
-                  )}
+                  {formatStatValue(stat[0].multiplier, stat[0].isPercent, 0)}
                 </td>
 
                 {stars > 2 && (
                   <td className="border-gray-700 p-3 text-right">
-                    {formatWeaponStatValue(
-                      stat[1].multiplier,
-                      stat[1].isPercent,
-                      1
-                    )}
+                    {formatStatValue(stat[1].multiplier, stat[1].isPercent, 1)}
                   </td>
                 )}
               </tr>

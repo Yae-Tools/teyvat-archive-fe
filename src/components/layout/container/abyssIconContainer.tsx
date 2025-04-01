@@ -34,9 +34,9 @@ export default function AbyssIconContainer({
         }
       }}
       style={{
-        backgroundImage: `linear-gradient(to top, ${bgFrom}, ${bgVia}, ${bgTo}`
+        backgroundImage: `linear-gradient(to top, ${bgTo}, ${bgVia}, ${bgFrom}`
       }}
-      className="xs:size-[65px] m-1 flex size-[60px] flex-col items-center justify-center rounded-md sm:size-[70px] md:size-[75px]"
+      className="xs:w-[65px] xs:h-[75px] m-2 flex h-[70px] w-[60px] flex-col items-center justify-center rounded-md sm:h-[80px] sm:w-[70px] md:h-[85px] md:w-[75px]"
     >
       {children}
     </motion.div>
