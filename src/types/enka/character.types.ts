@@ -1,4 +1,5 @@
 import {
+  IAbyssCharacterResponse,
   IBodyType,
   IElementType,
   IRarityType,
@@ -76,4 +77,16 @@ export interface ICharacter extends IBaseCharacter {
   birthday: IBirthday | null;
   bodyType: IBodyType;
   isArchon: boolean;
+}
+
+export interface ITopCharacter {
+  id: string;
+  useRate: number;
+  ownRate: number;
+  weapons: IAbyssCharacterResponse["weapons"];
+  artifacts: IAbyssCharacterResponse["artifacts"];
+  constellations: IAbyssCharacterResponse["constellations"];
+  rarity?: IRarityType;
+  element?: string;
+  icon?: string;
 }

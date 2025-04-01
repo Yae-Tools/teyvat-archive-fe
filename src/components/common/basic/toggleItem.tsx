@@ -1,24 +1,14 @@
-import SettingItemContainer from "~/components/layout/container/settingItemContainer";
-
 type Props = {
-  value: boolean;
-  setValue: (value: boolean) => void;
-  id: string;
-  label: string;
-  description?: string;
-  isDisabled?: boolean;
+    id: string;
+    value: boolean;
+    setValue: (value: boolean) => void;
+    isDisabled?: boolean;
+
 };
 
-export default function ToggleItem({
-  value,
-  setValue,
-  id,
-  label,
-  description,
-  isDisabled,
-}: Readonly<Props>) {
+export default function ToggleItem({id, value,setValue, isDisabled=false }: Readonly<Props>) {
   return (
-    <SettingItemContainer {...{ id, label, description, isDisabled }}>
+    <>
       <input
         type="checkbox"
         id={id}
@@ -39,6 +29,6 @@ export default function ToggleItem({
           }`}
         />
       </button>
-    </SettingItemContainer>
+    </>
   );
 }

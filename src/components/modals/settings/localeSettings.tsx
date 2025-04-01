@@ -1,13 +1,13 @@
 import { useAtom } from "jotai";
 import { defaultServerAtom } from "~/atoms/feature.atoms";
-import DropdownItem from "~/components/common/basic/dropDownItem";
+import SettingsDropdownItem from "~/components/common/settings/settingsDropDownItem";
 
 export default function LocaleSettings() {
   const [defaultRegion, setDefaultRegion] = useAtom(defaultServerAtom);
 
   return (
     <div className="flex flex-col space-y-3">
-      <DropdownItem
+      <SettingsDropdownItem
         value={defaultRegion}
         setValue={setDefaultRegion}
         id="defaultServer"
