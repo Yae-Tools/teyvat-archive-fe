@@ -2,10 +2,11 @@ import { memo } from "react";
 
 import ItemSeparator from "./itemSeparator";
 import RaritySelector from "./raritySelector";
+import { IRarityType } from "~/types/enka/enka.types";
 
 type Props = {
-  selectedRarity: string;
-  setSelectedRarity: (rarity: string) => void;
+  selectedRarity: IRarityType | null;
+  setSelectedRarity: (rarity: IRarityType | null) => void;
   category: "weapon" | "character" | "artifact";
 };
 

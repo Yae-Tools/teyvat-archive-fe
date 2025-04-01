@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import CarouselItem from "./carouselItem";
 import CarouselNavButton from "./carouselNavButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { IEvent } from "~/types/ambr.types";
 
 type Props = {
   items: IEvent[];

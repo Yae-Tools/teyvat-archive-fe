@@ -9,6 +9,7 @@ import {
 import rarityBgPicker from "~/utils/rarityBgPicker";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
 import ArtifactProfileDesktop from "./artifactProfile/artifactProfileDesktop";
+import { IArtifactSet, IEquipCollection } from "~/types/enka/artifacts.types";
 
 type Props = {
   artifactSet: IArtifactSet;

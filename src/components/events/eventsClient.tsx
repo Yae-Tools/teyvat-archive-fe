@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Carousel from "./carousel/carousel";
 import OtherEvents from "./events/otherEvents";
+import { IEvent } from "~/types/ambr.types";
 
 type Props = {
   events: IEvent[];

@@ -1,3 +1,5 @@
+import { IEnkaStat } from "~/types/enka/enka.types";
+
 function squashWeaponLevels(
   stats: { [key: string]: IEnkaStat[] },
   propName: keyof IEnkaStat

@@ -2,8 +2,8 @@
 "use client";
 
 import { useState } from "react";
-
 import Image from "next/image";
+
 import { getMarginRightValue, getZoomValue } from "~/utils/splashArtZoom";
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
@@ -13,6 +13,7 @@ import DesktopConstellationView from "./characterConstellations/desktopConstella
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
 import TalentsDesktop from "./characterTalents/talentsDesktop";
+import { ICharacter } from "~/types/enka/character.types";
 
 type Props = {
   characterData: ICharacter;
@@ -66,7 +67,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
       <LazyBackgroundImage
         img={nameCard}
         isDarkened
-        className="hidden xl:flex w-[calc(100%-3rem)] flex-col relative items-start justify-between p-10 xl:h-[650px] rounded-4xl"
+        className="hidden bg-slate-900 xl:flex w-full flex-col relative items-start justify-between p-10 xl:h-[650px] rounded-4xl"
       >
         <div className="w-2/3 flex flex-col items-start mr-4 absolute z-10">
           <div className="flex items-center justify-start space-x-1 mb-5">

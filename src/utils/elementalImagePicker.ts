@@ -1,4 +1,5 @@
 import { StaticImageData } from "next/image";
+import { ELEMENT_TYPES } from "~/data/teyvatData";
 
 import AnemoSVG from "../assets/images/elements/Element_Anemo.svg";
 import CryoSVG from "../assets/images/elements/Element_Cryo.svg";
@@ -15,39 +16,32 @@ import ElectroBg from "~/assets/images/bgs/constellation_template__electro.jpg";
 import GeoBg from "~/assets/images/bgs/constellation_template__geo.jpg";
 import HydroBg from "~/assets/images/bgs/constellation_template__hydro.png";
 import PyroBg from "~/assets/images/bgs/constellation_template__pyro.jpg";
+import { IElementType } from "~/types/enka/enka.types";
 
 const elementalImageMap = new Map<string, StaticImageData>();
-elementalImageMap.set("Anemo", AnemoSVG);
-elementalImageMap.set("Electro", ElectroSVG);
-elementalImageMap.set("Geo", GeoSVG);
-elementalImageMap.set("Dendro", DendroSVG);
-elementalImageMap.set("Hydro", HydroSVG);
-elementalImageMap.set("Pyro", PyroSVG);
-elementalImageMap.set("Cryo", CryoSVG);
+elementalImageMap.set(ELEMENT_TYPES.Anemo, AnemoSVG);
+elementalImageMap.set(ELEMENT_TYPES.Electro, ElectroSVG);
+elementalImageMap.set(ELEMENT_TYPES.Geo, GeoSVG);
+elementalImageMap.set(ELEMENT_TYPES.Dendro, DendroSVG);
+elementalImageMap.set(ELEMENT_TYPES.Hydro, HydroSVG);
+elementalImageMap.set(ELEMENT_TYPES.Pyro, PyroSVG);
+elementalImageMap.set(ELEMENT_TYPES.Cryo, CryoSVG);
 
-const getElementTypeImage = (element: string) => {
+const getElementTypeImage = (element: IElementType) => {
   return elementalImageMap.get(element) as StaticImageData;
 };
 
+const elementalBackgroundMap = new Map<string, StaticImageData>();
+elementalBackgroundMap.set(ELEMENT_TYPES.Anemo, AnemoBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Electro, ElectroBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Geo, GeoBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Dendro, DendroBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Hydro, HydroBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Pyro, PyroBg);
+elementalBackgroundMap.set(ELEMENT_TYPES.Cryo, CryoBg);
+
 const elementalBackgroundPicker = (element: IElementType) => {
-  switch (element) {
-    case "Anemo":
-      return AnemoBg;
-    case "Electro":
-      return ElectroBg;
-    case "Geo":
-      return GeoBg;
-    case "Dendro":
-      return DendroBg;
-    case "Hydro":
-      return HydroBg;
-    case "Pyro":
-      return PyroBg;
-    case "Cryo":
-      return CryoBg;
-    default:
-      return AnemoBg;
-  }
+  return elementalBackgroundMap.get(element) as StaticImageData;
 };
 
 export { getElementTypeImage, elementalImageMap, elementalBackgroundPicker };

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import AttributeMobileContainer from "~/components/layout/container/attributeMobileContainer";
 import RefinementSection from "./refinementSection";
+import { IRefinement } from "~/types/enka/weapon.types";
 
 type Props = {
   refinements: IRefinement[];

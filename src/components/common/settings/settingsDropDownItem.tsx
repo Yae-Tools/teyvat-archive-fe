@@ -13,7 +13,7 @@ type Props = {
   isDisabled?: boolean;
 };
 
-export default function DropdownItem({
+export default function SettingsDropdownItem({
   value,
   setValue,
   id,

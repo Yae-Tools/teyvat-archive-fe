@@ -1,5 +1,6 @@
 "use client";
 
+import { IAscensionData } from "~/types/enka/character.types";
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
 import AscensionMaterialHolderDesktop from "./ascensionMaterialHolderDesktop";
 

@@ -7,6 +7,7 @@ import { getGameVersion } from "~/services/system/system.service";
 import AnnouncementBanner from "../banner/announcementBanner";
 import Footer from "../footer/footer";
 import Header from "../header/header";
+import { IGameVersion } from "~/types/system.types";
 type Props = {
   children: React.ReactNode;
 };

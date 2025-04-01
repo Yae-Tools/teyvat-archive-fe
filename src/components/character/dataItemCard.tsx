@@ -4,6 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 import parseText from "~/utils/parsers/parseEnkaText";
 import TextLabel from "../common/typography/textLabel";
+import { IConstellation, ITalent } from "~/types/enka/character.types";
 
 type Props = {
   item: IConstellation | ITalent;

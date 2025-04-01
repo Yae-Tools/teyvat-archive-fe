@@ -1,3 +1,5 @@
+import { IConstellation } from "~/types/enka/character.types";
+import { IElementType } from "~/types/enka/enka.types";
 import elementalColorPicker from "~/utils/elementalColorPicker";
 
 type Props = {

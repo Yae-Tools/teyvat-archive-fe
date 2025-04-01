@@ -4,8 +4,8 @@ import {
   useFilterTravelersAtom,
   useSelectedTravelerAtom,
 } from "~/atoms/feature.atoms";
-import DropdownItem from "../../common/basic/dropDownItem";
-import ToggleItem from "../../common/basic/toggleItem";
+import SettingsDropdownItem from "../../common/settings/settingsDropDownItem";
+import SettingsToggleItem from "../../common/settings/settingsToggleItem";
 
 export default function GeneralSettings() {
   const [useFilterTravelers, setUseFilterTravelers] = useAtom(
@@ -17,13 +17,13 @@ export default function GeneralSettings() {
 
   return (
     <div className="flex flex-col space-y-3">
-      <ToggleItem
+      <SettingsToggleItem
         value={useFilterTravelers}
         setValue={setUseFilterTravelers}
         id="filterTravelers"
         label="Filter Travelers"
       />
-      <DropdownItem
+      <SettingsDropdownItem
         value={useSelectedTraveler}
         setValue={setUseSelectedTraveler}
         id="traveler"

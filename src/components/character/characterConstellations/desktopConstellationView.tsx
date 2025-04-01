@@ -6,6 +6,8 @@ import Image from "next/image";
 import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
 import ConstellationDetails from "./constellationDetails";
 import ConstellationIcon from "./constellationIcon";
+import { IConstellation } from "~/types/enka/character.types";
+import { IElementType } from "~/types/enka/enka.types";
 
 type Props = {
   consName: string;

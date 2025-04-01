@@ -12,6 +12,10 @@ const HEADER_ROUTES = [
     name: "Artifacts",
   },
   {
+    path: "/spiral-abyss",
+    name: "Spiral Abyss",
+  },
+  {
     path: "/events",
     name: "Events",
   },

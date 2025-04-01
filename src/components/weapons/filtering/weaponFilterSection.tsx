@@ -10,10 +10,12 @@ import {
   selectedWeaponTypeAtom,
   weaponSearchAtom,
 } from "~/atoms/teyvat/weapon.atom";
-import { RARITIES } from "~/data/teyvatData";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
 import WeaponFilterStack from "./weaponFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
+import { RARITY_TYPES } from "~/data/teyvatData";
+import { IRarityType } from "~/types/enka/enka.types";
+import { IBaseWeaponSeries } from "~/types/enka/weapon.types";
 
 type Props = {
   weaponSeries: IBaseWeaponSeries;
@@ -31,21 +33,8 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const getRarityLabel = (rarity: string) => {
-    switch (rarity) {
-      case RARITIES[0]:
-        return "1";
-      case RARITIES[1]:
-        return "2";
-      case RARITIES[2]:
-        return "3";
-      case RARITIES[3]:
-        return "4";
-      case RARITIES[4]:
-        return "5";
-      default:
-        return null;
-    }
+  const getRarityLabel = (rarity: IRarityType) => {
+    return RARITY_TYPES[rarity];
   };
 
   return (
@@ -57,15 +46,15 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
             setIsFilterOpen,
           }}
         >
-          {selectedWeaponType !== "all" && (
+          {selectedWeaponType && (
             <Image
-              src={weaponTypeIconFilter[selectedWeaponType as IWeaponType]}
+              src={weaponTypeIconFilter[selectedWeaponType]}
               alt={selectedWeaponType}
               className="w-[24px]"
               style={{ filter: "brightness(0) invert(1)" }}
             />
           )}
-          {selectedWeaponRarity !== "all" && (
+          {selectedWeaponRarity && (
             <div className="flex items-center space-x-2 justify-end">
               {getRarityLabel(selectedWeaponRarity)}
               <StarIcon className="size-4 text-[gold]" />

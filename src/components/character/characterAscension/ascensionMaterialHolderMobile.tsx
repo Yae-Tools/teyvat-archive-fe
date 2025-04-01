@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getMaterialById } from "~/services/teyvatServer/teyvatArchive.service";
 import TextLabel from "../../common/typography/textLabel";
 import TextValue from "../../common/typography/textValue";
+import { IMaterialData } from "~/types/enka/material.types";
 
 type Props = {
   id: string;

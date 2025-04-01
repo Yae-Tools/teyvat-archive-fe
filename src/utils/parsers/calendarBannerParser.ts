@@ -1,3 +1,9 @@
+import {
+  ICalendarBanner,
+  ICalendarBannerCharacter,
+  ICalendarBannerWeapon,
+} from "~/types/enka/enka.types";
+
 const parseCalendarBanners = (banners: ICalendarBanner[]) => {
   //separate characters and weapons
 

@@ -1,4 +1,5 @@
 import AttributeMobileContainer from "~/components/layout/container/attributeMobileContainer";
+import { ISetBonus } from "~/types/enka/artifacts.types";
 
 type Props = {
   setBonus: ISetBonus[];

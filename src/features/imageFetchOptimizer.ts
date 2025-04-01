@@ -1,5 +1,6 @@
 import aetherSplashImage from "~/assets/images/traveler/aether-nobg.png";
 import lumineSplashImage from "~/assets/images/traveler/lumine-nobg.png";
+import { ICharacter } from "~/types/enka/character.types";
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_CDN_BASE_URL as string;
 

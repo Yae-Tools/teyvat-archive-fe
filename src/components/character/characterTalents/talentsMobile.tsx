@@ -1,3 +1,4 @@
+import { ITalent } from "~/types/enka/character.types";
 import AttributeMobileContainer from "../../layout/container/attributeMobileContainer";
 import DataItemCard from "../dataItemCard";
 

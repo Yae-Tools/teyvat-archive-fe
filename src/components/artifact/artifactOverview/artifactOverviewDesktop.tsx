@@ -6,6 +6,7 @@ import {
   selectedRarityFullSetAtom,
 } from "~/atoms/teyvat/artifact.atom";
 import ArtifactEquipPicker from "../artifactEquipPicker/artifactEquipPicker";
+import { ISetBonus } from "~/types/enka/artifacts.types";
 
 type Props = {
   description: string;

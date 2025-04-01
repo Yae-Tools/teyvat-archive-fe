@@ -1,3 +1,4 @@
+import { IEvent } from "~/types/ambr.types";
 import EventItem from "./eventItem";
 
 type Props = {

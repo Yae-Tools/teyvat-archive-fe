@@ -1,3 +1,4 @@
+import { IAscensionData } from "~/types/enka/character.types";
 import AttributeMobileContainer from "../../layout/container/attributeMobileContainer";
 import AscensionMaterialHolderMobile from "./ascensionMaterialHolderMobile";
 

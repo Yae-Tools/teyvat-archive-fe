@@ -1,9 +1,11 @@
 import Image from "next/image";
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
+import { WEAPON_TYPES } from "~/data/teyvatData";
+import { IBirthday, ICharacterLocation } from "~/types/enka/character.types";
+import { IElementType, IWeaponType } from "~/types/enka/enka.types";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
 import birthdayFormatter from "~/utils/formatters/birthday.formatter";
 import characterLocationParser from "~/utils/parsers/characterLocationParser";
-import { weaponTypeParser } from "~/utils/parsers/weaponDataParser";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
 
 type Props = {
@@ -34,7 +36,7 @@ export default function CharacterDesktopOverview({
           </OverviewItemHolder>
           <OverviewItemHolder
             label="Weapon Type"
-            value={weaponTypeParser(weapon) as string}
+            value={WEAPON_TYPES[weapon]}
             textShadowLabel
             textShadowValue
           >

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import AttributeMobileContainer from "../../layout/container/attributeMobileContainer";
 import DataItemCard from "../dataItemCard";
+import { IConstellation } from "~/types/enka/character.types";
 
 type Props = {
   constellations: IConstellation[];
@@ -16,7 +17,13 @@ export default function MobileConstellationView({
   return (
     <AttributeMobileContainer title={constellation}>
       <div className="w-full flex items-center justify-center">
-        <Image src={chapterIcon} alt={constellation} className="size-48" width={1000} height={1000} />
+        <Image
+          src={chapterIcon}
+          alt={constellation}
+          className="size-48"
+          width={1000}
+          height={1000}
+        />
       </div>
       <div className="w-full flex flex-col items-start justify-center">
         {constellations.map((con, i) => (

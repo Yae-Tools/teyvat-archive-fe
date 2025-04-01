@@ -6,6 +6,7 @@ import ArtifactFilterSection from "~/components/artifacts/filtering/artifactFilt
 import PageTitle from "~/components/common/typography/pageTitle";
 import ShowcaseFilterContainer from "~/components/layout/container/showcaseFilterContainer";
 import { getArtifactSets } from "~/services/teyvatServer/teyvatArchive.service";
+import { IBaseArtifactSet } from "~/types/enka/artifacts.types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

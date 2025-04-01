@@ -45,7 +45,7 @@ export default function Header() {
         <div className="flex items-center justify-between mx-2 w-full">
           <Link
             href="/"
-            className="flex items-center justify-start py-2 w-full"
+            className="flex items-center justify-start py-2 w-full lg:w-1/5"
           >
             <span className="sr-only">Teyvat Archive</span>
             <LogoHolder />
@@ -54,11 +54,11 @@ export default function Header() {
             </h1>
           </Link>
 
-          <div className="hidden lg:block w-full items-center justify-center">
+          <div className="hidden lg:block w-3/5 items-center justify-center">
             <DesktopNavRoutes />
           </div>
 
-          <div className="flex items-center gap-4 w-full justify-end">
+          <div className="flex items-center gap-4 w-full lg:w-1/5 justify-end">
             <div className="hidden lg:flex lg:gap-4">
               <button
                 onClick={() => notify("Updates section coming soon!")}
@@ -88,7 +88,6 @@ export default function Header() {
             {...{
               isSidebarOpen,
               setIsSidebarOpen,
-              isSettingsOpen,
               setIsSettingsOpen,
             }}
           />

@@ -121,3 +121,13 @@ export const getAllCalendarEvents = async () => {
     return [];
   }
 };
+
+export const getAbyssData = async () => {
+  try {
+    const response = await serverInstance.get("/abyss/data");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

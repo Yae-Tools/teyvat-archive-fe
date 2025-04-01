@@ -1,25 +1,28 @@
-function rarityParser(rarity: number) {
+import { RARITY_TYPE_KEYS } from "~/data/teyvatData";
+import { IRarityType } from "~/types/enka/enka.types";
+
+function rarityParser(rarity: number): IRarityType {
   switch (rarity) {
     case 1:
-      return "QUALITY_GRAY";
+      return RARITY_TYPE_KEYS.QUALITY_GRAY;
 
     case 2:
-      return "QUALITY_GREEN";
+      return RARITY_TYPE_KEYS.QUALITY_GREEN;
 
     case 3:
-      return "QUALITY_BLUE";
+      return RARITY_TYPE_KEYS.QUALITY_BLUE;
 
     case 4:
-      return "QUALITY_PURPLE";
+      return RARITY_TYPE_KEYS.QUALITY_PURPLE;
 
     case 5:
-      return "QUALITY_ORANGE";
+      return RARITY_TYPE_KEYS.QUALITY_ORANGE;
 
     case 6:
-      return "QUALITY_ORANGE_SP";
+      return RARITY_TYPE_KEYS.QUALITY_ORANGE_SP;
 
     default:
-      return "QUALITY_GRAY";
+      return RARITY_TYPE_KEYS.QUALITY_GRAY;
   }
 }
 

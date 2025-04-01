@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { IRefinement } from "~/types/enka/weapon.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
 type Props = {

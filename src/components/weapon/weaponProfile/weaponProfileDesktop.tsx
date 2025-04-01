@@ -3,6 +3,7 @@ import { memo } from "react";
 import RarityStars from "~/components/common/rarityStars";
 import TitleHeading from "~/components/common/typography/titleHeading";
 import WeaponOverviewDesktop from "../weaponOverview/weaponOverviewDesktop";
+import { IWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapon: IWeapon;

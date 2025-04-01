@@ -40,6 +40,9 @@ export const getRedeemCodes = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    return {
+      active: [],
+      inactive: [],
+    };
   }
 };

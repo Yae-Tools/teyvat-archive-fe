@@ -11,11 +11,11 @@ import {
   selectedCharacterRarityAtom,
   selectedCharacterWeaponAtom,
 } from "~/atoms/teyvat/character.atom";
-import { RARITIES } from "~/data/teyvatData";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
 import CharacterFilterStack from "./characterFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
+import { RARITY_TYPES } from "~/data/teyvatData";
 
 export default function CharacterFilterSection() {
   const [selectedCharacterElement, setSelectedCharacterElement] = useAtom(
@@ -40,7 +40,7 @@ export default function CharacterFilterSection() {
             setIsFilterOpen,
           }}
         >
-          {selectedCharacterElement !== "all" && (
+          {selectedCharacterElement && (
             <Image
               src={getElementTypeImage(selectedCharacterElement)}
               alt={selectedCharacterElement}
@@ -48,13 +48,9 @@ export default function CharacterFilterSection() {
             />
           )}
 
-          {selectedCharacterWeapon !== "all" && (
+          {selectedCharacterWeapon && (
             <Image
-              src={
-                weaponTypeIconFilter[
-                  selectedCharacterWeapon as keyof typeof weaponTypeIconFilter
-                ]
-              }
+              src={weaponTypeIconFilter[selectedCharacterWeapon]}
               alt={selectedCharacterWeapon}
               className="w-[26px]"
               style={{
@@ -63,10 +59,14 @@ export default function CharacterFilterSection() {
             />
           )}
 
-          {selectedCharacterRarity !== "all" && (
+          {selectedCharacterRarity && (
             <div className="flex items-center">
-              {selectedCharacterRarity === RARITIES[3] ? "4" : "5"}
-              <StarIcon className="size-4 text-[gold]" />
+              {RARITY_TYPES[selectedCharacterRarity]}
+              <StarIcon
+                className="size-4 text-[gold]"
+                fill="currentColor"
+                strokeWidth={1}
+              />
             </div>
           )}
         </FilterDropDown>

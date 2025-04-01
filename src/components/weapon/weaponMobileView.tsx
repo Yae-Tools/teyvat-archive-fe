@@ -1,3 +1,4 @@
+import { IWeapon } from "~/types/enka/weapon.types";
 import WeaponMobileOverview from "./weaponOverview/weaponMobileOverview";
 import WeaponProfileMobile from "./weaponProfile/weaponProfileMobile";
 import WeaponRefinementMobile from "./weaponRefinement/weaponRefinementMobile";

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { getMaterialById } from "~/services/teyvatServer/teyvatArchive.service";
 import RarityStars from "../../common/rarityStars";
+import { IMaterialData } from "~/types/enka/material.types";
 
 type Props = {
   id: string;

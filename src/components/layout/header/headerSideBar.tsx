@@ -10,14 +10,12 @@ import HEADER_ROUTES from "~/data/routeData";
 type Props = {
   isSidebarOpen: boolean;
   setIsSidebarOpen: (value: boolean) => void;
-  isSettingsOpen: boolean;
   setIsSettingsOpen: (value: boolean) => void;
 };
 
 export default function HeaderSidebar({
   isSidebarOpen,
   setIsSidebarOpen,
-  isSettingsOpen,
   setIsSettingsOpen,
 }: Readonly<Props>) {
   useEffect(() => {

@@ -11,6 +11,7 @@ import {
 } from "~/atoms/teyvat/weapon.atom";
 import rarityParser from "~/utils/parsers/rarityParser";
 import WeaponThumbnail from "./weaponThumbnail";
+import { IBasicWeapon } from "~/types/enka/weapon.types";
 
 type Props = {
   weapons: IBasicWeapon[];
@@ -29,12 +30,10 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
     const tempFilteredWeapons = weapons.filter(
       (weapon) =>
         weapon.name.toLowerCase().includes(weaponSearch.toLowerCase()) &&
-        (selectedWeaponType === "all" ||
-          weapon.weaponType === selectedWeaponType) &&
-        (selectedWeaponRarity === "all" ||
+        (!selectedWeaponType || weapon.weaponType === selectedWeaponType) &&
+        (!selectedWeaponRarity ||
           rarityParser(weapon.stars) === selectedWeaponRarity) &&
-        (selectedWeaponSeries === "all" ||
-          weapon.series === selectedWeaponSeries)
+        (!selectedWeaponSeries || weapon.series === selectedWeaponSeries)
     );
 
     setFilteredWeapons(
