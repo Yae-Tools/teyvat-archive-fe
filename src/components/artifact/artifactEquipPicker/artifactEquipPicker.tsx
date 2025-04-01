@@ -14,7 +14,6 @@ export default function ArtifactEquipPicker({
   setSelectedArtifactEquipType,
   selectedRarityFullSet,
 }: Readonly<Props>) {
-  console.log("EquipIconArray", equipIconArray);
   return (
     <div className="w-full flex items-center justify-between md:justify-evenly lg:justify-end lg:space-x-6">
       {equipIconArray
