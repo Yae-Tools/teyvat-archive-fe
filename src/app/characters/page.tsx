@@ -8,7 +8,7 @@ import {
 import { Metadata } from "next";
 
 import CharactersClient from "~/components/characters/charactersClient";
-import { getCharacters } from "~/services/teyvatServer/teyvatArchive.service";
+import { prefetchAllCharacters } from "~/hooks/useCharacterData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -22,13 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Characters() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: ["characters"],
-    queryFn: async () => {
-      const data = await getCharacters();
-      return data;
-    }
-  });
+  await prefetchAllCharacters(queryClient);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
