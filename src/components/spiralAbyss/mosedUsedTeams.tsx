@@ -1,7 +1,8 @@
 import { IAbyssPartyData } from "~/types/enka/enka.types";
 
 import TitleHeading from "../common/typography/titleHeading";
-import AbyssIconContainer from "../layout/container/abyssIconContainer";
+
+import AbyssTeam from "./abyssTeam";
 
 type Props = {
   firstHalf: IAbyssPartyData[];
@@ -20,16 +21,23 @@ export default function MostUsedTeams({
         customClass="text-xl text-center w-full"
       />
       <div className="my-4 grid w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-2">
-        <div className="w-full outline-1 outline-amber-300">
-          {firstHalf.map((team, index) => {
-            return team.characters.map((character) => (
-              <AbyssIconContainer rarity={character.rarity} key={character.id}>
-                Hello
-              </AbyssIconContainer>
-            ));
-          })}
+        <div className="flex w-full flex-col items-center justify-center">
+          <label htmlFor="firstHalf" className="font-enka">
+            {" "}
+            12-3 First Half
+          </label>
+          {firstHalf.map((team) => (
+            <AbyssTeam key={team.value} {...{ team }} />
+          ))}
         </div>
-        <div className="w-full outline-1 outline-amber-300">2nd Half</div>
+        <div className="flex w-full flex-col items-center justify-center">
+          <label htmlFor="secondHalf" className="font-enka">
+            12-3 Second Half
+          </label>
+          {secondHalf.map((team) => (
+            <AbyssTeam key={team.value} {...{ team }} />
+          ))}
+        </div>
       </div>
     </div>
   );

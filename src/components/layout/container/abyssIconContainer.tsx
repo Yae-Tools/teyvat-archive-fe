@@ -8,11 +8,13 @@ import rarityColoFilter from "~/utils/thumbnailColorFilter";
 type Props = {
   rarity: IRarityType;
   children: React.ReactNode;
+  bgFlow?: "fromTo" | "toFrom";
 };
 
 export default function AbyssIconContainer({
   children,
-  rarity
+  rarity,
+  bgFlow = "toFrom"
 }: Readonly<Props>) {
   const {
     toColor: bgTo,
@@ -34,7 +36,9 @@ export default function AbyssIconContainer({
         }
       }}
       style={{
-        backgroundImage: `linear-gradient(to top, ${bgTo}, ${bgVia}, ${bgFrom}`
+        backgroundImage: `linear-gradient(to top, ${
+          bgFlow === "fromTo" ? bgFrom : bgTo
+        }, ${bgVia}, ${bgFlow === "fromTo" ? bgTo : bgFrom}`
       }}
       className="xs:w-[65px] xs:h-[75px] m-2 flex h-[70px] w-[60px] flex-col items-center justify-center rounded-md sm:h-[80px] sm:w-[70px] md:h-[85px] md:w-[75px]"
     >

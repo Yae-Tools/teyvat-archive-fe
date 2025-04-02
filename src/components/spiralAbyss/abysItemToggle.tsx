@@ -15,7 +15,7 @@ export default function AbyssItemToggle({
 }: Readonly<Props>) {
   return (
     <div className="w-full md:w-1/5">
-      <div className="flex w-full items-center justify-end">
+      <div className="flex w-full items-center justify-center md:justify-end">
         <label htmlFor={id} className="mr-2 text-sm text-white">
           {label}
         </label>

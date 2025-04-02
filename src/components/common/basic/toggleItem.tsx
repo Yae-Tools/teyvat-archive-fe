@@ -22,7 +22,7 @@ export default function ToggleItem({
         disabled={isDisabled}
       />
       <button
-        className={`flex h-6 w-12 cursor-pointer items-center justify-between rounded-full p-1 transition-all duration-300 disabled:opacity-50 ${value ? "bg-teal-500" : "bg-gray-300"}`}
+        className={`flex h-5 w-10 cursor-pointer items-center justify-between rounded-full p-1 transition-all duration-300 disabled:opacity-50 md:h-6 md:w-12 ${value ? "bg-teal-500" : "bg-gray-300"}`}
         disabled={isDisabled}
         onClick={() => setValue(!value)}
       >

@@ -5,12 +5,7 @@ import { useEffect, useState } from "react";
 import { useAbyssBlessings, useAbyssInfo } from "~/hooks/useAbyssData";
 import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { ITopCharacter } from "~/types/enka/character.types";
-import {
-  IAbyssBlessing,
-  IAbyssPartyDetails,
-  IAbyssParty,
-  IAbyssPartyData
-} from "~/types/enka/enka.types";
+import { IAbyssBlessing, IAbyssPartyData } from "~/types/enka/enka.types";
 import {
   getFinalizedAbyssBlessings,
   getTopFourTeams,
@@ -68,8 +63,20 @@ export default function SpiralAbyssClient() {
       <MostPickedCharacters
         {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
       />
-      <AbyssBlessings {...{ sortedAbyssBlessings }} />
       <MostUsedTeams {...{ firstHalf, secondHalf }} />
+      <AbyssBlessings {...{ sortedAbyssBlessings }} />
+      <div className="flex w-full items-center justify-end text-sm">
+        <p>
+          Data from{" "}
+          <a
+            href="https://aza.gg"
+            target="_blank"
+            className="font-enka text-teal-500"
+          >
+            aza.gg
+          </a>
+        </p>
+      </div>
     </div>
   );
 }
