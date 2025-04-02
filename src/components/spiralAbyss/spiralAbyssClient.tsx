@@ -13,13 +13,15 @@ import {
 } from "~/utils/parsers/abyssDataParser";
 
 import AbyssBlessings from "./abyssBlessings";
+import Citation from "./citation";
 import MostUsedTeams from "./mosedUsedTeams";
 import MostPickedCharacters from "./mostPickedCharacters";
 
 export default function SpiralAbyssClient() {
   const { data: characterData } = useAllCharacterData();
   const { data: abyssData, isLoading: isAbyssLoading } = useAbyssInfo();
-  const { data: blessingData } = useAbyssBlessings();
+  const { data: blessingData, isLoading: isBlessingLoading } =
+    useAbyssBlessings();
 
   const [isUsedByOwn, setIsUsedByOwn] = useState(false);
   const [top10Chars, setTop10Chars] = useState<ITopCharacter[]>([]);
@@ -63,20 +65,9 @@ export default function SpiralAbyssClient() {
       <MostPickedCharacters
         {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
       />
-      <MostUsedTeams {...{ firstHalf, secondHalf }} />
-      <AbyssBlessings {...{ sortedAbyssBlessings }} />
-      <div className="flex w-full items-center justify-end text-sm">
-        <p>
-          Data from{" "}
-          <a
-            href="https://aza.gg"
-            target="_blank"
-            className="font-enka text-teal-500"
-          >
-            aza.gg
-          </a>
-        </p>
-      </div>
+      <MostUsedTeams {...{ firstHalf, secondHalf, isAbyssLoading }} />
+      <AbyssBlessings {...{ sortedAbyssBlessings, isLoading:isBlessingLoading }} />
+      <Citation />
     </div>
   );
 }
