@@ -1,4 +1,4 @@
-import {  IAbyssPartyData } from "~/types/enka/enka.types";
+import { IAbyssPartyData } from "~/types/enka/enka.types";
 
 import TitleHeading from "../common/typography/titleHeading";
 import AbyssIconContainer from "../layout/container/abyssIconContainer";

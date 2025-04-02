@@ -43,8 +43,14 @@ export default function SpiralAbyssClient() {
       );
       setTop10Chars(top10);
 
-      const firstHalfTeams = getTopFourTeams(abyssData.parties.firstHalf, characterData);
-      const secondHalfTeams = getTopFourTeams(abyssData.parties.secondHalf, characterData);
+      const firstHalfTeams = getTopFourTeams(
+        abyssData.parties.firstHalf,
+        characterData
+      );
+      const secondHalfTeams = getTopFourTeams(
+        abyssData.parties.secondHalf,
+        characterData
+      );
 
       setFirstHalf(firstHalfTeams);
       setSecondHalf(secondHalfTeams);
@@ -64,7 +70,6 @@ export default function SpiralAbyssClient() {
       />
       <AbyssBlessings {...{ sortedAbyssBlessings }} />
       <MostUsedTeams {...{ firstHalf, secondHalf }} />
-     
     </div>
   );
 }
