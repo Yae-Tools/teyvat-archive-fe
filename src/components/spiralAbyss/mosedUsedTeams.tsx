@@ -13,7 +13,6 @@ export default function MostUsedTeams({
   firstHalf,
   secondHalf
 }: Readonly<Props>) {
-  console.log("firstHalf", firstHalf);
   return (
     <div className="flex w-full max-w-[1000px] flex-col items-center justify-center">
       <TitleHeading

@@ -22,7 +22,7 @@ export const transformCharacterData = (character: ICharacter) => {
     splashUrl = character.splashUrl;
   }
 
-  const constellationIcon = `${IMAGE_BASE_URL}/chapterIcons/UI_ChapterIcon_${character.nameId}.png`;
+  const constellationIcon = `${IMAGE_BASE_URL}/constellations/new/Eff_UI_Talent_${character.nameId}.png`;
   const currentSideIcon = character?.sideIcon.split("/").pop();
   const sideIcon = `https://enka.network/ui/${currentSideIcon}`;
 

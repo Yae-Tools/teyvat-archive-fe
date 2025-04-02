@@ -8,7 +8,6 @@ import HEADER_ROUTES from "~/data/routeData";
 export default function DesktopNavRoutes() {
   const pathname = usePathname();
 
-  console.log("pathname", pathname);
   return (
     <nav aria-label="Global">
       <ul className="flex w-full items-center justify-center gap-6 text-sm">
