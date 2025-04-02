@@ -12,6 +12,7 @@ import {
 } from "~/utils/parsers/abyssDataParser";
 
 import AbyssBlessings from "./abyssBlessings";
+import MostUsedTeams from "./mosedUsedTeams";
 import MostPickedCharacters from "./mostPickedCharacters";
 
 export default function SpiralAbyssClient() {
@@ -48,6 +49,7 @@ export default function SpiralAbyssClient() {
         {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
       />
       <AbyssBlessings {...{ sortedAbyssBlessings }} />
+      <MostUsedTeams/>
     </div>
   );
 }

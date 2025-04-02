@@ -8,7 +8,7 @@ import AbyssIconLoader from "../common/loaderHandlers/abyssIconLoader";
 import TitleHeading from "../common/typography/titleHeading";
 import AbyssIconContainer from "../layout/container/abyssIconContainer";
 
-import USedByOwnToggle from "./usedByOwnToggle";
+import AbyssItemToggle from "./abysItemToggle";
 
 type Props = {
   top10Chars: ITopCharacter[];
@@ -31,7 +31,7 @@ export default function MostPickedCharacters({
           text="Top 10 Used Characters"
           customClass="text-xl text-center w-full md:w-3/5"
         />
-        <USedByOwnToggle {...{ isUsedByOwn, setIsUsedByOwn }} />
+        <AbyssItemToggle {...{ value:isUsedByOwn, setValue:setIsUsedByOwn, label:"Used by Own", id:"usedByOwn" }} />
       </div>
 
       <div
