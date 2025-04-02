@@ -1,13 +1,4 @@
 import { StaticImageData } from "next/image";
-import { ELEMENT_TYPES } from "~/data/teyvatData";
-
-import AnemoSVG from "../assets/images/elements/Element_Anemo.svg";
-import CryoSVG from "../assets/images/elements/Element_Cryo.svg";
-import DendroSVG from "../assets/images/elements/Element_Dendro.svg";
-import ElectroSVG from "../assets/images/elements/Element_Electro.svg";
-import GeoSVG from "../assets/images/elements/Element_Geo.svg";
-import HydroSVG from "../assets/images/elements/Element_Hydro.svg";
-import PyroSVG from "../assets/images/elements/Element_Pyro.svg";
 
 import AnemoBg from "~/assets/images/bgs/constellation_template__anemo.jpg";
 import CryoBg from "~/assets/images/bgs/constellation_template__cryo.jpg";
@@ -16,6 +7,14 @@ import ElectroBg from "~/assets/images/bgs/constellation_template__electro.jpg";
 import GeoBg from "~/assets/images/bgs/constellation_template__geo.jpg";
 import HydroBg from "~/assets/images/bgs/constellation_template__hydro.png";
 import PyroBg from "~/assets/images/bgs/constellation_template__pyro.jpg";
+import AnemoSVG from "~/assets/images/elements/Element_Anemo.svg";
+import CryoSVG from "~/assets/images/elements/Element_Cryo.svg";
+import DendroSVG from "~/assets/images/elements/Element_Dendro.svg";
+import ElectroSVG from "~/assets/images/elements/Element_Electro.svg";
+import GeoSVG from "~/assets/images/elements/Element_Geo.svg";
+import HydroSVG from "~/assets/images/elements/Element_Hydro.svg";
+import PyroSVG from "~/assets/images/elements/Element_Pyro.svg";
+import { ELEMENT_TYPES } from "~/data/teyvatData";
 import { IElementType } from "~/types/enka/enka.types";
 
 const elementalImageMap = new Map<string, StaticImageData>();

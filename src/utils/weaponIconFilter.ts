@@ -1,11 +1,5 @@
 import { StaticImageData } from "next/image";
 
-import BowIcon from "~/assets/images/weaponTypes/Icon_Bow.png";
-import CatalystIcon from "~/assets/images/weaponTypes/Icon_Catalyst.png";
-import ClaymoreIcon from "~/assets/images/weaponTypes/Icon_Claymore.png";
-import PolearmIcon from "~/assets/images/weaponTypes/Icon_Polearm.png";
-import SwordIcon from "~/assets/images/weaponTypes/Icon_Sword.png";
-
 import AtkIcon from "~/assets/icons/stats/FIGHT_PROP_ATTACK.svg";
 import AtkPercentIcon from "~/assets/icons/stats/FIGHT_PROP_ATTACK_PERCENT.svg";
 import BaseAtkIcon from "~/assets/icons/stats/FIGHT_PROP_BASE_ATTACK.svg";
@@ -28,6 +22,11 @@ import GeoDmgBonusIcon from "~/assets/icons/stats/FIGHT_PROP_ROCK_ADD_HURT.svg";
 import ShieldCostReductionIcon from "~/assets/icons/stats/FIGHT_PROP_SHIELD_COST_MINUS_RATIO.svg";
 import HydroDmgBonusIcon from "~/assets/icons/stats/FIGHT_PROP_WATER_ADD_HURT.svg";
 import AnemoDmgBonusIcon from "~/assets/icons/stats/FIGHT_PROP_WIND_ADD_HURT.svg";
+import BowIcon from "~/assets/images/weaponTypes/Icon_Bow.png";
+import CatalystIcon from "~/assets/images/weaponTypes/Icon_Catalyst.png";
+import ClaymoreIcon from "~/assets/images/weaponTypes/Icon_Claymore.png";
+import PolearmIcon from "~/assets/images/weaponTypes/Icon_Polearm.png";
+import SwordIcon from "~/assets/images/weaponTypes/Icon_Sword.png";
 import { IWeaponSecondaryTypeKey } from "~/types/enka/weaponSecondaryType";
 
 const weaponTypeIconFilter = {
@@ -35,7 +34,7 @@ const weaponTypeIconFilter = {
   WEAPON_CLAYMORE: ClaymoreIcon,
   WEAPON_POLE: PolearmIcon,
   WEAPON_CATALYST: CatalystIcon,
-  WEAPON_BOW: BowIcon,
+  WEAPON_BOW: BowIcon
 };
 
 const weaponStatIconMap = new Map<string, StaticImageData>();

@@ -20,7 +20,7 @@ export const getCharacterBySkillDepotId = async (
 ) => {
   try {
     const response = await serverInstance.get(`/characters/id/${enkaId}`, {
-      params: { skillDepotId },
+      params: { skillDepotId }
     });
 
     return response.data;
@@ -125,6 +125,16 @@ export const getAllCalendarEvents = async () => {
 export const getAbyssData = async () => {
   try {
     const response = await serverInstance.get("/abyss/data");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const getAbyssBlessings = async () => {
+  try {
+    const response = await serverInstance.get("/abyss/blessings");
     return response.data;
   } catch (error) {
     console.error(error);

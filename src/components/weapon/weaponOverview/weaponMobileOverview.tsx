@@ -1,14 +1,16 @@
+import Image from "next/image";
 import { useState } from "react";
+
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
-import { formatWeaponStatValue } from "~/utils/formatters/weaponStatValue.formatter";
+import { WEAPON_TYPES } from "~/data/teyvatData";
+import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
+import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 import {
   getWeaponStatIcon,
-  weaponTypeIconFilter,
+  weaponTypeIconFilter
 } from "~/utils/weaponIconFilter";
+
 import OverviewLevelPicker from "./overviewLevelPicker";
-import Image from "next/image";
-import { IEnkaStat, IWeaponType } from "~/types/enka/enka.types";
-import { WEAPON_TYPES } from "~/data/teyvatData";
 
 type Props = {
   stars: number;
@@ -23,69 +25,65 @@ export default function WeaponMobileOverview({
   stars,
   description,
   stats,
-  weaponType,
+  weaponType
 }: Readonly<Props>) {
   const [selectedLevel, setSelectedLevel] = useState(1);
 
   return (
-    <div className="mt-2 bg-slate-200 dark:bg-slate-800 bg-opacity-50 flex flex-col items-center justify-center p-4 rounded-lg shadow-md w-full xl:hidden">
+    <div className="bg-opacity-50 mt-2 flex w-full flex-col items-center justify-center rounded-lg bg-slate-200 p-4 shadow-md xl:hidden dark:bg-slate-800">
       <p
-        className="text-sm md:text-base lg:text-lg mb-4 italic w-full text-slate-400"
+        className="mb-4 w-full text-sm text-slate-400 italic md:text-base lg:text-lg"
         style={{
-          lineHeight: "1rem",
+          lineHeight: "1rem"
         }}
       >
         &quot;{description}&quot;
       </p>
-      <div className="flex w-full justify-between items-start">
+      <div className="flex w-full items-start justify-between">
         <OverviewItemHolder
           label="Weapon Type"
           value={WEAPON_TYPES[weaponType]}
         >
           <Image
-            className="size-6 mr-2"
+            className="mr-2 size-6"
             src={weaponTypeIconFilter[weaponType]}
             alt={weaponType}
             style={{
-              filter: "brightness(0) invert(1)",
+              filter: "brightness(0) invert(1)"
             }}
           />
         </OverviewItemHolder>
         <OverviewItemHolder
           label={stats[1][0].fightPropName}
           align="end"
-          value={formatWeaponStatValue(
-            stats[selectedLevel][0].multiplier,
-            false,
-            0
-          )}
+          value={formatStatValue(stats[selectedLevel][0].multiplier, false, 0)}
         >
           <Image
-            className="size-4.5 mr-2"
+            className="mr-2 size-4.5"
             src={getWeaponStatIcon(stats[selectedLevel][0].fightProp)}
             alt={weaponType}
             style={{
-              filter: "brightness(0) invert(1)",
+              filter: "brightness(0) invert(1)"
             }}
           />
         </OverviewItemHolder>
       </div>
-      <div className="flex w-full justify-between items-end mt-4">
+      <div className="mt-4 flex w-full items-end justify-between">
         {stars > 2 && (
           <OverviewItemHolder
             label={stats[1][1].fightPropName}
-            value={formatWeaponStatValue(
+            value={formatStatValue(
               stats[selectedLevel][1].multiplier,
               stats[selectedLevel][1].isPercent,
               1
             )}
           >
             <Image
-              className="size-4.5 mr-2"
+              className="mr-2 size-4.5"
               src={getWeaponStatIcon(stats[selectedLevel][1].fightProp)}
               alt={weaponType}
               style={{
-                filter: "brightness(0) invert(1)",
+                filter: "brightness(0) invert(1)"
               }}
             />
           </OverviewItemHolder>

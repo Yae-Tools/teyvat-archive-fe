@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { WEAPON_TYPES } from "~/data/teyvatData";
 import { IBirthday, ICharacterLocation } from "~/types/enka/character.types";
@@ -23,38 +24,38 @@ export default function CharacterMobileOverview({
   affiliation,
   description,
   birthday,
-  isTraveler,
+  isTraveler
 }: Readonly<Props>) {
   return (
-    <div className="mt-2 bg-slate-200 dark:bg-slate-800 bg-opacity-50 flex flex-col items-center justify-center p-4 rounded-lg shadow-md w-full xl:hidden">
+    <div className="bg-opacity-50 mt-2 flex w-full flex-col items-center justify-center rounded-lg bg-slate-200 p-4 shadow-md xl:hidden dark:bg-slate-800">
       <p
-        className="text-sm md:text-base lg:text-lg mb-4 italic w-full text-slate-400"
+        className="mb-4 w-full text-sm text-slate-400 italic md:text-base lg:text-lg"
         style={{
-          lineHeight: "1rem",
+          lineHeight: "1rem"
         }}
       >
         "{description}"
       </p>
-      <div className="flex w-full justify-between items-start">
+      <div className="flex w-full items-start justify-between">
         <OverviewItemHolder label="Element" value={element}>
           <Image
-            className="w-5 h-5 mr-2"
+            className="mr-2 h-5 w-5"
             src={getElementTypeImage(element)}
             alt={element}
           />
         </OverviewItemHolder>
         <OverviewItemHolder label="Weapon Type" value={WEAPON_TYPES[weapon]}>
           <Image
-            className="w-6 h-6 mr-2"
+            className="mr-2 h-6 w-6"
             src={weaponTypeIconFilter[weapon]}
             alt={weapon}
             style={{
-              filter: "brightness(0) invert(1)",
+              filter: "brightness(0) invert(1)"
             }}
           />
         </OverviewItemHolder>
       </div>
-      <div className="flex items-start w-full justify-between mt-4">
+      <div className="mt-4 flex w-full items-start justify-between">
         <OverviewItemHolder
           label="Affiliation"
           value={characterLocationParser(affiliation, isTraveler)}

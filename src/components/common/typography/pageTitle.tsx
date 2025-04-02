@@ -11,10 +11,10 @@ type Props = {
 
 function PageTitle({
   title,
-  customClass = "my-2 text-3xl xl:text-5xl px-4 text-center",
+  customClass = "my-2 text-3xl xl:text-5xl px-4 text-center"
 }: Readonly<Props>) {
   return (
-    <span className="flex items-center w-full max-w-[calc(100svw-10%)] 2xl:max-w-[1650px]">
+    <span className="flex w-full max-w-[calc(100svw-10%)] items-center 2xl:max-w-[1650px]">
       <Image src={bdLeft} alt="bd-left" />
       <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600" />
       <h1 className={customClass}>{title}</h1>

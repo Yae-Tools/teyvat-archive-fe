@@ -7,13 +7,13 @@ type Props = {
 
 export default function TimerItem({ time, label }: Readonly<Props>) {
   return (
-    <div className="flex flex-col w-max items-center justify-center">
-      <div className="size-20 flex items-center bg-slate-700 rounded-lg">
-        <span className="text-5xl text-center font-semibold text-white w-full">
+    <div className="flex w-max flex-col items-center justify-center">
+      <div className="flex size-20 items-center rounded-lg bg-slate-700">
+        <span className="w-full text-center text-5xl font-semibold text-white">
           {time}
         </span>
       </div>
-      <span className="text-[#8486A9] right-[6px] text-sm text-center font-medium">
+      <span className="right-[6px] text-center text-sm font-medium text-[#8486A9]">
         {Number(time) - 1 === 1 ? label : label + "s"}
       </span>
     </div>

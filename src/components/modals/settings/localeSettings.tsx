@@ -1,4 +1,5 @@
 import { useAtom } from "jotai";
+
 import { defaultServerAtom } from "~/atoms/feature.atoms";
 import SettingsDropdownItem from "~/components/common/settings/settingsDropDownItem";
 
@@ -15,7 +16,7 @@ export default function LocaleSettings() {
         options={[
           { value: "ASIA", label: "Asia" },
           { value: "EU", label: "Europe" },
-          { value: "NA", label: "North America" },
+          { value: "NA", label: "North America" }
         ]}
         description="Set the default server to calculate the time until daily reset."
       />

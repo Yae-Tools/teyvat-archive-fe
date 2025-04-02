@@ -2,6 +2,7 @@
 
 import { useAtomValue } from "jotai";
 import { useEffect } from "react";
+
 import { themeAtom } from "~/atoms/general.atoms";
 
 export default function ClientThemeSync() {

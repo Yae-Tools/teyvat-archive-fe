@@ -36,6 +36,6 @@ export const setThemeCookie = (theme: Theme, ctx?: any) => {
   setCookie(ctx, THEME_COOKIE_NAME, theme, {
     maxAge: 30 * 24 * 60 * 60,
     path: "/",
-    sameSite: "lax",
+    sameSite: "lax"
   });
 };

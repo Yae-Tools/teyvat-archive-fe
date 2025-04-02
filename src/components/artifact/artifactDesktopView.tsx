@@ -2,14 +2,17 @@
 
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
+
 import {
   selectedArtifactEquipTypeAtom,
-  selectedRarityFullSetAtom,
+  selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
-import rarityBgPicker from "~/utils/rarityBgPicker";
-import LazyBackgroundImage from "../common/lazyBackgroundImage";
-import ArtifactProfileDesktop from "./artifactProfile/artifactProfileDesktop";
 import { IArtifactSet, IEquipCollection } from "~/types/enka/artifacts.types";
+import rarityBgPicker from "~/utils/rarityBgPicker";
+
+import LazyBackgroundImage from "../common/lazyBackgroundImage";
+
+import ArtifactProfileDesktop from "./artifactProfile/artifactProfileDesktop";
 
 type Props = {
   artifactSet: IArtifactSet;
@@ -44,18 +47,18 @@ export default function ArtifactDesktopView({ artifactSet }: Readonly<Props>) {
   if (!selectedEquipItem) return null;
 
   return (
-    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-hidden max-w-[1650px]">
+    <div className="hidden w-full max-w-[1650px] flex-col items-center justify-start space-y-8 overflow-hidden px-12 py-4 xl:flex">
       <LazyBackgroundImage
         img={rarityBgPicker(highestRarity)}
         isDarkened
-        className="hidden xl:flex w-[calc(100%-3rem)] flex-col items-start justify-start p-10 xl:h-[650px] rounded-4xl"
+        className="hidden w-[calc(100%-3rem)] flex-col items-start justify-start rounded-4xl p-10 xl:flex xl:h-[650px]"
       >
         <ArtifactProfileDesktop
           {...{
             highestRarity,
             selectedEquipItem,
             setName: name,
-            setBonus,
+            setBonus
           }}
         />
       </LazyBackgroundImage>

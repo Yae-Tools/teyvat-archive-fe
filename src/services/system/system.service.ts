@@ -42,7 +42,7 @@ export const getRedeemCodes = async () => {
     console.error(error);
     return {
       active: [],
-      inactive: [],
+      inactive: []
     };
   }
 };

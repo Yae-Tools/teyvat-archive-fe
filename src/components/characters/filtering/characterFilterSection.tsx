@@ -1,21 +1,22 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useState } from "react";
-import Image from "next/image";
 import { StarIcon } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 import {
   characterSearchAtom,
   selectedCharacterElementAtom,
   selectedCharacterRarityAtom,
-  selectedCharacterWeaponAtom,
+  selectedCharacterWeaponAtom
 } from "~/atoms/teyvat/character.atom";
-import { getElementTypeImage } from "~/utils/elementalImagePicker";
-import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
-import CharacterFilterStack from "./characterFilterStack";
 import FilterDropDown from "~/components/common/filters/filterDropdown";
 import { RARITY_TYPES } from "~/data/teyvatData";
+import { getElementTypeImage } from "~/utils/elementalImagePicker";
+import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
+
+import CharacterFilterStack from "./characterFilterStack";
 
 export default function CharacterFilterSection() {
   const [selectedCharacterElement, setSelectedCharacterElement] = useAtom(
@@ -32,12 +33,12 @@ export default function CharacterFilterSection() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   return (
-    <div className="w-full pt-3 mx-2 px-2 flex flex-col items-center">
-      <div className="relative lg:hidden w-full max-w-[320px]">
+    <div className="mx-2 flex w-full flex-col items-center px-2 pt-3">
+      <div className="relative w-full max-w-[320px] lg:hidden">
         <FilterDropDown
           {...{
             isFilterOpen,
-            setIsFilterOpen,
+            setIsFilterOpen
           }}
         >
           {selectedCharacterElement && (
@@ -54,7 +55,7 @@ export default function CharacterFilterSection() {
               alt={selectedCharacterWeapon}
               className="w-[26px]"
               style={{
-                filter: "brightness(0) invert(1)",
+                filter: "brightness(0) invert(1)"
               }}
             />
           )}
@@ -72,7 +73,7 @@ export default function CharacterFilterSection() {
         </FilterDropDown>
 
         {isFilterOpen && (
-          <div className="absolute flex flex-col items-center justify-evenly pt-4 end-0 z-10 w-full rounded-md border border-gray-100 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
+          <div className="absolute end-0 z-10 flex w-full flex-col items-center justify-evenly rounded-md border border-gray-100 bg-white pt-4 shadow-lg dark:border-slate-700 dark:bg-slate-900">
             <CharacterFilterStack
               {...{
                 setIsFilterOpen,
@@ -83,13 +84,13 @@ export default function CharacterFilterSection() {
                 selectedRarity: selectedCharacterRarity,
                 setSelectedRarity: setSelectedCharacterRarity,
                 characterSearch,
-                setCharacterSearch,
+                setCharacterSearch
               }}
             />
           </div>
         )}
       </div>
-      <div className="hidden lg:flex flex-col items-center lg:flex-row lg:justify-center lg:space-x-4">
+      <div className="hidden flex-col items-center lg:flex lg:flex-row lg:justify-center lg:space-x-4">
         <CharacterFilterStack
           {...{
             setIsFilterOpen,
@@ -100,7 +101,7 @@ export default function CharacterFilterSection() {
             selectedRarity: selectedCharacterRarity,
             setSelectedRarity: setSelectedCharacterRarity,
             characterSearch,
-            setCharacterSearch,
+            setCharacterSearch
           }}
         />
       </div>

@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { memo } from "react";
 
 import { ELEMENTS_ARRAY } from "~/data/teyvatData";
-import ItemSeparator from "../../common/filters/itemSeparator";
-import Image from "next/image";
-import { getElementTypeImage } from "~/utils/elementalImagePicker";
 import { IElementType } from "~/types/enka/enka.types";
+import { getElementTypeImage } from "~/utils/elementalImagePicker";
+
+import ItemSeparator from "../../common/filters/itemSeparator";
 
 type Props = {
   selectedElement: IElementType | null;
@@ -13,10 +14,10 @@ type Props = {
 
 function ElementFilter({
   selectedElement,
-  setSelectedElement,
+  setSelectedElement
 }: Readonly<Props>) {
   return (
-    <div className="w-full lg:w-max flex items-center justify-between p-2 mb-3 max-w-[300px] border-2 border-slate-600 rounded-lg h-[40px]">
+    <div className="mb-3 flex h-[40px] w-full max-w-[300px] items-center justify-between rounded-lg border-2 border-slate-600 p-2 lg:w-max">
       {ELEMENTS_ARRAY.map((element, index) => (
         <div key={element} className="flex items-center">
           <button
@@ -27,7 +28,7 @@ function ElementFilter({
                 setSelectedElement(element);
               }
             }}
-            className="cursor-pointer mx-2"
+            className="mx-2 cursor-pointer"
           >
             <Image
               src={getElementTypeImage(element)}
@@ -37,7 +38,7 @@ function ElementFilter({
                 filter:
                   selectedElement === element || !selectedElement
                     ? "none"
-                    : "grayscale(100%)",
+                    : "grayscale(100%)"
               }}
             />
           </button>

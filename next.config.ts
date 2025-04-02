@@ -7,7 +7,7 @@ const imageDomains = [
   "enka.network",
   "sdk.hoyoverse.com",
   "fastcdn.hoyoverse.com",
-  "act-webstatic.hoyoverse.com",
+  "act-webstatic.hoyoverse.com"
 ];
 
 const nextConfig: NextConfig = {
@@ -17,9 +17,9 @@ const nextConfig: NextConfig = {
       protocol: "https",
       hostname: domain,
       port: "",
-      pathname: "/**",
-    })),
-  },
+      pathname: "/**"
+    }))
+  }
 };
 
 export default nextConfig;

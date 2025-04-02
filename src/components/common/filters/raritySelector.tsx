@@ -1,4 +1,5 @@
 import { StarIcon } from "lucide-react";
+
 import { RARITIES_ARRAY, RARITY_TYPES } from "~/data/teyvatData";
 import { IRarityType } from "~/types/enka/enka.types";
 
@@ -11,12 +12,12 @@ type Props = {
 export default function RaritySelector({
   selectedRarity,
   setSelectedRarity,
-  rarityIndex,
+  rarityIndex
 }: Readonly<Props>) {
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex w-full items-center justify-center">
       <button
-        className="cursor-pointer text-sm mx-2 flex items-center"
+        className="mx-2 flex cursor-pointer items-center text-sm"
         onClick={() => {
           if (selectedRarity === RARITIES_ARRAY[rarityIndex]) {
             setSelectedRarity(null);
@@ -28,12 +29,12 @@ export default function RaritySelector({
         {rarityIndex + 1 > 5 ? RARITY_TYPES.QUALITY_ORANGE_SP : rarityIndex + 1}
         {selectedRarity === RARITIES_ARRAY[rarityIndex] || !selectedRarity ? (
           <StarIcon
-            className={`size-3 lg:size-4 xl:size-5 text-[gold]`}
+            className={`size-3 text-[gold] lg:size-4 xl:size-5`}
             fill="currentColor"
             strokeWidth={1}
           />
         ) : (
-          <StarIcon className="size-3 lg:size-4 xl:size-5 text-[gold]" />
+          <StarIcon className="size-3 text-[gold] lg:size-4 xl:size-5" />
         )}
       </button>
     </div>

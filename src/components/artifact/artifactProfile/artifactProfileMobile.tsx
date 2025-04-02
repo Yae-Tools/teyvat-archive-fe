@@ -13,7 +13,7 @@ type Props = {
 export default function ArtifactProfileMobile({
   highestRarity,
   selectedEquipItem,
-  setName,
+  setName
 }: Readonly<Props>) {
   return (
     <LazyBackgroundImage
@@ -21,31 +21,31 @@ export default function ArtifactProfileMobile({
       img={rarityBgPicker(highestRarity)}
     >
       <h1
-        className="text-3xl md:text-5xl text-white text-left p-4"
+        className="p-4 text-left text-3xl text-white md:text-5xl"
         style={{
-          textShadow: "2px 2px black",
+          textShadow: "2px 2px black"
         }}
       >
         {setName}
       </h1>
       <LazyBackgroundImage
-        className="h-[420px] md:h-[520px] w-full flex flex-col items-start justify-end rounded-lg"
+        className="flex h-[420px] w-full flex-col items-start justify-end rounded-lg md:h-[520px]"
         img={selectedEquipItem.icon}
       >
-        <div className="flex flex-col items-start w-full pl-4 font-algoindeEnka">
+        <div className="font-algoindeEnka flex w-full flex-col items-start pl-4">
           <RarityStars stars={highestRarity} />
           <h2
-            className="text-2xl md:text-4xl drop-shadow-2xl text-white"
+            className="text-2xl text-white drop-shadow-2xl md:text-4xl"
             style={{
-              textShadow: "2px 2px black",
+              textShadow: "2px 2px black"
             }}
           >
             {selectedEquipItem.name}
           </h2>
           <h6
-            className="pb-2 drop-shadow-2xl text-white"
+            className="pb-2 text-white drop-shadow-2xl"
             style={{
-              textShadow: "1px 1px black",
+              textShadow: "1px 1px black"
             }}
           >
             {EQUIP_TYPES[selectedEquipItem.equipType]}

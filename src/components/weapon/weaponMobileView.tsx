@@ -1,4 +1,5 @@
 import { IWeapon } from "~/types/enka/weapon.types";
+
 import WeaponMobileOverview from "./weaponOverview/weaponMobileOverview";
 import WeaponProfileMobile from "./weaponProfile/weaponProfileMobile";
 import WeaponRefinementMobile from "./weaponRefinement/weaponRefinementMobile";
@@ -16,11 +17,11 @@ export default function WeaponMobileView({ weapon }: Readonly<Props>) {
     stars,
     description,
     weaponType,
-    stats,
+    stats
   } = weapon;
 
   return (
-    <div className="pt-2 md:p-10 px-2 xl:hidden w-full">
+    <div className="w-full px-2 pt-2 md:p-10 xl:hidden">
       <WeaponProfileMobile {...{ splashImage, name, stars }} />
       <WeaponMobileOverview {...{ stars, description, stats, weaponType }} />
       {stars > 2 && <WeaponRefinementMobile {...{ refinements }} />}

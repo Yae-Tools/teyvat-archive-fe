@@ -1,19 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
+import { useState } from "react";
 
+import { ICharacter } from "~/types/enka/character.types";
 import { getMarginRightValue, getZoomValue } from "~/utils/splashArtZoom";
+
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
 import RarityStars from "../common/rarityStars";
+
 import AscensionMatsDesktop from "./characterAscension/ascensionMatsDesktop";
 import DesktopConstellationView from "./characterConstellations/desktopConstellationView";
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
 import TalentsDesktop from "./characterTalents/talentsDesktop";
-import { ICharacter } from "~/types/enka/character.types";
 
 type Props = {
   characterData: ICharacter;
@@ -39,47 +41,47 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
     sideIcon,
     ascensionData,
     birthday,
-    isTraveler,
+    isTraveler
   } = characterData;
 
   const TAB_NAV = [
     {
       name: "Talents",
       id: "talents",
-      shouldDisplay: true,
+      shouldDisplay: true
     },
     {
       name: "Constellations",
       id: "constellations",
-      shouldDisplay: true,
+      shouldDisplay: true
     },
     {
       name: "Ascension",
       id: "ascension",
-      shouldDisplay: true,
-    },
+      shouldDisplay: true
+    }
   ];
 
   const [selectedTab, setSelectedTab] = useState(TAB_NAV[0].id);
 
   return (
-    <div className="py-4 px-12 flex-col items-center justify-start space-y-8 hidden xl:flex w-full overflow-x-hidden max-w-[1650px]">
+    <div className="hidden w-full max-w-[1650px] flex-col items-center justify-start space-y-8 overflow-x-hidden px-12 py-4 xl:flex">
       <LazyBackgroundImage
         img={nameCard}
         isDarkened
-        className="hidden bg-slate-900 xl:flex w-full flex-col relative items-start justify-between p-10 xl:h-[650px] rounded-4xl"
+        className="relative hidden w-full flex-col items-start justify-between rounded-4xl bg-slate-900 p-10 xl:flex xl:h-[650px]"
       >
-        <div className="w-2/3 flex flex-col items-start mr-4 absolute z-10">
-          <div className="flex items-center justify-start space-x-1 mb-5">
+        <div className="absolute z-10 mr-4 flex w-2/3 flex-col items-start">
+          <div className="mb-5 flex items-center justify-start space-x-1">
             <Image
-              className="size-12 mr-2"
+              className="mr-2 size-12"
               src={sideIcon}
               alt={name}
               height={100}
               width={100}
               style={{
                 zoom: "1.5",
-                transform: "translateY(-8px)",
+                transform: "translateY(-8px)"
               }}
             />
             <RarityStars stars={stars} />
@@ -91,15 +93,15 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
               weapon: weaponType,
               affiliation: location,
               birthday,
-              isTraveler,
+              isTraveler
             }}
           />
         </div>
-        <div className="w-full xl:h-[400px]  flex items-center justify-end">
-          <div className={`w-4/5 h-full ${nameId} relative`}>
+        <div className="flex w-full items-center justify-end xl:h-[400px]">
+          <div className={`h-full w-4/5 ${nameId} relative`}>
             <img
               src={splashUrl}
-              className={`bottom-[-140] right-0 absolute ${getMarginRightValue(
+              className={`absolute right-0 bottom-[-140] ${getMarginRightValue(
                 characterData.bodyType,
                 characterData.isTraveler
               )}`}
@@ -112,14 +114,14 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
                   characterData.bodyType,
                   characterData.isTraveler,
                   characterData.isArchon
-                )}`,
+                )}`
               }}
             />
           </div>
         </div>
       </LazyBackgroundImage>
       <div
-        className="w-full flex items-start justify-between space-x-4 rounded-lg mt-20"
+        className="mt-20 flex w-full items-start justify-between space-x-4 rounded-lg"
         style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
       >
         <TabNavigation
@@ -139,7 +141,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
                   consName: constellation,
                   constellations,
                   constellationIcon,
-                  element,
+                  element
                 }}
               />
             )}

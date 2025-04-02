@@ -9,7 +9,7 @@ type Props = {
 
 export default function ShowcaseFilterContainer({
   children,
-  isSticky,
+  isSticky
 }: Readonly<Props>) {
   const [isStuck, setIsStuck] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -33,7 +33,6 @@ export default function ShowcaseFilterContainer({
     };
   }, []);
 
-
   return (
     <>
       {/* Sentinel - Used to track when filter sticks */}
@@ -41,13 +40,13 @@ export default function ShowcaseFilterContainer({
 
       {/* Filter Container */}
       <div
-        className={`bg-gray-900 w-full pb-2 ${
+        className={`w-full bg-gray-900 pb-2 ${
           isSticky ? "sticky top-0 z-10" : ""
         } transition-all duration-300`}
         style={{
           backgroundColor: isStuck
             ? "rgba(16, 24, 40, 1)"
-            : "rgba(16, 24, 40, 0.3)",
+            : "rgba(16, 24, 40, 0.3)"
         }}
       >
         {children}

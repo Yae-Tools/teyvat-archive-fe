@@ -9,11 +9,12 @@ Teyvat Archive is your go-to spot for:
 - **Ongoing Events**: Check out current _Genshin Impact_ event details.
 - **Characters**: Dive into profiles of Teyvat’s heroes.
 - **Weapons & Artifacts**: Browse stats and effects for your gear.
+- **Spiral Abyss**: Visit latest abyss stats
 - **Cool UI**: Enjoy a modern, intuitive design.
 
 ## How to Use It
 
-Visit [https://teyvatarchive.online](https://teyvatarchive.online) or download the app and open it in your browser. Browse the sections, tweak the theme (like dark mode), and explore Teyvat your way!
+Visit [https://teyvatarchive.online](https://teyvatarchive.online). Browse the sections, tweak the theme (like dark mode), Setup your preffered server, and explore Teyvat your way!
 
 ## Privacy & Cookies
 

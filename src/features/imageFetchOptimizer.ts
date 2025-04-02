@@ -4,7 +4,7 @@ import { ICharacter } from "~/types/enka/character.types";
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_CDN_BASE_URL as string;
 
-const transformCharacterData = (character: ICharacter) => {
+export const transformCharacterData = (character: ICharacter) => {
   if (!character.isTraveler && !character?.nameCard) return character;
 
   let nameCard;
@@ -31,10 +31,8 @@ const transformCharacterData = (character: ICharacter) => {
     nameCard,
     splashUrl,
     sideIcon,
-    constellationIcon: constellationIcon,
+    constellationIcon: constellationIcon
   };
 
   return updatedCharacter;
 };
-
-export { transformCharacterData as transforCharacterData };

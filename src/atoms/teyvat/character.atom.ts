@@ -1,8 +1,9 @@
 import { atom } from "jotai";
+
 import {
   IElementType,
   IRarityType,
-  IWeaponType,
+  IWeaponType
 } from "~/types/enka/enka.types";
 
 export const selectedCharacterElementAtom = atom<IElementType | null>(null);

@@ -18,7 +18,7 @@ export default function LazyBackgroundImage({
   children,
   className,
   style,
-  isDarkened,
+  isDarkened
 }: Readonly<Props>) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -51,7 +51,7 @@ export default function LazyBackgroundImage({
         backgroundPosition: "center center",
         backgroundSize: "cover",
         transition: "filter 0.5s",
-        ...style,
+        ...style
       }}
     >
       <img

@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IRarityType } from "~/types/enka/enka.types";
 
+import { IRarityType } from "~/types/enka/enka.types";
 import rarityColoFilter from "~/utils/thumbnailColorFilter";
 
 type Props = {
@@ -14,37 +14,37 @@ type Props = {
 export default function ThumbnaiContainer({
   children,
   rarity,
-  name,
+  name
 }: Readonly<Props>) {
   const {
     toColor: bgTo,
     fromColor: bgFrom,
-    viaColor: bgVia,
+    viaColor: bgVia
   } = rarityColoFilter[rarity];
 
   return (
-    <div className="flex flex-col items-center mb-3">
+    <div className="mb-3 flex flex-col items-center">
       <motion.div
         layout
         animate={{
-          opacity: 1,
+          opacity: 1
         }}
         whileHover={{
           scale: 1.05,
           transition: {
             duration: 0.2,
-            ease: "easeInOut",
-          },
+            ease: "easeInOut"
+          }
         }}
         style={{
-          backgroundImage: `linear-gradient(to top, ${bgFrom}, ${bgVia}, ${bgTo}`,
+          backgroundImage: `linear-gradient(to top, ${bgFrom}, ${bgVia}, ${bgTo}`
         }}
-        className="mx-3 w-[100px] relative lg:w-[130px] rounded-xl shadow-lg drop-shadow-md shadow-[#d6d6d6] dark:shadow-[#323333] overflow-hidden"
+        className="relative mx-3 w-[100px] overflow-hidden rounded-xl shadow-lg shadow-[#d6d6d6] drop-shadow-md lg:w-[130px] dark:shadow-[#323333]"
       >
         {children}
       </motion.div>
 
-      <p className="w-[100px] text-sm text-center font-semibold my-1">{name}</p>
+      <p className="my-1 w-[100px] text-center text-sm font-semibold">{name}</p>
     </div>
   );
 }

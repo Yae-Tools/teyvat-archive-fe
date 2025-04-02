@@ -50,7 +50,7 @@ export const weaponSecondaryType = {
   FIGHT_PROP_ELEMENT_ADD_HURT: "Increases Elemental DMG dealt",
   FIGHT_PROP_ATTACK_PERCENT_A: "ATK Percentage",
   FIGHT_PROP_DEFENSE_PERCENT_A: "DEF Percentage",
-  FIGHT_PROP_HP_PERCENT_A: "HP Percentage",
+  FIGHT_PROP_HP_PERCENT_A: "HP Percentage"
 } as const;
 
 const WEAPON_SECONDARY_TYPE_KEYS = [
@@ -105,7 +105,7 @@ const WEAPON_SECONDARY_TYPE_KEYS = [
   "FIGHT_PROP_ELEMENT_ADD_HURT",
   "FIGHT_PROP_ATTACK_PERCENT_A",
   "FIGHT_PROP_DEFENSE_PERCENT_A",
-  "FIGHT_PROP_HP_PERCENT_A",
+  "FIGHT_PROP_HP_PERCENT_A"
 ] as const;
 
 export const IWeaponSecondaryTypeKey = Object.fromEntries(

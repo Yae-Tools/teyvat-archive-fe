@@ -16,7 +16,7 @@ type Props = {
 export default function HeaderSidebar({
   isSidebarOpen,
   setIsSidebarOpen,
-  setIsSettingsOpen,
+  setIsSettingsOpen
 }: Readonly<Props>) {
   useEffect(() => {
     const disableScroll = () => {
@@ -38,7 +38,7 @@ export default function HeaderSidebar({
 
   return (
     <motion.div
-      className={`absolute top-0 right-0 w-full max-w-[300px] h-screen bg-gray-100 dark:bg-gray-800 opacity-90 z-50 px-10 flex flex-col items-end justify-start ${
+      className={`absolute top-0 right-0 z-50 flex h-screen w-full max-w-[300px] flex-col items-end justify-start bg-gray-100 px-10 opacity-90 dark:bg-gray-800 ${
         isSidebarOpen ? "block" : "hidden"
       }`}
       initial={{ x: "100%" }}
@@ -48,11 +48,11 @@ export default function HeaderSidebar({
     >
       <button
         onClick={() => setIsSidebarOpen(false)}
-        className="absolute top-5 right-5 primary-text"
+        className="primary-text absolute top-5 right-5"
       >
         <XIcon className="size-5" />
       </button>
-      <nav className="flex flex-col items-end justify-start h-full space-y-6 w-full top-20 absolute">
+      <nav className="absolute top-20 flex h-full w-full flex-col items-end justify-start space-y-6">
         {HEADER_ROUTES.map((route) => (
           <Link
             key={route.path}
@@ -71,7 +71,7 @@ export default function HeaderSidebar({
           setIsSettingsOpen(true);
           setIsSidebarOpen(false);
         }}
-        className="absolute bottom-5 right-5 primary-text"
+        className="primary-text absolute right-5 bottom-5"
       >
         <CogIcon className="size-5" />
       </button>

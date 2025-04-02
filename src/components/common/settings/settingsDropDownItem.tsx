@@ -20,7 +20,7 @@ export default function SettingsDropdownItem({
   label,
   options,
   description,
-  isDisabled = false,
+  isDisabled = false
 }: Readonly<Props>) {
   return (
     <SettingItemContainer {...{ id, label, description, isDisabled }}>
@@ -28,7 +28,7 @@ export default function SettingsDropdownItem({
         id={id}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="primary-text bg-slate-800 block w-full px-4 mr-2 py-1 border text-sm border-slate-300 dark:border-slate-700 rounded-md shadow-sm focus:outline-none"
+        className="primary-text mr-2 block w-full rounded-md border border-slate-300 bg-slate-800 px-4 py-1 text-sm shadow-sm focus:outline-none dark:border-slate-700"
         disabled={isDisabled}
       >
         {options.map((option) => (

@@ -6,29 +6,29 @@ type Props = {
 };
 
 export default function ConstellationDetails({
-  selectedConstellation,
+  selectedConstellation
 }: Readonly<Props>) {
   if (!selectedConstellation) return null;
 
   return (
-    <div className="w-4/9 flex flex-col items-center justify-start rounded-lg bg-slate-700 h-[35rem] mt-10 py-8 px-6 relative">
-      <h6 className="text-3xl px-4 font-bold text-left w-full">
+    <div className="relative mt-10 flex h-[35rem] w-4/9 flex-col items-center justify-start rounded-lg bg-slate-700 px-6 py-8">
+      <h6 className="w-full px-4 text-left text-3xl font-bold">
         {selectedConstellation.name}
       </h6>
       <div
-        className="mt-8 text-lg text-left px-4 w-full z-10"
+        className="z-10 mt-8 w-full px-4 text-left text-lg"
         dangerouslySetInnerHTML={{
-          __html: parseText(selectedConstellation?.description),
+          __html: parseText(selectedConstellation?.description)
         }}
       />
 
-      <div className="absolute w-full flex items-center justify-center z-0 mt-[10rem]">
+      <div className="absolute z-0 mt-[10rem] flex w-full items-center justify-center">
         <img
           src={selectedConstellation.icon}
           alt={selectedConstellation.name}
           className="size-80"
           style={{
-            filter: "blur(0.5px) brightness(0.5)",
+            filter: "blur(0.5px) brightness(0.5)"
           }}
         />
       </div>

@@ -2,8 +2,9 @@ import { useAtomValue } from "jotai";
 import Modal from "react-modal";
 
 import { themeAtom } from "~/atoms/general.atoms";
-import SettingCategories from "./settingCategories";
 import TeyvatHeading from "~/components/common/teyvatHeading";
+
+import SettingCategories from "./settingCategories";
 
 type Props = {
   isOpen: boolean;
@@ -13,7 +14,7 @@ type Props = {
 
 export default function SettingsModal({
   isOpen,
-  onRequestClose,
+  onRequestClose
 }: Readonly<Props>) {
   const theme = useAtomValue(themeAtom);
 
@@ -32,12 +33,12 @@ export default function SettingsModal({
       border: `${
         theme === "light" ? "var(--color-slate-300)" : "var(--color-slate-900)"
       } 2px solid`,
-      borderRadius: "0.5rem",
+      borderRadius: "0.5rem"
     },
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.85)",
-      zIndex: 1000,
-    },
+      zIndex: 1000
+    }
   };
 
   return (
@@ -49,7 +50,7 @@ export default function SettingsModal({
     >
       <div className="w-usable max-w-[750px] bg-slate-200 dark:bg-slate-900">
         <TeyvatHeading headerLevel={4} title="Teyvat Archive Settings" />
-        <div className="w-full my-4 py-2 flex flex-col items-center justify-between">
+        <div className="my-4 flex w-full flex-col items-center justify-between py-2">
           <SettingCategories />
         </div>
       </div>

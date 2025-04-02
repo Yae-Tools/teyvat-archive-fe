@@ -10,10 +10,10 @@ type Props = {
 
 export default function TeyvatHeading({
   title,
-  headerLevel = 3,
+  headerLevel = 3
 }: Readonly<Props>) {
   return (
-    <span className="flex items-center w-full">
+    <span className="flex w-full items-center">
       <Image src={bdLeft} alt="bd-left" />
       <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-600" />
       {headerLevel === 1 && (

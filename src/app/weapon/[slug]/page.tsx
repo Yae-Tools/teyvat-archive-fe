@@ -1,6 +1,7 @@
 "use server";
 
 import { Metadata } from "next";
+
 import WeaponClient from "~/components/weapon/weaponClient";
 import { getWeaponById } from "~/services/teyvatServer/teyvatArchive.service";
 import { IWeapon } from "~/types/enka/weapon.types";
@@ -15,7 +16,7 @@ async function fetchWeapon(slug: string) {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
@@ -26,12 +27,12 @@ export async function generateMetadata({
   return {
     title: `Teyvat Archive - ${weapon.name}`,
     description: `Artifact Set: ${weapon.name}`,
-    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Weapon, ${weapon.name}`,
+    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Weapon, ${weapon.name}`
   };
 }
 
 export default async function Weapon({
-  params,
+  params
 }: Readonly<{ params: Promise<{ slug: string }> }>) {
   const { slug } = await params;
 

@@ -1,40 +1,33 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
-import AbyssIconContainer from "../layout/container/abyssIconContainer";
-import TitleHeading from "../common/typography/titleHeading";
-import { IAbyssDataResponse, IRarityType } from "~/types/enka/enka.types";
+import { useAbyssBlessings, useAbyssInfo } from "~/hooks/useAbyssData";
+import { useAllCharacterData } from "~/hooks/useCharacterData";
+import { ITopCharacter } from "~/types/enka/character.types";
+import { IAbyssBlessing, IAbyssPartyData } from "~/types/enka/enka.types";
 import {
-  getAbyssData,
-  getCharacters,
-} from "~/services/teyvatServer/teyvatArchive.service";
-import { getTopTenCharacters } from "~/utils/parsers/abyssDataParser";
-import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
-import ToggleItem from "../common/basic/toggleItem";
+  getFinalizedAbyssBlessings,
+  getTopFourTeams,
+  getTopTenCharacters
+} from "~/utils/parsers/abyssDataParser";
+
+import AbyssBlessings from "./abyssBlessings";
+import MostUsedTeams from "./mosedUsedTeams";
+import MostPickedCharacters from "./mostPickedCharacters";
 
 export default function SpiralAbyssClient() {
-  const { data: characterData } = useQuery<IBaseCharacter[]>({
-    queryKey: ["characters"],
-    queryFn: async () => {
-      const data: IBaseCharacter[] = await getCharacters();
-      return data;
-    },
-  });
-
-  const { data: abyssData } = useQuery<IAbyssDataResponse>({
-    queryKey: ["abyssData"],
-    queryFn: async () => {
-      const data: IAbyssDataResponse = await getAbyssData();
-      return data;
-    },
-    refetchInterval: 1000 * 60 * 60, // 1 hour
-  });
+  const { data: characterData } = useAllCharacterData();
+  const { data: abyssData, isLoading: isAbyssLoading } = useAbyssInfo();
+  const { data: blessingData } = useAbyssBlessings();
 
   const [isUsedByOwn, setIsUsedByOwn] = useState(false);
   const [top10Chars, setTop10Chars] = useState<ITopCharacter[]>([]);
+  const [firstHalf, setFirstHalf] = useState<IAbyssPartyData[]>([]);
+  const [secondHalf, setSecondHalf] = useState<IAbyssPartyData[]>([]);
+  const [sortedAbyssBlessings, setSortedAbyssBlessings] = useState<
+    IAbyssBlessing[]
+  >([]);
 
   useEffect(() => {
     if (abyssData && characterData) {
@@ -44,57 +37,45 @@ export default function SpiralAbyssClient() {
         characterData
       );
       setTop10Chars(top10);
+
+      const firstHalfTeams = getTopFourTeams(
+        abyssData.parties.firstHalf,
+        characterData
+      );
+      const secondHalfTeams = getTopFourTeams(
+        abyssData.parties.secondHalf,
+        characterData
+      );
+
+      setFirstHalf(firstHalfTeams);
+      setSecondHalf(secondHalfTeams);
     }
   }, [abyssData, isUsedByOwn, characterData]);
 
+  useEffect(() => {
+    if (blessingData) {
+      setSortedAbyssBlessings(getFinalizedAbyssBlessings(blessingData));
+    }
+  }, [blessingData]);
+
   return (
-    <div className="w-full flex flex-col items-center justify-center">
-      <div className="w-full flex items-center justify-between mb-2">
-        <div className="w-1/5"></div>
-        <TitleHeading
-          text="Top 10 Used Characters"
-          customClass="text-xl text-center w-3/5"
-        />
-        <div className="w-1/5">
-          <div className="w-full flex items-center justify-end">
-            <label htmlFor="usedByOwn" className="text-white mr-2">
-              Used By Own
-            </label>
-            <ToggleItem
-              id="usedByOwn"
-              value={isUsedByOwn}
-              setValue={setIsUsedByOwn}
-            />
-          </div>
-        </div>
-      </div>
-      {/* <TitleHeading
-        text="Top 10 Used Characters"
-        customClass="text-xl text-center "
-      /> */}
-      <div
-        className="flex flex-wrap justify-center items-center w-full overflow-auto"
-        style={{ maxHeight: "300px" }}
-      >
-        {top10Chars.length === 10 &&
-          top10Chars.map((char) => {
-            return (
-              <AbyssIconContainer
-                key={char.id}
-                rarity={char.rarity as IRarityType}
-              >
-                <div className=" w-full h-full flex flex-col items-center justify-end">
-                  <Image
-                    src={char.icon as string}
-                    alt={char.id}
-                    width={300}
-                    height={40}
-                    className="size-18"
-                  />
-                </div>
-              </AbyssIconContainer>
-            );
-          })}
+    <div className="flex w-full flex-col items-center justify-center space-y-4">
+      <MostPickedCharacters
+        {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
+      />
+      <MostUsedTeams {...{ firstHalf, secondHalf }} />
+      <AbyssBlessings {...{ sortedAbyssBlessings }} />
+      <div className="flex w-full items-center justify-end text-sm">
+        <p>
+          Data from{" "}
+          <a
+            href="https://aza.gg"
+            target="_blank"
+            className="font-enka text-teal-500"
+          >
+            aza.gg
+          </a>
+        </p>
       </div>
     </div>
   );

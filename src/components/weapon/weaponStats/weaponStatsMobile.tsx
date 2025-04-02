@@ -1,6 +1,7 @@
 import AttributeMobileContainer from "~/components/layout/container/attributeMobileContainer";
-import StatsSection from "./statsSection";
 import { IEnkaStat } from "~/types/enka/enka.types";
+
+import StatsSection from "./statsSection";
 
 type Props = {
   stats: {

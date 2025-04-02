@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import LogoImage from "~/assets/images/logo/logo.jpg";
 
 type Props = {

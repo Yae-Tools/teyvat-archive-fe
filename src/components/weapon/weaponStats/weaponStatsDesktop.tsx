@@ -1,6 +1,7 @@
 import AttributeDesktopContainer from "~/components/layout/container/attributeDesktopContainer";
-import StatsSection from "./statsSection";
 import { IEnkaStat } from "~/types/enka/enka.types";
+
+import StatsSection from "./statsSection";
 
 type Props = {
   stats: {

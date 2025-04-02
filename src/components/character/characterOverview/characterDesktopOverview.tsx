@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { WEAPON_TYPES } from "~/data/teyvatData";
 import { IBirthday, ICharacterLocation } from "~/types/enka/character.types";
@@ -21,15 +22,15 @@ export default function CharacterDesktopOverview({
   weapon,
   affiliation,
   birthday,
-  isTraveler,
+  isTraveler
 }: Readonly<Props>) {
   return (
-    <div className="hidden xl:flex mt-4 xl:mt-8 flex-col items-start justify-center py-4 w-full h-full">
-      <div className="w-full flex flex-col items-start justify-evenly">
+    <div className="mt-4 hidden h-full w-full flex-col items-start justify-center py-4 xl:mt-8 xl:flex">
+      <div className="flex w-full flex-col items-start justify-evenly">
         <div className="flex w-full items-start justify-start">
           <OverviewItemHolder label="Element" value={element}>
             <Image
-              className="size-12 mr-2"
+              className="mr-2 size-12"
               src={getElementTypeImage(element)}
               alt={element}
             />
@@ -41,11 +42,11 @@ export default function CharacterDesktopOverview({
             textShadowValue
           >
             <Image
-              className="size-14 mr-2"
+              className="mr-2 size-14"
               src={weaponTypeIconFilter[weapon]}
               alt={weapon}
               style={{
-                filter: "brightness(0) invert(1)",
+                filter: "brightness(0) invert(1)"
               }}
             />
           </OverviewItemHolder>

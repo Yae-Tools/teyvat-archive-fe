@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import TextLabel from "./typography/textLabel";
 import TextValue from "./typography/textValue";
 
@@ -21,14 +22,14 @@ function OverviewItemHolder({
   textShadowValue = false,
   labelCustomClass = "uppercase",
   valueCustomClass = "text-slate-300 xl:text-white xl:text-xl font-semibold leading-4 xl:leading-5",
-  align = "start",
+  align = "start"
 }: Readonly<Props>) {
   return (
     <div
-      className={`w-full max-w-[350px] flex flex-col justify-between items-${align} mx-1`}
+      className={`flex w-full max-w-[350px] flex-col justify-between items-${align} mx-1`}
     >
       <div
-        className={`xl:py-1 xl:px-2 xl:rounded-md relative my-1 flex flex-col items-${align}`}
+        className={`relative my-1 flex flex-col xl:rounded-md xl:px-2 xl:py-1 items-${align}`}
       >
         <TextLabel
           label={label}
@@ -38,7 +39,7 @@ function OverviewItemHolder({
         <div
           className={`flex justify-${align} items-center pt-1`}
           style={{
-            marginTop: "-2px",
+            marginTop: "-2px"
           }}
         >
           {children}

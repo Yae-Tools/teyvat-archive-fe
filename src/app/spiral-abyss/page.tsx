@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+
 import PageTitle from "~/components/common/typography/pageTitle";
 import SpiralAbyssClient from "~/components/spiralAbyss/spiralAbyssClient";
 
@@ -7,15 +8,15 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Teyvat Archive - Spiral Abyss",
     description: "Teyvat Archive - Spiral Abyss",
     keywords:
-      "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Abyss, Spiral, Spiral Abyss",
+      "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Abyss, Spiral, Spiral Abyss"
   };
 }
 
 export default function SpiralAbyss() {
   return (
-    <div className="w-full flex flex-col items-center justify-center xl:mb-4 mt-3">
+    <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
       <PageTitle title="Spiral Abyss" />
-      <div className="my-4">
+      <div className="m-4">
         <SpiralAbyssClient />
       </div>
     </div>

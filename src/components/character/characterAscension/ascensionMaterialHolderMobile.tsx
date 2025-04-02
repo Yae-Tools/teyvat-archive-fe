@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 import { getMaterialById } from "~/services/teyvatServer/teyvatArchive.service";
+import { IMaterialData } from "~/types/enka/material.types";
+
 import TextLabel from "../../common/typography/textLabel";
 import TextValue from "../../common/typography/textValue";
-import { IMaterialData } from "~/types/enka/material.types";
 
 type Props = {
   id: string;
@@ -16,7 +17,7 @@ type Props = {
 export default function AscensionMaterialHolderMobile({
   id,
   value,
-  index,
+  index
 }: Readonly<Props>) {
   const [materialData, setMaterialData] = useState<IMaterialData>(
     {} as IMaterialData
@@ -33,12 +34,12 @@ export default function AscensionMaterialHolderMobile({
   }, [id]);
 
   return (
-    <div className="w-full flex items-center justify-start space-x-3 my-1 bg-slate-700 rounded-md px-2 h-10">
+    <div className="my-1 flex h-10 w-full items-center justify-start space-x-3 rounded-md bg-slate-700 px-2">
       <TextLabel label={materialData?.name} classNames="w-full" />
       <div
-        className="flex justify-end items-center pt-1 w-1/4"
+        className="flex w-1/4 items-center justify-end pt-1"
         style={{
-          marginTop: "-6px",
+          marginTop: "-6px"
         }}
       >
         <img
@@ -46,10 +47,10 @@ export default function AscensionMaterialHolderMobile({
           alt={materialData?.name}
           width={40}
           style={{
-            maxWidth: `${index === 0 ? "90%" : "100%"}`,
+            maxWidth: `${index === 0 ? "90%" : "100%"}`
           }}
         />
-        <div className="text-[12px] md:text-[15px] mr-1">x </div>
+        <div className="mr-1 text-[12px] md:text-[15px]">x </div>
         <TextValue text={value} />
       </div>
     </div>

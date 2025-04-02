@@ -1,7 +1,7 @@
 import { atom } from "jotai";
+
 import { EQUIP_TYPE_KEYS } from "~/data/teyvatData";
 import { IEquipCollection } from "~/types/enka/artifacts.types";
-
 import { IEquipType, IRarityType } from "~/types/enka/enka.types";
 
 export const artifactSearchAtom = atom("");

@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
-import rarityParser from "~/utils/parsers/rarityParser";
-import ThumbnaiContainer from "../layout/container/thumbnailContainer";
-import Link from "next/link";
-import Image from "next/image";
-import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
 import { IBasicWeapon } from "~/types/enka/weapon.types";
+import rarityParser from "~/utils/parsers/rarityParser";
+import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
+
+import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 
 type Props = {
   weapon: IBasicWeapon;
@@ -21,13 +22,13 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
     <ThumbnaiContainer name={weapon.name} rarity={rarityParser(weapon.stars)}>
       <Link href={`/weapon/${weapon.id}-${weapon.enkaId}`}>
         <button
-          className="w-full flex flex-col items-center mt-1"
+          className="mt-1 flex w-full flex-col items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onTouchStart={() => setIsHovered(true)}
           onTouchEnd={() => setIsHovered(false)}
         >
-          <div className="h-3/4 flex items-end justify-center">
+          <div className="flex h-3/4 items-end justify-center">
             <motion.img
               src={isHovered ? weapon.awakenIcon : weapon.icon}
               alt={weapon.id}
@@ -38,7 +39,7 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
           </div>
         </button>
       </Link>
-      <div className="absolute top-0 left-0 flex items-center text-white p-2 ml-[-5px] mt-[-5px]">
+      <div className="absolute top-0 left-0 mt-[-5px] ml-[-5px] flex items-center p-2 text-white">
         <Image
           src={weaponTypeIconFilter[weapon.weaponType]}
           alt={weapon.weaponType}

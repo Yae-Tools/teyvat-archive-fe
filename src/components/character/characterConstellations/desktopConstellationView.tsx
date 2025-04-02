@@ -1,13 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import Image from "next/image";
-import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
-import ConstellationDetails from "./constellationDetails";
-import ConstellationIcon from "./constellationIcon";
 import { IConstellation } from "~/types/enka/character.types";
 import { IElementType } from "~/types/enka/enka.types";
+
+import AttributeDesktopContainer from "../../layout/container/attributeDesktopContainer";
+
+import ConstellationDetails from "./constellationDetails";
+import ConstellationIcon from "./constellationIcon";
 
 type Props = {
   consName: string;
@@ -20,7 +22,7 @@ export default function DesktopConstellationView({
   consName,
   constellations,
   constellationIcon,
-  element,
+  element
 }: Readonly<Props>) {
   const [selectedConstellation, setSelectedConstellation] =
     useState<IConstellation>(constellations?.[0]);
@@ -31,13 +33,13 @@ export default function DesktopConstellationView({
 
   return (
     <AttributeDesktopContainer title={`Constellation - ${consName}`}>
-      <div className="w-full flex items-start justify-between space-x-6">
-        <div className="w-1/2 flex flex-col items-center justify-start pb-40">
+      <div className="flex w-full items-start justify-between space-x-6">
+        <div className="flex w-1/2 flex-col items-center justify-start pb-40">
           <div
-            className="mt-40 min-h-max flex items-center justify-center w-full"
+            className="mt-40 flex min-h-max w-full items-center justify-center"
             style={{
               //rotate 180deg to make the first constellation at the top
-              transform: "rotate(180deg)",
+              transform: "rotate(180deg)"
             }}
           >
             {constellations.map((con, i) => (
@@ -48,7 +50,7 @@ export default function DesktopConstellationView({
                   constellation: con,
                   selectedConstellation,
                   setSelectedConstellation,
-                  element,
+                  element
                 }}
               />
             ))}
@@ -60,7 +62,7 @@ export default function DesktopConstellationView({
                 transform: "rotate(180deg)",
                 zoom: "1.2",
                 //convert to monochrome
-                filter: `grayscale(100%) brightness(0) invert(1)`,
+                filter: `grayscale(100%) brightness(0) invert(1)`
               }}
               width={400}
               height={100}

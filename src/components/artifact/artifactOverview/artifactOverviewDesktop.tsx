@@ -1,12 +1,14 @@
 import { useAtom } from "jotai";
-import DescriptionDesktop from "~/components/common/descriptionDesktop";
-import OverviewItemHolder from "~/components/common/overviewItemHolder";
+
 import {
   selectedArtifactEquipTypeAtom,
-  selectedRarityFullSetAtom,
+  selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
-import ArtifactEquipPicker from "../artifactEquipPicker/artifactEquipPicker";
+import DescriptionDesktop from "~/components/common/descriptionDesktop";
+import OverviewItemHolder from "~/components/common/overviewItemHolder";
 import { ISetBonus } from "~/types/enka/artifacts.types";
+
+import ArtifactEquipPicker from "../artifactEquipPicker/artifactEquipPicker";
 
 type Props = {
   description: string;
@@ -15,7 +17,7 @@ type Props = {
 
 export default function ArtifactOverviewDesktop({
   description,
-  setBonus,
+  setBonus
 }: Readonly<Props>) {
   const [selectedArtifactEquipType, setSelectedArtifactEquipType] = useAtom(
     selectedArtifactEquipTypeAtom
@@ -23,12 +25,12 @@ export default function ArtifactOverviewDesktop({
   const [selectedRarityFullSet] = useAtom(selectedRarityFullSetAtom);
 
   return (
-    <div className="w-3/5 flex flex-col items-end justify-end mx-3 h-max rounded-xl bg-black/40 absolute right-0 bottom-0">
-      <div className="w-full items-start flex justify-end my-4 px-4">
+    <div className="absolute right-0 bottom-0 mx-3 flex h-max w-3/5 flex-col items-end justify-end rounded-xl bg-black/40">
+      <div className="my-4 flex w-full items-start justify-end px-4">
         <DescriptionDesktop description={description} align="right" />
       </div>
-      <div className="flex space-x-1 w-full px-4 my-2">
-        <div className="w-full h-full flex items-start justify-end max-h-[220px] overflow-y-auto">
+      <div className="my-2 flex w-full space-x-1 px-4">
+        <div className="flex h-full max-h-[220px] w-full items-start justify-end overflow-y-auto">
           <OverviewItemHolder
             label={`${setBonus[0].needCount}-Piece Bonus`}
             value={setBonus[0].description}
@@ -46,13 +48,13 @@ export default function ArtifactOverviewDesktop({
         </div>
       </div>
 
-      <div className="flex items-center justify-end w-full px-6 my-2">
+      <div className="my-2 flex w-full items-center justify-end px-6">
         {selectedRarityFullSet.length > 0 && (
           <ArtifactEquipPicker
             {...{
               selectedArtifactEquipType,
               setSelectedArtifactEquipType,
-              selectedRarityFullSet,
+              selectedRarityFullSet
             }}
           />
         )}

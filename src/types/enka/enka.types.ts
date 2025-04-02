@@ -3,7 +3,7 @@ import {
   ELEMENT_TYPES,
   EQUIP_TYPES,
   RARITY_TYPES,
-  WEAPON_TYPES,
+  WEAPON_TYPES
 } from "~/data/teyvatData";
 
 export interface IEnkaStat {
@@ -104,41 +104,63 @@ interface IAbyssGeneric {
 
 export interface IAbyssCharacterResponse {
   id: string;
-  use_rate: number;
-  own_rate: number;
-  use_by_own_rate: number;
+  useRate: number;
+  ownRate: number;
+  useByOwnRate: number;
   weapons: IAbyssGeneric[];
   artifacts: IAbyssCharacterArtifacts[];
   constellations: IAbyssGeneric[];
 }
 
-interface IAbyssPartyData {
-  id: string;
+export interface IAbyssParty {
+  characterIds: string[];
   value: number;
-  own_rate: number;
-  use_by_own_rate: number;
+  ownRate: number;
+  useByOwnRate: number;
 }
 
-interface IAbyssParty {
-  [key: string]: {
-    [key: string]: IAbyssPartyData[];
-  };
+export interface IAbyssPartyData {
+  value: number;
+  ownRate: number;
+  useByOwnRate: number;
+  characters: {
+    id: string;
+    name: string;
+    icon: string;
+    element: IElementType;
+    rarity: IRarityType;
+  }[];
+}
+
+export interface IAbyssPartyDetails {
+  firstHalf: IAbyssParty[];
+  secondHalf: IAbyssParty[];
 }
 
 export interface IAbyssDataResponse {
   meta: IAbyssMeta;
   data: {
     schedule: IAbyssSchedule;
-    sample_collection_progress: number;
-    sample_size: number;
-    sample_size_x_a: number;
-    sample_size_x_b: number;
-    sample_countries: IAbyssSampleCountries[];
+    sampleCollectionProgress: number;
+    sampleSize: number;
+    sampleSize_x_a: number;
+    sampleSize_x_b: number;
+    sampleCountries: IAbyssSampleCountries[];
     threshold: {
       use_rate: number;
     };
   };
   characters: IAbyssCharacterResponse[];
+  parties: IAbyssPartyDetails;
+}
+
+export interface IAbyssBlessing {
+  id: string;
+  begin: string;
+  end: string;
+  icon: string;
+  name: string;
+  description: string;
 }
 
 export type IRarityType = keyof typeof RARITY_TYPES;

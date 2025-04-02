@@ -3,15 +3,17 @@
 import { motion } from "framer-motion";
 import { useAtomValue } from "jotai";
 import { useEffect, useState } from "react";
+
 import {
   selectedWeaponRarityAtom,
   selectedWeaponSeriesAtom,
   selectedWeaponTypeAtom,
-  weaponSearchAtom,
+  weaponSearchAtom
 } from "~/atoms/teyvat/weapon.atom";
-import rarityParser from "~/utils/parsers/rarityParser";
-import WeaponThumbnail from "./weaponThumbnail";
 import { IBasicWeapon } from "~/types/enka/weapon.types";
+import rarityParser from "~/utils/parsers/rarityParser";
+
+import WeaponThumbnail from "./weaponThumbnail";
 
 type Props = {
   weapons: IBasicWeapon[];
@@ -44,15 +46,15 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
     selectedWeaponType,
     selectedWeaponRarity,
     selectedWeaponSeries,
-    weaponSearch,
+    weaponSearch
   ]);
 
   return (
-    <div className="overflow-hidden w-full items-center justify-center flex px-4 md:px-12">
+    <div className="flex w-full items-center justify-center overflow-hidden px-4 md:px-12">
       <motion.div
         layout
         animate={{ opacity: 1 }}
-        className="mt-2 pt-4 grid auto-cols-fr grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 overflow-y-auto"
+        className="xs:grid-cols-3 mt-2 grid auto-cols-fr grid-cols-2 overflow-y-auto pt-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
       >
         {filteredWeapons.map((weapon) => (
           <WeaponThumbnail key={weapon.id} {...{ weapon }} />

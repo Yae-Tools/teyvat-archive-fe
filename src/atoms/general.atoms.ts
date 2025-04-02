@@ -1,17 +1,18 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+
 import {
   getThemeFromCookie,
   setThemeCookie,
   Theme,
   THEME_DARK,
-  THEME_LIGHT,
+  THEME_LIGHT
 } from "../utils/theme";
 
 export const themeAtom = atomWithStorage<Theme>("theme", getThemeFromCookie(), {
   getItem: () => getThemeFromCookie(),
   setItem: (_, value) => setThemeCookie(value),
-  removeItem: () => setThemeCookie(THEME_LIGHT),
+  removeItem: () => setThemeCookie(THEME_LIGHT)
 });
 
 export const toggleThemeAtom = atom(

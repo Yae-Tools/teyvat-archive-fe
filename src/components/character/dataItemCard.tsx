@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { ChevronRight } from "lucide-react";
+import { useState } from "react";
 
-import parseText from "~/utils/parsers/parseEnkaText";
-import TextLabel from "../common/typography/textLabel";
 import { IConstellation, ITalent } from "~/types/enka/character.types";
+import parseText from "~/utils/parsers/parseEnkaText";
+
+import TextLabel from "../common/typography/textLabel";
 
 type Props = {
   item: IConstellation | ITalent;
@@ -19,9 +20,9 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
   }
 
   return (
-    <div className="w-full bg-gray-300 dark:bg-slate-700 my-1 p-1 rounded-md">
-      <div className="flex items-center justify-between w-full">
-        <div className="w-full flex items-center justify-start space-x-3">
+    <div className="my-1 w-full rounded-md bg-gray-300 p-1 dark:bg-slate-700">
+      <div className="flex w-full items-center justify-between">
+        <div className="flex w-full items-center justify-start space-x-3">
           <img src={item.icon} alt={item.name} width={60} />
           {/* if  data type is IConstellation use index as constellation number */}
           {index !== undefined ? (
@@ -38,11 +39,11 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
         </div>
 
         <button
-          className="w-1/5 mx-2 flex items-center justify-end"
+          className="mx-2 flex w-1/5 items-center justify-end"
           onClick={handleExpansion}
         >
           <ChevronRight
-            className={`size-5 transform transition ease-in-out duration-300 ${
+            className={`size-5 transform transition duration-300 ease-in-out ${
               isExpanded ? "-rotate-90" : "rotate-0"
             }`}
           />
@@ -52,19 +53,19 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
       <motion.div
         initial={{
           height: 0,
-          opacity: 0,
+          opacity: 0
         }}
         animate={{
           opacity: isExpanded ? 1 : 0,
-          height: isExpanded ? "auto" : 0,
+          height: isExpanded ? "auto" : 0
         }}
         transition={{ duration: 0.6 }}
         className={`${isExpanded ? "block" : "hidden"}`}
       >
         <div
-          className="text-gray-800 dark:text-white px-2"
+          className="px-2 text-gray-800 dark:text-white"
           dangerouslySetInnerHTML={{
-            __html: parseText(item.description),
+            __html: parseText(item.description)
           }}
         />
       </motion.div>

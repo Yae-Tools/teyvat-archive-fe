@@ -1,8 +1,9 @@
 "use client";
 
-import CharacterMobileView from "./characterMobileView";
-import CharacterDesktopView from "./characterDesktopView";
 import { ICharacter } from "~/types/enka/character.types";
+
+import CharacterDesktopView from "./characterDesktopView";
+import CharacterMobileView from "./characterMobileView";
 
 type Props = {
   character: ICharacter;

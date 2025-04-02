@@ -1,8 +1,9 @@
 "use server";
 
 import { Metadata } from "next";
+
 import CharacterClient from "~/components/character/characterClient";
-import { transforCharacterData } from "~/features/imageFetchOptimizer";
+import { transformCharacterData } from "~/features/imageFetchOptimizer";
 import { getCharacterBySkillDepotId } from "~/services/teyvatServer/teyvatArchive.service";
 import { ICharacter } from "~/types/enka/character.types";
 import { decryptCharacterUniqueRoute } from "~/utils/decryptUniqueId";
@@ -14,7 +15,7 @@ async function fetchCharacter(slug: string) {
     enkaId,
     skillDepotId
   );
-  const transformedCharacter = transforCharacterData(character);
+  const transformedCharacter = transformCharacterData(character);
 
   if (!character) {
     throw new Error("Character not found");
@@ -23,7 +24,7 @@ async function fetchCharacter(slug: string) {
 }
 
 export async function generateMetadata({
-  params,
+  params
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
@@ -34,12 +35,12 @@ export async function generateMetadata({
   return {
     title: `Teyvat Archive - ${character.name}`,
     description: `Artifact Set: ${character.name}`,
-    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Character, ${character.name}`,
+    keywords: `Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Character, ${character.name}`
   };
 }
 
 export default async function Character({
-  params,
+  params
 }: Readonly<{ params: Promise<{ slug: string }> }>) {
   const { slug } = await params;
 

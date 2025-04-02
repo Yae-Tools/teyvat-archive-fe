@@ -1,6 +1,7 @@
 "use client";
 
 import { IWeapon } from "~/types/enka/weapon.types";
+
 import WeaponDesktopView from "./weaponDesktopView";
 import WeaponMobileView from "./weaponMobileView";
 

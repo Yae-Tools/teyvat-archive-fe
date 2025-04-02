@@ -1,6 +1,7 @@
 "use server";
 
 import { Metadata } from "next";
+
 import AllArtifactsShowcase from "~/components/artifacts/allArtifactsShowcase";
 import ArtifactFilterSection from "~/components/artifacts/filtering/artifactFilterSection";
 import PageTitle from "~/components/common/typography/pageTitle";
@@ -13,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Teyvat Archive - Artifacts",
     description: "Teyvat Archive - Artifacts",
     keywords:
-      "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Artifacts",
+      "Teyvat Archive, Genshin Impact, Teyvat, Genshin, Impact, Artifacts"
   };
 }
 
@@ -23,7 +24,7 @@ export default async function Artifacts() {
   return (
     <>
       <ShowcaseFilterContainer isSticky>
-        <div className="w-full flex items-center justify-center xl:mb-4 mt-3">
+        <div className="mt-3 flex w-full items-center justify-center xl:mb-4">
           <PageTitle title="Teyvat Artifacts" />
         </div>
         <ArtifactFilterSection />
