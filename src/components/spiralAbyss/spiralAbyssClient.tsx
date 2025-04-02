@@ -5,9 +5,14 @@ import { useEffect, useState } from "react";
 import { useAbyssBlessings, useAbyssInfo } from "~/hooks/useAbyssData";
 import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { ITopCharacter } from "~/types/enka/character.types";
-import { IAbyssBlessing } from "~/types/enka/enka.types";
+import {
+  IAbyssBlessing,
+  IAbyssParty,
+  IAbyssPartyData
+} from "~/types/enka/enka.types";
 import {
   getFinalizedAbyssBlessings,
+  getTopFourTeams,
   getTopTenCharacters
 } from "~/utils/parsers/abyssDataParser";
 
@@ -22,6 +27,8 @@ export default function SpiralAbyssClient() {
 
   const [isUsedByOwn, setIsUsedByOwn] = useState(false);
   const [top10Chars, setTop10Chars] = useState<ITopCharacter[]>([]);
+  const [firstHalf, setFirstHalf] = useState<IAbyssPartyData[]>([]);
+  const [secondHalf, setSecondHalf] = useState<IAbyssPartyData[]>([]);
   const [sortedAbyssBlessings, setSortedAbyssBlessings] = useState<
     IAbyssBlessing[]
   >([]);
@@ -34,6 +41,12 @@ export default function SpiralAbyssClient() {
         characterData
       );
       setTop10Chars(top10);
+
+      const firstHalfTeams = getTopFourTeams(abyssData.parties.firstHalf);
+      const secondHalfTeams = getTopFourTeams(abyssData.parties.secondHalf);
+
+      setFirstHalf(firstHalfTeams);
+      setSecondHalf(secondHalfTeams);
     }
   }, [abyssData, isUsedByOwn, characterData]);
 
@@ -49,7 +62,7 @@ export default function SpiralAbyssClient() {
         {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
       />
       <AbyssBlessings {...{ sortedAbyssBlessings }} />
-      <MostUsedTeams />
+      <MostUsedTeams {...{ firstHalf, secondHalf }} />
     </div>
   );
 }

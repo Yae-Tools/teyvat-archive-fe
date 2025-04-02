@@ -4,12 +4,13 @@ import {
   getAbyssBlessings,
   getAbyssData
 } from "~/services/teyvatServer/teyvatArchive.service";
+import { IAbyssDataResponse } from "~/types/enka/enka.types";
 
 export const useAbyssInfo = () => {
   return useQuery({
     queryKey: ["abyssInfo"],
     queryFn: async () => {
-      const abyssInfo = await getAbyssData();
+      const abyssInfo: IAbyssDataResponse = await getAbyssData();
       return abyssInfo;
     }
   });

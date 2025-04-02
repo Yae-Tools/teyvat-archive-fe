@@ -104,41 +104,41 @@ interface IAbyssGeneric {
 
 export interface IAbyssCharacterResponse {
   id: string;
-  use_rate: number;
-  own_rate: number;
-  use_by_own_rate: number;
+  useRate: number;
+  ownRate: number;
+  useByOwnRate: number;
   weapons: IAbyssGeneric[];
   artifacts: IAbyssCharacterArtifacts[];
   constellations: IAbyssGeneric[];
 }
 
-interface IAbyssPartyData {
-  id: string;
+export interface IAbyssPartyData {
+  characterIds: string[];
   value: number;
-  own_rate: number;
-  use_by_own_rate: number;
+  ownRate: number;
+  useByOwnRate: number;
 }
 
-interface IAbyssParty {
-  [key: string]: {
-    [key: string]: IAbyssPartyData[];
-  };
+export interface IAbyssParty {
+  firstHalf: IAbyssPartyData[];
+  secondHalf: IAbyssPartyData[];
 }
 
 export interface IAbyssDataResponse {
   meta: IAbyssMeta;
   data: {
     schedule: IAbyssSchedule;
-    sample_collection_progress: number;
-    sample_size: number;
-    sample_size_x_a: number;
-    sample_size_x_b: number;
-    sample_countries: IAbyssSampleCountries[];
+    sampleCollectionProgress: number;
+    sampleSize: number;
+    sampleSize_x_a: number;
+    sampleSize_x_b: number;
+    sampleCountries: IAbyssSampleCountries[];
     threshold: {
       use_rate: number;
     };
   };
   characters: IAbyssCharacterResponse[];
+  parties: IAbyssParty;
 }
 
 export interface IAbyssBlessing {

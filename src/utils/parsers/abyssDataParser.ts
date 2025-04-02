@@ -1,7 +1,8 @@
 import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
 import {
   IAbyssBlessing,
-  IAbyssCharacterResponse
+  IAbyssCharacterResponse,
+  IAbyssPartyData
 } from "~/types/enka/enka.types";
 
 // Define the return type for better type safety
@@ -18,17 +19,15 @@ export const getTopTenCharacters = (
 
   const topTenCharacters = abyssCharacters
     .toSorted((a, b) =>
-      usedByOwn
-        ? b.use_by_own_rate - a.use_by_own_rate
-        : b.use_rate - a.use_rate
+      usedByOwn ? b.useByOwnRate - a.useByOwnRate : b.useRate - a.useRate
     )
     .slice(0, 10)
     .map((character) => {
       const baseChar = baseCharMap.get(Number(character.id));
       return {
         id: character.id,
-        useRate: usedByOwn ? character.use_by_own_rate : character.use_rate,
-        ownRate: character.own_rate,
+        useRate: usedByOwn ? character.useByOwnRate : character.useRate,
+        ownRate: character.ownRate,
         weapons: character.weapons,
         artifacts: character.artifacts,
         constellations: character.constellations,
@@ -60,4 +59,14 @@ export const isCurrentBlessing = (startDate: string, endDate: string) => {
   const isCurrent = currentDate >= start && currentDate <= end;
 
   return isCurrent;
+};
+
+export const getTopFourTeams = (parties: IAbyssPartyData[]) => {
+  // get highest useByOwnRate
+
+  const sortedParties = parties
+    .toSorted((a, b) => b.useByOwnRate - a.useByOwnRate)
+    .slice(0, 4);
+
+  return sortedParties;
 };
