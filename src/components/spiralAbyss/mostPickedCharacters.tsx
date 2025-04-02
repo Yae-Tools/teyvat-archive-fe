@@ -31,7 +31,14 @@ export default function MostPickedCharacters({
           text="Top 10 Used Characters"
           customClass="text-xl text-center w-full md:w-3/5"
         />
-        <AbyssItemToggle {...{ value:isUsedByOwn, setValue:setIsUsedByOwn, label:"Used by Own", id:"usedByOwn" }} />
+        <AbyssItemToggle
+          {...{
+            value: isUsedByOwn,
+            setValue: setIsUsedByOwn,
+            label: "Used by Own",
+            id: "usedByOwn"
+          }}
+        />
       </div>
 
       <div

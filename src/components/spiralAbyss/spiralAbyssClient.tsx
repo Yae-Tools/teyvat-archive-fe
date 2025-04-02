@@ -49,7 +49,7 @@ export default function SpiralAbyssClient() {
         {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
       />
       <AbyssBlessings {...{ sortedAbyssBlessings }} />
-      <MostUsedTeams/>
+      <MostUsedTeams />
     </div>
   );
 }
