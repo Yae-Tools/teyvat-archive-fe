@@ -26,10 +26,7 @@ export default function MostUsedTeams({
             </div>
           ))}
         </div>
-        <div className="w-full outline-1 outline-amber-300">
-          2nd Half
-         
-        </div>
+        <div className="w-full outline-1 outline-amber-300">2nd Half</div>
       </div>
     </div>
   );
