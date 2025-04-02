@@ -2,7 +2,7 @@ import { IBaseCharacter, ITopCharacter } from "~/types/enka/character.types";
 import {
   IAbyssBlessing,
   IAbyssCharacterResponse,
-  IAbyssPartyData
+  IAbyssParty
 } from "~/types/enka/enka.types";
 
 // Define the return type for better type safety
@@ -61,12 +61,36 @@ export const isCurrentBlessing = (startDate: string, endDate: string) => {
   return isCurrent;
 };
 
-export const getTopFourTeams = (parties: IAbyssPartyData[]) => {
+export const getTopFourTeams = (
+  parties: IAbyssParty[],
+  baseCharacters: IBaseCharacter[]
+) => {
+  const baseCharMap = new Map<number, IBaseCharacter>(
+    baseCharacters.map((char) => [char.enkaId, char])
+  );
   // get highest useByOwnRate
 
   const sortedParties = parties
     .toSorted((a, b) => b.useByOwnRate - a.useByOwnRate)
-    .slice(0, 4);
+    .slice(0, 4)
+    .map((party) => {
+      const characters = party.characterIds.map((id) => {
+        const baseChar = baseCharMap.get(Number(id));
+        return {
+          id: id,
+          name: baseChar!.name,
+          icon: baseChar!.iconUrl,
+          element: baseChar!.element,
+          rarity: baseChar!.rarity
+        };
+      });
+      return {
+        useByOwnRate: party.useByOwnRate,
+        ownRate: party.ownRate,
+        value: party.value,
+        characters
+      };
+    });
 
   return sortedParties;
 };

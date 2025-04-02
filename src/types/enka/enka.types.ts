@@ -112,16 +112,29 @@ export interface IAbyssCharacterResponse {
   constellations: IAbyssGeneric[];
 }
 
-export interface IAbyssPartyData {
+export interface IAbyssParty {
   characterIds: string[];
   value: number;
   ownRate: number;
   useByOwnRate: number;
 }
 
-export interface IAbyssParty {
-  firstHalf: IAbyssPartyData[];
-  secondHalf: IAbyssPartyData[];
+export interface IAbyssPartyData {
+  value: number;
+  ownRate: number;
+  useByOwnRate: number;
+  characters: {
+    id: string;
+    name: string;
+    icon: string;
+    element: IElementType;
+    rarity: IRarityType;
+  }[];
+}
+
+export interface IAbyssPartyDetails {
+  firstHalf: IAbyssParty[];
+  secondHalf: IAbyssParty[];
 }
 
 export interface IAbyssDataResponse {
@@ -138,7 +151,7 @@ export interface IAbyssDataResponse {
     };
   };
   characters: IAbyssCharacterResponse[];
-  parties: IAbyssParty;
+  parties: IAbyssPartyDetails;
 }
 
 export interface IAbyssBlessing {

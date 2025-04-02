@@ -7,6 +7,7 @@ import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { ITopCharacter } from "~/types/enka/character.types";
 import {
   IAbyssBlessing,
+  IAbyssPartyDetails,
   IAbyssParty,
   IAbyssPartyData
 } from "~/types/enka/enka.types";
@@ -42,8 +43,8 @@ export default function SpiralAbyssClient() {
       );
       setTop10Chars(top10);
 
-      const firstHalfTeams = getTopFourTeams(abyssData.parties.firstHalf);
-      const secondHalfTeams = getTopFourTeams(abyssData.parties.secondHalf);
+      const firstHalfTeams = getTopFourTeams(abyssData.parties.firstHalf, characterData);
+      const secondHalfTeams = getTopFourTeams(abyssData.parties.secondHalf, characterData);
 
       setFirstHalf(firstHalfTeams);
       setSecondHalf(secondHalfTeams);
@@ -63,6 +64,7 @@ export default function SpiralAbyssClient() {
       />
       <AbyssBlessings {...{ sortedAbyssBlessings }} />
       <MostUsedTeams {...{ firstHalf, secondHalf }} />
+     
     </div>
   );
 }
