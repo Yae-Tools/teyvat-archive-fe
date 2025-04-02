@@ -2,7 +2,7 @@
 
 import { Metadata } from "next";
 
-import ArtifactClient from "~/components/artifact/artifactClient";
+import ArtifactClient from "~/components/artifacts/artifactClient";
 import { getArtifactSetById } from "~/services/teyvatServer/teyvatArchive.service";
 import { IArtifactSet } from "~/types/enka/artifacts.types";
 

@@ -21,7 +21,7 @@ export default function ArtifactThumbnail({
         rarity: rarityParser(highestRarity)
       }}
     >
-      <Link href={`/artifact/${id}`}>
+      <Link href={`/artifacts/${id}`}>
         <div className="mt-1 flex w-full flex-col items-center">
           <div className="flex h-3/4 items-end justify-center">
             <motion.img

@@ -2,7 +2,7 @@
 
 import { Metadata } from "next";
 
-import WeaponClient from "~/components/weapon/weaponClient";
+import WeaponClient from "~/components/weapons/weaponClient";
 import { getWeaponById } from "~/services/teyvatServer/teyvatArchive.service";
 import { IWeapon } from "~/types/enka/weapon.types";
 import { decryptWeaponUniqueRoute } from "~/utils/decryptUniqueId";
