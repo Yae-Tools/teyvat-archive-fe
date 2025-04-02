@@ -7,6 +7,8 @@ import HEADER_ROUTES from "~/data/routeData";
 
 export default function DesktopNavRoutes() {
   const pathname = usePathname();
+
+  console.log("pathname", pathname);
   return (
     <nav aria-label="Global">
       <ul className="flex w-full items-center justify-center gap-6 text-sm">
@@ -15,7 +17,7 @@ export default function DesktopNavRoutes() {
             <Link
               href={route.path}
               className={`font-enka transition hover:text-slate-600/75 dark:hover:text-white/75 ${
-                pathname === route.path.toLowerCase()
+                pathname.toLocaleLowerCase().includes(route.path.toLowerCase())
                   ? "text-teal-400"
                   : "text-slate-600 dark:text-white"
               }`}

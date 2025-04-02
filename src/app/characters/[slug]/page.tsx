@@ -2,7 +2,7 @@
 
 import { Metadata } from "next";
 
-import CharacterClient from "~/components/character/characterClient";
+import CharacterClient from "~/components/characters/characterClient";
 import { transformCharacterData } from "~/features/imageFetchOptimizer";
 import { getCharacterBySkillDepotId } from "~/services/teyvatServer/teyvatArchive.service";
 import { ICharacter } from "~/types/enka/character.types";

@@ -14,7 +14,7 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
   return (
     <ThumbnaiContainer name={character.name} rarity={character.rarity}>
       <Link
-        href={`/character/${character.nameId}-${character.enkaId}-${character.skillDepotId}`}
+        href={`/characters/${character.nameId}-${character.enkaId}-${character.skillDepotId}`}
       >
         <div className="mt-1 flex w-full flex-col items-center">
           <div className="flex h-3/4 items-end justify-center">
