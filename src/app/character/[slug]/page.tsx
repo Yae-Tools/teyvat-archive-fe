@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 
 import CharacterClient from "~/components/character/characterClient";
-import { transforCharacterData } from "~/features/imageFetchOptimizer";
+import { transformCharacterData } from "~/features/imageFetchOptimizer";
 import { getCharacterBySkillDepotId } from "~/services/teyvatServer/teyvatArchive.service";
 import { ICharacter } from "~/types/enka/character.types";
 import { decryptCharacterUniqueRoute } from "~/utils/decryptUniqueId";
@@ -15,7 +15,7 @@ async function fetchCharacter(slug: string) {
     enkaId,
     skillDepotId
   );
-  const transformedCharacter = transforCharacterData(character);
+  const transformedCharacter = transformCharacterData(character);
 
   if (!character) {
     throw new Error("Character not found");
