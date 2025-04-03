@@ -9,10 +9,12 @@ import BlessingItem from "./blessingItem";
 
 type Props = {
   sortedAbyssBlessings: IAbyssBlessing[];
+  isLoading: boolean;
 };
 
 export default function AbyssBlessings({
-  sortedAbyssBlessings
+  sortedAbyssBlessings,
+  isLoading
 }: Readonly<Props>) {
   const recentBlessings = [...sortedAbyssBlessings].slice(0, 4);
 
@@ -44,6 +46,16 @@ export default function AbyssBlessings({
           }}
         />
       </div>
+      {isLoading && (
+        <div className="flex w-full items-center justify-center">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div
+              key={`blessing-loader-${index + 1}`}
+              className="mx-4 h-20 w-[100px] animate-pulse rounded-lg bg-slate-700"
+            />
+          ))}
+        </div>
+      )}
       <div className="my-4 grid w-full grid-cols-1 justify-items-center gap-4 md:grid-cols-3 lg:grid-cols-4">
         {viewingBlessings.map((blessing) => (
           <BlessingItem {...{ blessing }} key={blessing.id} />
