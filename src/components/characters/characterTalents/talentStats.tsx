@@ -2,17 +2,17 @@ import { motion } from "framer-motion";
 import { LucideCrown } from "lucide-react";
 import { useState } from "react";
 
-import { IAllTalent } from "~/types/enka/character.types";
+import { ITalent } from "~/types/enka/character.types";
 
 type Props = {
-  selectedTalent: IAllTalent;
+  selectedTalent: ITalent;
 };
 
 export default function TalentStats({ selectedTalent }: Readonly<Props>) {
   const [selectedLevel, setSelectedLevel] = useState(1);
   return (
-    <div className="mt-6 w-full rounded-lg border p-4">
-      <div className="flex w-full items-center justify-center">
+    <div className="mt-6 w-full rounded-lg border p-2 xl:p-4">
+      <div className="flex w-full flex-col items-center justify-center xl:flex-row">
         <h4 className="w-full">Talent Stats (Level {selectedLevel})</h4>
         <div className={`flex w-full items-center justify-end gap-3 py-1`}>
           {Array.from({ length: 10 }, (_, i) =>
@@ -49,7 +49,7 @@ export default function TalentStats({ selectedTalent }: Readonly<Props>) {
         </div>
       </div>
       <div>
-        <table className="my-4 w-full">
+        <table className="my-2 w-full xl:my-4">
           <thead>
             <tr>
               <th className="border border-gray-400 px-4 py-2">Stat</th>

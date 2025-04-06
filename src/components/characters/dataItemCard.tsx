@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 import { IConstellation, ITalent } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
 import TextLabel from "../common/typography/textLabel";
+
+import TalentStats from "./characterTalents/talentStats";
 
 type Props = {
   item: IConstellation | ITalent;
@@ -23,7 +26,7 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
     <div className="my-1 w-full rounded-md bg-gray-300 p-1 dark:bg-slate-700">
       <div className="flex w-full items-center justify-between">
         <div className="flex w-full items-center justify-start space-x-3">
-          <img src={item.icon} alt={item.name} width={60} />
+          <Image src={item.icon} alt={item.name} width={60} height={60} />
           {/* if  data type is IConstellation use index as constellation number */}
           {index !== undefined ? (
             <TextLabel
@@ -68,6 +71,9 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
             __html: parseText(item.description)
           }}
         />
+        {"stats" in item && item.stats && (
+          <TalentStats {...{ selectedTalent: item }} />
+        )}
       </motion.div>
     </div>
   );

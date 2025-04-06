@@ -98,14 +98,14 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
           />
         </div>
         <div className="flex w-full items-center justify-end xl:h-[400px]">
-          <div className={`h-full w-4/5 ${nameId} relative`}>
+          <div className={`relative h-full w-4/5`}>
             <img
               src={splashUrl}
               className={`absolute right-0 bottom-[-140] ${getMarginRightValue(
                 characterData.bodyType,
                 characterData.isTraveler
               )}`}
-              alt={name}
+              alt={nameId}
               style={{
                 height: "100%",
                 marginTop: "15%",
