@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { LucideCrown } from "lucide-react";
 import { useState } from "react";
 
 import { ITalent } from "~/types/enka/character.types";
@@ -15,12 +14,13 @@ export default function TalentStats({ selectedTalent }: Readonly<Props>) {
       <div className="flex w-full flex-col items-center justify-center xl:flex-row">
         <h4 className="w-full">Talent Stats (Level {selectedLevel})</h4>
         <div className={`flex w-full items-center justify-end gap-3 py-1`}>
-          {Array.from({ length: 10 }, (_, i) =>
-            i !== 9 ? (
+          {Array.from(
+            { length: selectedTalent.stats[0].values.length },
+            (_, i) => (
               <motion.button
                 key={`level-${i}`}
                 onClick={() => setSelectedLevel(i + 1)}
-                className="h-2 w-10 cursor-pointer rounded-sm"
+                className="h-2 w-5 cursor-pointer rounded-sm"
                 animate={{
                   backgroundColor:
                     i < selectedLevel
@@ -29,21 +29,6 @@ export default function TalentStats({ selectedTalent }: Readonly<Props>) {
                 }}
                 transition={{ duration: 0.5, delay: 0.05 * i }}
               />
-            ) : (
-              <motion.div
-                key={`level-${i + 1}`}
-                animate={{
-                  color: i < selectedLevel ? "gold" : "var(--color-gray-300)"
-                }}
-                transition={{ duration: 0.5, delay: 0.05 * i }}
-              >
-                <LucideCrown
-                  onClick={() => setSelectedLevel(i + 1)}
-                  fill="currentColor"
-                  strokeWidth={1}
-                  className="size-6 cursor-pointer"
-                />
-              </motion.div>
             )
           )}
         </div>

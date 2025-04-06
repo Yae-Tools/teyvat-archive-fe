@@ -11,7 +11,6 @@ export default function CharacterTalentDetails({
   selectedTalent
 }: Readonly<Props>) {
   if (selectedTalent) {
-    console.log("selectedTalent", selectedTalent);
     return (
       <div className="flex w-full flex-col items-start justify-start rounded-lg bg-slate-700 px-8 py-4 text-xl text-white">
         <h2 className="font-algoindeEnka mb-4 text-3xl">
