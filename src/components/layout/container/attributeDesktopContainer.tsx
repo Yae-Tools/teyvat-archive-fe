@@ -10,9 +10,12 @@ type Props = {
 function AttributeDesktopContainer({ children, title }: Readonly<Props>) {
   return (
     <div className="w-full overflow-hidden px-7 py-4">
-      <div className="mt-8 flex w-full flex-col items-start justify-center">
-        <TitleHeading text={title} />
-      </div>
+      <span className="mt-8 flex w-full items-center">
+        <span className="shrink-0 pe-4 text-gray-900 dark:text-white">
+          <TitleHeading text={title} />
+        </span>
+        <span className="h-1 flex-1 rounded-lg bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-600"></span>
+      </span>
       <div className="flex w-full flex-col items-center justify-start">
         {children}
       </div>

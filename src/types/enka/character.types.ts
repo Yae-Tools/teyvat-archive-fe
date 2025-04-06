@@ -34,11 +34,24 @@ export interface ICharacterLocation {
   region: string;
 }
 
+export interface ICharacterTalentStats {
+  name: string;
+  usedNumbers: {
+    level: number;
+    value: number[];
+  }[];
+  values: {
+    level: number;
+    value: string;
+  }[];
+}
+
 export interface ITalent {
   id: number;
   name: string;
   icon: string;
   description: string;
+  stats: ICharacterTalentStats[];
 }
 
 export interface IAllTalent extends ITalent {

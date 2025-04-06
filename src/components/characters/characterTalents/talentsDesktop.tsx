@@ -66,7 +66,6 @@ export default function TalentsDesktop({
             />
           ))}
       </div>
-
       <CharacterTalentDetails
         selectedTalent={allTalents?.find(
           (skill) => skill.id === selectedTalentId
