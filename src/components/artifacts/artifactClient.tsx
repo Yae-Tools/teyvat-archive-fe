@@ -2,6 +2,7 @@
 
 import { useAtom } from "jotai";
 import React, { useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import {
   selectedArtifactRarityAtom,
@@ -17,6 +18,8 @@ type Props = {
 };
 
 export default function ArtifactClient({ artifactSet }: Readonly<Props>) {
+  const isXl = useMediaQuery({ minWidth: 1280 });
+
   const { highestRarity } = artifactSet;
   const [artifactRarity, setArtifactRarity] = useAtom(
     selectedArtifactRarityAtom
@@ -40,16 +43,11 @@ export default function ArtifactClient({ artifactSet }: Readonly<Props>) {
 
   return (
     <>
-      <ArtifactMobileView
-        {...{
-          artifactSet
-        }}
-      />
-      <ArtifactDesktopView
-        {...{
-          artifactSet
-        }}
-      />
+      {isXl ? (
+        <ArtifactDesktopView {...{ artifactSet }} />
+      ) : (
+        <ArtifactMobileView {...{ artifactSet }} />
+      )}
     </>
   );
 }

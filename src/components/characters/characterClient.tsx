@@ -1,4 +1,5 @@
 "use client";
+import { useMediaQuery } from "react-responsive";
 
 import { ICharacter } from "~/types/enka/character.types";
 
@@ -10,10 +11,15 @@ type Props = {
 };
 
 export default function CharacterClient({ character }: Readonly<Props>) {
+  const isXl = useMediaQuery({ minWidth: 1280 });
+
   return (
     <>
-      <CharacterMobileView characterData={character} />
-      <CharacterDesktopView characterData={character} />
+      {isXl ? (
+        <CharacterDesktopView characterData={character} />
+      ) : (
+        <CharacterMobileView characterData={character} />
+      )}
     </>
   );
 }

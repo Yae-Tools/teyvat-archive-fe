@@ -1,5 +1,7 @@
 "use client";
 
+import { useMediaQuery } from "react-responsive";
+
 import { IWeapon } from "~/types/enka/weapon.types";
 
 import WeaponDesktopView from "./weaponDesktopView";
@@ -10,10 +12,14 @@ type Props = {
 };
 
 export default function WeaponClient({ weapon }: Readonly<Props>) {
+  const isXl = useMediaQuery({ minWidth: 1280 });
   return (
     <>
-      <WeaponMobileView weapon={weapon} />
-      <WeaponDesktopView weapon={weapon} />
+      {isXl ? (
+        <WeaponDesktopView {...{ weapon }} />
+      ) : (
+        <WeaponMobileView {...{ weapon }} />
+      )}
     </>
   );
 }
