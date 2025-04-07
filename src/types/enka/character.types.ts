@@ -70,6 +70,7 @@ export interface IBaseCharacter {
   nameCard: string;
   rarity: IRarityType;
   weaponType: IWeaponType;
+  releasedAt: string;
 }
 
 export interface ICharacter extends IBaseCharacter {

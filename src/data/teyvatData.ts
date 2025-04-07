@@ -72,6 +72,16 @@ export const BODY_TYPE_KEYS = {
 } as const;
 export const BODY_ARRAY = Object.keys(BODY_TYPE_KEYS) as IBodyType[];
 
+export const SORTING_OPTIONS = {
+  Default: "Default",
+  Name: "Name",
+  Rarity: "Rarity"
+} as const;
+
+export const SORTING_ARRAY = Object.keys(SORTING_OPTIONS) as Array<
+  keyof typeof SORTING_OPTIONS
+>;
+
 export const CHARACTER_SORTING_OPTIONS = {
   Default: "Default",
   Release: "Release",

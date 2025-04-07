@@ -2,14 +2,17 @@
 
 import { motion } from "framer-motion";
 import { useAtomValue } from "jotai";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 import {
   selectedWeaponRarityAtom,
   selectedWeaponSeriesAtom,
   selectedWeaponTypeAtom,
-  weaponSearchAtom
+  weaponSearchAtom,
+  weaponSortAscAtom,
+  weaponSortingAtom
 } from "~/atoms/teyvat/weapon.atom";
+import { SORTING_OPTIONS } from "~/data/teyvatData";
 import { IBasicWeapon } from "~/types/enka/weapon.types";
 import rarityParser from "~/utils/parsers/rarityParser";
 
@@ -24,33 +27,50 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
   const selectedWeaponRarity = useAtomValue(selectedWeaponRarityAtom);
   const selectedWeaponSeries = useAtomValue(selectedWeaponSeriesAtom);
   const weaponSearch = useAtomValue(weaponSearchAtom);
+  const weaponSort = useAtomValue(weaponSortingAtom);
+  const isSortAsc = useAtomValue(weaponSortAscAtom);
 
-  const [filteredWeapons, setFilteredWeapons] =
-    useState<IBasicWeapon[]>(weapons);
+  const filteredWeapons = useMemo(() => {
+    const searchLower = weaponSearch.toLowerCase();
+    return weapons
+      .filter(
+        (weapon) =>
+          weapon.name.toLowerCase().includes(searchLower) &&
+          (!selectedWeaponType || weapon.weaponType === selectedWeaponType) &&
+          (!selectedWeaponRarity ||
+            rarityParser(weapon.stars) === selectedWeaponRarity) &&
+          (!selectedWeaponSeries || weapon.series === selectedWeaponSeries)
+      )
+      .toSorted((a, b) => {
+        if (weaponSort === SORTING_OPTIONS.Default) {
+          return isSortAsc ? 0 : -1;
+        }
+        if (weaponSort === SORTING_OPTIONS.Name) {
+          return isSortAsc
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name);
+        }
+        if (weaponSort === SORTING_OPTIONS.Rarity) {
+          return isSortAsc ? a.stars - b.stars : b.stars - a.stars;
+        }
 
-  useEffect(() => {
-    const tempFilteredWeapons = weapons.filter(
-      (weapon) =>
-        weapon.name.toLowerCase().includes(weaponSearch.toLowerCase()) &&
-        (!selectedWeaponType || weapon.weaponType === selectedWeaponType) &&
-        (!selectedWeaponRarity ||
-          rarityParser(weapon.stars) === selectedWeaponRarity) &&
-        (!selectedWeaponSeries || weapon.series === selectedWeaponSeries)
-    );
-
-    setFilteredWeapons(
-      tempFilteredWeapons.toSorted((a, b) => a.stars - b.stars)
-    );
+        return 0;
+      });
   }, [
     weapons,
     selectedWeaponType,
     selectedWeaponRarity,
     selectedWeaponSeries,
-    weaponSearch
+    weaponSearch,
+    weaponSort,
+    isSortAsc
   ]);
 
   return (
-    <div className="flex w-full items-center justify-center overflow-hidden px-4 md:px-12">
+    <div
+      className="flex w-full items-center justify-center overflow-hidden px-4 md:px-12"
+      style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
+    >
       <motion.div
         layout
         animate={{ opacity: 1 }}

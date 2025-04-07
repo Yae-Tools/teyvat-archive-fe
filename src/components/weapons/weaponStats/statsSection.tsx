@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { IEnkaStat } from "~/types/enka/enka.types";
 import { formatStatValue } from "~/utils/formatters/statValue.formatter";
@@ -13,9 +13,8 @@ type Props = {
 
 export default function StatsSection({ stars, stats }: Readonly<Props>) {
   const [squashedView, setSquashedView] = useState(false);
-  const [mutatedStats, setMutatedStats] = useState(stats);
 
-  useEffect(() => {
+  const mutatedStats = useMemo(() => {
     if (squashedView) {
       const squashedLevels = squashWeaponLevels(
         stats,
@@ -23,15 +22,12 @@ export default function StatsSection({ stars, stats }: Readonly<Props>) {
       );
 
       //only display values from keys of squashedLevels
-      const squashedStats = Object.fromEntries(
+      return Object.fromEntries(
         Object.entries(stats).filter(([key]) => squashedLevels.includes(key))
       );
-
-      setMutatedStats(squashedStats);
-    } else {
-      setMutatedStats(stats);
     }
-  }, [squashedView]);
+    return stats;
+  }, [squashedView, stats]);
 
   return (
     <div className="w-full space-y-2 py-6 text-white">

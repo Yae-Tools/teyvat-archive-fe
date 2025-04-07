@@ -11,5 +11,8 @@ import {
 export const selectedCharacterElementAtom = atom<IElementType | null>(null);
 export const selectedCharacterWeaponAtom = atom<IWeaponType | null>(null);
 export const selectedCharacterRarityAtom = atom<IRarityType | null>(null);
-export const characterSortingAtom = atom<ICharacterSorting>(CHARACTER_SORTING_OPTIONS.Default);
+export const characterSortingAtom = atom<ICharacterSorting>(
+  CHARACTER_SORTING_OPTIONS.Default
+);
+export const characterSortAscAtom = atom(true);
 export const characterSearchAtom = atom("");

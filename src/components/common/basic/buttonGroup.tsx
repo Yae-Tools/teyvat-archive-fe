@@ -4,10 +4,10 @@ import GroupButton from "./groupButton";
 
 type Props = {
   items: {
-    id: number;
-    label: string;
+    id: any;
+    label: any;
     value: any;
-    onClick: (value: number | string) => void;
+    onClick: (value: any) => void;
   }[];
   selectedItem: any;
 };
@@ -30,13 +30,13 @@ export default function ButtonGroup({ items, selectedItem }: Readonly<Props>) {
 
       {/* Sliding Teal Background */}
       <motion.div
-        className="absolute top-1 bottom-1 rounded-lg bg-white shadow dark:bg-teal-600"
+        className="absolute top-1 bottom-1 rounded-lg bg-teal-600 shadow"
         animate={{
           x: `${selectedIndex * 100}%` // Move based on the index
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         style={{
-          width: `calc(${100 / items.length}% - 0.2rem)` // Adjust width dynamically based on the number of items
+          width: `calc(${100 / items.length}% - 0.75%)` // Adjust width dynamically based on the number of items
         }}
       />
     </div>
