@@ -14,10 +14,10 @@ import {
   weaponSortAscAtom,
   weaponSortingAtom
 } from "~/atoms/teyvat/weapon.atom";
-import AscSort from "~/components/common/filters/ascSort";
 import Dropdown from "~/components/common/filters/filterDropdown";
+import SortDropDownMobile from "~/components/common/filters/sortDropDownMobile";
 import SortSelector from "~/components/common/filters/sortSelector";
-import { RARITY_TYPES, SORTING_ARRAY } from "~/data/teyvatData";
+import { RARITY_TYPES } from "~/data/teyvatData";
 import { IRarityType } from "~/types/enka/enka.types";
 import { IBaseWeaponSeries } from "~/types/enka/weapon.types";
 import { weaponTypeIconFilter } from "~/utils/weaponIconFilter";
@@ -43,7 +43,6 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
   const [isSortAsc, setIsSortAsc] = useAtom(weaponSortAscAtom);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isSortOpen, setIsSortOpen] = useState(false);
 
   const getRarityLabel = (rarity: IRarityType) => {
     return RARITY_TYPES[rarity];
@@ -119,39 +118,14 @@ export default function WeaponFilterSection({ weaponSeries }: Readonly<Props>) {
               </div>
             )}
           </div>
-          <div className="relative flex items-center space-x-2">
-            <Dropdown
-              {...{
-                isOpen: isSortOpen,
-                setIsOpen: setIsSortOpen,
-                title: "Sort By"
-              }}
-            >
-              <div className="flex items-center">
-                {selectedSort && (
-                  <p className="text-slate-400">{selectedSort}</p>
-                )}
-              </div>
-            </Dropdown>
-
-            {isSortOpen && (
-              <div className="absolute end-0 top-full z-10 flex w-full flex-col items-center justify-evenly rounded-md border border-gray-100 bg-white pt-4 shadow-lg dark:border-slate-700 dark:bg-slate-900">
-                {SORTING_ARRAY.map((sortOption) => (
-                  <button
-                    key={sortOption}
-                    className="flex w-full items-center justify-start px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                    onClick={() => {
-                      setSelectedSort(sortOption);
-                      setIsSortOpen(false);
-                    }}
-                  >
-                    {sortOption}
-                  </button>
-                ))}
-              </div>
-            )}
-            <AscSort {...{ isSortAsc, setIsSortAsc }} />
-          </div>
+          <SortDropDownMobile
+            {...{
+              selectedSort,
+              setSelectedSort,
+              isSortAsc,
+              setIsSortAsc
+            }}
+          />
         </div>
       )}
     </div>
