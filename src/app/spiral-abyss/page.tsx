@@ -1,7 +1,14 @@
+"use server";
+
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from "@tanstack/react-query";
 import { Metadata } from "next";
 
-import PageTitle from "~/components/common/typography/pageTitle";
 import SpiralAbyssClient from "~/components/spiralAbyss/spiralAbyssClient";
+import { prefetchAbyssData } from "~/hooks/useAbyssData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -12,13 +19,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function SpiralAbyss() {
+export default async function SpiralAbyss() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60, // 1 hour
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+      }
+    }
+  });
+
+  await prefetchAbyssData(queryClient);
+
   return (
-    <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
-      <PageTitle title="Spiral Abyss" />
-      <div className="m-4">
-        <SpiralAbyssClient />
-      </div>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <SpiralAbyssClient />
+    </HydrationBoundary>
   );
 }

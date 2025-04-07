@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from "react";
 
+import { useEventData } from "~/hooks/useEventData";
 import { IEvent } from "~/types/ambr.types";
+
+import PageTitle from "../common/typography/pageTitle";
 
 import Carousel from "./carousel/carousel";
 import OtherEvents from "./events/otherEvents";
 
-type Props = {
-  events: IEvent[];
-};
+export default function EventsClient() {
+  const { data: events } = useEventData();
 
-export default function EventsClient({ events }: Readonly<Props>) {
   const [wishEventItems, setWishEventItems] = useState<IEvent[]>([]);
   const [otherEventItems, setOtherEventItems] = useState<IEvent[]>([]);
 
@@ -31,9 +32,12 @@ export default function EventsClient({ events }: Readonly<Props>) {
 
   return (
     <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
+      <PageTitle title="Teyvat Events" />
       <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
-        <Carousel items={wishEventItems} />
-        <OtherEvents events={otherEventItems} />
+        <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
+          <Carousel items={wishEventItems} />
+          <OtherEvents events={otherEventItems} />
+        </div>
       </div>
     </div>
   );

@@ -8,10 +8,7 @@ import {
 import { Metadata } from "next";
 
 import WeaponsClient from "~/components/weapons/weaponsClient";
-import {
-  prefetchAllWeapons,
-  prefetchAllWeaponSeries
-} from "~/hooks/useWeaponData";
+import { prefetchAllWeaponData } from "~/hooks/useWeaponData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -22,12 +19,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Weapons() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60, // 1 hour
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+      }
+    }
+  });
 
-  await Promise.all([
-    prefetchAllWeapons(queryClient),
-    prefetchAllWeaponSeries(queryClient)
-  ]);
+  await prefetchAllWeaponData(queryClient);
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

@@ -14,7 +14,8 @@ export const useAllWeaponData = () => {
       return data;
     },
     initialData: [],
-    refetchInterval: 1000 * 60 * 60 // 1 hour
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
@@ -26,7 +27,8 @@ export const useAllWeaponSeriesData = () => {
       return data;
     },
     initialData: {},
-    refetchInterval: 1000 * 60 * 60 // 1 hour
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
@@ -36,16 +38,32 @@ export const prefetchAllWeapons = async (queryClient: QueryClient) => {
     queryFn: async () => {
       const data: IBasicWeapon[] = await getWeapons();
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
-export const prefetchAllWeaponSeries = async (queryClient: QueryClient) => {
-  return queryClient.prefetchQuery({
-    queryKey: ["weaponSeries"],
-    queryFn: async () => {
-      const data: IBaseWeaponSeries = await getWeaponSeries();
-      return data;
-    }
-  });
+export const prefetchAllWeaponData = async (queryClient: QueryClient) => {
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ["weapons"],
+      queryFn: async () => {
+        const data: IBasicWeapon[] = await getWeapons();
+        return data;
+      },
+      staleTime: 1000 * 60 * 60, // 1 hour
+      gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["weaponSeries"],
+      queryFn: async () => {
+        const data: IBaseWeaponSeries = await getWeaponSeries();
+        return data;
+      },
+      staleTime: 1000 * 60 * 60, // 1 hour
+      gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    })
+  ]);
+  return queryClient;
 };
