@@ -25,7 +25,7 @@ export default function RefinementSection({
           selectedLevel: refinementLevel,
           setSelectedLevel: setRefinementLevel,
           noOfLevels: refinements.length,
-          selectorWidth: 12,
+          selectorWidth: 10,
           align
         }}
       />
