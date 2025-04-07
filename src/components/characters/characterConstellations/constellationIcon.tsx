@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { Tooltip } from "react-tooltip";
+
 import { IConstellation } from "~/types/enka/character.types";
 import { IElementType } from "~/types/enka/enka.types";
 import elementalColorPicker from "~/utils/elementalColorPicker";
@@ -53,17 +56,30 @@ export default function ConstellationIcon({
       >
         <div
           className="flex items-center justify-center"
+          data-tooltip-id="constellation-tooltip"
+          data-tooltip-content={
+            selectedConstellation.id !== constellation.id
+              ? constellation.name
+              : ""
+          }
           style={{
             transform: "rotate(180deg)"
           }}
         >
-          <img
+          <Image
             src={constellation.icon}
             alt={constellation.name}
+            width={100}
+            height={100}
             style={{
               //overlay white color to make the icon more visible
               filter: "brightness(0) invert(1)"
             }}
+          />
+          <Tooltip
+            className="font-enka"
+            id="constellation-tooltip"
+            // hidden={selectedConstellation.id === constellation.id}
           />
         </div>
       </div>

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import RarityStars from "~/components/common/rarityStars";
 import TitleHeading from "~/components/common/typography/titleHeading";
 import { EQUIP_TYPES } from "~/data/teyvatData";
@@ -40,10 +42,12 @@ export default function ArtifactProfileDesktop({
       </div>
       <div className="relative mx-2 flex h-full w-full">
         <div className="mx-2 flex w-1/3 flex-col items-start">
-          <img
+          <Image
             src={icon}
             alt={name}
-            className="absolute bottom-10 left-20"
+            height={200}
+            width={500}
+            className="absolute bottom-10 left-10"
             style={{
               height: "100%",
               scale: "1"

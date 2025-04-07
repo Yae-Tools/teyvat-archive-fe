@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Tooltip } from "react-tooltip";
 
 import { ITalent } from "~/types/enka/character.types";
@@ -38,10 +39,11 @@ export default function TalentIcon({
               : "rgb(30 41 59)"
         }}
       >
-        <img
+        <Image
           src={talent.icon}
           alt={talent.name}
           width={60}
+          height={60}
           style={{
             filter:
               selectedTalentId === talent.id
@@ -50,7 +52,7 @@ export default function TalentIcon({
           }}
         />
       </div>
-      <Tooltip id="talent-tooltip" />
+      <Tooltip id="talent-tooltip" className="font-enka" />
     </button>
   );
 }

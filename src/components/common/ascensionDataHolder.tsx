@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Tooltip } from "react-tooltip";
 
 import MoraImage from "~/assets/icons/Item_Mora.png";
 import {
@@ -29,7 +30,11 @@ export default function AscensionDataHolder({
                 rarity={rarityParser(item.materialRarity)}
                 bgFlow="fromTo"
               >
-                <div className="flex h-full w-full flex-col items-center justify-end">
+                <div
+                  className="flex h-full w-full flex-col items-center justify-end"
+                  data-tooltip-id="asc-item-tooltip"
+                  data-tooltip-content={`${item.materialName}`}
+                >
                   <Image
                     src={item.materialIcon}
                     alt={item.materialName}
@@ -40,6 +45,13 @@ export default function AscensionDataHolder({
                     {item.count}
                   </p>
                 </div>
+                <Tooltip
+                  id="asc-item-tooltip"
+                  className="font-enka"
+                  style={{
+                    fontSize: "0.8rem"
+                  }}
+                />
               </MiniIconContainer>
             ))}
           </div>
