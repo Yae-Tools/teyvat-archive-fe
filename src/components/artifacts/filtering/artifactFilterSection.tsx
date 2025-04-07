@@ -11,11 +11,10 @@ import {
   artifactSetSortingAtom,
   artifactSortAscAtom
 } from "~/atoms/teyvat/artifact.atom";
-import ButtonGroup from "~/components/common/basic/buttonGroup";
 import AscSort from "~/components/common/filters/ascSort";
 import Dropdown from "~/components/common/filters/filterDropdown";
+import SortSelector from "~/components/common/filters/sortSelector";
 import { RARITY_TYPES, SORTING_ARRAY } from "~/data/teyvatData";
-import { IDefaultSorting } from "~/types/enka/enka.types";
 
 import ArtifactFilterStack from "./artifactFilterStack";
 
@@ -46,18 +45,9 @@ export default function ArtifactFilterSection() {
               }}
             />
           </div>
-          <div className="flex w-full items-center justify-center space-x-2">
-            <ButtonGroup
-              items={SORTING_ARRAY.map((sortOption, index) => ({
-                id: index,
-                label: sortOption,
-                value: sortOption,
-                onClick: (srtOpt: IDefaultSorting) => setSelectedSort(srtOpt)
-              }))}
-              selectedItem={selectedSort}
-            />
-            <AscSort {...{ isSortAsc, setIsSortAsc }} />
-          </div>
+          <SortSelector
+            {...{ selectedSort, setSelectedSort, isSortAsc, setIsSortAsc }}
+          />
         </div>
       ) : (
         <div className="flex w-full max-w-[320px] flex-col space-y-2 lg:hidden">
