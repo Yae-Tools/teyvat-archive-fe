@@ -13,7 +13,7 @@ export default function ItemLevelPicker({
   selectedLevel,
   setSelectedLevel,
   noOfLevels,
-  selectorWidth = 12,
+  selectorWidth = 10,
   align = "start",
   isZeroEnabled = false
 }: Readonly<Props>) {
