@@ -2,6 +2,7 @@ import {
   IAbyssCharacterResponse,
   IBodyType,
   IElementType,
+  IEnkaStat,
   IRarityType,
   IWeaponType
 } from "./enka.types";
@@ -13,15 +14,20 @@ export interface IConstellation {
   icon: string;
 }
 
-export interface IAscensionData {
-  scoinCost: number;
-  costItems: [
-    {
-      id: number;
-      count: number;
-    }
-  ];
-  addProps: [propType: string];
+export interface IAscenstionCostItem {
+  count: number;
+  materialId: number;
+  materialName: string;
+  materialIcon: string;
+  materialRarity: number;
+}
+export interface ICharacterAscensionData {
+  level: number;
+  unlockMaxLevel: number;
+  requiredAdventureRank: number;
+  items: IAscenstionCostItem[];
+  addProps: IEnkaStat[];
+  coins: number;
 }
 
 export interface IBirthday {
@@ -48,13 +54,7 @@ export interface ICharacterTalentStats {
 
 export interface ITalentAscensionCost {
   level: number;
-  items: {
-    count: number;
-    materialId: number;
-    materialName: string;
-    materialIcon: string;
-    materialRarity: number;
-  }[];
+  items: IAscenstionCostItem[];
   coins: number;
 }
 
@@ -99,7 +99,7 @@ export interface ICharacter extends IBaseCharacter {
   skills: ITalent[];
   sideIcon: string;
   passiveTalents: ITalent[];
-  ascensionData: IAscensionData[];
+  ascensionData: ICharacterAscensionData[];
   title: string;
   birthday: IBirthday | null;
   bodyType: IBodyType;

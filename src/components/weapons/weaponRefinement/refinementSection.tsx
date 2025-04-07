@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-
+import ItemLevelPicker from "~/components/characters/characterTalents/itemLevelPicker";
 import { IRefinement } from "~/types/enka/weapon.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
@@ -21,22 +20,15 @@ export default function RefinementSection({
       className={`flex w-full flex-col space-y-2 py-6 text-white items-${align} justify-center`}
     >
       <h5 className="text-lg font-semibold">{refinements[0].name}</h5>
-      <div className={`flex w-full gap-3 justify-${align} items-center py-1`}>
-        {Array.from({ length: 5 }, (_, i) => (
-          <motion.button
-            key={`refinement-${i}`}
-            onClick={() => setRefinementLevel(i + 1)}
-            className="h-2 w-12 rounded-sm"
-            animate={{
-              backgroundColor:
-                i < refinementLevel
-                  ? "var(--color-teal-600)"
-                  : "var(--color-gray-300)"
-            }}
-            transition={{ duration: 0.5, delay: 0.05 * i }}
-          />
-        ))}
-      </div>
+      <ItemLevelPicker
+        {...{
+          selectedLevel: refinementLevel,
+          setSelectedLevel: setRefinementLevel,
+          noOfLevels: refinements.length,
+          selectorWidth: 12,
+          align
+        }}
+      />
       <div className={`flex w-full flex-col pb-2 items-${align}`}>
         <h6 className="text-md pb-2">Refinement {refinementLevel}</h6>
         <p

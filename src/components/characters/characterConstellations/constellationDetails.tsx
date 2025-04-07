@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { IConstellation } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
@@ -16,17 +18,19 @@ export default function ConstellationDetails({
         {selectedConstellation.name}
       </h6>
       <div
-        className="z-10 mt-8 w-full px-4 text-left text-lg"
+        className="z-10 mt-8 w-full overflow-y-auto px-4 text-left text-[16px]"
         dangerouslySetInnerHTML={{
           __html: parseText(selectedConstellation?.description)
         }}
       />
 
       <div className="absolute z-0 mt-[10rem] flex w-full items-center justify-center">
-        <img
+        <Image
           src={selectedConstellation.icon}
           alt={selectedConstellation.name}
           className="size-80"
+          width={100}
+          height={100}
           style={{
             filter: "blur(0.5px) brightness(0.5)"
           }}

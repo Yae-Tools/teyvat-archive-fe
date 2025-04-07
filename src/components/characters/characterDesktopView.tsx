@@ -11,7 +11,7 @@ import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
 import RarityStars from "../common/rarityStars";
 
-import AscensionMatsDesktop from "./characterAscension/ascensionMatsDesktop";
+import AscensionDetailsDesktop from "./characterAscension/ascensionDetailsDesktop";
 import DesktopConstellationView from "./characterConstellations/desktopConstellationView";
 import CharacterDesktopOverview from "./characterOverview/characterDesktopOverview";
 import CharacterProfileDesktop from "./characterProfile/characterProfileDesktop";
@@ -146,7 +146,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
               />
             )}
             {selectedTab === "ascension" && (
-              <AscensionMatsDesktop {...{ ascensionData }} />
+              <AscensionDetailsDesktop {...{ ascensionData }} />
             )}
           </div>
         </div>
