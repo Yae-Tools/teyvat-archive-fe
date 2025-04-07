@@ -6,7 +6,7 @@ import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 
 import AbyssIconLoader from "../common/loaderHandlers/abyssIconLoader";
 import TitleHeading from "../common/typography/titleHeading";
-import AbyssIconContainer from "../layout/container/abyssIconContainer";
+import MiniIconContainer from "../layout/container/miniIconContainer";
 
 import AbyssItemToggle from "./abysItemToggle";
 
@@ -52,7 +52,7 @@ export default function MostPickedCharacters({
         {top10Chars.length === 10 &&
           top10Chars.map((char) => {
             return (
-              <AbyssIconContainer
+              <MiniIconContainer
                 key={char.id}
                 rarity={char.rarity as IRarityType}
               >
@@ -69,7 +69,7 @@ export default function MostPickedCharacters({
                     {formatStatValue(char.useRate * 100, true, 2)}
                   </p>
                 </div>
-              </AbyssIconContainer>
+              </MiniIconContainer>
             );
           })}
       </div>

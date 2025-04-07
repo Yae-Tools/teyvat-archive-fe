@@ -46,12 +46,25 @@ export interface ICharacterTalentStats {
   }[];
 }
 
+export interface ITalentAscensionCost {
+  level: number;
+  items: {
+    count: number;
+    materialId: number;
+    materialName: string;
+    materialIcon: string;
+    materialRarity: number;
+  }[];
+  coins: number;
+}
+
 export interface ITalent {
   id: number;
   name: string;
   icon: string;
   description: string;
   stats: ICharacterTalentStats[];
+  ascensionCost: ITalentAscensionCost[];
 }
 
 export interface IAllTalent extends ITalent {
