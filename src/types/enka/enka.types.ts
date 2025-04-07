@@ -1,5 +1,6 @@
 import {
   BODY_TYPE_KEYS,
+  CHARACTER_SORTING_OPTIONS,
   ELEMENT_TYPES,
   EQUIP_TYPES,
   RARITY_TYPES,
@@ -162,6 +163,8 @@ export interface IAbyssBlessing {
   name: string;
   description: string;
 }
+
+export type ICharacterSorting = keyof typeof CHARACTER_SORTING_OPTIONS
 
 export type IRarityType = keyof typeof RARITY_TYPES;
 
