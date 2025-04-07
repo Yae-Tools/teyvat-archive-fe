@@ -1,13 +1,14 @@
 "use server";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from "@tanstack/react-query";
 import { Metadata } from "next";
 
-import AllArtifactsShowcase from "~/components/artifacts/allArtifactsShowcase";
-import ArtifactFilterSection from "~/components/artifacts/filtering/artifactFilterSection";
-import PageTitle from "~/components/common/typography/pageTitle";
-import ShowcaseFilterContainer from "~/components/layout/container/showcaseFilterContainer";
-import { getArtifactSets } from "~/services/teyvatServer/teyvatArchive.service";
-import { IBaseArtifactSet } from "~/types/enka/artifacts.types";
+import ArtifactsClient from "~/components/artifacts/artifactsClient";
+import { prefetchArtifactsSetData } from "~/hooks/useArtifactData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -19,17 +20,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Artifacts() {
-  const artifactSets: IBaseArtifactSet[] = await getArtifactSets();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60, // 1 hour
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+      }
+    }
+  });
+
+  await prefetchArtifactsSetData(queryClient);
 
   return (
-    <>
-      <ShowcaseFilterContainer isSticky>
-        <div className="mt-3 flex w-full items-center justify-center xl:mb-4">
-          <PageTitle title="Teyvat Artifacts" />
-        </div>
-        <ArtifactFilterSection />
-      </ShowcaseFilterContainer>
-      <AllArtifactsShowcase artifactSets={artifactSets} />
-    </>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ArtifactsClient />
+    </HydrationBoundary>
   );
 }

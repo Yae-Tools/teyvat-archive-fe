@@ -1,22 +1,26 @@
-import { ChevronDown, ChevronUp, SlidersHorizontal } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 type Props = {
   children: React.ReactNode;
-  isFilterOpen: boolean;
-  setIsFilterOpen: (isOpen: boolean) => void;
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  title?: string;
+  icon?: React.ReactNode;
 };
 
-export default function FilterDropDown({
+export default function Dropdown({
   children,
-  isFilterOpen,
-  setIsFilterOpen
+  isOpen,
+  setIsOpen,
+  title,
+  icon
 }: Readonly<Props>) {
   return (
     <div className="inline-flex w-full items-center overflow-hidden rounded-md border bg-white dark:border-gray-800 dark:bg-gray-900">
       <div className="flex w-full items-center justify-start border-e px-4 py-2 text-sm/none text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:border-e-gray-800 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200">
-        <div className="flex items-center">
-          <p>Filters</p>
-          <SlidersHorizontal className="ml-2 size-4" />
+        <div className="flex w-full items-center">
+          {title && <p>{title}</p>}
+          {icon}
         </div>
 
         <div className="flex w-full items-center justify-end space-x-1">
@@ -26,9 +30,9 @@ export default function FilterDropDown({
 
       <button
         className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-        onClick={() => setIsFilterOpen(!isFilterOpen)}
+        onClick={() => setIsOpen(!isOpen)}
       >
-        {isFilterOpen ? (
+        {isOpen ? (
           <ChevronUp className="size-4" />
         ) : (
           <ChevronDown className="size-4" />

@@ -1,11 +1,14 @@
 "use server";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from "@tanstack/react-query";
 import { Metadata } from "next";
 
-import PageTitle from "~/components/common/typography/pageTitle";
 import EventsClient from "~/components/events/eventsClient";
-import { getAllEvents } from "~/services/teyvatServer/teyvatArchive.service";
-import { IEvent } from "~/types/ambr.types";
+import { prefetchEventData } from "~/hooks/useEventData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -16,12 +19,20 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Events() {
-  const events: IEvent[] = await getAllEvents();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60, // 1 hour
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+      }
+    }
+  });
+
+  await prefetchEventData(queryClient);
 
   return (
-    <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
-      <PageTitle title="Teyvat Events" />
-      <EventsClient {...{ events }} />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <EventsClient />
+    </HydrationBoundary>
   );
 }

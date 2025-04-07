@@ -11,7 +11,7 @@ type Props = {
   bgFlow?: "fromTo" | "toFrom";
 };
 
-export default function AbyssIconContainer({
+export default function MiniIconContainer({
   children,
   rarity,
   bgFlow = "toFrom"

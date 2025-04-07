@@ -2,7 +2,8 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 
 import {
   getAbyssBlessings,
-  getAbyssData
+  getAbyssData,
+  getCharacters
 } from "~/services/teyvatServer/teyvatArchive.service";
 import { IAbyssDataResponse } from "~/types/enka/enka.types";
 
@@ -12,7 +13,9 @@ export const useAbyssInfo = () => {
     queryFn: async () => {
       const abyssInfo: IAbyssDataResponse = await getAbyssData();
       return abyssInfo;
-    }
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
@@ -22,7 +25,9 @@ export const useAbyssBlessings = () => {
     queryFn: async () => {
       const abyssBlessings = await getAbyssBlessings();
       return abyssBlessings;
-    }
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
@@ -35,6 +40,10 @@ export const prefetchAbyssData = async (queryClient: QueryClient) => {
     queryClient.prefetchQuery({
       queryKey: ["abyssBlessings"],
       queryFn: async () => await getAbyssBlessings()
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ["characters"],
+      queryFn: async () => await getCharacters()
     })
   ]);
   return queryClient;

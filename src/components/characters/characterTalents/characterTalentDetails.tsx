@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+import ButtonGroup from "~/components/common/basic/buttonGroup";
 import { IAllTalent } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
@@ -10,22 +13,50 @@ type Props = {
 export default function CharacterTalentDetails({
   selectedTalent
 }: Readonly<Props>) {
+  const [item, setItem] = useState("desc");
+
+  useEffect(() => {
+    setItem("desc");
+  }, [selectedTalent]);
+
   if (selectedTalent) {
-    console.log("selectedTalent", selectedTalent);
     return (
       <div className="flex w-full flex-col items-start justify-start rounded-lg bg-slate-700 px-8 py-4 text-xl text-white">
         <h2 className="font-algoindeEnka mb-4 text-3xl">
           {selectedTalent.name} {selectedTalent.isPassive ? "(Passive)" : ""}
         </h2>
-        <div>
+        {selectedTalent.stats && (
+          <div className="mb-4">
+            <ButtonGroup
+              items={[
+                { name: "Description", id: "desc" },
+                {
+                  name: "Stats",
+                  id: "stats"
+                }
+              ].map((data, index) => ({
+                id: index,
+                label: data.name,
+                value: data.id,
+                onClick: (itm: string) => setItem(itm)
+              }))}
+              selectedItem={item}
+            />
+          </div>
+        )}
+
+        {item === "desc" && (
           <div
-            className="w-full"
+            className="w-full text-[16px]"
             dangerouslySetInnerHTML={{
               __html: parseText(selectedTalent.description || "")
             }}
           />
-        </div>
-        {selectedTalent.stats && <TalentStats {...{ selectedTalent }} />}
+        )}
+
+        {item === "stats" && selectedTalent.stats && (
+          <TalentStats {...{ selectedTalent }} />
+        )}
       </div>
     );
   }

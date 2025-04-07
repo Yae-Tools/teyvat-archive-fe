@@ -71,3 +71,24 @@ export const BODY_TYPE_KEYS = {
   BODY_LOLI: "BODY_LOLI"
 } as const;
 export const BODY_ARRAY = Object.keys(BODY_TYPE_KEYS) as IBodyType[];
+
+export const SORTING_OPTIONS = {
+  Default: "Default",
+  Name: "Name",
+  Rarity: "Rarity"
+} as const;
+
+export const SORTING_ARRAY = Object.keys(SORTING_OPTIONS) as Array<
+  keyof typeof SORTING_OPTIONS
+>;
+
+export const CHARACTER_SORTING_OPTIONS = {
+  Default: "Default",
+  Release: "Release",
+  Name: "Name",
+  Rarity: "Rarity"
+} as const;
+
+export const CHARACTER_SORTING_ARRAY = Object.keys(
+  CHARACTER_SORTING_OPTIONS
+) as Array<keyof typeof CHARACTER_SORTING_OPTIONS>;

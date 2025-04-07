@@ -1,6 +1,6 @@
 import { ICharacter } from "~/types/enka/character.types";
 
-import AscensionMatsMobile from "./characterAscension/ascensionMatsMobile";
+import AscensionDetailsMobile from "./characterAscension/ascensionDetailsMobile";
 import MobileConstellationView from "./characterConstellations/mobileConstellationView";
 import CharacterMobileOverview from "./characterOverview/characterMobileOverview";
 import CharacterProfileMobile from "./characterProfile/characterProfileMobile";
@@ -31,7 +31,7 @@ export default function CharacterMobileView({
     isTraveler
   } = characterData;
   return (
-    <div className="w-full px-2 pt-2 md:p-10 xl:hidden">
+    <div className="w-full p-2 md:p-10 xl:hidden">
       <CharacterProfileMobile {...{ name, stars, splashUrl, element }} />
       <CharacterMobileOverview
         {...{
@@ -51,7 +51,7 @@ export default function CharacterMobileView({
           chapterIcon: constellationIcon
         }}
       />
-      <AscensionMatsMobile ascensionData={ascensionData} />
+      <AscensionDetailsMobile {...{ ascensionData }} />
     </div>
   );
 }

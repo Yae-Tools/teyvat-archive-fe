@@ -26,4 +26,23 @@ function rarityParser(rarity: number): IRarityType {
   }
 }
 
+export const inverseRarityParser = (rarity: IRarityType): number => {
+  switch (rarity) {
+    case RARITY_TYPE_KEYS.QUALITY_GRAY:
+      return 1;
+    case RARITY_TYPE_KEYS.QUALITY_GREEN:
+      return 2;
+    case RARITY_TYPE_KEYS.QUALITY_BLUE:
+      return 3;
+    case RARITY_TYPE_KEYS.QUALITY_PURPLE:
+      return 4;
+    case RARITY_TYPE_KEYS.QUALITY_ORANGE:
+      return 5;
+    case RARITY_TYPE_KEYS.QUALITY_ORANGE_SP:
+      return 6;
+    default:
+      return 1; // Default case, should not happen
+  }
+};
+
 export default rarityParser;

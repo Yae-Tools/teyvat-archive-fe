@@ -1,10 +1,12 @@
+import { cache } from "react";
+
 import { createAxiosService } from "../http/axios.service";
 
 export const ENKA_BASE_URL = process.env.NEXT_PUBLIC_ENKA_BASE_URL as string;
 
 export const serverInstance = createAxiosService(ENKA_BASE_URL);
 
-export const getCharacters = async () => {
+export const getCharacters = cache(async () => {
   try {
     const response = await serverInstance.get("/characters/all");
     return response.data;
@@ -12,7 +14,7 @@ export const getCharacters = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
 export const getCharacterBySkillDepotId = async (
   enkaId: string,
@@ -30,7 +32,7 @@ export const getCharacterBySkillDepotId = async (
   }
 };
 
-export const getWeapons = async () => {
+export const getWeapons = cache(async () => {
   try {
     const response = await serverInstance.get("/weapons/all");
     return response.data;
@@ -38,7 +40,7 @@ export const getWeapons = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
 export const getWeaponById = async (weaponId: string) => {
   try {
@@ -50,7 +52,7 @@ export const getWeaponById = async (weaponId: string) => {
   }
 };
 
-export const getWeaponSeries = async () => {
+export const getWeaponSeries = cache(async () => {
   try {
     const response = await serverInstance.get("/weapons/series");
     return response.data;
@@ -58,9 +60,9 @@ export const getWeaponSeries = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
-export const getArtifacts = async () => {
+export const getArtifacts = cache(async () => {
   try {
     const response = await serverInstance.get("/artifacts/all");
     return response.data;
@@ -68,9 +70,9 @@ export const getArtifacts = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
-export const getArtifactSets = async () => {
+export const getArtifactSets = cache(async () => {
   try {
     const response = await serverInstance.get("/artifacts/sets");
     return response.data;
@@ -78,7 +80,7 @@ export const getArtifactSets = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
 export const getArtifactSetById = async (artifactSetId: string) => {
   try {
@@ -102,7 +104,7 @@ export const getMaterialById = async (materialId: string) => {
   }
 };
 
-export const getAllEvents = async () => {
+export const getAllEvents = cache(async () => {
   try {
     const response = await serverInstance.get("/events/all");
     return response.data;
@@ -110,9 +112,9 @@ export const getAllEvents = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
-export const getAllCalendarEvents = async () => {
+export const getAllCalendarEvents = cache(async () => {
   try {
     const response = await serverInstance.get("/calendar/all");
     return response.data;
@@ -120,9 +122,9 @@ export const getAllCalendarEvents = async () => {
     console.error(error);
     return [];
   }
-};
+});
 
-export const getAbyssData = async () => {
+export const getAbyssData = cache(async () => {
   try {
     const response = await serverInstance.get("/abyss/data");
     return response.data;
@@ -130,9 +132,9 @@ export const getAbyssData = async () => {
     console.error(error);
     return null;
   }
-};
+});
 
-export const getAbyssBlessings = async () => {
+export const getAbyssBlessings = cache(async () => {
   try {
     const response = await serverInstance.get("/abyss/blessings");
     return response.data;
@@ -140,4 +142,4 @@ export const getAbyssBlessings = async () => {
     console.error(error);
     return null;
   }
-};
+});

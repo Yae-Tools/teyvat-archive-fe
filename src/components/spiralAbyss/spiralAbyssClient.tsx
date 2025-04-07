@@ -12,6 +12,8 @@ import {
   getTopTenCharacters
 } from "~/utils/parsers/abyssDataParser";
 
+import PageTitle from "../common/typography/pageTitle";
+
 import AbyssBlessings from "./abyssBlessings";
 import Citation from "./citation";
 import MostUsedTeams from "./mosedUsedTeams";
@@ -61,15 +63,20 @@ export default function SpiralAbyssClient() {
   }, [blessingData]);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center space-y-4">
-      <MostPickedCharacters
-        {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
-      />
-      <MostUsedTeams {...{ firstHalf, secondHalf, isAbyssLoading }} />
-      <AbyssBlessings
-        {...{ sortedAbyssBlessings, isLoading: isBlessingLoading }}
-      />
-      <Citation />
+    <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
+      <PageTitle title="Spiral Abyss" />
+      <div className="m-4">
+        <div className="flex w-full flex-col items-center justify-center space-y-4">
+          <MostPickedCharacters
+            {...{ top10Chars, isAbyssLoading, isUsedByOwn, setIsUsedByOwn }}
+          />
+          <MostUsedTeams {...{ firstHalf, secondHalf, isAbyssLoading }} />
+          <AbyssBlessings
+            {...{ sortedAbyssBlessings, isLoading: isBlessingLoading }}
+          />
+          <Citation />
+        </div>
+      </div>
     </div>
   );
 }
