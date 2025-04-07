@@ -1,6 +1,5 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 
@@ -9,7 +8,7 @@ import {
   useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
 import filterCharacters from "~/features/characterDisplayOptimizer";
-import { getCharacters } from "~/services/teyvatServer/teyvatArchive.service";
+import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { IBaseCharacter } from "~/types/enka/character.types";
 
 import PageTitle from "../common/typography/pageTitle";
@@ -19,16 +18,7 @@ import AllCharacterShowcase from "./allCharacterShowcase";
 import CharacterFilterSection from "./filtering/characterFilterSection";
 
 function CharactersClient() {
-  const { data: characters } = useQuery<IBaseCharacter[]>({
-    queryKey: ["characters"],
-    queryFn: async () => {
-      const data: IBaseCharacter[] = await getCharacters();
-      return data;
-    },
-    initialData: [],
-    refetchInterval: 1000 * 60 * 60 // 1 hour
-  });
-
+  const { data: characters } = useAllCharacterData();
   const [useFilterTravelers] = useAtom(useFilterTravelersAtom);
   const [useSelectedTraveler] = useAtom(useSelectedTravelerAtom);
 

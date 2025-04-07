@@ -1,15 +1,17 @@
 "use server";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from "@tanstack/react-query";
 import { Metadata } from "next";
 
-import PageTitle from "~/components/common/typography/pageTitle";
-import ShowcaseFilterContainer from "~/components/layout/container/showcaseFilterContainer";
-import AllWeaponShowcase from "~/components/weapons/allWeaponShowcase";
-import WeaponFilterSection from "~/components/weapons/filtering/weaponFilterSection";
+import WeaponsClient from "~/components/weapons/weaponsClient";
 import {
-  getWeapons,
-  getWeaponSeries
-} from "~/services/teyvatServer/teyvatArchive.service";
+  prefetchAllWeapons,
+  prefetchAllWeaponSeries
+} from "~/hooks/useWeaponData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -20,20 +22,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Weapons() {
-  const [weapons, weaponSeries] = await Promise.all([
-    getWeapons(),
-    getWeaponSeries()
+  const queryClient = new QueryClient();
+
+  await Promise.all([
+    prefetchAllWeapons(queryClient),
+    prefetchAllWeaponSeries(queryClient)
   ]);
 
   return (
-    <>
-      <ShowcaseFilterContainer isSticky>
-        <div className="mt-3 flex w-full items-center justify-center xl:mb-4">
-          <PageTitle title="Teyvat Weapons" />
-        </div>
-        <WeaponFilterSection weaponSeries={weaponSeries} />
-      </ShowcaseFilterContainer>
-      <AllWeaponShowcase weapons={weapons} />
-    </>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <WeaponsClient />
+    </HydrationBoundary>
   );
 }

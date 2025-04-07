@@ -20,7 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Characters() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 60, // 1 hour
+        gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+      }
+    }
+  });
 
   await prefetchAllCharacters(queryClient);
 

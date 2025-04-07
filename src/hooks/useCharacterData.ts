@@ -9,16 +9,22 @@ export const useAllCharacterData = () => {
     queryFn: async () => {
       const data: IBaseCharacter[] = await getCharacters();
       return data;
-    }
+    },
+    initialData: [],
+    // refetchInterval: 1000 * 60 * 60 // 1 hour
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
 
 export const prefetchAllCharacters = async (queryClient: QueryClient) => {
-  return queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ["characters"],
     queryFn: async () => {
       const data: IBaseCharacter[] = await getCharacters();
       return data;
-    }
+    },
+    staleTime: 1000 * 60 * 60, // 1 hour
+    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
   });
 };
