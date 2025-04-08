@@ -57,6 +57,9 @@ export default function ArtifactProfileDesktop({
         <Image src={icon} alt={name} height={250} width={250} />
         <DescriptionDesktop {...{ description }} align="right" />
         <div className="mt-2 flex w-full flex-col items-center justify-end">
+          <div className="mb-2 flex w-full flex-col items-end justify-end space-x-1 text-right text-white">
+            <h6>{EQUIP_TYPES[selectedEquipItem.equipType]}</h6>
+          </div>
           {selectedRarityFullSet.length > 0 && (
             <ArtifactEquipPicker
               {...{
@@ -66,9 +69,6 @@ export default function ArtifactProfileDesktop({
               }}
             />
           )}
-          <div className="mt-2 flex w-full flex-col items-end justify-end space-x-1 text-right text-white">
-            <h6>{EQUIP_TYPES[selectedEquipItem.equipType]}</h6>
-          </div>
         </div>
       </div>
     </div>
