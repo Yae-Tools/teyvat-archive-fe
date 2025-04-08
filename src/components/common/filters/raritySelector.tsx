@@ -17,7 +17,7 @@ export default function RaritySelector({
   return (
     <div className="flex w-full items-center justify-center">
       <button
-        className="mx-2 flex cursor-pointer items-center text-sm"
+        className="mx-2 flex w-full cursor-pointer items-center justify-center space-x-0.5 text-sm"
         onClick={() => {
           if (selectedRarity === RARITIES_ARRAY[rarityIndex]) {
             setSelectedRarity(null);
@@ -26,15 +26,20 @@ export default function RaritySelector({
           }
         }}
       >
-        {rarityIndex + 1 > 5 ? RARITY_TYPES.QUALITY_ORANGE_SP : rarityIndex + 1}
+        <p>
+          {rarityIndex + 1 > 5
+            ? RARITY_TYPES.QUALITY_ORANGE_SP
+            : rarityIndex + 1}
+        </p>
+
         {selectedRarity === RARITIES_ARRAY[rarityIndex] || !selectedRarity ? (
           <StarIcon
-            className={`size-3 text-[gold] lg:size-4 xl:size-5`}
+            className={`size-3 text-[gold] lg:size-4 xl:size-[18px]`}
             fill="currentColor"
             strokeWidth={1}
           />
         ) : (
-          <StarIcon className="size-3 text-[gold] lg:size-4 xl:size-5" />
+          <StarIcon className="size-3 text-[gold] lg:size-4 xl:size-[18px]" />
         )}
       </button>
     </div>

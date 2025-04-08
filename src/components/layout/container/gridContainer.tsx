@@ -37,7 +37,7 @@ export default function GridContainer({
         variants={containerAnimation}
         initial="hidden"
         animate="show"
-        className="xs:grid-cols-3 grid auto-cols-fr grid-cols-2 overflow-y-auto pt-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
+        className="xs:grid-cols-3 grid auto-cols-fr grid-cols-2 overflow-hidden pt-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
       >
         {children}
 
