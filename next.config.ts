@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
       port: "",
       pathname: "/**"
     }))
+  },
+  experimental: {
+    reactCompiler: true
   }
 };
 
