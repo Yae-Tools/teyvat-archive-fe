@@ -8,7 +8,7 @@ import {
 import { Metadata } from "next";
 
 import WeaponsClient from "~/components/weapons/weaponsClient";
-import { prefetchAllWeaponData } from "~/hooks/useWeaponData";
+import { prefetchAllWeaponData } from "~/hooks/weapon/useWeaponData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

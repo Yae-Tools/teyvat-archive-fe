@@ -9,7 +9,7 @@ import {
 
 export const selectedWeaponTypeAtom = atom<IWeaponType | null>(null);
 export const selectedWeaponRarityAtom = atom<IRarityType | null>(null);
-export const selectedWeaponSeriesAtom = atom("");
+export const selectedWeaponSeriesAtom = atom("all");
 export const weaponSearchAtom = atom("");
 export const weaponSortAscAtom = atom(true);
 export const weaponSortingAtom = atom<IDefaultSorting>(SORTING_OPTIONS.Default);

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import { useAllCharacterData } from "~/hooks/character/useCharacterData";
 import { useAbyssBlessings, useAbyssInfo } from "~/hooks/useAbyssData";
-import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { ITopCharacter } from "~/types/enka/character.types";
-import { IAbyssBlessing, IAbyssPartyData } from "~/types/enka/enka.types";
+import { IAbyssPartyData } from "~/types/enka/enka.types";
 import {
   getFinalizedAbyssBlessings,
   getTopFourTeams,
@@ -29,9 +29,13 @@ export default function SpiralAbyssClient() {
   const [top10Chars, setTop10Chars] = useState<ITopCharacter[]>([]);
   const [firstHalf, setFirstHalf] = useState<IAbyssPartyData[]>([]);
   const [secondHalf, setSecondHalf] = useState<IAbyssPartyData[]>([]);
-  const [sortedAbyssBlessings, setSortedAbyssBlessings] = useState<
-    IAbyssBlessing[]
-  >([]);
+
+  const sortedAbyssBlessings = useMemo(() => {
+    if (blessingData) {
+      return getFinalizedAbyssBlessings(blessingData);
+    }
+    return [];
+  }, [blessingData]);
 
   useEffect(() => {
     if (abyssData && characterData) {
@@ -55,12 +59,6 @@ export default function SpiralAbyssClient() {
       setSecondHalf(secondHalfTeams);
     }
   }, [abyssData, isUsedByOwn, characterData]);
-
-  useEffect(() => {
-    if (blessingData) {
-      setSortedAbyssBlessings(getFinalizedAbyssBlessings(blessingData));
-    }
-  }, [blessingData]);
 
   return (
     <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">

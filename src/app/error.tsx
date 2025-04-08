@@ -43,6 +43,7 @@ export default function ErrorPage() {
               className="font-enka mt-4 ml-4 rounded-lg bg-[#EBE4D8] px-4 py-2 text-gray-800 shadow-md transition duration-300 hover:bg-gray-200"
               onClick={() => {
                 localStorage.clear();
+                sessionStorage.clear();
                 window.location.reload();
               }}
             >

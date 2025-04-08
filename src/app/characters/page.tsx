@@ -8,7 +8,7 @@ import {
 import { Metadata } from "next";
 
 import CharactersClient from "~/components/characters/charactersClient";
-import { prefetchAllCharacters } from "~/hooks/useCharacterData";
+import { prefetchAllCharacters } from "~/hooks/character/useCharacterData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

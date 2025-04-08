@@ -1,8 +1,10 @@
 import Image from "next/image";
+import { Tooltip } from "react-tooltip";
 
+import { EQUIP_TYPES } from "~/data/teyvatData";
 import { IEquipCollection } from "~/types/enka/artifacts.types";
 import { IEquipType } from "~/types/enka/enka.types";
-import { equipIconArray } from "~/utils/arttifactEquipMapper";
+import { equipIconArray } from "~/utils/artifactEquipMapper";
 
 type Props = {
   selectedArtifactEquipType: IEquipType | null;
@@ -24,6 +26,8 @@ export default function ArtifactEquipPicker({
         .map((icon, index) => (
           <button
             key={icon.id}
+            data-tooltip-id="equip-tooltip"
+            data-tooltip-content={EQUIP_TYPES[icon.id as IEquipType]}
             onClick={() => setSelectedArtifactEquipType(icon.id as IEquipType)}
             className={`${
               selectedArtifactEquipType === icon.id
@@ -35,6 +39,11 @@ export default function ArtifactEquipPicker({
               src={icon.url}
               alt={`Equip Icon ${index + 1}`}
               className="size-10"
+            />
+            <Tooltip
+              id="equip-tooltip"
+              className="font-enka"
+              hidden={selectedArtifactEquipType === icon.id}
             />
           </button>
         ))}

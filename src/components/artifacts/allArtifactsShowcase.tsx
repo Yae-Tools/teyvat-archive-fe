@@ -1,18 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useAtomValue } from "jotai";
 import { useMemo } from "react";
 
-import {
-  artifactRarityAtom,
-  artifactSearchAtom,
-  artifactSetSortingAtom,
-  artifactSortAscAtom
-} from "~/atoms/teyvat/artifact.atom";
 import { SORTING_OPTIONS } from "~/data/teyvatData";
+import useArtifactFilters from "~/hooks/artifact/useArtifactFilters";
+import { useInfiniteScroll } from "~/hooks/useInfiniteScroll";
 import { IBaseArtifactSet } from "~/types/enka/artifacts.types";
 import rarityParser from "~/utils/parsers/rarityParser";
+
+import GridContainer, {
+  itemAnimation
+} from "../layout/container/gridContainer";
 
 import ArtifactThumbnail from "./artifactThumbnail";
 
@@ -23,63 +22,53 @@ type Props = {
 export default function AllArtifactsShowcase({
   artifactSets
 }: Readonly<Props>) {
-  const selectedArtifactRarity = useAtomValue(artifactRarityAtom);
-  const artifactSearch = useAtomValue(artifactSearchAtom);
-  const artifactSort = useAtomValue(artifactSetSortingAtom);
-  const isSortAsc = useAtomValue(artifactSortAscAtom);
+  const { artifactRarity, isAsc, search, sort } = useArtifactFilters();
 
   const filteredArtifactSets = useMemo(() => {
-    const searchLower = artifactSearch.toLowerCase();
-    return artifactSets
-      .filter(
-        (set) =>
-          set.name.toLowerCase().includes(searchLower) &&
-          (!selectedArtifactRarity ||
-            rarityParser(set.highestRarity) === selectedArtifactRarity)
-      )
-      .toSorted((a, b) => {
-        if (artifactSort === SORTING_OPTIONS.Default) {
-          return isSortAsc ? 0 : -1;
-        }
-        if (artifactSort === SORTING_OPTIONS.Name) {
-          return isSortAsc
-            ? a.name.localeCompare(b.name)
-            : b.name.localeCompare(a.name);
-        }
-        if (artifactSort === SORTING_OPTIONS.Rarity) {
-          return isSortAsc
-            ? a.highestRarity - b.highestRarity
-            : b.highestRarity - a.highestRarity;
-        }
-        return 0;
-      });
-  }, [
-    artifactSearch,
-    artifactSets,
-    selectedArtifactRarity,
-    artifactSort,
-    isSortAsc
-  ]);
+    const searchLower = search.toLowerCase();
+    return artifactSets.filter(
+      (set) =>
+        set.name.toLowerCase().includes(searchLower) &&
+        (!artifactRarity || rarityParser(set.highestRarity) === artifactRarity)
+    );
+  }, [search, artifactSets, artifactRarity]);
+
+  const filteredAndSortedArtifactSets = useMemo(() => {
+    return filteredArtifactSets.toSorted((a, b) => {
+      if (sort === SORTING_OPTIONS.Default) {
+        return isAsc ? 0 : -1;
+      }
+      if (sort === SORTING_OPTIONS.Name) {
+        return isAsc
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
+      }
+      if (sort === SORTING_OPTIONS.Rarity) {
+        return isAsc
+          ? a.highestRarity - b.highestRarity
+          : b.highestRarity - a.highestRarity;
+      }
+      return 0;
+    });
+  }, [filteredArtifactSets, sort, isAsc]);
+
+  const { hasMore, loaderRef, visibleItems } = useInfiniteScroll(
+    filteredAndSortedArtifactSets,
+    24,
+    12
+  );
 
   return (
-    <div
-      className="flex w-full items-center justify-center overflow-hidden px-4 md:px-12"
-      style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
-    >
-      <motion.div
-        layout
-        animate={{ opacity: 1 }}
-        className="xs:grid-cols-3 mt-2 grid auto-cols-fr grid-cols-2 overflow-y-auto pt-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
-      >
-        {filteredArtifactSets.map((artiSet) => (
-          <ArtifactThumbnail
-            key={artiSet.id}
-            {...{
-              artifactSet: artiSet
-            }}
-          />
-        ))}
-      </motion.div>
-    </div>
+    <GridContainer {...{ hasMore, loaderRef }}>
+      {visibleItems.map((artifactSet) => (
+        <motion.div
+          key={artifactSet.id}
+          variants={itemAnimation}
+          className="flex h-full w-full items-start justify-center"
+        >
+          <ArtifactThumbnail artifactSet={artifactSet} />
+        </motion.div>
+      ))}
+    </GridContainer>
   );
 }

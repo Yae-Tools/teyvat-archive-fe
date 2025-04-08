@@ -1,20 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useAtomValue } from "jotai";
 import { useMemo } from "react";
 
-import {
-  characterSearchAtom,
-  characterSortAscAtom,
-  characterSortingAtom,
-  selectedCharacterElementAtom,
-  selectedCharacterRarityAtom,
-  selectedCharacterWeaponAtom
-} from "~/atoms/teyvat/character.atom";
 import { CHARACTER_SORTING_OPTIONS } from "~/data/teyvatData";
+import useCharacterFilters from "~/hooks/character/useCharacterFilters";
+import { useInfiniteScroll } from "~/hooks/useInfiniteScroll";
 import { IBaseCharacter } from "~/types/enka/character.types";
 import { inverseRarityParser } from "~/utils/parsers/rarityParser";
+
+import GridContainer, {
+  itemAnimation
+} from "../layout/container/gridContainer";
 
 import CharacterThumbnail from "./characterThumbnail";
 
@@ -23,72 +20,62 @@ type Props = {
 };
 
 export default function AllCharacterShowcase({ characters }: Readonly<Props>) {
-  const selectedCharacterElement = useAtomValue(selectedCharacterElementAtom);
-  const selectedCharacterWeapon = useAtomValue(selectedCharacterWeaponAtom);
-  const selectedCharacterRarity = useAtomValue(selectedCharacterRarityAtom);
-  const characterSearch = useAtomValue(characterSearchAtom);
-  const characterSort = useAtomValue(characterSortingAtom);
-  const isSortAsc = useAtomValue(characterSortAscAtom);
+  const { element, isAsc, rarity, search, sort, weapon } =
+    useCharacterFilters();
 
   const filteredCharacters = useMemo(() => {
-    const searchLower = characterSearch.toLowerCase();
+    const searchLower = search.toLowerCase();
 
-    return characters
-      .filter(
-        (character) =>
-          character.name.toLowerCase().includes(searchLower) &&
-          (!selectedCharacterElement ||
-            character.element === selectedCharacterElement) &&
-          (!selectedCharacterWeapon ||
-            character.weaponType === selectedCharacterWeapon) &&
-          (!selectedCharacterRarity ||
-            character.rarity === selectedCharacterRarity)
-      )
-      .toSorted((a, b) => {
-        if (characterSort === CHARACTER_SORTING_OPTIONS.Default) {
-          return isSortAsc ? 0 : -1;
-        }
-        if (characterSort === CHARACTER_SORTING_OPTIONS.Name) {
-          return isSortAsc
-            ? a.name.localeCompare(b.name)
-            : b.name.localeCompare(a.name);
-        }
-        if (characterSort === CHARACTER_SORTING_OPTIONS.Rarity) {
-          return isSortAsc
-            ? inverseRarityParser(a.rarity) - inverseRarityParser(b.rarity)
-            : inverseRarityParser(b.rarity) - inverseRarityParser(a.rarity);
-        }
-        if (characterSort === CHARACTER_SORTING_OPTIONS.Release) {
-          return isSortAsc
-            ? a.releasedAt.localeCompare(b.releasedAt)
-            : b.releasedAt.localeCompare(a.releasedAt);
-        }
-        return 0;
-      });
-  }, [
-    selectedCharacterElement,
-    characters,
-    selectedCharacterWeapon,
-    selectedCharacterRarity,
-    characterSearch,
-    characterSort,
-    isSortAsc
-  ]);
+    return characters.filter(
+      (character) =>
+        character.name.toLowerCase().includes(searchLower) &&
+        (!element || character.element === element) &&
+        (!weapon || character.weaponType === weapon) &&
+        (!rarity || character.rarity === rarity)
+    );
+  }, [element, characters, weapon, rarity, search]);
+
+  const filteredAndSortedCharacters = useMemo(() => {
+    return filteredCharacters.toSorted((a, b) => {
+      if (sort === CHARACTER_SORTING_OPTIONS.Default) {
+        return isAsc ? 0 : -1;
+      }
+      if (sort === CHARACTER_SORTING_OPTIONS.Name) {
+        return isAsc
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
+      }
+      if (sort === CHARACTER_SORTING_OPTIONS.Rarity) {
+        return isAsc
+          ? inverseRarityParser(a.rarity) - inverseRarityParser(b.rarity)
+          : inverseRarityParser(b.rarity) - inverseRarityParser(a.rarity);
+      }
+      if (sort === CHARACTER_SORTING_OPTIONS.Release) {
+        return isAsc
+          ? a.releasedAt.localeCompare(b.releasedAt)
+          : b.releasedAt.localeCompare(a.releasedAt);
+      }
+      return 0;
+    });
+  }, [filteredCharacters, sort, isAsc]);
+
+  const { visibleItems, loaderRef, hasMore } = useInfiniteScroll(
+    filteredAndSortedCharacters,
+    24, // Initial items to show
+    12 // Number of items to load each time
+  );
 
   return (
-    <div
-      className="flex w-full items-center justify-center overflow-hidden px-4 md:px-12"
-      style={{ backgroundColor: "rgba(16, 24, 40, 0.3)" }}
-    >
-      <motion.div
-        layout
-        animate={{ opacity: 1 }}
-        className="xs:grid-cols-3 grid auto-cols-fr grid-cols-2 overflow-y-auto pt-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8"
-      >
-        {filteredCharacters.map((character) => (
-          <CharacterThumbnail key={character.id} {...{ character }} />
-        ))}
-      </motion.div>
-    </div>
+    <GridContainer {...{ hasMore, loaderRef }}>
+      {visibleItems.map((character) => (
+        <motion.div
+          key={character.id}
+          variants={itemAnimation}
+          className="flex h-full w-full items-start justify-center"
+        >
+          <CharacterThumbnail character={character} />
+        </motion.div>
+      ))}
+    </GridContainer>
   );
 }
