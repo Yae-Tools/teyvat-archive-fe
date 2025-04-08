@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { useAllCharacterData } from "~/hooks/character/useCharacterData";
 import { useAbyssBlessings, useAbyssInfo } from "~/hooks/useAbyssData";
-import { useAllCharacterData } from "~/hooks/useCharacterData";
 import { ITopCharacter } from "~/types/enka/character.types";
 import { IAbyssBlessing, IAbyssPartyData } from "~/types/enka/enka.types";
 import {

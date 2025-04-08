@@ -1,15 +1,14 @@
 "use client";
 
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 import {
   useFilterTravelersAtom,
   useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
 import filterCharacters from "~/features/characterDisplayOptimizer";
-import { useAllCharacterData } from "~/hooks/useCharacterData";
-import { IBaseCharacter } from "~/types/enka/character.types";
+import { useAllCharacterData } from "~/hooks/character/useCharacterData";
 
 import PageTitle from "../common/typography/pageTitle";
 import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";
@@ -22,15 +21,11 @@ function CharactersClient() {
   const [useFilterTravelers] = useAtom(useFilterTravelersAtom);
   const [useSelectedTraveler] = useAtom(useSelectedTravelerAtom);
 
-  const [filteredCharacters, setFilteredCharacters] =
-    useState<IBaseCharacter[]>(characters);
-
-  useEffect(() => {
+  const filteredCharacters = useMemo(() => {
     if (useFilterTravelers) {
-      setFilteredCharacters(filterCharacters(characters, useSelectedTraveler));
-    } else {
-      setFilteredCharacters(characters);
+      return filterCharacters(characters, useSelectedTraveler);
     }
+    return characters;
   }, [characters, useFilterTravelers, useSelectedTraveler]);
 
   return (

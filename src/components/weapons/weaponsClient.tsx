@@ -3,7 +3,7 @@
 import {
   useAllWeaponData,
   useAllWeaponSeriesData
-} from "~/hooks/useWeaponData";
+} from "~/hooks/weapon/useWeaponData";
 
 import PageTitle from "../common/typography/pageTitle";
 import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";

@@ -8,7 +8,7 @@ import {
 import { Metadata } from "next";
 
 import ArtifactsClient from "~/components/artifacts/artifactsClient";
-import { prefetchArtifactsSetData } from "~/hooks/useArtifactData";
+import { prefetchArtifactsSetData } from "~/hooks/artifact/useArtifactData";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

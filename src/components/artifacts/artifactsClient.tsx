@@ -1,6 +1,6 @@
 "use client";
 
-import { useArtifactsSetData } from "~/hooks/useArtifactData";
+import { useArtifactsSetData } from "~/hooks/artifact/useArtifactData";
 
 import PageTitle from "../common/typography/pageTitle";
 import ShowcaseFilterContainer from "../layout/container/showcaseFilterContainer";
