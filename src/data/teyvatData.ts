@@ -50,7 +50,7 @@ export const EQUIP_TYPES = {
   EQUIP_NECKLACE: "Plume of Death",
   EQUIP_SHOES: "Sands of Eon",
   EQUIP_RING: "Goblet of Eonothem",
-  EQUIP_DRESS: "Goblet of Eonothem"
+  EQUIP_DRESS: "Circlet of Logos"
 } as const;
 
 export const EQUIP_TYPE_KEYS = {
