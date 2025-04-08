@@ -1,5 +1,5 @@
-import PageLoader from "~/components/common/loaderHandlers/pageLoader";
+import DetailPageLoader from "~/components/common/loaderHandlers/detailPageLoader";
 
 export default function Loading() {
-  return <PageLoader />;
+  return <DetailPageLoader />;
 }

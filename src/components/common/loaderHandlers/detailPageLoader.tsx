@@ -1,4 +1,4 @@
-export default function PageLoader() {
+export default function DetailPageLoader() {
   return (
     <div className="container mx-auto p-4">
       <div className="animate-pulse">

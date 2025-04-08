@@ -39,7 +39,8 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
           (!selectedWeaponType || weapon.weaponType === selectedWeaponType) &&
           (!selectedWeaponRarity ||
             rarityParser(weapon.stars) === selectedWeaponRarity) &&
-          (!selectedWeaponSeries || weapon.series === selectedWeaponSeries)
+          (selectedWeaponSeries === "all" ||
+            weapon.series === selectedWeaponSeries)
       )
       .toSorted((a, b) => {
         if (weaponSort === SORTING_OPTIONS.Default) {
