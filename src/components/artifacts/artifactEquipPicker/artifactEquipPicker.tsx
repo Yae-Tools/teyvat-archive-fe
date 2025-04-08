@@ -4,7 +4,7 @@ import { Tooltip } from "react-tooltip";
 import { EQUIP_TYPES } from "~/data/teyvatData";
 import { IEquipCollection } from "~/types/enka/artifacts.types";
 import { IEquipType } from "~/types/enka/enka.types";
-import { equipIconArray } from "~/utils/arttifactEquipMapper";
+import { equipIconArray } from "~/utils/artifactEquipMapper";
 
 type Props = {
   selectedArtifactEquipType: IEquipType | null;
