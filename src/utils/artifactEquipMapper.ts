@@ -11,8 +11,8 @@ import { IEquipType } from "~/types/enka/enka.types";
 const equipIconMap = new Map<string, StaticImageData>();
 equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_BRACER, BracerIcon);
 equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_NECKLACE, NecklaceIcon);
-equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_RING, RingIcon);
 equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_SHOES, ShoeIcon);
+equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_RING, RingIcon);
 equipIconMap.set(EQUIP_TYPE_KEYS.EQUIP_DRESS, DressIcon);
 
 function getEquipIcon(equipType: IEquipType): StaticImageData {
