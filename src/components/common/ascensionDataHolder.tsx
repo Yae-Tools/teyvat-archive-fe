@@ -41,7 +41,7 @@ export default function AscensionDataHolder({
                     width={100}
                     height={100}
                   />
-                  <p className="font-enka w-full rounded-b-md bg-slate-200 text-center text-xs font-semibold text-slate-800">
+                  <p className="font-enka w-full rounded-b-md bg-slate-200 pt-0.5 text-center text-xs font-semibold text-slate-800">
                     {item.count}
                   </p>
                 </div>
