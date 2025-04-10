@@ -13,7 +13,7 @@ export default function ItemLevelPicker({
   selectedLevel,
   setSelectedLevel,
   noOfLevels,
-  selectorWidth = 10,
+  selectorWidth = 6,
   align = "start",
   isZeroEnabled = false
 }: Readonly<Props>) {
@@ -34,7 +34,7 @@ export default function ItemLevelPicker({
                 setSelectedLevel(i + 1);
               }
             }}
-            className={`h-2 w-${selectorWidth} cursor-pointer rounded-sm`}
+            className={`h-4 w-${selectorWidth} cursor-pointer rounded-sm`}
             animate={{
               backgroundColor:
                 i < selectedLevel
@@ -47,7 +47,7 @@ export default function ItemLevelPicker({
           <motion.button
             key={`level-${i}`}
             onClick={() => setSelectedLevel(i + 1)}
-            className={`h-2 w-${selectorWidth} cursor-pointer rounded-sm`}
+            className={`h-4 w-${selectorWidth} cursor-pointer rounded-sm text-xs ${i + 1 > selectedLevel ? "text-gray-500" : "font-semibold text-white"}`}
             animate={{
               backgroundColor:
                 i < selectedLevel
@@ -55,7 +55,9 @@ export default function ItemLevelPicker({
                   : "var(--color-gray-300)"
             }}
             transition={{ duration: 0.5, delay: 0.05 * i }}
-          />
+          >
+            {i + 1}
+          </motion.button>
         )
       )}
     </div>

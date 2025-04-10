@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -131,24 +132,33 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
         />
         {/* tab content */}
         <div className="w-full">
-          <div className="px-4 pb-6">
-            {selectedTab === "talents" && (
-              <TalentsDesktop {...{ element, skills, passiveTalents }} />
-            )}
-            {selectedTab === "constellations" && (
-              <DesktopConstellationView
-                {...{
-                  consName: constellation,
-                  constellations,
-                  constellationIcon,
-                  element
-                }}
-              />
-            )}
-            {selectedTab === "ascension" && (
-              <AscensionDetailsDesktop {...{ ascensionData }} />
-            )}
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              className="px-4 pb-6"
+              key={selectedTab}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {selectedTab === "talents" && (
+                <TalentsDesktop {...{ element, skills, passiveTalents }} />
+              )}
+              {selectedTab === "constellations" && (
+                <DesktopConstellationView
+                  {...{
+                    consName: constellation,
+                    constellations,
+                    constellationIcon,
+                    element
+                  }}
+                />
+              )}
+              {selectedTab === "ascension" && (
+                <AscensionDetailsDesktop {...{ ascensionData }} />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
         {/* tab content ends */}
       </div>

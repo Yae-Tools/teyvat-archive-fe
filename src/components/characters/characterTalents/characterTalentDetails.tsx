@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import ButtonGroup from "~/components/common/basic/buttonGroup";
@@ -44,19 +45,29 @@ export default function CharacterTalentDetails({
             />
           </div>
         )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={item}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.2 }}
+            className="w-full"
+          >
+            {item === "desc" && (
+              <div
+                className="w-full text-[16px]"
+                dangerouslySetInnerHTML={{
+                  __html: parseText(selectedTalent.description || "")
+                }}
+              />
+            )}
 
-        {item === "desc" && (
-          <div
-            className="w-full text-[16px]"
-            dangerouslySetInnerHTML={{
-              __html: parseText(selectedTalent.description || "")
-            }}
-          />
-        )}
-
-        {item === "stats" && selectedTalent.stats && (
-          <TalentStats {...{ selectedTalent }} />
-        )}
+            {item === "stats" && selectedTalent.stats && (
+              <TalentStats {...{ selectedTalent }} />
+            )}
+          </motion.div>
+        </AnimatePresence>
       </div>
     );
   }

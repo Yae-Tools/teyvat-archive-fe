@@ -36,6 +36,7 @@ export default function AscensionDataHolder({
                   data-tooltip-content={`${item.materialName}`}
                 >
                   <Image
+                    className="size-10 lg:size-12 xl:size-14"
                     src={item.materialIcon}
                     alt={item.materialName}
                     width={100}

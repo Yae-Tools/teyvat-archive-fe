@@ -40,7 +40,7 @@ export default function MiniIconContainer({
           bgFlow === "fromTo" ? bgFrom : bgTo
         }, ${bgVia}, ${bgFlow === "fromTo" ? bgTo : bgFrom}`
       }}
-      className="xs:w-[65px] xs:h-[75px] m-2 flex h-[70px] w-[60px] flex-col items-center justify-center rounded-md sm:h-[80px] sm:w-[70px] md:h-[85px] md:w-[75px]"
+      className="m-2 flex h-[60px] w-[55px] flex-col items-center justify-center rounded-md lg:h-[70px] lg:w-[65px]"
     >
       {children}
     </motion.div>

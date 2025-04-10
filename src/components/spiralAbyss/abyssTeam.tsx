@@ -16,7 +16,7 @@ export default function AbyssTeam({ team }: Readonly<Props>) {
         {team.characters.map((char) => (
           <MiniIconContainer key={char.id} rarity={char.rarity} bgFlow="fromTo">
             <div className="relative flex h-full w-full flex-col items-center justify-end">
-              <div className="absolute top-0 left-0 mt-[-5px] ml-[-5px] flex items-center p-2 text-white">
+              <div className="absolute top-0 left-0 mt-[-8px] ml-[-5px] flex items-center p-2 text-white">
                 <Image
                   src={getElementTypeImage(char.element)}
                   alt={char.element}
