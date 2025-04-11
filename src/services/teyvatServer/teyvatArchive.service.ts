@@ -143,3 +143,13 @@ export const getAbyssBlessings = cache(async () => {
     return null;
   }
 });
+
+export const getDailyDomains = cache(async () => {
+  try {
+    const response = await serverInstance.get("/domains/daily");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+});

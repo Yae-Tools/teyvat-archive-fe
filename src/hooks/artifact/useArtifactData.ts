@@ -10,9 +10,7 @@ export const useArtifactsSetData = () => {
       const artifactSets: IBaseArtifactSet[] = await getArtifactSets();
       return artifactSets;
     },
-    initialData: [],
-    staleTime: 1000 * 60 * 60, // 1 hour
-    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    initialData: []
   });
 };
 
@@ -22,9 +20,7 @@ export const prefetchArtifactsSetData = async (queryClient: QueryClient) => {
     queryFn: async () => {
       const artifactSets: IBaseArtifactSet[] = await getArtifactSets();
       return artifactSets;
-    },
-    staleTime: 1000 * 60 * 60, // 1 hour
-    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    }
   });
   return queryClient;
 };

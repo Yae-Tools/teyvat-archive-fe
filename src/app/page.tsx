@@ -73,7 +73,7 @@ export default async function Home() {
         <PageTitle title="Day of the Flame's Return" />
         <div className="flex h-full w-full max-w-[1650px] flex-col items-start justify-center space-y-4 rounded-xl px-3 xl:flex-row xl:space-y-0 xl:space-x-5 xl:px-6 xl:py-6">
           <div className="flex h-full w-full items-center justify-center xl:w-2/3">
-            <Image
+            {/* <Image
               src={gameData.background}
               alt="background"
               width={1920}
@@ -82,7 +82,9 @@ export default async function Home() {
               placeholder="blur" // Helps with perceived performance
               blurDataURL={BlurBg.src}
               className="rounded-xl"
-            />
+            /> */}
+            <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
+            <div></div>
           </div>
           <div className="flex h-full w-full flex-col items-start justify-center space-y-4 px-4 xl:w-1/3">
             <p className="font-enka text-center text-lg xl:text-left">
