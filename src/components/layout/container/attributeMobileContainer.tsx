@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 import { memo, useState } from "react";
 
 import MobileItemHeading from "~/components/common/typography/mobileItemHeading";

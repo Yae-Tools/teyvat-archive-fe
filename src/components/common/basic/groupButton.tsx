@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 type Props = {
   onClick: () => void;
@@ -6,13 +6,13 @@ type Props = {
   label: string;
 };
 
-export default function GroupButton({
-  label,
-  onClick,
-  isSelected
-}: Readonly<Props>) {
+const GroupButton = forwardRef<HTMLButtonElement, Props>(function GroupButton(
+  { label, onClick, isSelected }: Readonly<Props>,
+  ref
+) {
   return (
     <button
+      ref={ref}
       onClick={onClick}
       className={`relative z-10 flex h-5 min-w-10 cursor-pointer items-center justify-center rounded-lg px-2 text-center font-medium whitespace-nowrap outline-none focus:ring-0 xl:min-w-20 ${
         isSelected
@@ -23,4 +23,6 @@ export default function GroupButton({
       {label}
     </button>
   );
-}
+});
+
+export default GroupButton;

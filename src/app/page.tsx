@@ -11,9 +11,12 @@ import Link from "next/link";
 
 import BlurBg from "~/assets/images/bgs/teyvat-wallpaper.jpg";
 import PageTitle from "~/components/common/typography/pageTitle";
+import DailyDomains from "~/components/home/dailyDomains/dailyDomains";
 import RedeemCodes from "~/components/home/redeemCodes";
-import TimeUntilReset from "~/components/home/timeUntilReset";
+import TimeUntilReset from "~/components/home/timer/timeUntilReset";
+import { prefetchDailyDomains } from "~/hooks/domain/useDomainData";
 import { prefetchGameData } from "~/hooks/useGameData";
+import { IDailyDomainDataResponse } from "~/types/enka/domain.types";
 import { IGameVersion } from "~/types/system.types";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -59,9 +62,18 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const queryClient = new QueryClient();
 
-  await prefetchGameData(queryClient);
+  await Promise.all([
+    prefetchDailyDomains(queryClient),
+    prefetchGameData(queryClient)
+  ]);
 
   const gameData = queryClient.getQueryData<IGameVersion>(["gameVersion"]);
+  const dailyDomains = queryClient.getQueryData<IDailyDomainDataResponse>([
+    "dailyDomains"
+  ]);
+  if (!dailyDomains) {
+    throw new Error("Daily domains data not found");
+  }
 
   if (!gameData) {
     throw new Error("Game data not found");
@@ -83,8 +95,10 @@ export default async function Home() {
               blurDataURL={BlurBg.src}
               className="rounded-xl"
             /> */}
-            <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
-            <div></div>
+            <div className="flex h-full w-full flex-col items-center justify-center space-y-4 rounded-xl bg-slate-500/5 p-4 text-white dark:bg-slate-400/20">
+              <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
+              <DailyDomains />
+            </div>
           </div>
           <div className="flex h-full w-full flex-col items-start justify-center space-y-4 px-4 xl:w-1/3">
             <p className="font-enka text-center text-lg xl:text-left">
