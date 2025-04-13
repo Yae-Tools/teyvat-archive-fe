@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import ButtonGroup from "~/components/common/basic/buttonGroup";
 import { useDailyDomainData } from "~/hooks/domain/useDomainData";
+import { IDailyDomainData } from "~/types/enka/domain.types";
+import domainNameParser from "~/utils/parsers/domainNameParser";
+import { getRegionImageByNumber } from "~/utils/regionImagePicker";
 
 const DAYS_OF_WEEK = [
   {
@@ -37,15 +41,6 @@ const DAYS_OF_WEEK = [
   }
 ];
 
-const domainNameParser = (domainName: string) => {
-  // remove the prefix "Domain of" from the domain name
-  const prefix = "Domain of ";
-  if (domainName.startsWith(prefix)) {
-    return domainName.slice(prefix.length);
-  }
-  return domainName;
-};
-
 export default function DailyDomains() {
   const { data: dailyDomains } = useDailyDomainData();
   const isLg = useMediaQuery({ minWidth: 1024 });
@@ -53,7 +48,7 @@ export default function DailyDomains() {
   const [selectedDay, setSelectedDay] = useState<string>(DAYS_OF_WEEK[0].id);
 
   return (
-    <>
+    <div className="flex flex-col gap-4">
       <div>
         <ButtonGroup
           items={DAYS_OF_WEEK.map((day) => ({
@@ -70,23 +65,28 @@ export default function DailyDomains() {
       </div>
 
       <div className="flex flex-col gap-2">
-        {Object.entries(dailyDomains[selectedDay] || {}).map(([key, value]) => {
-          return (
-            <div key={key} className="flex flex-col gap-2">
-              <div className="rounded-t-lg bg-slate-800 p-2">
-                {domainNameParser(value.name)}
-                {/* domain header */}
+        {Object.entries(dailyDomains[selectedDay]).map(
+          ([key, value]: [string, IDailyDomainData]) => {
+            return (
+              <div key={key} className="flex flex-col gap-2">
+                <div className="flex w-full items-center justify-between rounded-t-lg bg-slate-800 p-2">
+                  <h5>{domainNameParser(value.name)}</h5>
+                  <Image
+                    src={getRegionImageByNumber(value.city)}
+                    alt="region"
+                    width={100}
+                    height={100}
+                    className="ml-2 inline-block size-8"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="text-sm">{value.reward.join(", ")}</div>
+                </div>
               </div>
-              <div className="flex flex-col gap-2">
-                <div className="text-sm">{value.name}</div>
-
-                <div className="text-sm">{value.city}</div>
-                <div className="text-sm">{value.reward.join(", ")}</div>
-              </div>
-            </div>
-          );
-        })}
+            );
+          }
+        )}
       </div>
-    </>
+    </div>
   );
 }
