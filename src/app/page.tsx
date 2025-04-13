@@ -83,7 +83,7 @@ export default async function Home() {
         <PageTitle title="Day of the Flame's Return" />
         <div className="flex h-full w-full max-w-[1650px] flex-col items-start justify-center space-y-4 rounded-xl px-3 xl:flex-row xl:space-y-0 xl:space-x-5 xl:px-6 xl:py-6">
           <div className="flex h-full w-full items-center justify-center xl:w-2/3">
-            <div className="flex h-full w-full flex-col items-center justify-center space-y-4 rounded-xl bg-slate-500/5 p-4 text-white dark:bg-slate-400/20">
+            <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
               <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
               <DailyDomains />
             </div>

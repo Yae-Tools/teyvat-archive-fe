@@ -85,14 +85,7 @@ export default function DailyDomains() {
             value: city,
             id: city,
             label: (
-              <div className="flex flex-row items-center justify-center p-1">
-                {/* <Image
-                  src={getRegionImageByNumber(city)}
-                  alt="region"
-                  width={100}
-                  height={100}
-                  className="size-8"
-                /> */}
+              <div className="flex flex-row items-center justify-center xl:p-1">
                 {typeof city === "string" ? (
                   "All"
                 ) : (
@@ -101,7 +94,7 @@ export default function DailyDomains() {
                     alt="region"
                     width={100}
                     height={100}
-                    className="size-8"
+                    className="size-4.5 xl:size-8"
                   />
                 )}
               </div>
