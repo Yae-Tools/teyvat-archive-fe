@@ -11,9 +11,14 @@ type Props = {
     onClick: (value: any) => void;
   }[];
   selectedItem: any;
+  customHeight?: string;
 };
 
-export default function ButtonGroup({ items, selectedItem }: Readonly<Props>) {
+export default function ButtonGroup({
+  items,
+  selectedItem,
+  customHeight = "5"
+}: Readonly<Props>) {
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [selectedDimensions, setSelectedDimensions] = useState({
     width: 0,
@@ -58,6 +63,7 @@ export default function ButtonGroup({ items, selectedItem }: Readonly<Props>) {
           ref={(el) => {
             buttonRefs.current[index] = el;
           }}
+          customHeight={customHeight}
         />
       ))}
 

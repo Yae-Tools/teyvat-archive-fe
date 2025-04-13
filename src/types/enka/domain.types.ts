@@ -1,10 +1,30 @@
-export interface IDailyDomainData {
+export enum DateEnum {
+  MONDAY = "monday",
+  TUESDAY = "tuesday",
+  WEDNESDAY = "wednesday",
+  THURSDAY = "thursday",
+  FRIDAY = "friday",
+  SATURDAY = "saturday",
+  SUNDAY = "sunday"
+}
+
+export interface IDomainReward {
   id: number;
   name: string;
-  reward: number[];
+  icon: string;
+  stars: number;
+}
+
+export interface IDailyDomain {
+  id: string;
+  name: string;
+  reward: IDomainReward[];
   city: number;
 }
 
-export interface IDailyDomainDataResponse {
-  [key: string]: IDailyDomainData;
+export interface IDailyDomainData {
+  day: DateEnum;
+  domains: IDailyDomain[];
 }
+
+// response is an array of IDailyDomainData

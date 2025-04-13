@@ -6,17 +6,15 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 
-import BlurBg from "~/assets/images/bgs/teyvat-wallpaper.jpg";
 import PageTitle from "~/components/common/typography/pageTitle";
 import DailyDomains from "~/components/home/dailyDomains/dailyDomains";
 import RedeemCodes from "~/components/home/redeemCodes";
 import TimeUntilReset from "~/components/home/timer/timeUntilReset";
 import { prefetchDailyDomains } from "~/hooks/domain/useDomainData";
 import { prefetchGameData } from "~/hooks/useGameData";
-import { IDailyDomainDataResponse } from "~/types/enka/domain.types";
+import { IDailyDomainData } from "~/types/enka/domain.types";
 import { IGameVersion } from "~/types/system.types";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -68,7 +66,7 @@ export default async function Home() {
   ]);
 
   const gameData = queryClient.getQueryData<IGameVersion>(["gameVersion"]);
-  const dailyDomains = queryClient.getQueryData<IDailyDomainDataResponse>([
+  const dailyDomains = queryClient.getQueryData<IDailyDomainData[]>([
     "dailyDomains"
   ]);
   if (!dailyDomains) {
@@ -85,16 +83,6 @@ export default async function Home() {
         <PageTitle title="Day of the Flame's Return" />
         <div className="flex h-full w-full max-w-[1650px] flex-col items-start justify-center space-y-4 rounded-xl px-3 xl:flex-row xl:space-y-0 xl:space-x-5 xl:px-6 xl:py-6">
           <div className="flex h-full w-full items-center justify-center xl:w-2/3">
-            {/* <Image
-              src={gameData.background}
-              alt="background"
-              width={1920}
-              height={1080}
-              priority={false} // Ensures lazy loading
-              placeholder="blur" // Helps with perceived performance
-              blurDataURL={BlurBg.src}
-              className="rounded-xl"
-            /> */}
             <div className="flex h-full w-full flex-col items-center justify-center space-y-4 rounded-xl bg-slate-500/5 p-4 text-white dark:bg-slate-400/20">
               <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
               <DailyDomains />

@@ -1,16 +1,15 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
 
 import { getDailyDomains } from "~/services/teyvatServer/teyvatArchive.service";
-import { IDailyDomainDataResponse } from "~/types/enka/domain.types";
-
+import { IDailyDomainData } from "~/types/enka/domain.types";
 export const useDailyDomainData = () => {
   return useQuery({
     queryKey: ["dailyDomains"],
     queryFn: async () => {
-      const dailyDomains: IDailyDomainDataResponse = await getDailyDomains();
+      const dailyDomains: IDailyDomainData[] = await getDailyDomains();
       return dailyDomains;
     },
-    initialData: {}
+    initialData: []
   });
 };
 
@@ -18,7 +17,7 @@ export const prefetchDailyDomains = async (queryClient: QueryClient) => {
   await queryClient.prefetchQuery({
     queryKey: ["dailyDomains"],
     queryFn: async () => {
-      const dailyDomains: IDailyDomainDataResponse = await getDailyDomains();
+      const dailyDomains: IDailyDomainData[] = await getDailyDomains();
       return dailyDomains;
     }
   });
