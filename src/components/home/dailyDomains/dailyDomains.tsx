@@ -3,13 +3,10 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Tooltip } from "react-tooltip";
 
 import ButtonGroup from "~/components/common/basic/buttonGroup";
-import MiniIconContainer from "~/components/layout/container/miniIconContainer";
 import { useDailyDomainData } from "~/hooks/domain/useDomainData";
 import domainNameParser from "~/utils/parsers/domainNameParser";
-import rarityParser from "~/utils/parsers/rarityParser";
 import { getRegionImageByNumber } from "~/utils/regionImagePicker";
 
 const DAYS_OF_WEEK = [
@@ -49,6 +46,7 @@ const CITY_NUM_ARRAY = [1, 2, 3, 4, 5, 6, "all"];
 export default function DailyDomains() {
   const { data: dailyDomains } = useDailyDomainData();
   const isLg = useMediaQuery({ minWidth: 1024 });
+
   const [selectedDay, setSelectedDay] = useState(DAYS_OF_WEEK[0].id);
   const [selectedCity, setSelectedCity] = useState(CITY_NUM_ARRAY[0]);
 
@@ -66,20 +64,18 @@ export default function DailyDomains() {
   }, [dailyDomains, selectedDay, selectedCity]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div>
-        <ButtonGroup
-          items={DAYS_OF_WEEK.map((day) => ({
-            value: day.id,
-            id: day.id,
-            label: isLg ? day.name : day.name.charAt(0).toUpperCase(),
-            isSelected: selectedDay === day.id,
-            onClick: (value) => setSelectedDay(value)
-          }))}
-          selectedItem={selectedDay}
-        />
-      </div>
-      <div className="w-max">
+    <div className="flex w-full flex-col items-center justify-center gap-4">
+      <ButtonGroup
+        items={DAYS_OF_WEEK.map((day) => ({
+          value: day.id,
+          id: day.id,
+          label: isLg ? day.name : day.name.charAt(0).toUpperCase(),
+          isSelected: selectedDay === day.id,
+          onClick: (value) => setSelectedDay(value)
+        }))}
+        selectedItem={selectedDay}
+      />
+      <div className="flex w-full flex-row items-center justify-center">
         <ButtonGroup
           items={CITY_NUM_ARRAY.map((city) => ({
             value: city,
@@ -107,53 +103,38 @@ export default function DailyDomains() {
         />
       </div>
 
-      <div className="flex flex-col gap-2 lg:gap-3 xl:gap-4">
+      <div className="flex w-full flex-col items-center justify-center gap-2 lg:gap-3 xl:gap-4">
         {filteredDomains.map((domain) => (
-          <div key={domain.id} className="flex flex-col">
-            <div className="flex w-full items-center justify-between rounded-t-lg bg-slate-800/80 p-2">
-              <h5>{domainNameParser(domain.name)}</h5>
+          <div key={domain.id} className="flex w-full flex-col">
+            <div className="flex w-full flex-col items-start justify-between gap-2 rounded-t-lg bg-slate-800/80 p-2 lg:flex-row">
+              <div className="flex flex-row items-center justify-center">
+                {selectedCity === "all" && (
+                  <Image
+                    src={getRegionImageByNumber(domain.city)}
+                    alt="region"
+                    width={100}
+                    height={100}
+                    className="mr-2 inline-block size-8"
+                  />
+                )}
+                <h5>{domainNameParser(domain.name)}</h5>
+              </div>
 
-              {selectedCity === "all" && (
-                <Image
-                  src={getRegionImageByNumber(domain.city)}
-                  alt="region"
-                  width={100}
-                  height={100}
-                  className="ml-2 inline-block size-8"
-                />
-              )}
-            </div>
-            <div className="flex w-full flex-row gap-2 rounded-b-lg bg-slate-600/60">
-              {domain.reward
-                .filter((reward) => !EXCLUDED_REWARD_IDS.includes(reward.id))
-                .map((reward) => (
-                  <MiniIconContainer
-                    key={reward.id}
-                    rarity={rarityParser(reward.stars)}
-                    bgFlow="fromTo"
-                  >
-                    <div
-                      className="flex h-full w-full flex-col items-center justify-end"
-                      data-tooltip-id="asc-item-tooltip"
-                      data-tooltip-content={`${reward.name}`}
-                    >
+              <div className="flex flex-row gap-2">
+                {domain.reward
+                  .filter((reward) => !EXCLUDED_REWARD_IDS.includes(reward.id))
+                  .map((reward) => (
+                    <div key={reward.id}>
                       <Image
-                        className="size-17"
                         src={reward.icon}
                         alt={reward.name}
                         width={100}
                         height={100}
+                        className="size-8"
                       />
                     </div>
-                    <Tooltip
-                      id="asc-item-tooltip"
-                      className="font-enka"
-                      style={{
-                        fontSize: "0.8rem"
-                      }}
-                    />
-                  </MiniIconContainer>
-                ))}
+                  ))}
+              </div>
             </div>
           </div>
         ))}

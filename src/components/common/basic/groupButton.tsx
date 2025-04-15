@@ -8,7 +8,7 @@ type Props = {
 };
 
 const GroupButton = forwardRef<HTMLButtonElement, Props>(function GroupButton(
-  { label, onClick, isSelected, customHeight = "5" }: Readonly<Props>,
+  { label, onClick, isSelected, customHeight }: Readonly<Props>,
   ref
 ) {
   return (
