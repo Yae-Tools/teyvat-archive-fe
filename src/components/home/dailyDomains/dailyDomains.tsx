@@ -1,106 +1,68 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
-import { useMediaQuery } from "react-responsive";
 
 import ButtonGroup from "~/components/common/basic/buttonGroup";
-import { useDailyDomainData } from "~/hooks/domain/useDomainData";
+import {
+  CITY_NUM_ARRAY,
+  DAYS_OF_WEEK,
+  useDomainState
+} from "~/hooks/domain/useDomainState";
 import domainNameParser from "~/utils/parsers/domainNameParser";
 import { getRegionImageByNumber } from "~/utils/regionImagePicker";
 
-const DAYS_OF_WEEK = [
-  {
-    id: "monday",
-    name: "Mon"
-  },
-  {
-    id: "tuesday",
-    name: "Tue"
-  },
-  {
-    id: "wednesday",
-    name: "Wed"
-  },
-  {
-    id: "thursday",
-    name: "Thu"
-  },
-  {
-    id: "friday",
-    name: "Fri"
-  },
-  {
-    id: "saturday",
-    name: "Sat"
-  },
-  {
-    id: "sunday",
-    name: "Sun"
-  }
-];
-
 const EXCLUDED_REWARD_IDS = [102, 105, 202]; //102: Adventure XP, 105: Companion XP, 202: Mora
-const CITY_NUM_ARRAY = [1, 2, 3, 4, 5, 6, "all"];
 
 export default function DailyDomains() {
-  const { data: dailyDomains } = useDailyDomainData();
-  const isLg = useMediaQuery({ minWidth: 1024 });
-
-  const [selectedDay, setSelectedDay] = useState(DAYS_OF_WEEK[0].id);
-  const [selectedCity, setSelectedCity] = useState(CITY_NUM_ARRAY[0]);
-
-  // Simplified filtering in one pass
-  const filteredDomains = useMemo(() => {
-    const domainsForDay = dailyDomains.find(
-      (domain) => domain.day === selectedDay
-    );
-    const domainsForCity = domainsForDay?.domains.filter(
-      (domain) => domain.city === selectedCity || selectedCity === "all"
-    );
-    return domainsForCity
-      ? [...domainsForCity].sort((a, b) => a.city - b.city)
-      : [];
-  }, [dailyDomains, selectedDay, selectedCity]);
+  const {
+    filteredDomains,
+    selectedCity,
+    selectedDay,
+    setSelectedCity,
+    setSelectedDay,
+    isLg
+  } = useDomainState();
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4">
-      <ButtonGroup
-        items={DAYS_OF_WEEK.map((day) => ({
-          value: day.id,
-          id: day.id,
-          label: isLg ? day.name : day.name.charAt(0).toUpperCase(),
-          isSelected: selectedDay === day.id,
-          onClick: (value) => setSelectedDay(value)
-        }))}
-        selectedItem={selectedDay}
-      />
-      <div className="flex w-full flex-row items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center gap-2 lg:gap-3 xl:gap-4">
         <ButtonGroup
-          items={CITY_NUM_ARRAY.map((city) => ({
-            value: city,
-            id: city,
-            label: (
-              <div className="flex flex-row items-center justify-center xl:p-1">
-                {typeof city === "string" ? (
-                  "All"
-                ) : (
-                  <Image
-                    src={getRegionImageByNumber(city)}
-                    alt="region"
-                    width={100}
-                    height={100}
-                    className="size-4.5 xl:size-8"
-                  />
-                )}
-              </div>
-            ),
-            isSelected: selectedCity === city,
-            onClick: (value) => setSelectedCity(value)
+          items={DAYS_OF_WEEK.map((day) => ({
+            value: day.id,
+            id: day.id,
+            label: isLg ? day.name : day.name.charAt(0).toUpperCase(),
+            isSelected: selectedDay === day.id,
+            onClick: (value) => setSelectedDay(value)
           }))}
-          selectedItem={selectedCity}
-          customHeight="8"
+          selectedItem={selectedDay}
         />
+        <div className="flex w-full flex-row items-center justify-center">
+          <ButtonGroup
+            items={CITY_NUM_ARRAY.map((city) => ({
+              value: city,
+              id: city,
+              label: (
+                <div className="flex flex-row items-center justify-center xl:p-1">
+                  {typeof city === "string" ? (
+                    "All"
+                  ) : (
+                    <Image
+                      src={getRegionImageByNumber(city)}
+                      alt="region"
+                      width={100}
+                      height={100}
+                      className="size-4.5 xl:size-8"
+                    />
+                  )}
+                </div>
+              ),
+              isSelected: selectedCity === city,
+              onClick: (value) => setSelectedCity(value)
+            }))}
+            selectedItem={selectedCity}
+            customHeight="8"
+          />
+        </div>
       </div>
 
       <div className="flex w-full flex-col items-center justify-center gap-2 lg:gap-3 xl:gap-4">
