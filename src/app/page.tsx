@@ -10,6 +10,7 @@ import Link from "next/link";
 
 import PageTitle from "~/components/common/typography/pageTitle";
 import DailyDomains from "~/components/home/dailyDomains/dailyDomains";
+import HomeClient from "~/components/home/homeClient";
 import RedeemCodes from "~/components/home/redeemCodes";
 import TimeUntilReset from "~/components/home/timer/timeUntilReset";
 import { prefetchDailyDomains } from "~/hooks/domain/useDomainData";
@@ -81,27 +82,7 @@ export default async function Home() {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="w-usable my-3 flex flex-col items-center justify-center xl:mb-4">
         <PageTitle title="Day of the Flame's Return" />
-        <div className="flex h-full w-full max-w-[1650px] flex-col items-start justify-center space-y-4 rounded-xl px-3 xl:flex-row xl:space-y-0 xl:space-x-5 xl:px-6 xl:py-6">
-          <div className="flex h-full w-full flex-col items-center justify-center space-y-4 px-4 xl:order-2 xl:w-2/5">
-            <p className="font-enka text-center text-lg xl:text-left">
-              Version{" "}
-              {gameData.version.split(".").slice(0, 2).join(".").toString()} is
-              now live! Head on to{" "}
-              <Link href="/events" className="text-teal-500">
-                <span className="font-semibold text-teal-500">Events</span>
-              </Link>{" "}
-              tab to see what's new!
-            </p>
-            <TimeUntilReset />
-            <RedeemCodes />
-          </div>
-          <div className="flex h-full w-full items-center justify-center xl:order-1 xl:w-3/5">
-            <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
-              <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
-              <DailyDomains />
-            </div>
-          </div>
-        </div>
+        <HomeClient gameData={gameData} />
       </div>
     </HydrationBoundary>
   );
