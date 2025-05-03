@@ -8,7 +8,6 @@ import DailyDomains from "./dailyDomains/dailyDomains";
 import RedeemCodes from "./redeemCodes";
 import TimeUntilReset from "./timer/timeUntilReset";
 
-// Extract reusable components
 const VersionAnnouncement = memo(({ version }: { version: string }) => (
   <p className="font-enka text-center text-lg xl:text-left">
     Version {version.split(".").slice(0, 2).join(".")} is now live! Head on to{" "}
@@ -21,7 +20,6 @@ const VersionAnnouncement = memo(({ version }: { version: string }) => (
 
 VersionAnnouncement.displayName = "VersionAnnouncement";
 
-// Props type definition
 type Props = {
   gameData: {
     version: string;
@@ -29,7 +27,6 @@ type Props = {
 };
 
 export default function HomeClient({ gameData }: Readonly<Props>) {
-  // This hook will only run on client side
   const isXl = useMediaQuery({ minWidth: 1280 });
 
   // Common classes shared between layouts

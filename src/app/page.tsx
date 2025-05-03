@@ -6,13 +6,9 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 import { Metadata } from "next";
-import Link from "next/link";
 
 import PageTitle from "~/components/common/typography/pageTitle";
-import DailyDomains from "~/components/home/dailyDomains/dailyDomains";
 import HomeClient from "~/components/home/homeClient";
-import RedeemCodes from "~/components/home/redeemCodes";
-import TimeUntilReset from "~/components/home/timer/timeUntilReset";
 import { prefetchDailyDomains } from "~/hooks/domain/useDomainData";
 import { prefetchGameData } from "~/hooks/useGameData";
 import { IDailyDomainData } from "~/types/enka/domain.types";
