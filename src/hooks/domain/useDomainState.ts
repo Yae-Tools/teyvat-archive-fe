@@ -42,7 +42,8 @@ export const useDomainState = () => {
   const isLg = useMediaQuery({ minWidth: 1024 });
 
   const currentDate = new Date();
-  const currentDay = DAYS_OF_WEEK[currentDate.getDay() - 1].id;
+  const dayIndex = currentDate.getDay() === 0 ? 6 : currentDate.getDay() - 1;
+  const currentDay = DAYS_OF_WEEK[dayIndex].id;
 
   const [selectedDay, setSelectedDay] = useState(DAYS_OF_WEEK[0].id);
   const [selectedCity, setSelectedCity] = useState(CITY_NUM_ARRAY[0]);

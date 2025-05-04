@@ -1,3 +1,5 @@
+import { IElementType, IRarityType } from "./enka.types";
+
 export enum DateEnum {
   MONDAY = "monday",
   TUESDAY = "tuesday",
@@ -8,11 +10,24 @@ export enum DateEnum {
   SUNDAY = "sunday"
 }
 
+export interface IRewardUsedByCharacter {
+  id: number;
+  name: string;
+  iconUrl: string;
+  isTraveler: boolean;
+  rarity: IRarityType;
+  element: IElementType;
+  nameId: string;
+}
+
 export interface IDomainReward {
   id: number;
   name: string;
   icon: string;
   stars: number;
+  materialType: string;
+  itemType: string;
+  usedBy: IRewardUsedByCharacter[];
 }
 
 export interface IDailyDomain {
