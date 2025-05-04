@@ -26,8 +26,6 @@ export default function DailyDomains() {
 
   const [selectedTraveller] =  useAtom(useSelectedTravelerAtom);
 
-  console.log("filteredDomains", filteredDomains);
-
   return (
     <div className="flex h-full w-full items-center justify-center xl:order-1 xl:w-3/5">
       <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
