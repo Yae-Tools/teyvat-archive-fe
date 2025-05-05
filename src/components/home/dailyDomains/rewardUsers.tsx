@@ -1,7 +1,7 @@
 import React from "react";
 
 import MiniAvatar from "~/components/common/miniAvatar";
-import { useRewardUsers } from "~/hooks/domain/useRewardUsers";
+import { useRewardUsers } from "~/hooks/domain/useReward";
 import { IDomainReward } from "~/types/enka/domain.types";
 
 type Props = {

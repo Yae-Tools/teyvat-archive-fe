@@ -20,6 +20,13 @@ export interface IRewardUsedByCharacter {
   nameId: string;
 }
 
+export interface IRewardUsedByWeapon {
+  id: number;
+  name: string;
+  iconUrl: string;
+  rarity: IRarityType;
+}
+
 export interface IDomainReward {
   id: number;
   name: string;
@@ -27,7 +34,7 @@ export interface IDomainReward {
   stars: number;
   materialType: string;
   itemType: string;
-  usedBy: IRewardUsedByCharacter[];
+  usedBy: IRewardUsedByCharacter[] | IRewardUsedByWeapon[];
 }
 
 export type IDomainType = "CHAR_ASC" | "WEAPON_ASC";

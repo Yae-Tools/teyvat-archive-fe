@@ -65,7 +65,7 @@ export default function DailyDomains() {
                   />
                 )}
                 {domain.domainType === "WEAPON_ASC" && (
-                  <RewardWeapons {...{ isLg }} />
+                  <RewardWeapons {...{ isLg, rewards: domain.reward }} />
                 )}
               </div>
             ))}
