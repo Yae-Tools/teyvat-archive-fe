@@ -13,9 +13,7 @@ export const useAbyssInfo = () => {
     queryFn: async () => {
       const abyssInfo: IAbyssDataResponse = await getAbyssData();
       return abyssInfo;
-    },
-    staleTime: 1000 * 60 * 60, // 1 hour
-    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    }
   });
 };
 
@@ -25,9 +23,7 @@ export const useAbyssBlessings = () => {
     queryFn: async () => {
       const abyssBlessings = await getAbyssBlessings();
       return abyssBlessings;
-    },
-    staleTime: 1000 * 60 * 60, // 1 hour
-    gcTime: 1000 * 60 * 60 * 24 // 24 hours (previously cacheTime)
+    }
   });
 };
 

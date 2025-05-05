@@ -31,8 +31,6 @@ export default function DesktopConstellationView({
     setSelectedConstellation(constellations?.[0]);
   }, [constellations]);
 
-  console.log("conIcon", constellationIcon);
-
   return (
     <AttributeDesktopContainer title={`Constellation - ${consName}`}>
       <div className="flex w-full items-start justify-between space-x-6">

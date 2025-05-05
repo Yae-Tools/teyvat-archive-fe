@@ -5,13 +5,14 @@ import type { Metadata } from "next";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { Open_Sans } from "next/font/google";
 
-import "./globals.css";
+import { PostHogProvider } from "~/components/common/providers/postHogProvider";
 import QueryProvider from "~/components/common/providers/queryProvider";
 import ClientThemeSync from "~/components/common/theme/clientThemeSync";
 import BaseLayout from "~/components/layout/container/baseLayout";
 import { getThemeFromCookie } from "~/utils/theme";
 
 import ErrorPage from "./error";
+import "./globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -69,11 +70,13 @@ export default function RootLayout({
     <html lang="en" className={theme}>
       <body className={`${openSans.variable} antialiased`} id="app">
         <ErrorBoundary errorComponent={ErrorPage}>
-          <QueryProvider>
-            <BaseLayout>{children}</BaseLayout>
-            <ClientThemeSync />
-            <ReactQueryDevtools />
-          </QueryProvider>
+          <PostHogProvider>
+            <QueryProvider>
+              <BaseLayout>{children}</BaseLayout>
+              <ClientThemeSync />
+              <ReactQueryDevtools />
+            </QueryProvider>
+          </PostHogProvider>
         </ErrorBoundary>
         <Analytics />
         <SpeedInsights />

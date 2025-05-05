@@ -29,7 +29,7 @@ export default function MostUsedTeams({
           </label>
           {isAbyssLoading && <AbyssTeamLoader />}
           {firstHalf.map((team) => (
-            <AbyssTeam key={team.value} {...{ team }} />
+            <AbyssTeam key={team.value + team.ownRate} {...{ team }} />
           ))}
         </div>
         <div className="flex w-full flex-col items-center justify-center">
@@ -38,7 +38,7 @@ export default function MostUsedTeams({
           </label>
           {isAbyssLoading && <AbyssTeamLoader />}
           {secondHalf.map((team) => (
-            <AbyssTeam key={team.value} {...{ team }} />
+            <AbyssTeam key={team.value + team.ownRate} {...{ team }} />
           ))}
         </div>
       </div>

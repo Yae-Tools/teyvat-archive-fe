@@ -12,9 +12,9 @@ import { useEffect, useState } from "react";
 
 import { defaultServerAtom } from "~/atoms/feature.atoms";
 
-import ButtonGroup from "../common/basic/buttonGroup";
+import ButtonGroup from "../../common/basic/buttonGroup";
 
-import TimerItem from "./timer/timerItem";
+import TimerItem from "./timerItem";
 
 export default function TimeUntilReset() {
   const [defaultServer] = useAtom(defaultServerAtom);

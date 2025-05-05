@@ -1,4 +1,0 @@
-PATH=$PATH:~/.bun/bin
-
-bun format
-bun lint:fix

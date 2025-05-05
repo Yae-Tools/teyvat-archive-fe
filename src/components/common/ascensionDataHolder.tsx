@@ -36,12 +36,13 @@ export default function AscensionDataHolder({
                   data-tooltip-content={`${item.materialName}`}
                 >
                   <Image
+                    className="size-10 lg:size-12 xl:size-14"
                     src={item.materialIcon}
                     alt={item.materialName}
                     width={100}
                     height={100}
                   />
-                  <p className="font-enka w-full rounded-b-md bg-slate-200 text-center text-xs font-semibold text-slate-800">
+                  <p className="font-enka w-full rounded-b-md bg-slate-200 pt-0.5 text-center text-xs font-semibold text-slate-800">
                     {item.count}
                   </p>
                 </div>

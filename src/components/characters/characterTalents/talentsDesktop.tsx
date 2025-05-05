@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { IAllTalent, ITalent } from "~/types/enka/character.types";
@@ -58,19 +59,30 @@ export default function TalentsDesktop({
           .filter((skill) => skill.name !== "")
           .map((skill) => (
             <TalentIcon
-              talent={skill}
               key={skill.id}
+              talent={skill}
               selectedTalentId={selectedTalentId}
               setSelectedTalentId={setSelectedTalentId}
               element={element}
             />
           ))}
       </div>
-      <CharacterTalentDetails
-        selectedTalent={allTalents?.find(
-          (skill) => skill.id === selectedTalentId
-        )}
-      />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedTalentId}
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -10 }}
+          transition={{ duration: 0.2 }}
+          className="w-full"
+        >
+          <CharacterTalentDetails
+            selectedTalent={allTalents?.find(
+              (skill) => skill.id === selectedTalentId
+            )}
+          />
+        </motion.div>
+      </AnimatePresence>
     </AttributeDesktopContainer>
   );
 }
