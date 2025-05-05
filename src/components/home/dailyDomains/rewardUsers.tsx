@@ -1,4 +1,5 @@
 import React from "react";
+
 import MiniAvatar from "~/components/common/miniAvatar";
 import { useRewardUsers } from "~/hooks/domain/useRewardUsers";
 import { IDomainReward } from "~/types/enka/domain.types";

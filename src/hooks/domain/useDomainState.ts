@@ -50,6 +50,8 @@ export const useDomainState = () => {
 
   const { data: dailyDomains } = useDailyDomainData();
 
+  console.log("dailyDomains", dailyDomains);
+
   const filteredDomains = useMemo(() => {
     const domainsForDay = dailyDomains.find(
       (domain) => domain.day === selectedDay

@@ -30,11 +30,14 @@ export interface IDomainReward {
   usedBy: IRewardUsedByCharacter[];
 }
 
+export type IDomainType = "CHAR_ASC" | "WEAPON_ASC";
+
 export interface IDailyDomain {
   id: string;
   name: string;
   reward: IDomainReward[];
   city: number;
+  domainType: IDomainType;
 }
 
 export interface IDailyDomainData {

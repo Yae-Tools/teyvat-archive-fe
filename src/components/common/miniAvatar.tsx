@@ -1,8 +1,10 @@
-import React from "react";
-import MiniIconContainer from "../layout/container/miniIconContainer";
 import Image from "next/image";
-import { getElementTypeImage } from "~/utils/elementalImagePicker";
+import React from "react";
+
 import { IElementType, IRarityType } from "~/types/enka/enka.types";
+import { getElementTypeImage } from "~/utils/elementalImagePicker";
+
+import MiniIconContainer from "../layout/container/miniIconContainer";
 
 type Props = {
   char: {

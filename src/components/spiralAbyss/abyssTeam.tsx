@@ -1,4 +1,5 @@
 import { IAbyssPartyData } from "~/types/enka/enka.types";
+
 import MiniAvatar from "../common/miniAvatar";
 
 type Props = {

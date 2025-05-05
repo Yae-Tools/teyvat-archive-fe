@@ -1,16 +1,18 @@
 "use client";
 
-import Image from "next/image";
 import { useAtom } from "jotai";
+import Image from "next/image";
 
+import { useSelectedTravelerAtom } from "~/atoms/feature.atoms";
 import { useDomainState } from "~/hooks/domain/useDomainState";
 import domainNameParser from "~/utils/parsers/domainNameParser";
 import { getRegionImageByNumber } from "~/utils/regionImagePicker";
+
 import CitySelector from "./citySelector";
 import DaySelector from "./daySelector";
-import { useSelectedTravelerAtom } from "~/atoms/feature.atoms";
-import RewardUsers from "./rewardUsers";
 import DomainRewards from "./domainRewards";
+import RewardUsers from "./rewardUsers";
+import RewardWeapons from "./rewardWeapons";
 
 export default function DailyDomains() {
   const {
@@ -57,9 +59,14 @@ export default function DailyDomains() {
                   </div>
                   <DomainRewards {...{ reward: domain.reward }} />
                 </div>
-                <RewardUsers
-                  {...{ isLg, selectedTraveller, rewards: domain.reward }}
-                />
+                {domain.domainType === "CHAR_ASC" && (
+                  <RewardUsers
+                    {...{ isLg, selectedTraveller, rewards: domain.reward }}
+                  />
+                )}
+                {domain.domainType === "WEAPON_ASC" && (
+                  <RewardWeapons {...{ isLg }} />
+                )}
               </div>
             ))}
           </div>
