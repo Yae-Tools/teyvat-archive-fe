@@ -10,7 +10,7 @@ type Props = {
     icon: string;
     element: IElementType;
     rarity: IRarityType;
-  }
+  };
 };
 
 export default function MiniAvatar({ char }: Readonly<Props>) {

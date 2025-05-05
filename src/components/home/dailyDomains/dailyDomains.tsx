@@ -1,18 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { useAtom } from "jotai";
 
 import { useDomainState } from "~/hooks/domain/useDomainState";
 import domainNameParser from "~/utils/parsers/domainNameParser";
 import { getRegionImageByNumber } from "~/utils/regionImagePicker";
 import CitySelector from "./citySelector";
 import DaySelector from "./daySelector";
-import { useRewardUsers } from "~/hooks/domain/useRewardUsers";
-import MiniAvatar from "~/components/common/miniAvatar";
-import { useAtom } from "jotai";
 import { useSelectedTravelerAtom } from "~/atoms/feature.atoms";
-
-const EXCLUDED_REWARD_IDS = [102, 105, 202]; //102: Adventure XP, 105: Companion XP, 202: Mora
+import RewardUsers from "./rewardUsers";
+import DomainRewards from "./domainRewards";
 
 export default function DailyDomains() {
   const {
@@ -24,7 +22,7 @@ export default function DailyDomains() {
     isLg
   } = useDomainState();
 
-  const [selectedTraveller] =  useAtom(useSelectedTravelerAtom);
+  const [selectedTraveller] = useAtom(useSelectedTravelerAtom);
 
   return (
     <div className="flex h-full w-full items-center justify-center xl:order-1 xl:w-3/5">
@@ -57,41 +55,11 @@ export default function DailyDomains() {
                     )}
                     <h5>{domainNameParser(domain.name)}</h5>
                   </div>
-                  <div className="flex flex-row gap-2">
-                    {domain.reward
-                      .filter(
-                        (reward) => !EXCLUDED_REWARD_IDS.includes(reward.id)
-                      )
-                      .map((reward) => (
-                        <div key={reward.id}>
-                          <Image
-                            src={reward.icon}
-                            alt={reward.name}
-                            width={100}
-                            height={100}
-                            className="size-8 xl:size-12"
-                          />
-                        </div>
-                      ))}
-                  </div>
+                  <DomainRewards {...{ reward: domain.reward }} />
                 </div>
-                <div
-                  className={`flex w-full flex-wrap flex-row items-center justify-center gap-2 overflow-x-auto ${
-                    isLg ? "justify-start" : "justify-center"
-                  }`}
-                >
-                  {useRewardUsers(domain.reward, selectedTraveller).map((user) => (
-                    <MiniAvatar
-                      key={user.id}
-                      char={{
-                        id: user.id.toString(),
-                        icon: user.iconUrl,
-                        element: user.element,
-                        rarity: user.rarity
-                      }}
-                    />
-                  ))}
-                </div>
+                <RewardUsers
+                  {...{ isLg, selectedTraveller, rewards: domain.reward }}
+                />
               </div>
             ))}
           </div>
