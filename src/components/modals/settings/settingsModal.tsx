@@ -50,7 +50,7 @@ export default function SettingsModal({
     >
       <div className="w-usable max-w-[750px] bg-slate-200 dark:bg-slate-900">
         <TeyvatHeading headerLevel={4} title="Teyvat Archive Settings" />
-        <div className="my-4 flex w-full flex-col items-center justify-between py-2">
+        <div className="my-1 flex w-full flex-col items-center justify-between">
           <SettingCategories />
         </div>
       </div>

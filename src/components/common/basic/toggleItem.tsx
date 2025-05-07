@@ -27,7 +27,7 @@ export default function ToggleItem({
         onClick={() => setValue(!value)}
       >
         <div
-          className={`h-4 w-4 rounded-full bg-white transition-all duration-300 ${
+          className={`size-4 rounded-full bg-white transition-all duration-300 ${
             value ? "translate-x-6 transform" : ""
           }`}
         />

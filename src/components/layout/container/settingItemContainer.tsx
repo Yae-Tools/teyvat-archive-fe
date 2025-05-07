@@ -16,11 +16,11 @@ export default function SettingItemContainer({
   description
 }: Readonly<Props>) {
   return (
-    <div className="flex w-full items-center justify-between rounded-xl border border-slate-300 p-4 dark:border-slate-700">
+    <div className="flex w-full items-center justify-between rounded-xl border border-slate-300 px-4 py-2 dark:border-slate-700">
       <div className="flex flex-col items-start justify-between">
         <label
           htmlFor={id}
-          className={`${isDisabled ? "text-gray-400" : "primary-text"}`}
+          className={`${isDisabled ? "text-gray-400" : "primary-text"} text-sm`}
         >
           {label}
         </label>
