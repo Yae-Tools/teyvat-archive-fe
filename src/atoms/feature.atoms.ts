@@ -8,6 +8,10 @@ export const useSelectedTravelerAtom = atomWithStorage(
   "useSelectedTraveler",
   "PlayerBoy"
 );
+export const useDisplayDomainRewardUsageAtom = atomWithStorage(
+  "useDisplayDomainRewardUsage",
+  true
+);
 export const useCarouselAutoPlayAtom = atomWithStorage(
   "useCarouselAutoPlay",
   false

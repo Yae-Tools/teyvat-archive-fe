@@ -3,7 +3,10 @@
 import { useAtom } from "jotai";
 import Image from "next/image";
 
-import { useSelectedTravelerAtom } from "~/atoms/feature.atoms";
+import {
+  useDisplayDomainRewardUsageAtom,
+  useSelectedTravelerAtom
+} from "~/atoms/feature.atoms";
 import { useDomainState } from "~/hooks/domain/useDomainState";
 import domainNameParser from "~/utils/parsers/domainNameParser";
 import { getRegionImageByNumber } from "~/utils/regionImagePicker";
@@ -25,6 +28,9 @@ export default function DailyDomains() {
   } = useDomainState();
 
   const [selectedTraveller] = useAtom(useSelectedTravelerAtom);
+  const [useDisplayDomainRewardUsage] = useAtom(
+    useDisplayDomainRewardUsageAtom
+  );
 
   return (
     <div className="flex h-full w-full items-center justify-center xl:order-1 xl:w-3/5">
@@ -59,13 +65,17 @@ export default function DailyDomains() {
                   </div>
                   <DomainRewards {...{ reward: domain.reward }} />
                 </div>
-                {domain.domainType === "CHAR_ASC" && (
-                  <RewardUsers
-                    {...{ isLg, selectedTraveller, rewards: domain.reward }}
-                  />
-                )}
-                {domain.domainType === "WEAPON_ASC" && (
-                  <RewardWeapons {...{ isLg, rewards: domain.reward }} />
+                {useDisplayDomainRewardUsage && (
+                  <div>
+                    {domain.domainType === "CHAR_ASC" && (
+                      <RewardUsers
+                        {...{ isLg, selectedTraveller, rewards: domain.reward }}
+                      />
+                    )}
+                    {domain.domainType === "WEAPON_ASC" && (
+                      <RewardWeapons {...{ isLg, rewards: domain.reward }} />
+                    )}
+                  </div>
                 )}
               </div>
             ))}
