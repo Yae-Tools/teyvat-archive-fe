@@ -56,7 +56,7 @@ export default function SettingsModal({
       style={customStyles}
       contentLabel="Teyvat Archive Settings"
     >
-      <div className="w-usable max-w-[750px] bg-slate-200 dark:bg-slate-900 max-h-[500px] min-h-[200px]">
+      <div className="w-usable max-h-[500px] min-h-[200px] max-w-[750px] bg-slate-200 dark:bg-slate-900">
         <TeyvatHeading headerLevel={4} title="Teyvat Archive Settings" />
         <div className="my-2 flex w-full flex-col items-center justify-between">
           <ButtonGroup

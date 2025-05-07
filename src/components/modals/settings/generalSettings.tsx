@@ -16,8 +16,9 @@ export default function GeneralSettings() {
   const [useSelectedTraveler, setUseSelectedTraveler] = useAtom(
     useSelectedTravelerAtom
   );
-  const [useDisplayDomainRewardUsage, setUseDisplayDomainRewardUsage] =
-    useAtom(useDisplayDomainRewardUsageAtom);
+  const [useDisplayDomainRewardUsage, setUseDisplayDomainRewardUsage] = useAtom(
+    useDisplayDomainRewardUsageAtom
+  );
 
   return (
     <div className="flex flex-col space-y-3">
