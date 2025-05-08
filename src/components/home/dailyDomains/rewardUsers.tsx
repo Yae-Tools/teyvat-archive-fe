@@ -26,9 +26,11 @@ export default function RewardUsers({
           key={user.id + user.element}
           char={{
             id: user.id.toString(),
+            skillDepotId: user.skillDepotId.toString(),
             icon: user.iconUrl,
             element: user.element,
-            rarity: user.rarity
+            rarity: user.rarity,
+            nameId: user.nameId
           }}
         />
       ))}

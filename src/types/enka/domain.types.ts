@@ -14,6 +14,7 @@ export interface IRewardUsedByCharacter {
   id: number;
   name: string;
   iconUrl: string;
+  skillDepotId: number;
   isTraveler: boolean;
   rarity: IRarityType;
   element: IElementType;
@@ -25,6 +26,7 @@ export interface IRewardUsedByWeapon {
   name: string;
   iconUrl: string;
   rarity: IRarityType;
+  nameId: string;
 }
 
 export interface IDomainReward {

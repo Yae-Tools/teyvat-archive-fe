@@ -131,6 +131,8 @@ export interface IAbyssPartyData {
     icon: string;
     element: IElementType;
     rarity: IRarityType;
+    skillDepotId: string;
+    nameId: string;
   }[];
 }
 

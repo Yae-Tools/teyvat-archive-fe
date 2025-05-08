@@ -81,7 +81,9 @@ export const getTopFourTeams = (
           name: baseChar!.name,
           icon: baseChar!.iconUrl,
           element: baseChar!.element,
-          rarity: baseChar!.rarity
+          rarity: baseChar!.rarity,
+          nameId: baseChar!.nameId,
+          skillDepotId: baseChar!.skillDepotId
         };
       });
       return {
