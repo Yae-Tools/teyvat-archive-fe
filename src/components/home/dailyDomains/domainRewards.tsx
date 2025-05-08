@@ -1,6 +1,4 @@
-import Image from "next/image";
-import React from "react";
-
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IDomainReward } from "~/types/enka/domain.types";
 
 type Props = {
@@ -16,7 +14,7 @@ export default function DomainRewards({ reward }: Readonly<Props>) {
         .filter((reward) => !EXCLUDED_REWARD_IDS.includes(reward.id))
         .map((reward) => (
           <div key={reward.id}>
-            <Image
+            <OptimizedImage
               src={reward.icon}
               alt={reward.name}
               width={100}

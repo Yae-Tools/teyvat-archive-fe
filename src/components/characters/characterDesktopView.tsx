@@ -2,12 +2,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
 import { useState } from "react";
 
 import { ICharacter } from "~/types/enka/character.types";
 import { getMarginRightValue, getZoomValue } from "~/utils/splashArtZoom";
 
+import OptimizedImage from "../common/basic/optimizedImage";
 import TabNavigation from "../common/basic/tabNavigation";
 import LazyBackgroundImage from "../common/lazyBackgroundImage";
 import RarityStars from "../common/rarityStars";
@@ -74,7 +74,7 @@ function CharacterDesktopView({ characterData }: Readonly<Props>) {
       >
         <div className="absolute z-10 mr-4 flex w-2/3 flex-col items-start">
           <div className="mb-5 flex items-center justify-start space-x-1">
-            <Image
+            <OptimizedImage
               className="mr-2 size-12"
               src={sideIcon}
               alt={name}

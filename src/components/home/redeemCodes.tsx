@@ -36,7 +36,7 @@ export default function RedeemCodes() {
       theme: "dark",
       icon: (
         <Image
-          src={yaeWhisperIcon.src}
+          src={yaeWhisperIcon}
           alt="Yae Miko"
           className="w-8"
           width={100}

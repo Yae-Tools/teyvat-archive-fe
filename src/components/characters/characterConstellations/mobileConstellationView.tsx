@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IConstellation } from "~/types/enka/character.types";
 
 import AttributeMobileContainer from "../../layout/container/attributeMobileContainer";
@@ -19,7 +18,7 @@ export default function MobileConstellationView({
   return (
     <AttributeMobileContainer title={constellation}>
       <div className="flex w-full items-center justify-center">
-        <Image
+        <OptimizedImage
           src={chapterIcon}
           alt={constellation}
           className="size-48"

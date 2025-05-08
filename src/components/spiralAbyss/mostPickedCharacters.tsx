@@ -1,9 +1,8 @@
-import Image from "next/image";
-
 import { ITopCharacter } from "~/types/enka/character.types";
 import { IRarityType } from "~/types/enka/enka.types";
 import { formatStatValue } from "~/utils/formatters/statValue.formatter";
 
+import OptimizedImage from "../common/basic/optimizedImage";
 import AbyssIconLoader from "../common/loaderHandlers/abyssIconLoader";
 import TitleHeading from "../common/typography/titleHeading";
 import MiniIconContainer from "../layout/container/miniIconContainer";
@@ -57,7 +56,7 @@ export default function MostPickedCharacters({
                 rarity={char.rarity as IRarityType}
               >
                 <div className="flex h-full w-full flex-col items-center justify-end">
-                  <Image
+                  <OptimizedImage
                     src={char.icon as string}
                     alt={char.id}
                     width={300}
