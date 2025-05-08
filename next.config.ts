@@ -18,7 +18,8 @@ const nextConfig: NextConfig = {
       hostname: domain,
       port: "",
       pathname: "/**"
-    }))
+    })),
+    unoptimized: true
   },
   experimental: {
     reactCompiler: true
