@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 
 import {
+  useDisplayDomainRewardUsageAtom,
   useFilterTravelersAtom,
   useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
@@ -14,6 +15,9 @@ export default function GeneralSettings() {
   );
   const [useSelectedTraveler, setUseSelectedTraveler] = useAtom(
     useSelectedTravelerAtom
+  );
+  const [useDisplayDomainRewardUsage, setUseDisplayDomainRewardUsage] = useAtom(
+    useDisplayDomainRewardUsageAtom
   );
 
   return (
@@ -39,6 +43,12 @@ export default function GeneralSettings() {
             ? "Enable 'Filter Travelers' to use this feature."
             : ""
         }
+      />
+      <SettingsToggleItem
+        value={useDisplayDomainRewardUsage}
+        setValue={setUseDisplayDomainRewardUsage}
+        id="rewardUsage"
+        label="Display Domain Reward Usage"
       />
     </div>
   );

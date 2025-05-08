@@ -28,7 +28,7 @@ export default function SettingsDropdownItem({
         id={id}
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="primary-text mr-2 block w-full rounded-md border border-slate-300 bg-slate-800 px-4 py-1 text-sm shadow-sm focus:outline-none dark:border-slate-700"
+        className="primary-text mr-2 block w-full rounded-md border border-slate-300 bg-slate-800 px-4 py-1 text-center text-sm shadow-sm focus:outline-none dark:border-slate-700"
         disabled={isDisabled}
       >
         {options.map((option) => (

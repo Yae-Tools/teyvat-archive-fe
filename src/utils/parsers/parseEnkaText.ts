@@ -14,6 +14,9 @@ function parseText(inputText: string) {
     "Mobile:Tap, PS/PC: Press"
   );
 
+  // Remove anything inside curly braces {}
+  modifiedText = modifiedText.replace(/\{[^}]*\}/g, "");
+
   modifiedText = modifiedText.replace(
     /#(?!([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3}))/g,
     ""

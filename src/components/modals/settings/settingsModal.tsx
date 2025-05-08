@@ -1,10 +1,11 @@
 import { useAtomValue } from "jotai";
+import { useState } from "react";
 import Modal from "react-modal";
 
 import { themeAtom } from "~/atoms/general.atoms";
+import ButtonGroup from "~/components/common/basic/buttonGroup";
 import TeyvatHeading from "~/components/common/teyvatHeading";
-
-import SettingCategories from "./settingCategories";
+import { SETTINGS_CATEGORIES } from "~/data/settingsData";
 
 type Props = {
   isOpen: boolean;
@@ -17,6 +18,13 @@ export default function SettingsModal({
   onRequestClose
 }: Readonly<Props>) {
   const theme = useAtomValue(themeAtom);
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    SETTINGS_CATEGORIES[0].id
+  );
+
+  const item = SETTINGS_CATEGORIES.find((cat) => cat.id === selectedCategory);
+  if (!item) return null;
 
   const customStyles = {
     content: {
@@ -48,10 +56,25 @@ export default function SettingsModal({
       style={customStyles}
       contentLabel="Teyvat Archive Settings"
     >
-      <div className="w-usable max-w-[750px] bg-slate-200 dark:bg-slate-900">
+      <div className="w-usable max-h-[500px] min-h-[200px] max-w-[750px] bg-slate-200 dark:bg-slate-900">
         <TeyvatHeading headerLevel={4} title="Teyvat Archive Settings" />
-        <div className="my-4 flex w-full flex-col items-center justify-between py-2">
-          <SettingCategories />
+        <div className="my-2 flex w-full flex-col items-center justify-between">
+          <ButtonGroup
+            items={SETTINGS_CATEGORIES.map((data) => ({
+              id: data.id,
+              label: data.title,
+              value: data.id,
+              onClick: (itm: string) => setSelectedCategory(itm)
+            }))}
+            selectedItem={selectedCategory}
+          />
+        </div>
+        <button className="flex w-full items-center justify-start space-x-2 border-b-1 border-gray-200 pb-2 text-sm font-medium text-gray-700 dark:border-gray-700 dark:text-gray-200">
+          {item.icon && <item.icon className="primary-text size-6" />}
+          <label className="primary-text font-enka text-sm">{item.title}</label>
+        </button>
+        <div className="mx-4 my-2 md:mx-8 lg:mx-12">
+          {item.content && <item.content />}
         </div>
       </div>
     </Modal>
