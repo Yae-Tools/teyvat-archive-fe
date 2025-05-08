@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { IRarityType } from "~/types/enka/enka.types";
 
@@ -9,11 +10,13 @@ type Props = {
     id: string;
     icon: string;
     rarity: IRarityType;
+    nameId: string;
   };
 };
 
 export default function MiniWeapon({ weapon }: Readonly<Props>) {
   return (
+    <Link href={`/weapons/${weapon.nameId}-${weapon.id}`}>
     <MiniIconContainer key={weapon.id} rarity={weapon.rarity} bgFlow="fromTo">
       <div className="relative flex h-full w-full flex-col items-center justify-end">
         <Image
@@ -25,5 +28,6 @@ export default function MiniWeapon({ weapon }: Readonly<Props>) {
         />
       </div>
     </MiniIconContainer>
+    </Link>
   );
 }

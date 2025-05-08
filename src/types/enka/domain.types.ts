@@ -26,6 +26,7 @@ export interface IRewardUsedByWeapon {
   name: string;
   iconUrl: string;
   rarity: IRarityType;
+  nameId: string;
 }
 
 export interface IDomainReward {

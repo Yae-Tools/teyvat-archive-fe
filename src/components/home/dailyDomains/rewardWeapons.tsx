@@ -20,7 +20,8 @@ export default function RewardWeapons({ isLg, rewards }: Readonly<Props>) {
           weapon={{
             id: weapon.id.toString(),
             icon: weapon.iconUrl,
-            rarity: weapon.rarity
+            rarity: weapon.rarity,
+            nameId: weapon.nameId
           }}
         />
       ))}
