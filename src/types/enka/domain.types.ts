@@ -14,6 +14,7 @@ export interface IRewardUsedByCharacter {
   id: number;
   name: string;
   iconUrl: string;
+  skillDepotId: number;
   isTraveler: boolean;
   rarity: IRarityType;
   element: IElementType;
