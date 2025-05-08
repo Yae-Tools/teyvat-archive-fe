@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { useState } from "react";
 
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IEvent } from "~/types/ambr.types";
 
 import ReadButton from "./readButton";
@@ -19,7 +19,7 @@ export default function EventItem({ event }: Readonly<Props>) {
       } border border-gray-700`}
       style={{ backgroundColor: "rgba(16, 24, 40, 0.7)" }}
     >
-      <Image
+      <OptimizedImage
         alt={event.title}
         src={event.imageUrl}
         className="w-full"

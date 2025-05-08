@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Tooltip } from "react-tooltip";
 
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { ITalent } from "~/types/enka/character.types";
 import elementalColorPicker from "~/utils/elementalColorPicker";
 
@@ -39,7 +39,7 @@ export default function TalentIcon({
               : "rgb(30 41 59)"
         }}
       >
-        <Image
+        <OptimizedImage
           src={talent.icon}
           alt={talent.name}
           width={60}

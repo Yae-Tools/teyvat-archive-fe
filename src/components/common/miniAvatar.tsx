@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import { IElementType, IRarityType } from "~/types/enka/enka.types";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
 
 import MiniIconContainer from "../layout/container/miniIconContainer";
+
+import OptimizedImage from "./basic/optimizedImage";
 
 type Props = {
   char: {
@@ -30,7 +31,7 @@ export default function MiniAvatar({ char }: Readonly<Props>) {
               className="size-4 lg:size-5"
             />
           </div>
-          <Image
+          <OptimizedImage
             src={char.icon}
             alt={char.skillDepotId}
             width={300}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IBaseCharacter } from "~/types/enka/character.types";
 import { getElementTypeImage } from "~/utils/elementalImagePicker";
 
+import OptimizedImage from "../common/basic/optimizedImage";
 import ThumbnaiContainer from "../layout/container/thumbnailContainer";
 
 type Props = {
@@ -18,7 +19,7 @@ export default function CharacterThumbnail({ character }: Readonly<Props>) {
       >
         <div className="mt-1 flex w-full flex-col items-center">
           <div className="flex h-3/4 items-end justify-center">
-            <Image
+            <OptimizedImage
               src={character.iconUrl}
               alt={character.id}
               width={300}

@@ -1,10 +1,10 @@
 import { useAtom } from "jotai";
-import Image from "next/image";
 
 import {
   selectedArtifactEquipTypeAtom,
   selectedRarityFullSetAtom
 } from "~/atoms/teyvat/artifact.atom";
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import DescriptionDesktop from "~/components/common/descriptionDesktop";
 import RarityStars from "~/components/common/rarityStars";
 import TitleHeading from "~/components/common/typography/titleHeading";
@@ -54,7 +54,7 @@ export default function ArtifactProfileDesktop({
         </div>
       </div>
       <div className="flex h-full w-1/3 flex-col items-center justify-between space-y-6">
-        <Image src={icon} alt={name} height={250} width={250} />
+        <OptimizedImage src={icon} alt={name} height={250} width={250} />
         <DescriptionDesktop {...{ description }} align="right" />
         <div className="mt-2 flex w-full flex-col items-center justify-end">
           <div className="mb-2 flex w-full flex-col items-end justify-end space-x-1 text-right text-white">

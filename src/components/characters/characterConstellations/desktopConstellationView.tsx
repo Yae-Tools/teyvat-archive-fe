@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IConstellation } from "~/types/enka/character.types";
 import { IElementType } from "~/types/enka/enka.types";
 
@@ -54,7 +54,7 @@ export default function DesktopConstellationView({
                 }}
               />
             ))}
-            <Image
+            <OptimizedImage
               src={constellationIcon}
               alt="CONSTELLATION ICON"
               className="size-60"

@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IConstellation } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
@@ -25,7 +24,7 @@ export default function ConstellationDetails({
       />
 
       <div className="absolute z-0 mt-[10rem] flex w-full items-center justify-center">
-        <Image
+        <OptimizedImage
           src={selectedConstellation.icon}
           alt={selectedConstellation.name}
           className="size-80"

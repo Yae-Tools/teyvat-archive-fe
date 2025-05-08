@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Tooltip } from "react-tooltip";
 
+import OptimizedImage from "~/components/common/basic/optimizedImage";
 import { IConstellation } from "~/types/enka/character.types";
 import { IElementType } from "~/types/enka/enka.types";
 import elementalColorPicker from "~/utils/elementalColorPicker";
@@ -66,7 +66,7 @@ export default function ConstellationIcon({
             transform: "rotate(180deg)"
           }}
         >
-          <Image
+          <OptimizedImage
             src={constellation.icon}
             alt={constellation.name}
             width={100}

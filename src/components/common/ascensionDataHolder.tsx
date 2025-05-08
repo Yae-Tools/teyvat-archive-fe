@@ -10,6 +10,8 @@ import rarityParser from "~/utils/parsers/rarityParser";
 
 import MiniIconContainer from "../layout/container/miniIconContainer";
 
+import OptimizedImage from "./basic/optimizedImage";
+
 type Props = {
   ascensionData: ICharacterAscensionData[] | ITalentAscensionCost[];
   selectedLevel: number;
@@ -35,7 +37,7 @@ export default function AscensionDataHolder({
                   data-tooltip-id="asc-item-tooltip"
                   data-tooltip-content={`${item.materialName}`}
                 >
-                  <Image
+                  <OptimizedImage
                     className="size-10 lg:size-12 xl:size-14"
                     src={item.materialIcon}
                     alt={item.materialName}

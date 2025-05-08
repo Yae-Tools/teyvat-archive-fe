@@ -21,7 +21,7 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
   return (
     <ThumbnaiContainer name={weapon.name} rarity={rarityParser(weapon.stars)}>
       <Link href={`/weapons/${weapon.id}-${weapon.enkaId}`}>
-        <button
+        <div
           className="mt-1 flex w-full flex-col items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -37,7 +37,7 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
               transition={{ duration: 1 }}
             />
           </div>
-        </button>
+        </div>
       </Link>
       <div className="absolute top-0 left-0 mt-[-5px] ml-[-5px] flex items-center p-2 text-white">
         <Image

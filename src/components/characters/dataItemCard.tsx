@@ -1,11 +1,11 @@
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import { useState } from "react";
 
 import { IConstellation, ITalent } from "~/types/enka/character.types";
 import parseText from "~/utils/parsers/parseEnkaText";
 
+import OptimizedImage from "../common/basic/optimizedImage";
 import TextLabel from "../common/typography/textLabel";
 
 import TalentStats from "./characterTalents/talentStats";
@@ -26,7 +26,12 @@ export default function DataItemCard({ item, index }: Readonly<Props>) {
     <div className="my-1 w-full rounded-md bg-gray-300 p-1 dark:bg-slate-700">
       <div className="flex w-full items-center justify-between">
         <div className="flex w-full items-center justify-start space-x-3">
-          <Image src={item.icon} alt={item.name} width={60} height={60} />
+          <OptimizedImage
+            src={item.icon}
+            alt={item.name}
+            width={60}
+            height={60}
+          />
           {/* if  data type is IConstellation use index as constellation number */}
           {index !== undefined ? (
             <TextLabel
