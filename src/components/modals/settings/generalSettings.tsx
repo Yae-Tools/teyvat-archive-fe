@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 
 import {
   useDisplayDomainRewardUsageAtom,
+  useDomainRewardUsageItemAtom,
   useFilterTravelersAtom,
   useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
@@ -18,6 +19,9 @@ export default function GeneralSettings() {
   );
   const [useDisplayDomainRewardUsage, setUseDisplayDomainRewardUsage] = useAtom(
     useDisplayDomainRewardUsageAtom
+  );
+  const [useDomainRewardUsageItem, setUseDomainRewardUsageItem] = useAtom(
+    useDomainRewardUsageItemAtom
   );
 
   return (
@@ -49,6 +53,24 @@ export default function GeneralSettings() {
         setValue={setUseDisplayDomainRewardUsage}
         id="rewardUsage"
         label="Display Domain Reward Usage"
+      />
+       <SettingsDropdownItem
+        value={useDomainRewardUsageItem}
+        setValue={setUseDomainRewardUsageItem}
+        id="rewardUsageItem"
+        isDisabled={!useDisplayDomainRewardUsage}
+        label="Domain Reward Usage Items"
+        options={[
+          { value: "all", label: "All" },
+          { value: "5", label: "5 Stars Only" },
+          { value: "4", label: "4 Stars and 5 Stars" },
+          { value: "3", label: "3 Stars, 4 Stars and 5 Stars" }
+        ]}
+        description={
+          !useDisplayDomainRewardUsage
+            ? "Enable 'Display Domain Reward Usage' to use this feature."
+            : ""
+        }
       />
     </div>
   );
