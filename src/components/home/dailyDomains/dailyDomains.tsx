@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import {
   useDisplayDomainRewardUsageAtom,
+  useDisplayRewardUsageScrollingAtom,
   useSelectedTravelerAtom
 } from "~/atoms/feature.atoms";
 import { useDomainState } from "~/hooks/domain/useDomainState";
@@ -30,6 +31,9 @@ export default function DailyDomains() {
   const [selectedTraveller] = useAtom(useSelectedTravelerAtom);
   const [useDisplayDomainRewardUsage] = useAtom(
     useDisplayDomainRewardUsageAtom
+  );
+  const [useDisplayRewardUsageScrolling] = useAtom(
+    useDisplayRewardUsageScrollingAtom
   );
 
   return (
@@ -69,11 +73,22 @@ export default function DailyDomains() {
                   <div>
                     {domain.domainType === "CHAR_ASC" && (
                       <RewardUsers
-                        {...{ isLg, selectedTraveller, rewards: domain.reward }}
+                        {...{
+                          isLg,
+                          selectedTraveller,
+                          rewards: domain.reward,
+                          isScrolling: useDisplayRewardUsageScrolling
+                        }}
                       />
                     )}
                     {domain.domainType === "WEAPON_ASC" && (
-                      <RewardWeapons {...{ isLg, rewards: domain.reward }} />
+                      <RewardWeapons
+                        {...{
+                          isLg,
+                          rewards: domain.reward,
+                          isScrolling: useDisplayRewardUsageScrolling
+                        }}
+                      />
                     )}
                   </div>
                 )}

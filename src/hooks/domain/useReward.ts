@@ -39,7 +39,8 @@ export const useRewardUsers = (
   const uniqueFiltered = uniqueUsedBy.filter((user) => {
     if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_ORANGE) {
       return (
-        user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE || user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE_SP
+        user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
+        user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE_SP
       );
     } else {
       return true;
@@ -74,15 +75,15 @@ export const useRewardWeapons = (rewards: IDomainReward[]) => {
       return true;
     } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_ORANGE) {
       return weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE;
-    }else if (useDomainRewardUsageItem ===RARITY_TYPES.QUALITY_PURPLE) {
+    } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_PURPLE) {
       return (
         weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
         weapon.rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE
       );
-    }else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_BLUE) {
+    } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_BLUE) {
       return (
         weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
-        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE||
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE ||
         weapon.rarity === RARITY_TYPE_KEYS.QUALITY_BLUE
       );
     }

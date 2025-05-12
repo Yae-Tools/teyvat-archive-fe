@@ -2,6 +2,7 @@ import { useAtom } from "jotai";
 
 import {
   useDisplayDomainRewardUsageAtom,
+  useDisplayRewardUsageScrollingAtom,
   useDomainRewardUsageItemAtom,
   useFilterTravelersAtom,
   useSelectedTravelerAtom
@@ -23,6 +24,8 @@ export default function GeneralSettings() {
   const [useDomainRewardUsageItem, setUseDomainRewardUsageItem] = useAtom(
     useDomainRewardUsageItemAtom
   );
+  const [useDisplayRewardUsageScrolling, setUseDisplayRewardUsageScrolling] =
+    useAtom(useDisplayRewardUsageScrollingAtom);
 
   return (
     <div className="flex flex-col space-y-3">
@@ -54,7 +57,7 @@ export default function GeneralSettings() {
         id="rewardUsage"
         label="Display Domain Reward Usage"
       />
-       <SettingsDropdownItem
+      <SettingsDropdownItem
         value={useDomainRewardUsageItem}
         setValue={setUseDomainRewardUsageItem}
         id="rewardUsageItem"
@@ -66,6 +69,18 @@ export default function GeneralSettings() {
           { value: "4", label: "4 Stars and 5 Stars" },
           { value: "3", label: "3 Stars, 4 Stars and 5 Stars" }
         ]}
+        description={
+          !useDisplayDomainRewardUsage
+            ? "Enable 'Display Domain Reward Usage' to use this feature."
+            : ""
+        }
+      />
+      <SettingsToggleItem
+        value={useDisplayRewardUsageScrolling}
+        setValue={setUseDisplayRewardUsageScrolling}
+        id="rewardUsageScrolling"
+        isDisabled={!useDisplayDomainRewardUsage}
+        label="View All Items Without Scrolling"
         description={
           !useDisplayDomainRewardUsage
             ? "Enable 'Display Domain Reward Usage' to use this feature."

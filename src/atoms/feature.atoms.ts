@@ -16,6 +16,10 @@ export const useDomainRewardUsageItemAtom = atomWithStorage(
   "useDomainRewardUsageItem",
   "3"
 );
+export const useDisplayRewardUsageScrollingAtom = atomWithStorage(
+  "useDisplayRewardUsageLayout",
+  false
+);
 export const useCarouselAutoPlayAtom = atomWithStorage(
   "useCarouselAutoPlay",
   false
