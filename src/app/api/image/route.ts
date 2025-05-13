@@ -51,7 +51,7 @@ export async function GET(req: Request) {
   const cacheKey = `${url}-${w}-${q}`;
   const cachedImage = cache.get(cacheKey);
   if (cachedImage) {
-    return new NextResponse(cachedImage, {
+    return new NextResponse(new Uint8Array(cachedImage), {
       status: 200,
       headers: {
         "Content-Type": "image/webp",
@@ -86,7 +86,7 @@ export async function GET(req: Request) {
     // Store in cache
     cache.set(cacheKey, processedImage);
 
-    return new NextResponse(processedImage, {
+    return new NextResponse(new Uint8Array(processedImage), {
       status: 200,
       headers: {
         "Content-Type": `image/${format}`,

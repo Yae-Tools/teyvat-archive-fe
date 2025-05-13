@@ -1,3 +1,7 @@
+import { useAtom } from "jotai";
+
+import { useDomainRewardUsageItemAtom } from "~/atoms/feature.atoms";
+import { RARITY_TYPE_KEYS, RARITY_TYPES } from "~/data/teyvatData";
 import {
   IDomainReward,
   IRewardUsedByCharacter,
@@ -8,6 +12,8 @@ export const useRewardUsers = (
   rewards: IDomainReward[],
   selectedTraveler: string
 ) => {
+  const [useDomainRewardUsageItem] = useAtom(useDomainRewardUsageItemAtom);
+
   const filteredRewards = rewards.filter((reward) => {
     return reward.usedBy.length > 0;
   });
@@ -30,10 +36,23 @@ export const useRewardUsers = (
     );
   });
 
-  return uniqueUsedBy;
+  const uniqueFiltered = uniqueUsedBy.filter((user) => {
+    if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_ORANGE) {
+      return (
+        user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
+        user.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE_SP
+      );
+    } else {
+      return true;
+    }
+  });
+
+  return uniqueFiltered;
 };
 
 export const useRewardWeapons = (rewards: IDomainReward[]) => {
+  const [useDomainRewardUsageItem] = useAtom(useDomainRewardUsageItemAtom);
+
   const filteredRewards = rewards.filter((reward) => {
     return reward.usedBy.length > 0;
   });
@@ -51,5 +70,25 @@ export const useRewardWeapons = (rewards: IDomainReward[]) => {
     return index === self.findIndex((t) => t.id === value.id);
   });
 
-  return uniqueUsedBy;
+  const uniqueFiltered = uniqueUsedBy.filter((weapon) => {
+    if (useDomainRewardUsageItem === "all") {
+      return true;
+    } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_ORANGE) {
+      return weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE;
+    } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_PURPLE) {
+      return (
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE
+      );
+    } else if (useDomainRewardUsageItem === RARITY_TYPES.QUALITY_BLUE) {
+      return (
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_ORANGE ||
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_PURPLE ||
+        weapon.rarity === RARITY_TYPE_KEYS.QUALITY_BLUE
+      );
+    }
+    return false;
+  });
+
+  return uniqueFiltered;
 };

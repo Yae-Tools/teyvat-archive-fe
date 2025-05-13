@@ -8,16 +8,18 @@ type Props = {
   isLg: boolean;
   selectedTraveller: string;
   rewards: IDomainReward[];
+  isScrolling: boolean;
 };
 
 export default function RewardUsers({
   isLg,
   selectedTraveller,
-  rewards
+  rewards,
+  isScrolling
 }: Readonly<Props>) {
   return (
     <div
-      className={`flex w-full flex-row flex-wrap items-center justify-center gap-2 overflow-x-auto ${
+      className={`flex w-full flex-row ${isScrolling ? "flex-wrap" : ""} items-center justify-center gap-2 overflow-x-auto ${
         isLg ? "justify-start" : "justify-center"
       }`}
     >
