@@ -1,19 +1,10 @@
 import type { NextConfig } from "next";
-
-const imageDomains = [
-  "homdgcat.wiki",
-  "gi.yatta.moe",
-  "cdn.teyvatarchive.online",
-  "enka.network",
-  "sdk.hoyoverse.com",
-  "fastcdn.hoyoverse.com",
-  "act-webstatic.hoyoverse.com"
-];
+import { ALLOWED_HOSTS } from "~/app/api/image/route";
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    remotePatterns: imageDomains.map((domain) => ({
+    remotePatterns: ALLOWED_HOSTS.map((domain) => ({
       protocol: "https",
       hostname: domain,
       port: "",

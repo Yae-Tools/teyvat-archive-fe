@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import sharp from "sharp";
 
 // Allowed hosts for security (replace with your external service domains)
-const ALLOWED_HOSTS = [
+export const ALLOWED_HOSTS = [
   "homdgcat.wiki",
   "gi.yatta.moe",
   "cdn.teyvatarchive.online",
