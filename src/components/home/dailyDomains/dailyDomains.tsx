@@ -52,7 +52,7 @@ export default function DailyDomains() {
             {filteredDomains.map((domain) => (
               <div
                 key={domain.id}
-                className="flex w-full flex-col gap-1 rounded-lg bg-slate-800/60 px-2 py-1"
+                className="flex w-full flex-col gap-1 rounded-lg bg-slate-500/30 px-2 py-1"
               >
                 <div className="flex w-full flex-col items-center justify-between lg:flex-row">
                   <div className="flex flex-row items-center justify-center">
