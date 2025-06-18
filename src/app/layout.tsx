@@ -1,6 +1,4 @@
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { Open_Sans } from "next/font/google";
@@ -78,8 +76,6 @@ export default function RootLayout({
             </QueryProvider>
           </PostHogProvider>
         </ErrorBoundary>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

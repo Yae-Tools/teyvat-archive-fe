@@ -78,18 +78,18 @@ export default function LevelPicker({
 
   // Animation variants
   const tickVariants = {
-    hidden: { opacity: 0, y: 4 },
+    hidden: { opacity: 0, y: -10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.3,
-        ease: "easeOut"
+        type: "spring" as const,
+        stiffness: 300
       }
     },
     exit: {
       opacity: 0,
-      y: -4,
+      y: -10,
       transition: {
         duration: 0.2
       }
