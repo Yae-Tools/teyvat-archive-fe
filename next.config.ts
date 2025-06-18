@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       port: "",
       pathname: "/**"
     })),
+    loaderFile: "./src/utils/imageLoader.ts",
     unoptimized: true
   },
   experimental: {

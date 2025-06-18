@@ -1,13 +1,14 @@
+// components/OptimizedImage.tsx
 import Image from "next/image";
 import { HTMLProps } from "react";
 
-interface Props extends HTMLProps<HTMLImageElement> {
+interface Props extends Omit<HTMLProps<HTMLImageElement>, 'width' | 'height' | 'src' | 'alt' | 'placeholder'> {
   src: string;
   alt: string;
   width?: number;
   height?: number;
   className?: string;
-  unoptimized?: boolean;
+  priority?: boolean;
 }
 
 export default function OptimizedImage({
@@ -16,25 +17,19 @@ export default function OptimizedImage({
   width = 300,
   height = 300,
   className,
-  unoptimized = false,
+  priority = false,
   ...rest
 }: Readonly<Props>) {
-  const proxyUrl = `/api/image?url=${encodeURIComponent(src)}&w=${width}&q=80`;
-  const placeholderUrl = `/api/image?url=${encodeURIComponent(src)}&w=20&q=10`;
-
   return (
     <Image
-      {...rest}
-      src={proxyUrl}
+      src={src}
       alt={alt}
       width={width}
       height={height}
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-      placeholder="blur"
-      blurDataURL={placeholderUrl}
-      loading="lazy"
+      priority={priority}
       className={className}
-      unoptimized={unoptimized}
+      {...rest}
     />
   );
 }
