@@ -77,7 +77,7 @@ export default async function Home() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="w-usable my-3 flex flex-col items-center justify-center xl:mb-4">
-        <PageTitle title="Paralogism" />
+        <PageTitle title="A Space and Time for You" />
         <HomeClient gameData={gameData} />
       </div>
     </HydrationBoundary>
