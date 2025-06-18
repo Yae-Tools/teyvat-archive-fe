@@ -22,7 +22,7 @@ export default function WeaponThumbnail({ weapon }: Readonly<Props>) {
     <ThumbnaiContainer name={weapon.name} rarity={rarityParser(weapon.stars)}>
       <Link href={`/weapons/${weapon.id}-${weapon.enkaId}`}>
         <button
-          className="mt-1 flex w-full flex-col items-center cursor-pointer"
+          className="mt-1 flex w-full cursor-pointer flex-col items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onTouchStart={() => setIsHovered(true)}

@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
-import { ALLOWED_HOSTS } from "~/app/api/image/route";
+
+import { ALLOWED_HOSTS } from "~/config/allowedHosts";
 
 const nextConfig: NextConfig = {
   /* config options here */
