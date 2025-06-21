@@ -1,0 +1,60 @@
+name: Deploy Main Site to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main # Triggers on pushes to the 'main' branch
+  pull_request:
+    branches:
+      - main # Triggers on pull requests to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # The type of runner that the job will run on
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Action to check out your repository code
+        with:
+          fetch-depth: 0 # Needed for Turborepo's --since=HEAD^1 to detect changes
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3 # Action to set up pnpm
+        with:
+          version: 9 # Specify your pnpm version (match your local)
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Action to set up Node.js
+        with:
+          node-version: "20" # Specify your Node.js version (match your local)
+          cache: "pnpm" # Cache pnpm dependencies to speed up builds
+
+      - name: Install Monorepo Dependencies
+        run: pnpm install # Installs dependencies for all workspaces
+
+      - name: Build Main Site Next.js App
+        # Use Turborepo to build only the main-site app
+        run: pnpm build --filter=main-site
+        env:
+          # IMPORTANT: Add any environment variables your main-site needs during build time here
+          # e.g., Next.js public variables (NEXT_PUBLIC_...)
+          NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_ENKA_BASE_URL: ${{ secrets.NEXT_PUBLIC_ENKA_BASE_URL }}
+          NEXT_PUBLIC_IMAGE_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_IMAGE_CDN_BASE_URL }}
+          NEXT_PUBLIC_BANNER_VISIBLE: ${{ secrets.NEXT_PUBLIC_BANNER_VISIBLE }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST }}
+          CLOUDFLARE_IMAGES_ACCOUNT_HASH: ${{ secrets.CLOUDFLARE_IMAGES_ACCOUNT_HASH }}
+          NEXT_PUBLIC_USE_CLOUDFLARE_IMAGES: ${{ secrets.NEXT_PUBLIC_USE_CLOUDFLARE_IMAGES }}
+          # Your actual project's .env.local variables, if any, that need to be in CI
+          # They MUST be added as repository secrets in GitHub too.
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} # Your API token from GitHub Secrets
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} # Your Cloudflare Account ID (find in Workers & Pages URL, or Profile > API Tokens)
+          projectName: teyvat-archive-client
+          directory: apps/teyvat-archive-client/.next/standalone # REQUIRED: Path to your build output within the monorepo
+          # If your Next.js app uses `next export` for static output, change `directory` to `apps/main-site/out`
+          # branch: main # Optional: specify the branch to deploy from (defaults to ref branch)
