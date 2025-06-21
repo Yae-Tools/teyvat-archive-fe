@@ -1,0 +1,56 @@
+name: Deploy Main Site to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main # Triggers on pushes to the 'main' branch
+  pull_request:
+    branches:
+      - main # Triggers on pull requests to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest # The type of runner that the job will run on
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Action to check out your repository code
+        with:
+          fetch-depth: 0 # Needed for Turborepo's --since=HEAD^1 to detect changes
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3 # Action to set up pnpm
+        with:
+          version: 9 # Specify your pnpm version (match your local)
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Action to set up Node.js
+        with:
+          node-version: "20" # Specify your Node.js version (match your local)
+          cache: "pnpm" # Cache pnpm dependencies to speed up builds
+
+      - name: Install Monorepo Dependencies
+        run: pnpm install # Installs dependencies for all workspaces
+
+      - name: Build Teyvat Archive Client for Cloudflare
+        # Build the Next.js app using OpenNext for Cloudflare
+        run: |
+          cd apps/teyvat-archive-client
+          pnpm build
+          npx @opennextjs/cloudflare build
+        env:
+          # Environment variables for build time
+          NEXT_PUBLIC_ENKA_BASE_URL: ${{ secrets.NEXT_PUBLIC_ENKA_BASE_URL }}
+          NEXT_PUBLIC_IMAGE_CDN_BASE_URL: ${{ secrets.NEXT_PUBLIC_IMAGE_CDN_BASE_URL }}
+          NEXT_PUBLIC_BANNER_VISIBLE: ${{ secrets.NEXT_PUBLIC_BANNER_VISIBLE }}
+          NEXT_PUBLIC_POSTHOG_KEY: ${{ secrets.NEXT_PUBLIC_POSTHOG_KEY }}
+          NEXT_PUBLIC_POSTHOG_HOST: ${{ secrets.NEXT_PUBLIC_POSTHOG_HOST }}
+          CLOUDFLARE_IMAGES_ACCOUNT_HASH: ${{ secrets.CLOUDFLARE_IMAGES_ACCOUNT_HASH }}
+          NEXT_PUBLIC_USE_CLOUDFLARE_IMAGES: ${{ secrets.NEXT_PUBLIC_USE_CLOUDFLARE_IMAGES }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .open-next/assets --project-name=teyvat-archive-client
+          workingDirectory: apps/teyvat-archive-client

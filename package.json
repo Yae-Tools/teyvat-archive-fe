@@ -2,7 +2,10 @@
   "name": "teyvat-archive-fe",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter='!convex-config'",
+    "build:client": "turbo run build --filter=teyvat-archive-client",
+    "build:dashboard": "turbo run build --filter=teyvat-archive-dashboard",
+    "build:apps": "turbo run build --filter=teyvat-archive-client --filter=teyvat-archive-dashboard",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
@@ -11,7 +14,8 @@
   "devDependencies": {
     "prettier": "^3.5.3",
     "turbo": "^2.5.4",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3",
+    "wrangler": "^4.20.5"
   },
   "packageManager": "pnpm@9.0.0",
   "engines": {

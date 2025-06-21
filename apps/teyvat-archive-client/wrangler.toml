@@ -1,7 +1,9 @@
-  main = ".open-next/worker.js"
-  name = "teyvat-archive-client-next"
-  compatibility_date = "2025-03-25"
-  compatibility_flags = ["nodejs_compat"]
-  [assets]
-  directory = ".open-next/assets"
-  binding = "ASSETS"
+name = "teyvat-archive-client"
+compatibility_date = "2025-03-25"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".open-next/assets"
+
+
+# [assets]
+# directory = ".open-next/assets"
+# binding = "STATIC_ASSETS"
