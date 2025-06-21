@@ -50,7 +50,7 @@ jobs:
           # They MUST be added as repository secrets in GitHub too.
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3.14.1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} # Your API token from GitHub Secrets
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} # Your Cloudflare Account ID (find in Workers & Pages URL, or Profile > API Tokens)
