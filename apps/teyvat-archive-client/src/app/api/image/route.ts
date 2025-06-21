@@ -1,16 +1,8 @@
 // app/api/image/route.ts
 
-import { LRUCache } from "lru-cache";
 import { NextResponse } from "next/server";
-import sharp from "sharp";
 
 import { ALLOWED_HOSTS } from "~/config/allowedHosts";
-
-// In-memory cache
-const cache = new LRUCache<string, Buffer>({
-  max: 100,
-  ttl: 1000 * 60 * 60 // 1 hour
-});
 
 // Query parameter interface
 interface ImageQuery {
@@ -38,55 +30,67 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Invalid image host" }, { status: 403 });
   }
 
-  // Generate cache key
-  const cacheKey = `${url}-${w}-${q}`;
-  const cachedImage = cache.get(cacheKey);
-  if (cachedImage) {
-    return new NextResponse(new Uint8Array(cachedImage), {
-      status: 200,
-      headers: {
-        "Content-Type": "image/webp",
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    });
-  }
-
   try {
-    // Fetch image
-    const response = await fetch(url);
+    // Build image transformation options
+    const width = w ? parseInt(w, 10) : undefined;
+    const quality = q ? Math.min(100, Math.max(1, parseInt(q, 10))) : undefined;
+    
+    // Check if we're running in Cloudflare Workers
+    const isCloudflareWorker = typeof caches !== 'undefined' && 'cf' in Request.prototype;
+    
+    let imageUrl = url;
+    const fetchOptions: RequestInit & { cf?: any } = {
+      headers: {
+        'User-Agent': 'Teyvat-Archive/1.0',
+        'Accept': 'image/webp,image/avif,image/jpeg,image/png,*/*',
+      }
+    };
+
+    // If running in Cloudflare Workers, try to use image resizing
+    if (isCloudflareWorker && (width || quality)) {
+      // For Cloudflare Image Resizing, we need to use fetch with cf options
+      fetchOptions.cf = {
+        image: {
+          ...(width && { width }),
+          ...(quality && { quality }),
+          format: 'auto', // Let Cloudflare choose the best format
+          fit: 'scale-down',
+        }
+      };
+    } else if (width && hostname === "enka.network") {
+      // Some services support URL-based transformations
+      imageUrl = `${url}${url.includes('?') ? '&' : '?'}width=${width}`;
+    }
+    
+    // Fetch the image
+    const response = await fetch(imageUrl, fetchOptions);
+    
     if (!response.ok) {
-      throw new Error("Failed to fetch image");
+      throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
     }
 
-    const buffer = await response.arrayBuffer();
-
-    // Determine format based on Accept header
-    const accept = req.headers.get("accept") ?? "";
-    const format = accept.includes("image/webp") ? "webp" : "jpeg";
-
-    // Process image with sharp
-    const processedImage = await sharp(Buffer.from(buffer))
-      .resize({
-        width: w ? parseInt(w, 10) : undefined,
-        fit: "inside",
-        withoutEnlargement: true
-      })
-      .toFormat(format, { quality: q ? parseInt(q, 10) : 80 })
-      .toBuffer();
-
-    // Store in cache
-    cache.set(cacheKey, processedImage);
-
-    return new NextResponse(new Uint8Array(processedImage), {
+    // Get the response body as array buffer
+    const arrayBuffer = await response.arrayBuffer();
+    
+    // Determine content type from response or default to jpeg
+    const contentType = response.headers.get('content-type') ?? 'image/jpeg';
+    
+    // Create response with appropriate headers
+    return new NextResponse(arrayBuffer, {
       status: 200,
       headers: {
-        "Content-Type": `image/${format}`,
-        "Cache-Control": "public, max-age=31536000, immutable"
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Vary': 'Accept',
       }
     });
   } catch (error) {
-    console.error("Image processing error:", error);
-    // Fallback to original image
-    return NextResponse.redirect(url);
+    console.error("Image proxy error:", error);
+    
+    // Fallback: redirect to original image
+    return NextResponse.redirect(url, 302);
   }
 }

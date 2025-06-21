@@ -21,7 +21,6 @@
     "date-fns": "^4.1.0",
     "date-fns-tz": "^3.2.0",
     "jotai": "^2.12.5",
-    "lru-cache": "^11.1.0",
     "lucide-react": "^0.511.0",
     "motion": "^12.18.1",
     "next": "15.3.2",
