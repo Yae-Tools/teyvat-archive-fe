@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 import LogoHolder from "~/components/common/logoHolder";
 import SettingsModal from "~/components/modals/settings/settingsModal";
@@ -99,7 +99,6 @@ export default function Header() {
           />
         </div>
       </div>
-      <ToastContainer />
     </header>
   );
 }
