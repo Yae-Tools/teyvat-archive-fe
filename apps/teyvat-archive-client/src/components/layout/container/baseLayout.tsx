@@ -1,6 +1,7 @@
 "use server";
 
 import { Suspense } from "react";
+import { ToastContainer } from "react-toastify";
 
 import CustomCursor from "~/assets/cursor/cursor.png";
 import { getGameVersion } from "~/services/system/system.service";
@@ -55,6 +56,7 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
           <Footer />
         </div>
       </div>
+      <ToastContainer/>
     </Suspense>
   );
 }

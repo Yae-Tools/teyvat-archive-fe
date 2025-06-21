@@ -28,8 +28,8 @@ export default function MostUsedTeams({
             12-3 First Half
           </label>
           {isAbyssLoading && <AbyssTeamLoader />}
-          {firstHalf.map((team) => (
-            <AbyssTeam key={team.value + team.ownRate} {...{ team }} />
+          {firstHalf.map((team, index) => (
+            <AbyssTeam key={team.value + team.ownRate + index} {...{ team }} />
           ))}
         </div>
         <div className="flex w-full flex-col items-center justify-center">
@@ -37,8 +37,8 @@ export default function MostUsedTeams({
             12-3 Second Half
           </label>
           {isAbyssLoading && <AbyssTeamLoader />}
-          {secondHalf.map((team) => (
-            <AbyssTeam key={team.value + team.ownRate} {...{ team }} />
+          {secondHalf.map((team, index) => (
+            <AbyssTeam key={team.value + team.ownRate + index} {...{ team }} />
           ))}
         </div>
       </div>
