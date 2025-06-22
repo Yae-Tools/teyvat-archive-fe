@@ -5,6 +5,10 @@ export default function SiteMapSection() {
       link: "/about"
     },
     {
+      name: "Uptime Status",
+      link: "/uptime"
+    },
+    {
       name: "Privacy Policy",
       link: "/privacy-policy"
     },

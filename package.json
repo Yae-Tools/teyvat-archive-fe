@@ -7,6 +7,9 @@
     "build:dashboard": "turbo run build --filter=teyvat-archive-dashboard",
     "build:apps": "turbo run build --filter=teyvat-archive-client --filter=teyvat-archive-dashboard",
     "dev": "turbo run dev",
+    "dev:client": "turbo run dev --filter=teyvat-archive-client",
+    "dev:dashboard": "turbo run dev --filter=teyvat-archive-dashboard",
+    "dev:apps": "turbo run dev --filter=teyvat-archive-client --filter=teyvat-archive-dashboard",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
