@@ -33,7 +33,7 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
       }
     >
       <div
-        className="flex max-h-[100vh] min-h-screen flex-col overflow-x-hidden overflow-y-auto"
+        className="h-svh overflow-x-hidden overflow-y-auto"
         style={{
           cursor: "url(" + CustomCursor.src + "), auto",
           backgroundImage: `url(${gameVersion.background})`,
@@ -43,18 +43,20 @@ export default async function BaseLayout({ children }: Readonly<Props>) {
           backgroundColor: "rgba(16, 24, 40, 0.9)"
         }}
       >
-        <Header />
-        {BANNER_VISIBLE && (
-          <AnnouncementBanner
-            message={`${gameVersion.version} Update is still in progress. Some features may not work as expected.`}
-          />
-        )}
-        <main className="primary-text flex w-full flex-1 flex-col items-center justify-start">
-          {children}
-        </main>
-        <Footer />
+        <div className="mx-auto flex min-h-svh w-full flex-col items-center">
+          <Header />
+          {BANNER_VISIBLE && (
+            <AnnouncementBanner
+              message={`${gameVersion.version} Update is still in progress. Some features may not work as expected.`}
+            />
+          )}
+          <main className="primary-text flex w-full flex-1 flex-col items-center justify-start">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </div>
-      <ToastContainer />
+      <ToastContainer/>
     </Suspense>
   );
 }

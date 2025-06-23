@@ -68,13 +68,12 @@ export default function UptimePage() {
         {/* Uptime cards */}
         <div className="shadow-sm">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {uptimeInstances.map((instance, index) => (
+            {uptimeInstances.map((instance) => (
               <div
-                key={index}
+                key={instance.name}
                 className="flex flex-col rounded-lg border border-neutral-700 bg-slate-900/70 p-4 shadow-lg transition-all duration-200"
               >
                 <div className="flex w-full flex-col space-y-4">
-                  {/* Instance name and URL */}
                   <div className="flex items-center space-x-4">
                     <div>
                       <div className="text-sm text-white">
@@ -86,7 +85,6 @@ export default function UptimePage() {
                     </div>
                   </div>
 
-                  {/* Uptime circle and response time */}
                   <div className="flex items-center space-x-8">
                     <div className="relative size-16 md:size-20">
                       <svg
@@ -143,15 +141,13 @@ export default function UptimePage() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Uptime visualization bar */}
                   <div className="max-w-md flex-1">
                     <div className="flex h-8 space-x-px">
                       {getLogData(instance.name, histories as Histories)
                         .slice(0, 100)
                         .map((status: any, i: number) => (
                           <div
-                            key={i}
+                            key={status.timestamp + i}
                             className={`w-[2px] flex-1 ${status.status === "up" ? "bg-green-300" : "bg-red-400"}`}
                           />
                         ))}
