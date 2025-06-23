@@ -11,3 +11,10 @@ export interface IUptimeInstance {
   statusCode: number;
   timestamp: number;
 }
+
+export type Histories = {
+  main: IUptimeInstance[];
+  cdn: IUptimeInstance[];
+  api: IUptimeInstance[];
+  dashboard: IUptimeInstance[];
+};

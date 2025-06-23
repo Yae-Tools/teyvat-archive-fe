@@ -6,7 +6,6 @@ export const useUptimeData = () => {
   return useQuery({
     queryKey: ["uptime"],
     queryFn: async () => {
-      console.log("trigger 1");
       const uptime: {
         main: IUptimeInstance;
         dashboard: IUptimeInstance;
@@ -24,9 +23,8 @@ export const useUptimeHistory = (
   return useQuery({
     queryKey: ["uptimeHistory", instance],
     queryFn: async () => {
-      const history = await getUptimeHistory(instance);
+      const history: IUptimeInstance[] = await getUptimeHistory(instance);
       return history;
-    },
-    initialData: []
+    }
   });
 };

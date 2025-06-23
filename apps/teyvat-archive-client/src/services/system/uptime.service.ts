@@ -18,10 +18,12 @@ export const getUptime = async () => {
 export const getUptimeHistory = async (
   instance: "main" | "cdn" | "api" | "dashboard"
 ) => {
+  console.log("here", instance);
   try {
     const response = await uptimeInstance.get("/api/history", {
       params: { site: instance }
     });
+
     return response.data;
   } catch (error) {
     console.error(`Error fetching uptime history for ${instance}:`, error);
