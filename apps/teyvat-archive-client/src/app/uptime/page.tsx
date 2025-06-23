@@ -1,19 +1,17 @@
 "use client";
 
-import { ChevronDown, ChevronRight, Plus } from "lucide-react";
-import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 import PageTitle from "~/components/common/typography/pageTitle";
+import { useUptimeData } from "~/hooks/useUptimeData";
 
 const monitors = [
   {
     name: "Web Server long Name",
     url: "www.somain.com",
     uptime: 95.8,
-    type: "HTTP",
     frequency: "60s",
     notify: "abrizgalov@gmail.com",
-    recheck: "Off",
     status: "online",
     uptimeData: Array.from({ length: 100 }, (_, i) =>
       Math.random() > 0.05 ? "up" : "down"
@@ -23,10 +21,8 @@ const monitors = [
     name: "Web Server long Name 2",
     url: "srv2.somain.com",
     uptime: 97.33,
-    type: "HTTP",
     frequency: "100s",
     notify: "",
-    recheck: "On",
     status: "online",
     uptimeData: Array.from({ length: 100 }, (_, i) =>
       Math.random() > 0.03 ? "up" : "down"
@@ -36,10 +32,8 @@ const monitors = [
     name: "Web Server long Name 3",
     url: "srv2.somain.com",
     uptime: 74.95,
-    type: "HTTP",
     frequency: "60s",
     notify: "",
-    recheck: "Off",
     status: "warning",
     uptimeData: Array.from({ length: 100 }, (_, i) =>
       Math.random() > 0.25 ? "up" : "down"
@@ -48,40 +42,54 @@ const monitors = [
 ];
 
 export default function UptimePage() {
-  const [expandedMonitors, setExpandedMonitors] = useState<number[]>([0, 1]);
+  const { data: uptimeData } = useUptimeData();
 
-  const toggleMonitor = (index: number) => {
-    setExpandedMonitors((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+  const operationalServices = uptimeData
+    ? Object.entries(uptimeData).filter(
+        ([, instance]) => instance.status === "up"
+      )
+    : [];
+
+  if (!uptimeData) {
+    return (
+      <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
+        <PageTitle title="Uptime Status" />
+        <div className="w-usable p-2 md:p-6">
+          <div className="text-center text-neutral-400">Loading...</div>
+        </div>
+      </div>
     );
-  };
+  }
 
   return (
     <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
       <PageTitle title="Uptime Status" />
-      <div className="p-2 md:p-6 w-usable">
-        <div className="rounded-lg bg-white shadow-sm">
-          <div className="divide-y divide-gray-200">
-            {monitors.map((monitor, index) => (
-              <div key={index} className="p-2 md:p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    <button
-                      onClick={() => toggleMonitor(index)}
-                      className="text-gray-400 hover:text-gray-600"
-                    >
-                      {expandedMonitors.includes(index) ? (
-                        <ChevronDown className="size-5" />
-                      ) : (
-                        <ChevronRight className="size-5" />
-                      )}
-                    </button>
+      <div className="w-usable p-2 md:p-6">
+        {/* x/y is operational // all systems operational // all systems are down */}
+        <div className="mb-4 flex items-center justify-between">
+          <div className="text-sm text-neutral-400">
+            {operationalServices.length} of {Object.keys(uptimeData).length}{" "}
+            services operational
+          </div>
+          <div className="text-sm text-neutral-400">
+            Last updated: {new Date().toLocaleTimeString()}
+          </div>
+        </div>
 
+        <div className="shadow-sm">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {monitors.map((monitor, index) => (
+              <div
+                key={index}
+                className="flex flex-col rounded-lg border border-neutral-700 bg-slate-900/70 p-4 shadow-lg transition-all duration-200"
+              >
+                <div className="flex w-full flex-col space-y-4">
+                  <div className="flex items-center space-x-4">
                     <div>
-                      <div className="text-sm text-gray-900">
-                        {monitor.name}
+                      <div className="text-sm text-white">{monitor.name}</div>
+                      <div className="text-sm text-neutral-300">
+                        {monitor.url}
                       </div>
-                      <div className="text-sm text-gray-500">{monitor.url}</div>
                     </div>
                   </div>
 
@@ -89,7 +97,7 @@ export default function UptimePage() {
                     {/* Uptime Circle */}
                     <div className="relative size-16 md:size-20">
                       <svg
-                        className="size-16 md:size-20 -rotate-90 transform"
+                        className="size-16 -rotate-90 transform md:size-20"
                         viewBox="0 0 36 36"
                       >
                         <path
@@ -122,36 +130,25 @@ export default function UptimePage() {
                       </div>
                     </div>
 
-                    {expandedMonitors.includes(index) && (
-                      <div className="grid grid-cols-4 gap-4 text-sm">
-                        <div>
-                          <div className="text-gray-500">Type</div>
-                          <div className="font-medium">{monitor.type}</div>
-                        </div>
-                        <div>
-                          <div className="text-gray-500">Frequency</div>
-                          <div className="flex items-center font-medium">
-                            {monitor.frequency}
-                            <ChevronDown className="ml-1 size-3" />
-                          </div>
-                        </div>
-                        <div>
-                          <div className="text-gray-500">Recheck</div>
-                          <div className="font-medium">{monitor.recheck}</div>
+                    <div className="grid grid-cols-4 gap-4 text-sm">
+                      <div>
+                        <div className="text-gray-500">Frequency</div>
+                        <div className="flex items-center font-medium">
+                          {monitor.frequency}
+                          <ChevronDown className="ml-1 size-3" />
                         </div>
                       </div>
-                    )}
-
-                    {/* Uptime Visualization */}
-                    <div className="max-w-md flex-1">
-                      <div className="flex h-8 space-x-px">
-                        {monitor.uptimeData.map((status, i) => (
-                          <div
-                            key={i}
-                            className={`w-[2px] flex-1 ${status === "up" ? "bg-green-300" : "bg-red-400"}`}
-                          />
-                        ))}
-                      </div>
+                    </div>
+                  </div>
+                  {/* Uptime Visualization */}
+                  <div className="max-w-md flex-1">
+                    <div className="flex h-8 space-x-px">
+                      {monitor.uptimeData.map((status, i) => (
+                        <div
+                          key={i}
+                          className={`w-[2px] flex-1 ${status === "up" ? "bg-green-300" : "bg-red-400"}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
