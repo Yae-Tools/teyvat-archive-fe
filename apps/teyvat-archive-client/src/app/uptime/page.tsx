@@ -1,7 +1,7 @@
 "use client";
 
 import PageTitle from "~/components/common/typography/pageTitle";
-import { useUptimeData, useUptimeHistory } from "~/hooks/useUptimeData";
+import { useUptimeData, useAllUptimeHistories } from "~/hooks/useUptimeData";
 import { Histories } from "~/types/system.types";
 import {
   getAvgResponse,
@@ -13,21 +13,10 @@ import {
 
 export default function UptimePage() {
   const { data: uptimeData } = useUptimeData();
-  const histories = {
-    api: useUptimeHistory("api").data,
-    cdn: useUptimeHistory("cdn").data,
-    dashboard: useUptimeHistory("dashboard").data,
-    main: useUptimeHistory("main").data
-  };
+  const { data: histories } = useAllUptimeHistories();
 
   // Loading state
-  if (
-    !uptimeData ||
-    !histories.api ||
-    !histories.cdn ||
-    !histories.dashboard ||
-    !histories.main
-  ) {
+  if (!uptimeData || !histories) {
     return (
       <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
         <PageTitle title="Uptime Status" />
@@ -49,6 +38,13 @@ export default function UptimePage() {
   const operationalServices = Object.values(uptimeData).filter(
     (i) => i.status === "up"
   );
+
+  const getStatusColor = (instanceName: string) => {
+    const percent = getPercent(instanceName, histories as Histories);
+    if (percent > 90) return "#10b981";
+    if (percent > 75) return "#f59e0b";
+    return "#ef4444";
+  };
 
   return (
     <div className="mt-3 flex w-full flex-col items-center justify-center xl:mb-4">
@@ -100,17 +96,7 @@ export default function UptimePage() {
                         <path
                           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                           fill="none"
-                          stroke={
-                            getPercent(instance.name, histories as Histories) >
-                            90
-                              ? "#10b981"
-                              : getPercent(
-                                    instance.name,
-                                    histories as Histories
-                                  ) > 75
-                                ? "#f59e0b"
-                                : "#ef4444"
-                          }
+                          stroke={getStatusColor(instance.name)}
                           strokeWidth="2"
                           strokeDasharray={`${getPercent(instance.name, histories as Histories)}, 100`}
                         />

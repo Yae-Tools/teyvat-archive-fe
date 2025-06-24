@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { getUptime, getUptimeHistory } from "~/services/system/uptime.service";
 import { IUptimeInstance } from "~/types/system.types";
 
@@ -25,6 +26,28 @@ export const useUptimeHistory = (
     queryFn: async () => {
       const history: IUptimeInstance[] = await getUptimeHistory(instance);
       return history;
+    }
+  });
+};
+
+export const useAllUptimeHistories = () => {
+  return useQuery({
+    queryKey: ["uptimeHistories"],
+    queryFn: async () => {
+      const instances = ["main", "cdn", "api", "dashboard"] as const;
+      const histories = await Promise.all(
+        instances.map(async (instance) => {
+          const history = await getUptimeHistory(instance);
+          return { [instance]: history };
+        })
+      );
+      
+      return histories.reduce((acc, curr) => ({ ...acc, ...curr }), {}) as {
+        main: IUptimeInstance[];
+        cdn: IUptimeInstance[];
+        api: IUptimeInstance[];
+        dashboard: IUptimeInstance[];
+      };
     }
   });
 };
