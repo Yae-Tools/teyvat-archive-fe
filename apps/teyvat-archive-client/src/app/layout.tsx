@@ -65,7 +65,7 @@ export default function RootLayout({
   const theme = getThemeFromCookie();
 
   return (
-    <html lang="en" className={theme}>
+    <html lang="en" className={theme} suppressHydrationWarning>
       <body className={`${openSans.variable} antialiased`} id="app">
         <ErrorBoundary errorComponent={ErrorPage}>
           <PostHogProvider>
