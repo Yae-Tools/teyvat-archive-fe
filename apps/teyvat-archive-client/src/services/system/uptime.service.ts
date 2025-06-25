@@ -18,7 +18,6 @@ export const getUptime = async () => {
 export const getUptimeHistory = async (
   instance: "main" | "cdn" | "api" | "dashboard"
 ) => {
-  console.log("here", instance);
   try {
     const response = await uptimeInstance.get("/api/history", {
       params: { site: instance }

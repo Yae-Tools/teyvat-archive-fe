@@ -44,7 +44,7 @@ const PRIORITY_LEVELS = [
   { value: "critical", label: "Critical", color: "bg-red-700" },
 ]
 
-export function UpdatesManager({ user }: UpdatesManagerProps) {
+export function UpdatesManager({ user }: Readonly<UpdatesManagerProps>) {
   const [updates, setUpdates] = useState<Update[]>([
     {
       id: "1",

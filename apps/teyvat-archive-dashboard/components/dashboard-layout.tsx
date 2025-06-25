@@ -25,7 +25,6 @@ interface DashboardLayoutProps {
   children: React.ReactNode
   currentPage: string
   onNavigate: (page: string) => void
-  onLogout: () => void
 }
 
 const navigation = [
