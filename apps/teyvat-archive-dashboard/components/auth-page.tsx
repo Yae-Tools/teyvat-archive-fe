@@ -4,12 +4,13 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
+import { SignIn, SignInButton } from "@clerk/nextjs"
 
 interface AuthPageProps {
   onLogin: (provider: string, userData: any) => void
 }
 
-export function AuthPage({ onLogin }: AuthPageProps) {
+export default function AuthPage({ onLogin }: Readonly<AuthPageProps>) {
   const [isLoading, setIsLoading] = useState<string | null>(null)
 
   const handleLogin = async (provider: string) => {
@@ -48,16 +49,16 @@ export function AuthPage({ onLogin }: AuthPageProps) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-200 dark:bg-slate-900 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Genshin Build Hub
+          <CardTitle className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Teyvat Archive
           </CardTitle>
           <CardDescription>Sign in to create and share your character builds</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Button
+          {/* <Button
             onClick={() => handleLogin("twitch")}
             disabled={isLoading !== null}
             className="w-full bg-purple-600 hover:bg-purple-700 text-white"
@@ -134,7 +135,8 @@ export function AuthPage({ onLogin }: AuthPageProps) {
                 Continue with Discord
               </>
             )}
-          </Button>
+          </Button> */}
+          <SignIn/>
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
@@ -153,3 +155,4 @@ export function AuthPage({ onLogin }: AuthPageProps) {
     </div>
   )
 }
+

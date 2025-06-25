@@ -1,17 +1,11 @@
 "use client"
 
-import { AuthLayout } from "../components/auth-layout"
-import { DashboardHome } from "../components/dashboard-home"
-import { useRouter } from "next/navigation"
+import { AuthLayout } from "../../components/auth-layout"
+import { CharacterBuildForm } from "../../components/character-build-form"
 import { useUser } from "@clerk/nextjs"
 
-export default function App() {
-  const router = useRouter()
+export default function CreateBuildPage() {
   const { user } = useUser()
-
-  const handleNavigate = (page: string) => {
-    router.push(`/${page}`)
-  }
 
   const userForComponent = user ? {
     id: user.id,
@@ -22,9 +16,9 @@ export default function App() {
   } : null
 
   return (
-    <AuthLayout currentPage="dashboard">
+    <AuthLayout currentPage="create-build">
       {userForComponent && (
-        <DashboardHome user={userForComponent} onNavigate={handleNavigate} />
+        <CharacterBuildForm user={userForComponent} />
       )}
     </AuthLayout>
   )
