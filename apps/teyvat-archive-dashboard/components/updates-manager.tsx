@@ -25,10 +25,6 @@ interface Update {
   isPublished: boolean
 }
 
-interface UpdatesManagerProps {
-  user: { id: string; displayName: string }
-}
-
 const UPDATE_TYPES = [
   { value: "feature", label: "Feature", color: "bg-green-500" },
   { value: "bugfix", label: "Bug Fix", color: "bg-red-500" },
@@ -44,7 +40,7 @@ const PRIORITY_LEVELS = [
   { value: "critical", label: "Critical", color: "bg-red-700" },
 ]
 
-export function UpdatesManager({ user }: Readonly<UpdatesManagerProps>) {
+export function UpdatesManager() {
   const [updates, setUpdates] = useState<Update[]>([
     {
       id: "1",
@@ -277,7 +273,12 @@ export function UpdatesManager({ user }: Readonly<UpdatesManagerProps>) {
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
                     placeholder="Add tag"
-                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault()
+                        addTag()
+                      }
+                    }}
                   />
                   <Button type="button" onClick={addTag} variant="outline">
                     Add
@@ -288,7 +289,7 @@ export function UpdatesManager({ user }: Readonly<UpdatesManagerProps>) {
               <div className="space-y-2">
                 <Label htmlFor="description">Description</Label>
                 <RichTextEditor
-                  value={formData.description || ""}
+                  value={formData.description ?? ""}
                   onChange={(value) => setFormData((prev) => ({ ...prev, description: value }))}
                   placeholder="Detailed description of the update..."
                 />
