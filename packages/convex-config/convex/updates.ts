@@ -8,6 +8,6 @@ const updatesSchema = {
   priority: v.string(),
   relatedWebsite: v.string(),
   tags: v.array(v.string()),
-//   rich text content store as json
+  //   rich text content store as json
   richTextContent: v.any(),
 };
