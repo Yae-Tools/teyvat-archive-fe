@@ -183,6 +183,12 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.7
         version: 1.2.7(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-query':
+        specifier: ^5.80.7
+        version: 5.80.7(react@19.1.0)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.80.7
+        version: 5.80.7(@tanstack/react-query@5.80.7(react@19.1.0))(react@19.1.0)
       '@tiptap/extension-bold':
         specifier: ^2.23.0
         version: 2.23.0(@tiptap/core@2.23.0(@tiptap/pm@2.23.0))
@@ -243,6 +249,9 @@ importers:
       convex:
         specifier: ^1.24.8
         version: 1.24.8(@clerk/clerk-react@5.32.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      convex-config:
+        specifier: workspace:*
+        version: link:../../packages/convex-config
       lucide-react:
         specifier: ^0.522.0
         version: 0.522.0(react@19.1.0)

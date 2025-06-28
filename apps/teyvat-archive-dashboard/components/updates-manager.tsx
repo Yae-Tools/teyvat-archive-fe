@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useReducer, memo } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,146 +19,24 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import {
-  Plus,
-  Save,
-  Trash2,
-  ExternalLink,
-  Calendar,
-  Tag,
-  Globe,
-} from "lucide-react";
+import { Plus, Save, Trash2 } from "lucide-react";
 import { RichTextEditor } from "./rich-text-editor";
-
-// Memoized Update Card Component
-const UpdateCard = memo(
-  ({
-    update,
-    onEdit,
-    onDelete,
-    getTypeConfig,
-    getPriorityConfig,
-  }: {
-    update: Update;
-    onEdit: (update: Update) => void;
-    onDelete: (id: string) => void;
-    getTypeConfig: (type: string) => any;
-    getPriorityConfig: (priority: string) => any;
-  }) => {
-    const typeConfig = getTypeConfig(update.type);
-    const priorityConfig = getPriorityConfig(update.priority);
-
-    return (
-      <Card>
-        <CardHeader>
-          <div className="flex items-start justify-between">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <CardTitle className="text-xl">{update.title}</CardTitle>
-                <Badge variant="outline">{update.version}</Badge>
-                {!update.isPublished && (
-                  <Badge variant="secondary">Draft</Badge>
-                )}
-              </div>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {new Date(update.date).toLocaleDateString()}
-                </div>
-                <div className="flex items-center gap-1">
-                  <div className={`w-2 h-2 rounded-full ${typeConfig.color}`} />
-                  {typeConfig.label}
-                </div>
-                <div className="flex items-center gap-1">
-                  <div
-                    className={`w-2 h-2 rounded-full ${priorityConfig.color}`}
-                  />
-                  {priorityConfig.label} Priority
-                </div>
-                {update.relatedWebsite && (
-                  <a
-                    href={update.relatedWebsite}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-primary"
-                  >
-                    <Globe className="w-4 h-4" />
-                    Website
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                )}
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => onEdit(update)}
-              >
-                Edit
-              </Button>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => onDelete(update.id)}
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div
-            className="prose prose-sm max-w-none dark:prose-invert"
-            dangerouslySetInnerHTML={{ __html: update.description }}
-          />
-          {update.tags.length > 0 && (
-            <div className="flex items-center gap-2 mt-4">
-              <Tag className="w-4 h-4 text-muted-foreground" />
-              <div className="flex flex-wrap gap-1">
-                {update.tags.map((tag) => (
-                  <Badge key={tag} variant="outline" className="text-xs">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-    );
-  }
-);
-
-UpdateCard.displayName = "UpdateCard";
-
-interface Update {
-  id: string;
-  title: string;
-  version: string;
-  date: string;
-  description: string;
-  type: "feature" | "bugfix" | "improvement" | "security" | "breaking";
-  priority: "low" | "medium" | "high" | "critical";
-  relatedWebsite?: string;
-  tags: string[];
-  isPublished: boolean;
-}
-
-type FormState = Partial<Update>;
-
-type FormAction =
-  | { type: "SET_FIELD"; field: keyof FormState; value: any }
-  | { type: "SET_FORM"; payload: FormState }
-  | { type: "RESET_FORM" }
-  | { type: "ADD_TAG"; tag: string }
-  | { type: "REMOVE_TAG"; tag: string };
+import {
+  FormState,
+  IBaseUpdate,
+  IUpdate,
+  PRIORITY_LEVELS,
+  UPDATE_TYPES,
+} from "@/app/types/update-types";
+import { UpdateCard } from "./update-card";
+import { useUpdateMutation, useUpdatesQuery } from "@/hooks/use-updates";
+import { useUser } from "@clerk/nextjs";
 
 const getInitialFormState = (): FormState => ({
   title: "",
   version: "",
   date: new Date().toISOString().split("T")[0],
-  description: "",
+  richTextContent: "",
   type: "feature",
   priority: "medium",
   relatedWebsite: "",
@@ -166,206 +44,124 @@ const getInitialFormState = (): FormState => ({
   isPublished: false,
 });
 
-const formReducer = (state: FormState, action: FormAction): FormState => {
-  switch (action.type) {
-    case "SET_FIELD":
-      return { ...state, [action.field]: action.value };
-    case "SET_FORM":
-      return { ...action.payload };
-    case "RESET_FORM":
-      return getInitialFormState();
-    case "ADD_TAG":
-      const currentTags = state.tags || [];
-      if (action.tag.trim() && !currentTags.includes(action.tag.trim())) {
-        return { ...state, tags: [...currentTags, action.tag.trim()] };
-      }
-      return state;
-    case "REMOVE_TAG":
-      return {
-        ...state,
-        tags: (state.tags || []).filter((tag) => tag !== action.tag),
-      };
-    default:
-      return state;
-  }
-};
-
-const UPDATE_TYPES = [
-  { value: "feature", label: "Feature", color: "bg-green-500" },
-  { value: "bugfix", label: "Bug Fix", color: "bg-red-500" },
-  { value: "improvement", label: "Improvement", color: "bg-blue-500" },
-  { value: "security", label: "Security", color: "bg-yellow-500" },
-  { value: "breaking", label: "Breaking Change", color: "bg-purple-500" },
-];
-
-const PRIORITY_LEVELS = [
-  { value: "low", label: "Low", color: "bg-gray-500" },
-  { value: "medium", label: "Medium", color: "bg-orange-500" },
-  { value: "high", label: "High", color: "bg-red-500" },
-  { value: "critical", label: "Critical", color: "bg-red-700" },
-];
-
 export function UpdatesManager() {
-  const [updates, setUpdates] = useState<Update[]>([
-    {
-      id: "1",
-      title: "Rich Text Editor Implementation",
-      version: "1.2.0",
-      date: "2024-01-15",
-      description:
-        "Added comprehensive rich text editing capabilities to all note fields with formatting options including bold, italic, colors, and more.",
-      type: "feature",
-      priority: "high",
-      relatedWebsite: "https://genshin-build-hub.com",
-      tags: ["editor", "ui", "enhancement"],
-      isPublished: true,
-    },
-    {
-      id: "2",
-      title: "Dark Mode Support",
-      version: "1.1.0",
-      date: "2024-01-10",
-      description:
-        "Implemented system-wide dark mode with automatic theme detection and manual toggle options.",
-      type: "feature",
-      priority: "medium",
-      relatedWebsite: "https://genshin-build-hub.com",
-      tags: ["theme", "ui", "accessibility"],
-      isPublished: true,
-    },
-  ]);
+  const { user } = useUser();
+  const { data: updates=[], isLoading, error } = useUpdatesQuery();
+  const { createUpdate } = useUpdateMutation();
 
   const [isCreating, setIsCreating] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [formData, dispatchForm] = useReducer(
-    formReducer,
-    getInitialFormState()
-  );
+  const [formData, setFormData] = useState<FormState>(getInitialFormState());
   const [newTag, setNewTag] = useState("");
 
-  // Memoized configurations
-  const typeConfigMap = useMemo(
-    () => Object.fromEntries(UPDATE_TYPES.map((type) => [type.value, type])),
-    []
-  );
+  const handleFormChange = (
+    field: keyof FormState,
+    value: string | string[] | boolean
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-  const priorityConfigMap = useMemo(
-    () =>
-      Object.fromEntries(
-        PRIORITY_LEVELS.map((priority) => [priority.value, priority])
-      ),
-    []
-  );
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-  // Optimized handlers with useCallback
-  const handleFormFieldChange = useCallback(
-    (field: keyof FormState, value: any) => {
-      dispatchForm({ type: "SET_FIELD", field, value });
-    },
-    []
-  );
+    if (editingId) {
+      // TODO: Update existing update
+      console.log("Update existing:", formData);
+      // createUpdate(formData as IBaseUpdate);
+      setEditingId(null);
+    } else {
+      createUpdate({
+        ...formData,
+        createdBy: user?.id || "unknown",
+      } as IBaseUpdate);
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
+      console.log("Create new:", formData);
+    }
 
-      if (editingId) {
-        // Update existing
-        setUpdates((prev) =>
-          prev.map((update) =>
-            update.id === editingId
-              ? ({ ...update, ...formData } as Update)
-              : update
-          )
-        );
-        setEditingId(null);
-      } else {
-        // Create new
-        const newUpdate: Update = {
-          id: Date.now().toString(),
-          ...formData,
-        } as Update;
+    resetForm();
+  };
 
-        setUpdates((prev) => [newUpdate, ...prev]);
-      }
-
-      // Reset form
-      dispatchForm({ type: "RESET_FORM" });
-      setIsCreating(false);
-    },
-    [editingId, formData]
-  );
-
-  const handleEdit = useCallback((update: Update) => {
-    dispatchForm({ type: "SET_FORM", payload: update });
-    setEditingId(update.id);
-    setIsCreating(true);
-  }, []);
-
-  const handleDelete = useCallback((id: string) => {
-    setUpdates((prev) => prev.filter((update) => update.id !== id));
-  }, []);
-
-  const handleCancel = useCallback(() => {
+  const resetForm = () => {
+    setFormData(getInitialFormState());
     setIsCreating(false);
     setEditingId(null);
-    dispatchForm({ type: "RESET_FORM" });
-  }, []);
+  };
 
-  const addTag = useCallback(() => {
-    if (newTag.trim()) {
-      dispatchForm({ type: "ADD_TAG", tag: newTag.trim() });
+  const handleEdit = (update: IUpdate) => {
+    setFormData(update);
+    setEditingId(update._id);
+    setIsCreating(true);
+  };
+
+  const handleDelete = (id: string) => {
+    // TODO: Delete update
+    console.log("Delete:", id);
+  };
+
+  const addTag = () => {
+    if (newTag.trim() && !formData.tags?.includes(newTag.trim())) {
+      setFormData((prev) => ({
+        ...prev,
+        tags: [...(prev.tags || []), newTag.trim()],
+      }));
       setNewTag("");
     }
-  }, [newTag]);
+  };
 
-  const removeTag = useCallback((tagToRemove: string) => {
-    dispatchForm({ type: "REMOVE_TAG", tag: tagToRemove });
-  }, []);
+  const removeTag = (tagToRemove: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      tags: prev.tags?.filter((tag) => tag !== tagToRemove) || [],
+    }));
+  };
 
-  const handleTagKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        addTag();
-      }
-    },
-    [addTag]
-  );
+  const getTypeConfig = (type: string) =>
+    UPDATE_TYPES.find((t) => t.value === type) || UPDATE_TYPES[0];
 
-  const handleCreateClick = useCallback(() => {
-    setIsCreating(true);
-  }, []);
+  const getPriorityConfig = (priority: string) =>
+    PRIORITY_LEVELS.find((p) => p.value === priority) || PRIORITY_LEVELS[1];
 
-  const getTypeConfig = useCallback(
-    (type: string) => typeConfigMap[type] || UPDATE_TYPES[0],
-    [typeConfigMap]
-  );
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
-  const getPriorityConfig = useCallback(
-    (priority: string) => priorityConfigMap[priority] || PRIORITY_LEVELS[1],
-    [priorityConfigMap]
-  );
+  if (error) {
+    return (
+      <div className="container mx-auto p-6 max-w-6xl">
+        <Card>
+          <CardContent className="text-center py-12">
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-semibold">Error Loading Updates</h3>
+              <p className="text-muted-foreground">
+                {error.message || "An unexpected error occurred."}
+              </p>
+              <Button onClick={() => window.location.reload()}>Retry</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
-  // Memoized empty state
-  const emptyState = useMemo(
-    () => (
-      <Card>
-        <CardContent className="flex flex-col items-center justify-center py-12">
-          <div className="text-center space-y-2">
-            <h3 className="text-lg font-semibold">No updates yet</h3>
-            <p className="text-muted-foreground">
-              Create your first update to get started
-            </p>
-            <Button onClick={handleCreateClick}>
-              <Plus className="w-4 h-4 mr-2" />
-              Create Update
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-    ),
-    [handleCreateClick]
+  const EmptyState = () => (
+    <Card>
+      <CardContent className="flex flex-col items-center justify-center py-12">
+        <div className="text-center space-y-2">
+          <h3 className="text-lg font-semibold">No updates yet</h3>
+          <p className="text-muted-foreground">
+            Create your first update to get started
+          </p>
+          <Button onClick={() => setIsCreating(true)}>
+            <Plus className="w-4 h-4 mr-2" />
+            Create Update
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 
   return (
@@ -377,13 +173,12 @@ export function UpdatesManager() {
             Manage and publish updates for your platform
           </p>
         </div>
-        <Button onClick={handleCreateClick} size="lg">
+        <Button onClick={() => setIsCreating(true)} size="lg">
           <Plus className="w-4 h-4 mr-2" />
           Create Update
         </Button>
       </div>
 
-      {/* Create/Edit Form */}
       {isCreating && (
         <Card className="mb-6">
           <CardHeader>
@@ -404,9 +199,7 @@ export function UpdatesManager() {
                   <Input
                     id="title"
                     value={formData.title}
-                    onChange={(e) =>
-                      handleFormFieldChange("title", e.target.value)
-                    }
+                    onChange={(e) => handleFormChange("title", e.target.value)}
                     placeholder="Update title"
                     required
                   />
@@ -417,7 +210,7 @@ export function UpdatesManager() {
                     id="version"
                     value={formData.version}
                     onChange={(e) =>
-                      handleFormFieldChange("version", e.target.value)
+                      handleFormChange("version", e.target.value)
                     }
                     placeholder="e.g., 1.2.0"
                     required
@@ -429,9 +222,7 @@ export function UpdatesManager() {
                     id="date"
                     type="date"
                     value={formData.date}
-                    onChange={(e) =>
-                      handleFormFieldChange("date", e.target.value)
-                    }
+                    onChange={(e) => handleFormChange("date", e.target.value)}
                     required
                   />
                 </div>
@@ -443,7 +234,7 @@ export function UpdatesManager() {
                   <Select
                     value={formData.type}
                     onValueChange={(value) =>
-                      handleFormFieldChange("type", value as Update["type"])
+                      handleFormChange("type", value as IBaseUpdate["type"])
                     }
                   >
                     <SelectTrigger>
@@ -463,9 +254,9 @@ export function UpdatesManager() {
                   <Select
                     value={formData.priority}
                     onValueChange={(value) =>
-                      handleFormFieldChange(
+                      handleFormChange(
                         "priority",
-                        value as Update["priority"]
+                        value as IBaseUpdate["priority"]
                       )
                     }
                   >
@@ -492,7 +283,7 @@ export function UpdatesManager() {
                   type="url"
                   value={formData.relatedWebsite}
                   onChange={(e) =>
-                    handleFormFieldChange("relatedWebsite", e.target.value)
+                    handleFormChange("relatedWebsite", e.target.value)
                   }
                   placeholder="https://example.com"
                 />
@@ -517,7 +308,12 @@ export function UpdatesManager() {
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
                     placeholder="Add tag"
-                    onKeyDown={handleTagKeyDown}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        addTag();
+                      }
+                    }}
                   />
                   <Button type="button" onClick={addTag} variant="outline">
                     Add
@@ -528,29 +324,16 @@ export function UpdatesManager() {
               <div className="space-y-2">
                 <Label htmlFor="description">Description</Label>
                 <RichTextEditor
-                  value={formData.description ?? ""}
+                  value={formData.richTextContent ?? ""}
                   onChange={(value) =>
-                    handleFormFieldChange("description", value)
+                    handleFormChange("richTextContent", value)
                   }
                   placeholder="Detailed description of the update..."
                 />
               </div>
 
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  id="isPublished"
-                  checked={formData.isPublished}
-                  onChange={(e) =>
-                    handleFormFieldChange("isPublished", e.target.checked)
-                  }
-                  className="rounded"
-                />
-                <Label htmlFor="isPublished">Publish immediately</Label>
-              </div>
-
               <div className="flex justify-end gap-4">
-                <Button type="button" variant="outline" onClick={handleCancel}>
+                <Button type="button" variant="outline" onClick={resetForm}>
                   Cancel
                 </Button>
                 <Button type="submit">
@@ -563,11 +346,10 @@ export function UpdatesManager() {
         </Card>
       )}
 
-      {/* Updates List */}
       <div className="space-y-4">
         {updates.map((update) => (
           <UpdateCard
-            key={update.id}
+            key={update._id}
             update={update}
             onEdit={handleEdit}
             onDelete={handleDelete}
@@ -577,7 +359,7 @@ export function UpdatesManager() {
         ))}
       </div>
 
-      {updates.length === 0 && emptyState}
+      {updates.length === 0 && !isCreating && <EmptyState />}
     </div>
   );
 }

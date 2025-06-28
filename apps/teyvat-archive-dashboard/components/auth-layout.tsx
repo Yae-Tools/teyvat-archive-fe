@@ -3,7 +3,7 @@
 import { useEffect, ReactNode } from "react";
 import { DashboardLayout } from "./dashboard-layout";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+import { useConvexAuth } from "convex/react";
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -15,19 +15,19 @@ export function AuthLayout({
   currentPage,
 }: Readonly<AuthLayoutProps>) {
   const router = useRouter();
-  const { isLoaded, isSignedIn } = useUser();
+  const { isAuthenticated, isLoading } = useConvexAuth();
 
   const handleNavigate = (page: string) => {
     router.push(`/${page}`);
   };
 
   useEffect(() => {
-    if (isLoaded && !isSignedIn) {
+    if (!isAuthenticated && !isLoading) {
       router.push("/sign-in");
     }
-  }, [isLoaded, isSignedIn, router]);
+  }, [isLoading, isAuthenticated, router]);
 
-  if (!isLoaded) {
+  if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
@@ -35,7 +35,7 @@ export function AuthLayout({
     );
   }
 
-  if (!isSignedIn) {
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div>Redirecting to sign-in...</div>

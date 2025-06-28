@@ -1,53 +1,16 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { SignIn, SignInButton } from "@clerk/nextjs"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { SignIn } from "@clerk/nextjs";
 
-interface AuthPageProps {
-  onLogin: (provider: string, userData: any) => void
-}
-
-export default function AuthPage({ onLogin }: Readonly<AuthPageProps>) {
-  const [isLoading, setIsLoading] = useState<string | null>(null)
-
-  const handleLogin = async (provider: string) => {
-    setIsLoading(provider)
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    // Mock user data based on provider
-    const mockUserData = {
-      twitch: {
-        id: "twitch_123456",
-        username: "GenshinPlayer",
-        displayName: "Genshin Player",
-        avatar: "/placeholder.svg?height=40&width=40",
-        provider: "twitch",
-      },
-      google: {
-        id: "google_789012",
-        username: "traveler.genshin",
-        displayName: "Traveler",
-        avatar: "/placeholder.svg?height=40&width=40",
-        provider: "google",
-      },
-      discord: {
-        id: "discord_345678",
-        username: "ElementalMaster",
-        displayName: "Elemental Master",
-        avatar: "/placeholder.svg?height=40&width=40",
-        provider: "discord",
-      },
-    }
-
-    onLogin(provider, mockUserData[provider as keyof typeof mockUserData])
-    setIsLoading(null)
-  }
-
+export default function AuthPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-200 dark:bg-slate-900 p-4">
       <Card className="w-full max-w-md">
@@ -55,7 +18,9 @@ export default function AuthPage({ onLogin }: Readonly<AuthPageProps>) {
           <CardTitle className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Teyvat Archive
           </CardTitle>
-          <CardDescription>Sign in to create and share your character builds</CardDescription>
+          <CardDescription>
+            Sign in to create and share your character builds
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* <Button
@@ -136,14 +101,16 @@ export default function AuthPage({ onLogin }: Readonly<AuthPageProps>) {
               </>
             )}
           </Button> */}
-          <SignIn/>
+          <SignIn />
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
               <Separator className="w-full" />
             </div>
             <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">Secure Authentication</span>
+              <span className="bg-background px-2 text-muted-foreground">
+                Secure Authentication
+              </span>
             </div>
           </div>
 
@@ -153,6 +120,5 @@ export default function AuthPage({ onLogin }: Readonly<AuthPageProps>) {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
-

@@ -2,7 +2,17 @@
   "name": "convex-config",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "convex/_generated/api.js",
+  "types": "convex/_generated/api.d.ts",
+  "exports": {
+    ".": {
+      "types": "./convex/_generated/api.d.ts",
+      "default": "./convex/_generated/api.js"
+    },
+    "./dataModel": {
+      "types": "./convex/_generated/dataModel.d.ts"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "convex dev",
