@@ -49,7 +49,7 @@ export default function ConstellationIcon({
       </div>
 
       <div
-        className="flex h-full w-full items-center justify-center"
+        className="flex items-center justify-center size-full"
         style={{
           transform: `rotate(${-index * 60}deg)`
         }}

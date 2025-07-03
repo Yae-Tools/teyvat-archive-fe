@@ -126,7 +126,7 @@ export default function LevelPicker({
         />
 
         {/* Visible tick marks */}
-        <div className="absolute flex h-full w-full items-center">
+        <div className="absolute flex items-center size-full">
           <AnimatePresence initial={false}>
             {tickPositions.map(({ level, position }) => (
               <motion.button

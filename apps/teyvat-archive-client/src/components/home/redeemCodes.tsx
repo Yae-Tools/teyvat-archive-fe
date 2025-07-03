@@ -94,7 +94,7 @@ export default function RedeemCodes() {
               {code.code}
             </p>
             <ClipboardList
-              className="mx-auto h-6 w-6 cursor-pointer text-white"
+              className="mx-auto cursor-pointer text-white size-6"
               onClick={() => {
                 navigator.clipboard.writeText(code.code);
                 notify("Code copied to clipboard!");

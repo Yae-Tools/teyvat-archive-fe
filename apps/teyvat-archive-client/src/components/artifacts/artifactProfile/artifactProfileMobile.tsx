@@ -17,7 +17,7 @@ export default function ArtifactProfileMobile({
 }: Readonly<Props>) {
   return (
     <LazyBackgroundImage
-      className="h-full w-full rounded-lg"
+      className="rounded-lg size-full"
       img={rarityBgPicker(highestRarity)}
     >
       <h1

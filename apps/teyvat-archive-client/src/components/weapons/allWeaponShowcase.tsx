@@ -63,7 +63,7 @@ export default function AllWeaponShowcase({ weapons }: Readonly<Props>) {
         <motion.div
           key={weapon.id}
           variants={itemAnimation}
-          className="flex h-full w-full items-start justify-center"
+          className="flex items-start justify-center size-full"
         >
           <WeaponThumbnail weapon={weapon} />
         </motion.div>

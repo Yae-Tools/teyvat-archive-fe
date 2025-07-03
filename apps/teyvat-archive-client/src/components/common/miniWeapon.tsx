@@ -19,7 +19,7 @@ export default function MiniWeapon({ weapon }: Readonly<Props>) {
   return (
     <Link href={`/weapons/${weapon.nameId}-${weapon.id}`}>
       <MiniIconContainer key={weapon.id} rarity={weapon.rarity} bgFlow="fromTo">
-        <div className="relative flex h-full w-full flex-col items-center justify-end">
+        <div className="relative flex flex-col items-center justify-end size-full">
           <OptimizedImage
             src={weapon.icon}
             alt={weapon.id}

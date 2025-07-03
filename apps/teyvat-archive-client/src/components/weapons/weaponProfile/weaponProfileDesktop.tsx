@@ -28,7 +28,7 @@ function WeaponProfileDesktop({ weapon }: Readonly<Props>) {
           </div>
         </div>
       </div>
-      <div className="relative mx-2 flex h-full w-full">
+      <div className="relative mx-2 flex size-full">
         <div className="mx-2 flex w-1/3 flex-col items-start">
           <img
             src={splashImage}

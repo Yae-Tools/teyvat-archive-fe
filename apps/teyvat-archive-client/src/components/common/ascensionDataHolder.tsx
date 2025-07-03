@@ -33,7 +33,7 @@ export default function AscensionDataHolder({
                 bgFlow="fromTo"
               >
                 <div
-                  className="flex h-full w-full flex-col items-center justify-end"
+                  className="flex flex-col items-center justify-end size-full"
                   data-tooltip-id="asc-item-tooltip"
                   data-tooltip-content={`${item.materialName}`}
                 >

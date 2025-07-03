@@ -15,7 +15,7 @@ export default function WeaponProfileMobile({
 }: Readonly<Props>) {
   return (
     <LazyBackgroundImage
-      className="h-full w-full rounded-lg"
+      className="rounded-lg size-full"
       img={rarityBgPicker(stars)}
     >
       <LazyBackgroundImage

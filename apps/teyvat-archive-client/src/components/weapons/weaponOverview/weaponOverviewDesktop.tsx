@@ -40,7 +40,7 @@ export default function WeaponOverviewDesktop({
         <DescriptionDesktop description={description} align="right" />
       </div>
       <div className="my-2 flex w-full space-x-1 px-4">
-        <div className="flex h-full w-full items-start justify-end">
+        <div className="flex items-start justify-end size-full">
           <OverviewItemHolder
             label="Weapon Series"
             value={series}
@@ -63,7 +63,7 @@ export default function WeaponOverviewDesktop({
         </div>
       </div>
       <div className="my-2 flex w-full space-x-1 px-4">
-        <div className="flex h-full w-full items-start justify-end">
+        <div className="flex items-start justify-end size-full">
           <OverviewItemHolder
             label={stats[1][0].fightPropName}
             value={formatStatValue(

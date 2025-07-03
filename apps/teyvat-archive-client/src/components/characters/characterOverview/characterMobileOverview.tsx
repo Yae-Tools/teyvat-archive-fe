@@ -39,14 +39,14 @@ export default function CharacterMobileOverview({
       <div className="flex w-full items-start justify-between">
         <OverviewItemHolder label="Element" value={element}>
           <Image
-            className="mr-2 h-5 w-5"
+            className="mr-2 size-5"
             src={getElementTypeImage(element)}
             alt={element}
           />
         </OverviewItemHolder>
         <OverviewItemHolder label="Weapon Type" value={WEAPON_TYPES[weapon]}>
           <Image
-            className="mr-2 h-6 w-6"
+            className="mr-2 size-6"
             src={weaponTypeIconFilter[weapon]}
             alt={weapon}
             style={{

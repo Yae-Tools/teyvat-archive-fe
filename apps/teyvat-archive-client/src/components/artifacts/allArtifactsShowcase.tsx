@@ -64,7 +64,7 @@ export default function AllArtifactsShowcase({
         <motion.div
           key={artifactSet.id}
           variants={itemAnimation}
-          className="flex h-full w-full items-start justify-center"
+          className="flex items-start justify-center size-full"
         >
           <ArtifactThumbnail artifactSet={artifactSet} />
         </motion.div>

@@ -34,7 +34,7 @@ export default function ArtifactProfileDesktop({
   );
   const [selectedRarityFullSet] = useAtom(selectedRarityFullSetAtom);
   return (
-    <div className="flex h-full w-full items-start justify-between">
+    <div className="flex items-start justify-between size-full">
       <div className="flex h-full w-2/3 flex-col items-start justify-start">
         <div className="flex w-full flex-col items-start justify-start">
           <div className="mb-2 flex items-center justify-start space-x-4">
@@ -45,7 +45,7 @@ export default function ArtifactProfileDesktop({
             <TitleHeading text={name} />
           </div>
         </div>
-        <div className="mt-4 flex h-full w-full items-end justify-center">
+        <div className="mt-4 flex items-end justify-center size-full">
           <ArtifactOverviewDesktop
             {...{
               setBonus

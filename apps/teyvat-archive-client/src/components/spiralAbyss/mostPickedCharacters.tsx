@@ -55,7 +55,7 @@ export default function MostPickedCharacters({
                 key={char.id}
                 rarity={char.rarity as IRarityType}
               >
-                <div className="flex h-full w-full flex-col items-center justify-end">
+                <div className="flex flex-col items-center justify-end size-full">
                   <OptimizedImage
                     src={char.icon as string}
                     alt={char.id}

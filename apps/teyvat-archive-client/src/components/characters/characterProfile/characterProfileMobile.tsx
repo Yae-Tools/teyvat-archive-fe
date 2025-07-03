@@ -19,7 +19,7 @@ export default function CharacterProfileMobile({
 }: Readonly<Props>) {
   return (
     <LazyBackgroundImage
-      className="h-full w-full rounded-lg"
+      className="rounded-lg size-full"
       img={elementalBackgroundPicker(element)}
     >
       <LazyBackgroundImage

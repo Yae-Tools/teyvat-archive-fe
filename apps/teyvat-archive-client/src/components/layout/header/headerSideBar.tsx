@@ -52,7 +52,7 @@ export default function HeaderSidebar({
       >
         <XIcon className="size-5" />
       </button>
-      <nav className="absolute top-20 flex h-full w-full flex-col items-end justify-start space-y-6">
+      <nav className="absolute top-20 flex flex-col items-end justify-start space-y-6 size-full">
         {HEADER_ROUTES.map((route) => (
           <Link
             key={route.path}

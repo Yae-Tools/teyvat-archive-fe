@@ -83,7 +83,7 @@ export default function Carousel({
 
   return (
     <div className="relative my-6 grid h-[calc(100vw/12*5)] max-h-[500px] w-[calc(100vw/12*10)] max-w-[1000px] place-items-center overflow-hidden rounded-xl shadow-[0_3px_10px_rgba(0,0,0,0.3)]">
-      <div className="relative h-full w-full">
+      <div className="relative size-full">
         <AnimatePresence initial={false} custom={direction}>
           {carouselItems[currentIndex] && (
             <motion.div
@@ -94,7 +94,7 @@ export default function Carousel({
               animate="center"
               exit="exit"
               transition={{ duration: 0.5 }}
-              className="absolute h-full w-full"
+              className="absolute size-full"
             >
               <CarouselItem imageUrl={carouselItems[currentIndex].imageUrl} />
             </motion.div>

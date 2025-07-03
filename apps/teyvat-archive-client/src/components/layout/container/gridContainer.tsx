@@ -46,7 +46,7 @@ export default function GridContainer({
             ref={loaderRef}
             className="col-span-full flex justify-center py-4"
           >
-            <div className="border-primary h-8 w-8 animate-spin rounded-full border-4 border-t-transparent"></div>
+            <div className="border-primary animate-spin rounded-full border-4 border-t-transparent size-8"></div>
           </div>
         )}
       </motion.div>

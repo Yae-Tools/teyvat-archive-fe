@@ -12,7 +12,7 @@ function RarityStars({ stars }: Readonly<Props>) {
         .fill("")
         .map((_, i) => (
           <StarIcon
-            className="size-3 text-[gold] lg:h-4 lg:w-4 xl:h-6 xl:w-6"
+            className="size-3 text-[gold] lg:size-4 xl:size-6"
             fill="currentColor"
             strokeWidth={1}
             key={`star-${i + 1}`}

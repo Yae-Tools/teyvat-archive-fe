@@ -37,8 +37,8 @@ export default function DailyDomains() {
   );
 
   return (
-    <div className="flex h-full w-full items-center justify-center xl:order-1 xl:w-3/5">
-      <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
+    <div className="flex items-center justify-center xl:order-1 xl:w-3/5 size-full">
+      <div className="flex flex-col items-center justify-center space-y-4 size-full">
         <h5 className="font-enka text-center text-2xl">Daily Domains</h5>
         <div className="flex w-full flex-col items-center justify-center gap-4">
           <div className="flex w-full flex-col items-center justify-center gap-2 lg:gap-3 xl:gap-4">

@@ -23,7 +23,7 @@ export default function MiniAvatar({ char }: Readonly<Props>) {
   return (
     <Link href={`/characters/${char.nameId}-${char.id}-${char.skillDepotId}`}>
       <MiniIconContainer key={char.id} rarity={char.rarity} bgFlow="fromTo">
-        <div className="relative flex h-full w-full flex-col items-center justify-end">
+        <div className="relative flex flex-col items-center justify-end size-full">
           <div className="absolute top-0 left-0 mt-[-8px] ml-[-5px] flex items-center p-2 text-white">
             <Image
               src={getElementTypeImage(char.element)}

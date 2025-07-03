@@ -25,7 +25,7 @@ export default function CharacterDesktopOverview({
   isTraveler
 }: Readonly<Props>) {
   return (
-    <div className="mt-4 hidden h-full w-full flex-col items-start justify-center py-4 xl:mt-8 xl:flex">
+    <div className="mt-4 hidden flex-col items-start justify-center py-4 xl:mt-8 xl:flex size-full">
       <div className="flex w-full flex-col items-start justify-evenly">
         <div className="flex w-full items-start justify-start">
           <OverviewItemHolder label="Element" value={element}>

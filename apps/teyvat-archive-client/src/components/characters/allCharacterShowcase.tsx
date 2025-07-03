@@ -71,7 +71,7 @@ export default function AllCharacterShowcase({ characters }: Readonly<Props>) {
         <motion.div
           key={character.id}
           variants={itemAnimation}
-          className="flex h-full w-full items-start justify-center"
+          className="flex items-start justify-center size-full"
         >
           <CharacterThumbnail character={character} />
         </motion.div>
