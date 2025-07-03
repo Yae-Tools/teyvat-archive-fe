@@ -79,7 +79,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
           </p>
         </div>
         <Button onClick={() => onNavigate("create-build")} size="lg">
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="mr-2 size-4" />
           Create New Build
         </Button>
       </div>
@@ -89,7 +89,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">My Builds</CardTitle>
-            <BookOpen className="h-4 w-4 text-muted-foreground" />
+            <BookOpen className="text-muted-foreground size-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">12</div>
@@ -99,7 +99,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Likes</CardTitle>
-            <Star className="h-4 w-4 text-muted-foreground" />
+            <Star className="text-muted-foreground size-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">284</div>
@@ -109,7 +109,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Followers</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="text-muted-foreground size-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">47</div>
@@ -119,7 +119,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Views</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <TrendingUp className="text-muted-foreground size-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">1,247</div>
@@ -144,7 +144,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
                 className="flex items-center justify-between p-3 border rounded-lg"
               >
                 <div className="flex items-center space-x-3">
-                  <Avatar className="h-10 w-10">
+                  <Avatar className="size-10">
                     <AvatarImage
                       src={`/placeholder.svg?height=40&width=40`}
                       alt={build.character}
@@ -160,7 +160,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
                 </div>
                 <div className="text-right">
                   <Badge variant="secondary" className="mb-1">
-                    <Star className="w-3 h-3 mr-1" />
+                    <Star className="mr-1 size-3" />
                     {build.likes}
                   </Badge>
                   <p className="text-xs text-muted-foreground">
@@ -192,7 +192,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
                 className="flex items-center justify-between p-3 border rounded-lg"
               >
                 <div className="flex items-center space-x-3">
-                  <Avatar className="h-10 w-10">
+                  <Avatar className="size-10">
                     <AvatarImage
                       src={`/placeholder.svg?height=40&width=40`}
                       alt={build.character}
@@ -210,7 +210,7 @@ export function DashboardHome({ user, onNavigate }: Readonly<DashboardHomeProps>
                   </div>
                 </div>
                 <Badge variant="secondary">
-                  <Star className="w-3 h-3 mr-1" />
+                  <Star className="mr-1 size-3" />
                   {build.likes}
                 </Badge>
               </div>

@@ -399,7 +399,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                               className="cursor-pointer"
                               onClick={() => removeMainStat(type as keyof typeof formData.mainStats, stat)}
                             >
-                              {stat} <Minus className="w-3 h-3 ml-1" />
+                              {stat} <Minus className="ml-1 size-3" />
                             </Badge>
                           ))}
                         </div>
@@ -437,7 +437,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                           className="cursor-pointer"
                           onClick={() => removeSubStat(stat)}
                         >
-                          {stat} <Minus className="w-3 h-3 ml-1" />
+                          {stat} <Minus className="ml-1 size-3" />
                         </Badge>
                       ))}
                     </div>
@@ -579,7 +579,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                       <CardDescription>Add recommended weapons for this build</CardDescription>
                     </div>
                     <Button type="button" onClick={addWeapon} size="sm">
-                      <Plus className="w-4 h-4 mr-2" />
+                      <Plus className="mr-2 size-4" />
                       Add Weapon
                     </Button>
                   </CardHeader>
@@ -642,7 +642,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                             </div>
                             <div className="flex items-end">
                               <Button type="button" variant="destructive" size="sm" onClick={() => removeWeapon(index)}>
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="size-4" />
                               </Button>
                             </div>
                           </div>
@@ -674,7 +674,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                       <CardDescription>Add recommended artifact combinations</CardDescription>
                     </div>
                     <Button type="button" onClick={addArtifact} size="sm">
-                      <Plus className="w-4 h-4 mr-2" />
+                      <Plus className="mr-2 size-4" />
                       Add Artifact Build
                     </Button>
                   </CardHeader>
@@ -689,7 +689,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                             size="sm"
                             onClick={() => removeArtifact(artifactIndex)}
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="size-4" />
                           </Button>
                         </CardHeader>
                         <CardContent className="space-y-4">
@@ -714,7 +714,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                             </div>
                             <div className="flex items-end">
                               <Button type="button" onClick={() => addArtifactSet(artifactIndex)} size="sm">
-                                <Plus className="w-4 h-4 mr-2" />
+                                <Plus className="mr-2 size-4" />
                                 Add Set
                               </Button>
                             </div>
@@ -762,7 +762,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                                   size="sm"
                                   onClick={() => removeArtifactSet(artifactIndex, setIndex)}
                                 >
-                                  <Trash2 className="w-4 h-4" />
+                                  <Trash2 className="size-4" />
                                 </Button>
                               </div>
                             ))}
@@ -795,7 +795,7 @@ export function CharacterBuildForm({ user }: CharacterBuildFormProps) {
                 Cancel
               </Button>
               <Button type="submit">
-                <Save className="w-4 h-4 mr-2" />
+                <Save className="mr-2 size-4" />
                 Save Build
               </Button>
             </div>

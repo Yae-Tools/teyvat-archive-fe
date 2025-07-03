@@ -162,7 +162,7 @@ export function RichTextEditor({
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().chain().focus().undo().run()}
         >
-          <Undo className="w-4 h-4" />
+          <Undo className="size-4" />
         </Button>
         <Button
           type="button"
@@ -171,7 +171,7 @@ export function RichTextEditor({
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editor.can().chain().focus().redo().run()}
         >
-          <Redo className="w-4 h-4" />
+          <Redo className="size-4" />
         </Button>
 
         <Separator orientation="vertical" className="h-6" />
@@ -187,7 +187,7 @@ export function RichTextEditor({
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
         >
-          <Heading1 className="w-4 h-4" />
+          <Heading1 className="size-4" />
         </Button>
         <Button
           type="button"
@@ -199,7 +199,7 @@ export function RichTextEditor({
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
         >
-          <Heading2 className="w-4 h-4" />
+          <Heading2 className="size-4" />
         </Button>
         <Button
           type="button"
@@ -211,7 +211,7 @@ export function RichTextEditor({
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
         >
-          <Heading3 className="w-4 h-4" />
+          <Heading3 className="size-4" />
         </Button>
 
         <Separator orientation="vertical" className="h-6" />
@@ -223,7 +223,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleBold().run()}
         >
-          <Bold className="w-4 h-4" />
+          <Bold className="size-4" />
         </Button>
         <Button
           type="button"
@@ -231,7 +231,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleItalic().run()}
         >
-          <Italic className="w-4 h-4" />
+          <Italic className="size-4" />
         </Button>
         <Button
           type="button"
@@ -239,7 +239,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleUnderline().run()}
         >
-          <UnderlineIcon className="w-4 h-4" />
+          <UnderlineIcon className="size-4" />
         </Button>
         <Button
           type="button"
@@ -247,7 +247,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleStrike().run()}
         >
-          <Strikethrough className="w-4 h-4" />
+          <Strikethrough className="size-4" />
         </Button>
         <Button
           type="button"
@@ -255,7 +255,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleCode().run()}
         >
-          <Code className="w-4 h-4" />
+          <Code className="size-4" />
         </Button>
 
         <Separator orientation="vertical" className="h-6" />
@@ -264,7 +264,7 @@ export function RichTextEditor({
         <Popover open={showColorPicker} onOpenChange={setShowColorPicker}>
           <PopoverTrigger asChild>
             <Button type="button" variant="ghost" size="sm">
-              <Palette className="w-4 h-4" />
+              <Palette className="size-4" />
             </Button>
           </PopoverTrigger>
           <PopoverContent className="w-64">
@@ -273,7 +273,7 @@ export function RichTextEditor({
                 <button
                   key={color}
                   type="button"
-                  className="w-6 h-6 rounded border hover:scale-110 transition-transform"
+                  className="rounded border hover:scale-110 transition-transform size-6"
                   style={{ backgroundColor: color }}
                   onClick={() => {
                     editor.chain().focus().setColor(color).run();
@@ -306,7 +306,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
         >
-          <AlignLeft className="w-4 h-4" />
+          <AlignLeft className="size-4" />
         </Button>
         <Button
           type="button"
@@ -316,7 +316,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
         >
-          <AlignCenter className="w-4 h-4" />
+          <AlignCenter className="size-4" />
         </Button>
         <Button
           type="button"
@@ -326,7 +326,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
         >
-          <AlignRight className="w-4 h-4" />
+          <AlignRight className="size-4" />
         </Button>
 
         <Separator orientation="vertical" className="h-6" />
@@ -338,7 +338,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
         >
-          <List className="w-4 h-4" />
+          <List className="size-4" />
         </Button>
         <Button
           type="button"
@@ -346,7 +346,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
         >
-          <ListOrdered className="w-4 h-4" />
+          <ListOrdered className="size-4" />
         </Button>
 
         <Separator orientation="vertical" className="h-6" />
@@ -358,7 +358,7 @@ export function RichTextEditor({
           size="sm"
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
         >
-          <Quote className="w-4 h-4" />
+          <Quote className="size-4" />
         </Button>
         <Button
           type="button"
@@ -366,7 +366,7 @@ export function RichTextEditor({
           size="sm"
           onClick={setLink}
         >
-          <LinkIcon className="w-4 h-4" />
+          <LinkIcon className="size-4" />
         </Button>
       </div>
 

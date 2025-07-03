@@ -55,7 +55,7 @@ export function DashboardLayout({ children, currentPage, onNavigate }: Readonly<
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2 px-2 py-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-purple-600">
+            <div className="flex items-center justify-center rounded-lg bg-linear-to-br from-blue-600 to-purple-600 size-8">
               <Sword className="size-4 text-white" />
             </div>
             <div className="flex flex-col">

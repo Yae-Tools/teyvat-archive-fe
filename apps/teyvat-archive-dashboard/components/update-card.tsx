@@ -44,7 +44,7 @@ export const UpdateCard = memo(
               </div>
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="size-4" />
                   {new Date(update.date).toLocaleDateString()}
                 </div>
                 <div className="flex items-center gap-1">
@@ -64,9 +64,9 @@ export const UpdateCard = memo(
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 hover:text-primary"
                   >
-                    <Globe className="w-4 h-4" />
+                    <Globe className="size-4" />
                     Website
-                    <ExternalLink className="w-3 h-3" />
+                    <ExternalLink className="size-3" />
                   </a>
                 )}
               </div>
@@ -84,7 +84,7 @@ export const UpdateCard = memo(
                 size="sm"
                 onClick={() => onDelete(update._id)}
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="size-4" />
               </Button>
             </div>
           </div>
@@ -96,7 +96,7 @@ export const UpdateCard = memo(
           />
           {update.tags.length > 0 && (
             <div className="flex items-center gap-2 mt-4">
-              <Tag className="w-4 h-4 text-muted-foreground" />
+              <Tag className="text-muted-foreground size-4" />
               <div className="flex flex-wrap gap-1">
                 {update.tags.map((tag) => (
                   <Badge key={tag} variant="outline" className="text-xs">

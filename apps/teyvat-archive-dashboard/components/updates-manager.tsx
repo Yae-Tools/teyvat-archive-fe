@@ -124,7 +124,7 @@ export function UpdatesManager() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        <div className="animate-spin rounded-full border-b-2 border-gray-900 size-8"></div>
       </div>
     );
   }
@@ -156,7 +156,7 @@ export function UpdatesManager() {
             Create your first update to get started
           </p>
           <Button onClick={() => setIsCreating(true)}>
-            <Plus className="w-4 h-4 mr-2" />
+            <Plus className="mr-2 size-4" />
             Create Update
           </Button>
         </div>
@@ -174,7 +174,7 @@ export function UpdatesManager() {
           </p>
         </div>
         <Button onClick={() => setIsCreating(true)} size="lg">
-          <Plus className="w-4 h-4 mr-2" />
+          <Plus className="mr-2 size-4" />
           Create Update
         </Button>
       </div>
@@ -299,7 +299,7 @@ export function UpdatesManager() {
                       className="cursor-pointer"
                       onClick={() => removeTag(tag)}
                     >
-                      {tag} <Trash2 className="w-3 h-3 ml-1" />
+                      {tag} <Trash2 className="ml-1 size-3" />
                     </Badge>
                   ))}
                 </div>
@@ -337,7 +337,7 @@ export function UpdatesManager() {
                   Cancel
                 </Button>
                 <Button type="submit">
-                  <Save className="w-4 h-4 mr-2" />
+                  <Save className="mr-2 size-4" />
                   {editingId ? "Update" : "Create"}
                 </Button>
               </div>

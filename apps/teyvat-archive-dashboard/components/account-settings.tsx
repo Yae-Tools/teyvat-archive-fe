@@ -180,7 +180,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="w-5 h-5" />
+                <User className="size-5" />
                 Profile Information
               </CardTitle>
               <CardDescription>Update your public profile information</CardDescription>
@@ -188,7 +188,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
             <CardContent className="space-y-6">
               {/* Avatar Section */}
               <div className="flex items-center gap-4">
-                <Avatar className="w-20 h-20">
+                <Avatar className="size-20">
                   <AvatarImage src={user.avatar || "/placeholder.svg"} alt={user.displayName} />
                   <AvatarFallback className="text-lg">{user.displayName.charAt(0)}</AvatarFallback>
                 </Avatar>
@@ -201,7 +201,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
                     </Badge>
                   </div>
                   <Button onClick={handleAvatarUpload} variant="outline" size="sm">
-                    <Upload className="w-4 h-4 mr-2" />
+                    <Upload className="mr-2 size-4" />
                     Change Avatar
                   </Button>
                 </div>
@@ -293,9 +293,9 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
               <div className="flex justify-end">
                 <Button onClick={handleProfileSave} disabled={isLoading}>
                   {isLoading ? (
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    <div className="animate-spin rounded-full border-b-2 border-white mr-2 size-4"></div>
                   ) : (
-                    <Save className="w-4 h-4 mr-2" />
+                    <Save className="mr-2 size-4" />
                   )}
                   Save Changes
                 </Button>
@@ -309,7 +309,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Bell className="w-5 h-5" />
+                <Bell className="size-5" />
                 Notification Preferences
               </CardTitle>
               <CardDescription>Choose what notifications you want to receive</CardDescription>
@@ -419,7 +419,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Eye className="w-5 h-5" />
+                <Eye className="size-5" />
                 Privacy Settings
               </CardTitle>
               <CardDescription>Control who can see your information and interact with you</CardDescription>
@@ -520,7 +520,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="w-5 h-5" />
+                <Shield className="size-5" />
                 Security Settings
               </CardTitle>
               <CardDescription>Manage your account security and authentication</CardDescription>
@@ -578,7 +578,7 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
                     {security.allowedDevices.map((device, index) => (
                       <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                         <div className="flex items-center gap-2">
-                          <Settings className="w-4 h-4" />
+                          <Settings className="size-4" />
                           <span>{device}</span>
                           {index === 0 && <Badge variant="secondary">Current</Badge>}
                         </div>
@@ -599,12 +599,12 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
 
                   <div className="flex gap-4">
                     <Button variant="outline" onClick={handleExportData}>
-                      <Download className="w-4 h-4 mr-2" />
+                      <Download className="mr-2 size-4" />
                       Export Data
                     </Button>
 
                     <Button variant="outline" onClick={onLogout}>
-                      <Key className="w-4 h-4 mr-2" />
+                      <Key className="mr-2 size-4" />
                       Sign Out All Devices
                     </Button>
                   </div>
@@ -612,14 +612,14 @@ export function AccountSettings({ user, onUserUpdate, onLogout }: AccountSetting
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button variant="destructive">
-                        <Trash2 className="w-4 h-4 mr-2" />
+                        <Trash2 className="mr-2 size-4" />
                         Delete Account
                       </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle className="flex items-center gap-2">
-                          <AlertTriangle className="w-5 h-5 text-destructive" />
+                          <AlertTriangle className="text-destructive size-5" />
                           Delete Account
                         </AlertDialogTitle>
                         <AlertDialogDescription>
